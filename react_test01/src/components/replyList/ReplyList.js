@@ -38,8 +38,11 @@ const TextArea = styled.textarea`
     border-radius: 5px;
     outline: none;
     padding: 11px 20px;
+    margin: 0;
     margin-top: 10px;
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 `;
 
 const ReplySubmit = styled.div`

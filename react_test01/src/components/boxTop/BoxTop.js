@@ -71,6 +71,13 @@ const WrapUl = styled.ul`
 
 const Wrapli = styled.li`
   list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  color: #333;
 `;
 
 const WrapSpan = styled.span`
@@ -90,7 +97,14 @@ const WrapStrong = styled.strong`
   color: #fc5a85;
   display: inline-block;
   margin-right: 2px;
-  margin-left: -1px;
+  margin-left: 4px;
+  font-weight: bold;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  list-style: none;
 `;
 
 const WrapTitleli = styled.li`
@@ -159,6 +173,11 @@ const HeadFigureLocaleImg = styled.img`
   right: 0;
 `;
 
+const ViewCountImg = styled.img`
+  margin-bottom: -2px;
+  margin-right: 2px;
+`;
+
 
 
 
@@ -178,7 +197,7 @@ function BoxTop() {
             <WrapStrong className="prgNickname_Q">똑똑똑</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>지방간에 좋은 음식은 어떤 음식이 있을까요</WrapTitleli>
           <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv>1시간 전<Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
-          <img></img>8</WrapThankli>
+          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
         </WrapUl>
         <BtnBox>
           <BtnBoxI></BtnBoxI>

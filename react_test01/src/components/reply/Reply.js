@@ -32,6 +32,13 @@ const Btag = styled.b`
     font-weight: 300;
     position: relative;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    text-align: justify;
+    font-size: 12px;
+    color: #999;
 `;
 
 const Table = styled.table`
@@ -78,6 +85,7 @@ const ReplyLocaleTh = styled.th`
 `;
 
 const ReplyLocaleSpan = styled.span`
+& {
     display: block;
     width: 175px;
     position: absolute;
@@ -88,6 +96,19 @@ const ReplyLocaleSpan = styled.span`
     color: #fff;
     text-align: center;
     border-radius: 10px;
+}
+&:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #666;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: -1;
+}
 `;
 
 

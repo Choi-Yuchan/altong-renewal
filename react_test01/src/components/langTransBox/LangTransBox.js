@@ -22,6 +22,8 @@ const OriginDiv = styled.div`
   vertical-align: middle;
   transition: all 0.3s;
   white-space: nowrap;
+  margin: 0;
+  padding: 0;
 `;
 
 const LangDiv = styled.div`
