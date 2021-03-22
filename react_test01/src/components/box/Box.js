@@ -1,13 +1,30 @@
+import styled from 'styled-components';
+
 import BoxTop from '../boxTop/BoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
 
+const MainDiv = styled.div`
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  transition: all 0.3s;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+
+  font-size: 16px;
+  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  color: #333;
+`;
+
 
 function Box() {
   return (
-    <div className="Box">
+    <MainDiv className="Box">
         {/* atm_top_wrap */}
         <BoxTop></BoxTop>
         <Contents></Contents>
@@ -16,9 +33,9 @@ function Box() {
         <ReplyList></ReplyList>
 
         <div className="overlay">
-            Box
+        overlay
         </div>
-    </div>
+    </MainDiv>
   );
 }
 
