@@ -5,12 +5,11 @@ import MiniProfile from '../miniProfile/MiniProfile'
 const MainDiv = styled.div`
   position: relative;
   padding-left: 130px;
-  font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-  color: #333;
+  
 `;
 
 const HeadFigure = styled.figure`
+  margin: 0;
   overflow: visible;
   display: inline-block;
   width: 50px;
@@ -129,6 +128,35 @@ const Datespan = styled.span`
   border-radius: 10px;
 `;
 
+const BtnBox = styled.div`
+  width: 10px;
+  padding-left: 2px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 5;
+`;
+
+const BtnBoxI = styled.i`
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: #aaa;
+  border-radius: 50%;
+  margin-bottom: 3px;
+`;
+
+const HeadFigureLocaleImg = styled.img`
+  border-radius: 0;
+  width: 40%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
+
 
 
 // atm_top_wrap
@@ -137,6 +165,7 @@ function BoxTop() {
       <MainDiv className="BoxTop">
         <HeadFigure>
           <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
+          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
           <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
         </HeadFigure>
         <HeadH2>Q.<HeadSpan className="yellow" >100</HeadSpan></HeadH2>
@@ -148,11 +177,11 @@ function BoxTop() {
           <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv>1시간 전<Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
           <img></img>8</WrapThankli>
         </WrapUl>
-        <div>
-          <i></i>
-          <i></i>
-          <i></i>
-        </div>
+        <BtnBox>
+          <BtnBoxI></BtnBoxI>
+          <BtnBoxI></BtnBoxI>
+          <BtnBoxI></BtnBoxI>
+        </BtnBox>
         <MiniProfile></MiniProfile>
       </MainDiv>
     );

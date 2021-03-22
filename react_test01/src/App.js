@@ -1,9 +1,9 @@
-import Box from './components/box/Box'
+import QuestionBox from './components/questionBox/QuestionBox'
 
 function App() {
   return (
     <div className="App">
-      <Box></Box>
+      <QuestionBox></QuestionBox>
     </div>
   );
 }
