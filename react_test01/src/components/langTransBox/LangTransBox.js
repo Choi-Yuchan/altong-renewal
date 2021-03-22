@@ -55,6 +55,8 @@ const LangViewDiv = styled.div`
 `;
 
 const LangViewUl = styled.ul`
+  margin: 0;
+  padding: 0;
   display: inline-block;
   margin-left: 5px;
   height: 100%;
@@ -63,9 +65,7 @@ const LangViewUl = styled.ul`
   background: #fff;
   border-radius: 0;
   border: 0;
-  padding: 0;
   margin-bottom: 0;
-  padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 `;

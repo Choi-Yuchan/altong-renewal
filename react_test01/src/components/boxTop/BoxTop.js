@@ -41,6 +41,7 @@ const HeadFigureFigcaption = styled.figcaption`
 `;
 
 const HeadH2 = styled.h2`
+  margin: 0;
   display: inline-block;
   text-align: center;
   font-size: 43px;
@@ -62,6 +63,8 @@ const HeadSpan = styled.span`
 `;
 
 const WrapUl = styled.ul`
+  margin: 0;
+  padding: 0;
   display: inline-block;
   width: 80%;
 `;
