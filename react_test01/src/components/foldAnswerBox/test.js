@@ -27,9 +27,10 @@ function FoldAnswerBox(props) {
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
         <Contents message={props.message}></Contents>
-        <LangTransBox></LangTransBox>
-        <ReplyBox></ReplyBox>
-        <ReplyList></ReplyList>
+        {/* <LangTransBox></LangTransBox> */}
+        {/* <ReplyBox></ReplyBox> */}
+        {/* <ReplyList></ReplyList> */}
+        
 
         <div className="overlay">
         </div>
