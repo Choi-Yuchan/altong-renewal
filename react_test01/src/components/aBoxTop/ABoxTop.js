@@ -160,6 +160,12 @@ const ViewCountImg = styled.img`
   margin-right: 2px;
 `;
 
+const ViewCountReplyImg = styled.img`
+  margin-bottom: -4px;
+  margin-left: 2px;
+  margin-right: 2px;
+`;
+
 
 
 
@@ -177,7 +183,9 @@ function ABoxTop() {
             <WrapSpan>알천사</WrapSpan>
             <WrapStrong className="prgNickname_Q">Logan님의 답변입니다.</WrapStrong></Wrapli>
           <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
+          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8
+          <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
+          </WrapThankli>
         </WrapUl>
         <BtnBox>
           <BtnBoxI></BtnBoxI>
