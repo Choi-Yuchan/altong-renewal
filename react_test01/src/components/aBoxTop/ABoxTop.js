@@ -73,13 +73,15 @@ const WrapSpan = styled.span`
 `;
 
 const WrapStrong = styled.strong`
-  margin: 0;
+  margin-left: 10px;
   padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  font-size: 18px;
 `;
 
 const WrapThankli = styled.li`
+  margin-top: 7px;
   font-size: 12px;
   color: #666;
   list-style: none;
@@ -174,7 +176,7 @@ function ABoxTop() {
           <Wrapli>
             <WrapSpan>알천사</WrapSpan>
             <WrapStrong className="prgNickname_Q">Logan님의 답변입니다.</WrapStrong></Wrapli>
-          <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
+          <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
         </WrapUl>
         <BtnBox>
