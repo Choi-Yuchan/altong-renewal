@@ -30,6 +30,34 @@ const HrefA = styled.a`
     color: #333;
 `;
 
+const HrefAIcon = styled.img`
+    margin-bottom: -3px;
+    margin-right: 4px;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+
+const HrefASpan = styled.span`
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 13px;
+    border: 1px solid #d3d3d3;
+    border-radius: 7px;
+    background: #fff;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+    color: #333;
+`;
+
 const EmotionList = styled.li`
     margin-left: 20px;
     display: inline-block;
@@ -94,7 +122,7 @@ function ReplyBox() {
       <OlBox className="ReplyBox">
           <ListReply>
               <HrefA>
-                  <img></img>댓글<span>1</span>
+                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon>댓글<HrefASpan>1</HrefASpan>
               </HrefA>
           </ListReply>
           <EmotionList>

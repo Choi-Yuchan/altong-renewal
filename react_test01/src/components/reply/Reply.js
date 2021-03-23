@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
 
+
+const MainContents = styled.div`
+    padding-top: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+
 const ReplyContents = styled.th`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
@@ -13,7 +21,6 @@ const ReplyContents = styled.th`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     margin: 0;
-    
 `;
 
 const ReplyBotton = styled.td`
@@ -114,7 +121,7 @@ const ReplyLocaleSpan = styled.span`
 
 function Reply() {
     return (
-      <div className="Reply">
+      <MainContents className="Reply">
           <Table>
               <tbody>
                   <tr>
@@ -137,7 +144,7 @@ function Reply() {
                   </tr>
               </tbody>
           </Table>
-      </div>
+      </MainContents>
     );
   }
   

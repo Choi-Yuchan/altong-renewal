@@ -6,6 +6,7 @@ const MainDiv = styled.div`
 `;
 
 const OriginDiv = styled.div`
+&{
   border: 2px solid #ff3300;
   color: #f30;
   display: inline-block;
@@ -24,6 +25,19 @@ const OriginDiv = styled.div`
   white-space: nowrap;
   margin: 0;
   padding: 0;
+}
+&:after{
+  content: "";
+  display: block;
+  width: 2px;
+  height: 50%;
+  background: #aaa;
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+}
+  
 `;
 
 const LangDiv = styled.div`

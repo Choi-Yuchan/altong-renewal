@@ -82,6 +82,12 @@ const ReplySubmitI = styled.i`
     font-size: 12px;
 `;
 
+const ReplySubmitImg = styled.img`
+    display: inline-block;
+    width: 12px;
+    margin-bottom: -1px;
+`;
+
 
 function ReplyList() {
     return (
@@ -98,7 +104,7 @@ function ReplyList() {
                       <ReplySubmitP>
                           <span>0</span>/400</ReplySubmitP>
                       <ReplyButton>
-                          <img></img><ReplySubmitI>등록</ReplySubmitI>
+                          <ReplySubmitImg src={process.env.PUBLIC_URL + '/test_source/modify03.svg'}></ReplySubmitImg><ReplySubmitI>등록</ReplySubmitI>
                       </ReplyButton>
                   </ReplySubmit>
               </div>
