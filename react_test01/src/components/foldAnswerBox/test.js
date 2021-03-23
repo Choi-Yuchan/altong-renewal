@@ -5,6 +5,7 @@ import Contents from '../contents/test'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
+import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom'
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
@@ -30,7 +31,7 @@ function FoldAnswerBox(props) {
         {/* <LangTransBox></LangTransBox> */}
         {/* <ReplyBox></ReplyBox> */}
         {/* <ReplyList></ReplyList> */}
-        
+        <AUnBoxBottom></AUnBoxBottom>
 
         <div className="overlay">
         </div>

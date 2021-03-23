@@ -42,7 +42,7 @@ const LangImg = styled.img`
   width: 30px;
   margin-left: 15px;
   float: right;
-  margin-top: 5px;
+  margin-top: 15px;
 `;
 
 
@@ -52,8 +52,9 @@ function Contents(props) {
     <MainDiv className="Contents">
         <ContentsP>{props.message}
         <ContentsSpan>열고~ㅇ</ContentsSpan>
-        </ContentsP>
         <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
+        </ContentsP>
+        
     </MainDiv>
   );
 }

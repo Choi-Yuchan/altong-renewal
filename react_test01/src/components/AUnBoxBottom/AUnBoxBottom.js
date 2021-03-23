@@ -2,15 +2,19 @@ import styled from 'styled-components';
 
 
 const MainOl = styled.ol`
-  position: relative;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 `;
 
 const AlScoreDiv = styled.div`
 &{
-    display: inline-block;
-    position: relative;
     margin: 0;
     padding: 0;
+    display: inline-block;
+    position: relative;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
