@@ -118,6 +118,28 @@ const ReplyLocaleSpan = styled.span`
 }
 `;
 
+const ReplyLangBtnBallDiv = styled.div`
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+`;
+
+const ReplyLangBtnBallImg = styled.img`
+    margin-left: 15px;
+    float: right;
+    margin-top: 5px;
+    margin-bottom: -2px;
+    margin-right: 2px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: top;
+`;
+
 
 function Reply() {
     return (
@@ -137,9 +159,9 @@ function Reply() {
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
                         <ReplyAhref>커피낙타</ReplyAhref> · <Btag>3초 전<ReplyLocaleSpan>2021-03-22 14:00:38</ReplyLocaleSpan></Btag> · <i>삭제</i>
-                        <div>
-                            
-                        </div>
+                        <ReplyLangBtnBallDiv>
+                            <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
+                        </ReplyLangBtnBallDiv>
                       </ReplyBotton>
                   </tr>
               </tbody>
