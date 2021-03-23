@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Box from './../box/Box'
 import TopNavi from './../topNavi/TopNavi'
+import AnswerBox from './../answerBox/AnswerBox'
 
 const MainDiv = styled.div`
   display: flex;
@@ -49,6 +50,7 @@ function QuestionBox() {
         <TopNavi></TopNavi>
         <WrapperDiv>
           <Box></Box>
+          <AnswerBox></AnswerBox>
         </WrapperDiv>
       </MainDiv>
     </SiteDiv>
