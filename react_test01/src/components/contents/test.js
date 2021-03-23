@@ -65,7 +65,7 @@ function DelSpan(props){
   if(isOpen == '열고~ㅇ'){
     return <ContentsSpan onClick={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); props.setOpen(''); }}>{props.open}</ContentsSpan>;
   }
-  return <div></div>
+  return <span>{props.open}</span>;
 }
 
 function Contents(props) {
