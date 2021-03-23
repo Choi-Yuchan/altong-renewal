@@ -34,7 +34,6 @@ function Box() {
         <ReplyList></ReplyList>
 
         <div className="overlay">
-        overlay
         </div>
     </MainDiv>
   );

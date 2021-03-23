@@ -130,6 +130,7 @@ const DateDiv = styled.b`
 `;
 
 const Datespan = styled.span`
+&{
   width: 175px;
   position: absolute;
   top: 140%;
@@ -143,6 +144,19 @@ const Datespan = styled.span`
   letter-spacing: 0;
   padding: 1px 5px;
   border-radius: 10px;
+}
+&:after{
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #666;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
+}
 `;
 
 const BtnBox = styled.div`
