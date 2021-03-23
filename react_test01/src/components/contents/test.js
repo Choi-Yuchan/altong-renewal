@@ -61,13 +61,12 @@ function CustomView(props){
 }
 
 function Contents(props) {
-  const [openAnswer, setOpenAnswer] = useState('close');
 
   return (
     <MainDiv className="Contents">
         <ContentsP>{props.message}
-        <ContentsSpan onClick={() => setOpenAnswer('open')}>열고~ㅇ{openAnswer}</ContentsSpan>
-        <CustomView isView={openAnswer}></CustomView>
+        <ContentsSpan onClick={() => props.setOpenAnswer('open')}>열고~ㅇ{props.openAnswer}</ContentsSpan>
+        <CustomView isView={props.openAnswer}></CustomView>
         </ContentsP>
         
     </MainDiv>

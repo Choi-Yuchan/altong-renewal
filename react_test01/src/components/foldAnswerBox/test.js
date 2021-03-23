@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import ABoxTop from '../aBoxTop/ABoxTop'
 import Contents from '../contents/test'
@@ -21,13 +22,16 @@ const MainDiv = styled.div`
   color: #333;
   
 `;
+// .substr(0,93)+"..."
 
 function FoldAnswerBox(props) {
+  const [openAnswer, setOpenAnswer] = useState('close');
+
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
-        <Contents message={props.message}></Contents>
+        <Contents message={props.message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer}></Contents>
         {/* <LangTransBox></LangTransBox> */}
         {/* <ReplyBox></ReplyBox> */}
         {/* <ReplyList></ReplyList> */}

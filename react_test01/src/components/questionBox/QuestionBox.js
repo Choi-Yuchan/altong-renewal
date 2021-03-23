@@ -46,7 +46,7 @@ const WrapperDiv = styled.div`
 
 function FoldMessage() {
   const message = "It's a good diet for fatty liver fresh vegetables, seaweed, and grains, and adequate portions of fruits. and I would recommend eating high-protein foods such as fish, tofu, skinless chicken.";
-  return <FoldAnswerBox message={message.substr(0,93)+"..."}></FoldAnswerBox>;
+  return <FoldAnswerBox message={message}></FoldAnswerBox>;
 }
 
 function QuestionBox() {
