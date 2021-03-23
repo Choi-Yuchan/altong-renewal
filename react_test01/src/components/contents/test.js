@@ -7,6 +7,7 @@ const MainDiv = styled.div`
   font-size: 15px;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
 `;
 
 const ContentsP = styled.p`
