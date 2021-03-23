@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import ABoxTop from '../aBoxTop/ABoxTop'
-import Contents from '../contents/Contents'
+import Contents from '../contents/test'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'

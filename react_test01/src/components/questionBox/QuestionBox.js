@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Box from './../box/Box'
 import TopNavi from './../topNavi/TopNavi'
 import AnswerBox from './../answerBox/AnswerBox'
-import FoldAnswerBox from './../foldAnswerBox/FoldAnswerBox'
+import FoldAnswerBox from './../foldAnswerBox/test'
 
 const MainDiv = styled.div`
   display: flex;
@@ -44,6 +44,11 @@ const WrapperDiv = styled.div`
   margin-bottom: 20px;
 `;
 
+function FoldMessage() {
+  const message = "It's a good diet for fatty liver fresh vegetables, seaweed, and grains, and adequate portions of fruits. and I would recommend eating high-protein foods such as fish, tofu, skinless chicken.";
+  return <FoldAnswerBox message={message.substr(0,93)+"..."}></FoldAnswerBox>;
+}
+
 function QuestionBox() {
   return (
     <SiteDiv>
@@ -51,7 +56,7 @@ function QuestionBox() {
         <TopNavi></TopNavi>
         <WrapperDiv>
           <Box></Box>
-          <FoldAnswerBox></FoldAnswerBox>
+          <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox>
         </WrapperDiv>
