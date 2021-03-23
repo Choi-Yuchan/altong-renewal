@@ -196,9 +196,9 @@ const ViewCountImg = styled.img`
 
 
 // atm_top_wrap
-function BoxTop() {
+function QBoxTop() {
     return (
-      <MainDiv className="BoxTop">
+      <MainDiv className="QBoxTop">
         <HeadFigure>
           <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
           <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
@@ -223,5 +223,5 @@ function BoxTop() {
     );
   }
   
-  export default BoxTop;
+  export default QBoxTop;
   

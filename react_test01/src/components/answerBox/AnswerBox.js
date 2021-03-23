@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import BoxTop from '../boxTop/BoxTop'
+import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
@@ -12,7 +12,6 @@ const MainDiv = styled.div`
   transition: all 0.3s;
   margin-bottom: 5px;
   border-radius: 20px;
-  margin: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 
@@ -22,12 +21,11 @@ const MainDiv = styled.div`
   
 `;
 
-
 function AnswerBox() {
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
-        <BoxTop></BoxTop>
+        <QBoxTop></QBoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox></ReplyBox>
