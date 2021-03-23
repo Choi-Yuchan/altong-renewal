@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const MainDiv = styled.div`
@@ -46,14 +47,27 @@ const LangImg = styled.img`
   margin-top: 15px;
 `;
 
+const LangImgNone = styled(LangImg)`
+  display: none;
+`;
 
+
+function CustomView(props){
+  const isView = props.isView;
+  if (isView == "open"){
+    return <LangImgNone src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImgNone>
+  }
+  return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
+}
 
 function Contents(props) {
+  const [openAnswer, setOpenAnswer] = useState('close');
+
   return (
     <MainDiv className="Contents">
         <ContentsP>{props.message}
-        <ContentsSpan>열고~ㅇ</ContentsSpan>
-        <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
+        <ContentsSpan onClick={() => setOpenAnswer('open')}>열고~ㅇ{openAnswer}</ContentsSpan>
+        <CustomView isView={openAnswer}></CustomView>
         </ContentsP>
         
     </MainDiv>
