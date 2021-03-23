@@ -4,8 +4,9 @@ import MiniProfile from '../miniProfile/MiniProfile'
 
 const MainDiv = styled.div`
   position: relative;
-  padding-left: 130px;
-  
+  padding-left: 75px;
+  margin-bottom: 40px;
+  margin-top: 10px;
 `;
 
 const HeadFigure = styled.figure`
@@ -40,28 +41,6 @@ const HeadFigureFigcaption = styled.figcaption`
   cursor: pointer;
 `;
 
-const HeadH2 = styled.h2`
-  margin: 0;
-  display: inline-block;
-  text-align: center;
-  font-size: 43px;
-  color: #fd0031;
-  position: absolute;
-  top: 50%;
-  left: 70px;
-  transform: translateY(-50%);
-`;
-
-const HeadSpan = styled.span`
-  background: #ffee75;
-  color: #333;
-  display: block;
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 15px;
-  margin-top: 3px;
-`;
-
 const WrapUl = styled.ul`
   margin: 0;
   padding: 0;
@@ -94,23 +73,10 @@ const WrapSpan = styled.span`
 `;
 
 const WrapStrong = styled.strong`
-  color: #fc5a85;
-  display: inline-block;
-  margin-right: 2px;
-  margin-left: 4px;
-  font-weight: bold;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-  list-style: none;
-`;
-
-const WrapTitleli = styled.li`
-  font-size: 20px;
-  font-weight: bold;
-  list-style: none;
 `;
 
 const WrapThankli = styled.li`
@@ -196,20 +162,18 @@ const ViewCountImg = styled.img`
 
 
 // atm_top_wrap
-function QBoxTop() {
+function ABoxTop() {
     return (
-      <MainDiv className="QBoxTop">
+      <MainDiv className="ABoxTop">
         <HeadFigure>
           <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
           <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
           <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
         </HeadFigure>
-        <HeadH2>Q.<HeadSpan className="yellow" >100</HeadSpan></HeadH2>
         <WrapUl>
           <Wrapli>
-            <WrapSpan>수호천사</WrapSpan>
-            <WrapStrong className="prgNickname_Q">똑똑똑</WrapStrong>님의 질문입니다.</Wrapli>
-          <WrapTitleli>지방간에 좋은 음식은 어떤 음식이 있을까요</WrapTitleli>
+            <WrapSpan>알천사</WrapSpan>
+            <WrapStrong className="prgNickname_Q">Logan님의 답변입니다.</WrapStrong></Wrapli>
           <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
         </WrapUl>
@@ -223,5 +187,5 @@ function QBoxTop() {
     );
   }
   
-  export default QBoxTop;
+  export default ABoxTop;
   

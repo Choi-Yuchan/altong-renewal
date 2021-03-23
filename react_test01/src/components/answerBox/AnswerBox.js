@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import QBoxTop from '../qBoxTop/QBoxTop'
+import ABoxTop from '../aBoxTop/ABoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
@@ -25,7 +25,7 @@ function AnswerBox() {
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
-        <QBoxTop></QBoxTop>
+        <ABoxTop></ABoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox></ReplyBox>

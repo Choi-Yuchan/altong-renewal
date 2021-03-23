@@ -17,6 +17,7 @@ const OlBox = styled.ol`
 const ListReply = styled.li`
     display: inline-block;
     list-style: none;
+    cursor: pointer;
 `;
 
 const HrefA = styled.a`
@@ -98,6 +99,7 @@ const AnswerBtnA = styled.a`
     border-radius: 100px;
     display: inline-block;
     text-decoration: none;
+    cursor: pointer;
 `;
 
 const LangBtnA = styled.a`
@@ -112,6 +114,7 @@ const LangBtnA = styled.a`
     border-radius: 100px;
     display: inline-block;
     text-decoration: none;
+    cursor: pointer;
 `;
 
 
