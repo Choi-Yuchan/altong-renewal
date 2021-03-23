@@ -203,13 +203,51 @@ const SearchImg = styled.img`
     cursor: pointer;
 `;
 
-const columnBoxPC = styled.p`
+const ColumnBoxPC = styled.p`
     width: 50%;
     padding: 5px;
     padding-top: 0;
     position: absolute;
     top: 0;
     right: -3px;
+    
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+
+const ColumnBoxAhref = styled.a`
+    text-decoration: none;
+    color: #333;
+    display: block;
+`;
+
+const TopcolumnBoxImg = styled.img`
+    width: 100%;
+    margin-top: -2px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+
+const ColumnBoxAhref2 = styled.a`
+    width: 67%;
+    position: absolute;
+    left: 100%;
+    top: 1px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+`;
+
+const TopcolumnBoxImg2 = styled.img`
+    width: 100%;
+    margin-top: -2px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 `;
 
 
@@ -245,14 +283,14 @@ function TopNavi() {
                         </SearchSpan>
                     </form>
                 </SearchBox>
-                <columnBoxPC>
-                    <a>
-                        <img src={process.env.PUBLIC_URL + '/test_source/que_icon.svg'}></img>
-                    </a>
-                    <a>
-                        <img src={process.env.PUBLIC_URL + '/test_source/list_icon.svg'}></img>
-                    </a>
-                </columnBoxPC>
+                <ColumnBoxPC>
+                    <ColumnBoxAhref>
+                        <TopcolumnBoxImg src={process.env.PUBLIC_URL + '/test_source/que_icon.svg'}></TopcolumnBoxImg>
+                    </ColumnBoxAhref>
+                    <ColumnBoxAhref2>
+                        <TopcolumnBoxImg2 src={process.env.PUBLIC_URL + '/test_source/list_icon.svg'}></TopcolumnBoxImg2>
+                    </ColumnBoxAhref2>
+                </ColumnBoxPC>
             </ColumnDiv>
 
           </CenterDiv>
