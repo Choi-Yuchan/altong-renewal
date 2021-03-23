@@ -22,16 +22,16 @@ const MainDiv = styled.div`
   color: #333;
   
 `;
-// .substr(0,93)+"..."
 
 function FoldAnswerBox(props) {
   const [openAnswer, setOpenAnswer] = useState('close');
+  const [message, setMessage] = useState(props.message.substr(0,93)+'...');
 
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
-        <Contents message={props.message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer}></Contents>
+        <Contents message={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message} ></Contents>
         {/* <LangTransBox></LangTransBox> */}
         {/* <ReplyBox></ReplyBox> */}
         {/* <ReplyList></ReplyList> */}

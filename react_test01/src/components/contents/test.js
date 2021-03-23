@@ -60,12 +60,21 @@ function CustomView(props){
   return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
 }
 
+function DelSpan(props){
+  const isOpen = props.open;
+  if(isOpen == '열고~ㅇ'){
+    return <ContentsSpan onClick={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); props.setOpen(''); }}>{props.open}</ContentsSpan>;
+  }
+  return <div></div>
+}
+
 function Contents(props) {
+  const [open, setOpen] = useState('열고~ㅇ');
 
   return (
     <MainDiv className="Contents">
         <ContentsP>{props.message}
-        <ContentsSpan onClick={() => props.setOpenAnswer('open')}>열고~ㅇ{props.openAnswer}</ContentsSpan>
+        <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage} setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
         <CustomView isView={props.openAnswer}></CustomView>
         </ContentsP>
         
