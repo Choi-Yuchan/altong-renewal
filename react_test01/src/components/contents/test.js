@@ -54,7 +54,7 @@ const LangImgNone = styled(LangImg)`
 
 function CustomView(props){
   const isView = props.isView;
-  if (isView == "open"){
+  if (isView === "open"){
     return <LangImgNone src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImgNone>
   }
   return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
@@ -62,7 +62,7 @@ function CustomView(props){
 
 function DelSpan(props){
   const isOpen = props.open;
-  if(isOpen == '열고~ㅇ'){
+  if(isOpen === '열고~ㅇ'){
     return <ContentsSpan>{props.open}</ContentsSpan>;
   }
   return <span>{props.open}</span>;

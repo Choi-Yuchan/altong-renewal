@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Reply from '../reply/Reply'
-import React, { useState } from 'react';
+
 
 const AutoRenewP = styled.p`
     display: inline-block;
@@ -90,15 +90,19 @@ const ReplySubmitImg = styled.img`
 `;
 
 const ShowViewNone = styled.div`
-    display:none;
+    
 `;
 const ShowView = styled.div`
-    display:block;
+    transition:height 1s ease-out;
+    height: auto;
+    overflow:hidden;
 `;
 
 function ShowList(props){
-    if(props.replyToggle==true){
-        return (<ShowViewNone></ShowViewNone>);
+    if(props.replyToggle === true){
+        return (<ShowViewNone>
+            
+        </ShowViewNone>);
     }
 
     return (<ShowView>

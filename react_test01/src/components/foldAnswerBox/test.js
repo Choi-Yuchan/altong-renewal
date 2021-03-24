@@ -23,7 +23,7 @@ const MainDiv = styled.div`
 `;
 
 function Open(props){
-  if(props.openAnswer == 'open'){
+  if(props.openAnswer === 'open'){
     return (<> 
       <LangTransBox>
       </LangTransBox>
