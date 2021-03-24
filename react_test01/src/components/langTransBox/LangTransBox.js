@@ -63,60 +63,60 @@ const LangAIDiv = styled.div`
   border: 2px solid #999;
 `;
 
-const LangViewDiv = styled.div`
-  padding: 0 20px 0 0;
-  height: 46px;
-  float: left;
-  position: relative;
-`;
+// const LangViewDiv = styled.div`
+//   padding: 0 20px 0 0;
+//   height: 46px;
+//   float: left;
+//   position: relative;
+// `;
 
-const LangViewUl = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  margin-left: 5px;
-  height: 100%;
-  text-align: justify;
-  width: auto;
-  background: #fff;
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-`;
+// const LangViewUl = styled.ul`
+//   margin: 0;
+//   padding: 0;
+//   display: inline-block;
+//   margin-left: 5px;
+//   height: 100%;
+//   text-align: justify;
+//   width: auto;
+//   background: #fff;
+//   border-radius: 0;
+//   border: 0;
+//   margin-bottom: 0;
+//   box-sizing: border-box;
+//   -webkit-tap-highlight-color: transparent;
+// `;
 
-const LangViewList = styled.li`
-  text-align: left;
-  display: block;
-  width: auto;
-  margin: 0;
-  color: #888;
-  white-space: nowrap;
-  list-style: none;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-`;
+// const LangViewList = styled.li`
+//   text-align: left;
+//   display: block;
+//   width: auto;
+//   margin: 0;
+//   color: #888;
+//   white-space: nowrap;
+//   list-style: none;
+//   padding: 0;
+//   box-sizing: border-box;
+//   -webkit-tap-highlight-color: transparent;
+// `;
 
-const LangViewImg = styled.img`
-display: inline-block;
-width: 10px;
-color: #888;
-white-space: nowrap;
-text-align: left;
-list-style: none;
-font-size: 16px;
-`;
+// const LangViewImg = styled.img`
+// display: inline-block;
+// width: 10px;
+// color: #888;
+// white-space: nowrap;
+// text-align: left;
+// list-style: none;
+// font-size: 16px;
+// `;
 
-const LangViewSpan = styled.span`
-display: inline-block;
-    font-size: 13px;
-    text-align: left;
-    color: #888;
-    white-space: nowrap;
-    list-style: none;
-`;
+// const LangViewSpan = styled.span`
+// display: inline-block;
+//     font-size: 13px;
+//     text-align: left;
+//     color: #888;
+//     white-space: nowrap;
+//     list-style: none;
+// `;
 
 
 function LangTransBox() {
@@ -125,7 +125,7 @@ function LangTransBox() {
         <OriginDiv>원문</OriginDiv>
         <LangAIDiv>
             <LangDiv>AI</LangDiv>
-            <LangViewDiv>
+            {/* <LangViewDiv>
                 <LangViewUl>
                     <LangViewList>
                         <LangViewImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></LangViewImg>
@@ -133,7 +133,7 @@ function LangTransBox() {
                     </LangViewList>
                 </LangViewUl>
                 <dl></dl>
-            </LangViewDiv>
+            </LangViewDiv> */}
         </LangAIDiv>
       </MainDiv>
     );
