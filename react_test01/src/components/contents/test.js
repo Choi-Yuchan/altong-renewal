@@ -63,7 +63,7 @@ function CustomView(props){
 function DelSpan(props){
   const isOpen = props.open;
   if(isOpen == '열고~ㅇ'){
-    return <ContentsSpan onClick={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); props.setOpen(''); }}>{props.open}</ContentsSpan>;
+    return <ContentsSpan>{props.open}</ContentsSpan>;
   }
   return <span>{props.open}</span>;
 }
@@ -73,9 +73,9 @@ function Contents(props) {
 
   return (
     <MainDiv className="Contents">
-        <ContentsP>{props.message}
-        <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage} setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
-        <CustomView isView={props.openAnswer}></CustomView>
+        <ContentsP onClick={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); setOpen(''); }}>{props.message}
+          <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage} setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
+          <CustomView isView={props.openAnswer}></CustomView>
         </ContentsP>
         
     </MainDiv>

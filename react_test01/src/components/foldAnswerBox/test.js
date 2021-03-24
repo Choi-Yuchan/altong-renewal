@@ -20,7 +20,6 @@ const MainDiv = styled.div`
   font-size: 16px;
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
   color: #333;
-  
 `;
 
 function Open(props){
@@ -28,7 +27,7 @@ function Open(props){
     return <> <LangTransBox></LangTransBox><ReplyBox></ReplyBox><ReplyList></ReplyList> </>
   }
   return <AUnBoxBottom></AUnBoxBottom>
-}
+};
 
 function FoldAnswerBox(props) {
   const [openAnswer, setOpenAnswer] = useState('close');
@@ -48,6 +47,6 @@ function FoldAnswerBox(props) {
         </div>
     </MainDiv>
   );
-}
+};
 
 export default FoldAnswerBox;
