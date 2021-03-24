@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 
@@ -192,11 +193,18 @@ const ViewCountImg = styled.img`
   margin-right: 2px;
 `;
 
-
+function TimeToggler(props) {
+  if(props.timeToggle !== true ){
+    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
+  }
+  return <>  1시간 전 · </>
+}
 
 
 // atm_top_wrap
 function QBoxTop() {
+  const [timeToggle, setTimeToggle] = useState(true);
+  
     return (
       <MainDiv className="QBoxTop">
         <HeadFigure>
@@ -210,7 +218,8 @@ function QBoxTop() {
             <WrapSpan>수호천사</WrapSpan>
             <WrapStrong className="prgNickname_Q">똑똑똑</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>지방간에 좋은 음식은 어떤 음식이 있을까요</WrapTitleli>
-          <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
+          <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
         </WrapUl>
         <BtnBox>
