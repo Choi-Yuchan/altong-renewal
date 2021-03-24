@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 
@@ -166,11 +167,18 @@ const ViewCountReplyImg = styled.img`
   margin-right: 2px;
 `;
 
-
+function TimeToggler(props) {
+  if(props.timeToggle !== true ){
+    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
+  }
+  return <>  1시간 전 · </>
+}
 
 
 // atm_top_wrap
 function ABoxTop() {
+  const [timeToggle, setTimeToggle] = useState(true);
+
     return (
       <MainDiv className="ABoxTop">
         <HeadFigure>
@@ -182,7 +190,8 @@ function ABoxTop() {
           <Wrapli>
             <WrapSpan>알천사</WrapSpan>
             <WrapStrong className="prgNickname_Q">Logan님의 답변입니다.</WrapStrong></Wrapli>
-          <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
+          <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8
           <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
           </WrapThankli>
