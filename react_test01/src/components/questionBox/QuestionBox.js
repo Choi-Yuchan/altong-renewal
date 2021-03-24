@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
+
 import Box from './../box/Box'
 import TopNavi from './../topNavi/TopNavi'
 import AnswerBox from './../answerBox/AnswerBox'
@@ -50,6 +52,7 @@ function FoldMessage() {
 }
 
 function QuestionBox() {
+
   return (
     <SiteDiv>
       <MainDiv>

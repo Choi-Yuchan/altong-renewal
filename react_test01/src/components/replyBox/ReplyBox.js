@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 const EmotionImg = styled.img`
     display: block;
@@ -120,10 +121,17 @@ const LangBtnA = styled.a`
 
 
 
-function ReplyBox() {
+function ReplyBox(props) {
+
     return (
       <OlBox className="ReplyBox">
-          <ListReply>
+          <ListReply onClick={ () => {
+              if(props.replyToggle==true){
+                props.setReplyToggle(false)
+              }else{
+                props.setReplyToggle(true)
+              }
+          }}>
               <HrefA>
                   <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon>댓글<HrefASpan>1</HrefASpan>
               </HrefA>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Reply from '../reply/Reply'
+import React, { useState } from 'react';
 
 const AutoRenewP = styled.p`
     display: inline-block;
@@ -88,11 +89,20 @@ const ReplySubmitImg = styled.img`
     margin-bottom: -1px;
 `;
 
+const ShowViewNone = styled.div`
+    display:none;
+`;
+const ShowView = styled.div`
+    display:block;
+`;
 
-function ReplyList() {
-    return (
-      <div className="ReplyList">
-          <form>
+function ShowList(props){
+    if(props.replyToggle==true){
+        return (<ShowViewNone></ShowViewNone>);
+    }
+
+    return (<ShowView>
+        <form>
               <div>
                   <TextArea placeholder="커피낙타 님의 의견을 댓글로 입력해주세요."></TextArea>
                   <AutoRenewDiv>
@@ -110,7 +120,15 @@ function ReplyList() {
               </div>
           </form>
           <Reply></Reply>
-      </div>
+    </ShowView>
+    );
+}
+
+function ReplyList(props) {
+    return (
+      <ShowList replyToggle={props.replyToggle} className="ReplyList">
+          
+      </ShowList>
     );
   }
   

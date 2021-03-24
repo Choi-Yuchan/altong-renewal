@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import ABoxTop from '../aBoxTop/ABoxTop'
 import Contents from '../contents/Contents'
@@ -22,14 +23,16 @@ const MainDiv = styled.div`
 `;
 
 function AnswerBox() {
+  const [replyToggle, setReplyToggle] = useState(true);
+  
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox></ReplyBox>
-        <ReplyList></ReplyList>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}></ReplyBox>
+        <ReplyList replyToggle={replyToggle}></ReplyList>
 
         <div className="overlay">
         </div>

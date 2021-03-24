@@ -24,12 +24,20 @@ const MainDiv = styled.div`
 
 function Open(props){
   if(props.openAnswer == 'open'){
-    return <> <LangTransBox></LangTransBox><ReplyBox></ReplyBox><ReplyList></ReplyList> </>
+    return (<> 
+      <LangTransBox>
+      </LangTransBox>
+      <ReplyBox setReplyToggle={props.setReplyToggle} replyToggle={props.replyToggle}>
+      </ReplyBox>
+      <ReplyList replyToggle={props.replyToggle}>
+      </ReplyList> 
+    </>);
   }
   return <AUnBoxBottom></AUnBoxBottom>
 };
 
 function FoldAnswerBox(props) {
+  const [replyToggle, setReplyToggle] = useState(true);
   const [openAnswer, setOpenAnswer] = useState('close');
   const [message, setMessage] = useState(props.message.substr(0,93)+'...');
 
@@ -38,7 +46,7 @@ function FoldAnswerBox(props) {
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
         <Contents message={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message} ></Contents>
-        <Open openAnswer={openAnswer}></Open>
+        <Open openAnswer={openAnswer} setReplyToggle={setReplyToggle} replyToggle={replyToggle}></Open>
         {/* <LangTransBox></LangTransBox> */}
         {/* <ReplyBox></ReplyBox> */}
         {/* <ReplyList></ReplyList> */}

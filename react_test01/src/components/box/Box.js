@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
@@ -23,14 +24,16 @@ const MainDiv = styled.div`
 
 
 function Box() {
+  const [replyToggle, setReplyToggle] = useState(true);
+
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <QBoxTop></QBoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox></ReplyBox>
-        <ReplyList></ReplyList>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}></ReplyBox>
+        <ReplyList replyToggle={replyToggle}></ReplyList>
 
         <div className="overlay">
         </div>
