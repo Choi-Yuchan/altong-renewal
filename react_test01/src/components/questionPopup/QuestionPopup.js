@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
+import Popup from '../popup/Popup'
 
 const MainUl = styled.ul`
     position: absolute;
@@ -42,18 +43,30 @@ const MainLi2 = styled.li`
     -webkit-tap-highlight-color: transparent;
 `;
 
-
-
-// atm_top_wrap
 function QuestionPopup() {
 
     return (
         <MainUl>
-            <MainLi></MainLi>
-            <MainLi2></MainLi2>
-            <MainLi></MainLi>
-            <MainLi></MainLi>
-            <MainLi></MainLi>
+            <MainLi>
+                <Popup text="찜" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_1.png'}>
+                </Popup>
+            </MainLi>
+            <MainLi2>
+                <Popup text="공유" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_2.png'}>
+                </Popup>
+            </MainLi2>
+            <MainLi>
+                <Popup text="꼭대기" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_4.png'}>
+                </Popup>
+            </MainLi>
+            <MainLi>
+                <Popup text="훈훈알" imgurl={process.env.PUBLIC_URL + '/test_source/answer_almoney_gg.svg'}>
+                </Popup>
+            </MainLi>
+            <MainLi>
+                <Popup text="신고" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_3.png'}>
+                </Popup>
+            </MainLi>
         </MainUl>
     );
 }
