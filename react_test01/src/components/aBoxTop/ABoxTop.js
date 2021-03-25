@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
+import QuestionPopup from '../questionPopup/QuestionPopup'
 
 const MainDiv = styled.div`
   position: relative;
@@ -174,10 +175,10 @@ function TimeToggler(props) {
   return <>  1시간 전 · </>
 }
 
-
 // atm_top_wrap
 function ABoxTop() {
   const [timeToggle, setTimeToggle] = useState(true);
+  const [popToggle, setPopToggle] = useState(false);
 
     return (
       <MainDiv className="ABoxTop">
@@ -196,10 +197,11 @@ function ABoxTop() {
           <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
           </WrapThankli>
         </WrapUl>
-        <BtnBox>
+        <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
+          <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
         <MiniProfile></MiniProfile>
       </MainDiv>

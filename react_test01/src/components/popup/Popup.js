@@ -24,14 +24,12 @@ const MainSpan = styled.span`
     top: -1px;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    
 `;
 
 
 
 // atm_top_wrap
 function Popup(props) {
-
     return (
         <MainAhref >
             <MainSpan imgurl={props.imgurl}></MainSpan>
