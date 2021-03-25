@@ -24,6 +24,7 @@ const MainSpan = styled.span`
     top: -1px;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    
 `;
 
 

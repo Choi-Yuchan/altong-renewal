@@ -205,6 +205,7 @@ function TimeToggler(props) {
 // atm_top_wrap
 function QBoxTop() {
   const [timeToggle, setTimeToggle] = useState(true);
+  const [popToggle, setPopToggle] = useState(false);
   
     return (
       <MainDiv className="QBoxTop">
@@ -223,11 +224,11 @@ function QBoxTop() {
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
         </WrapUl>
-        <BtnBox>
+        <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
-          <QuestionPopup></QuestionPopup>
+          <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
         <MiniProfile></MiniProfile>
       </MainDiv>

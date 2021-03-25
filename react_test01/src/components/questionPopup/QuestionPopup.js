@@ -16,6 +16,7 @@ const MainUl = styled.ul`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     margin: 0;
+    display: ${props => props.popToggle ? "block" : "none"};
 `;
 
 const MainLi = styled.li`
@@ -43,10 +44,13 @@ const MainLi2 = styled.li`
     -webkit-tap-highlight-color: transparent;
 `;
 
-function QuestionPopup() {
+
+//popToggle
+
+function QuestionPopup(props) {
 
     return (
-        <MainUl>
+        <MainUl popToggle={props.popToggle}>
             <MainLi>
                 <Popup text="찜" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_1.png'}>
                 </Popup>
