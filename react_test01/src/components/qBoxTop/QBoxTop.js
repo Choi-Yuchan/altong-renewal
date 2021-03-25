@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
+import QuestionPopup from '../questionPopup/QuestionPopup'
 
 const MainDiv = styled.div`
   position: relative;
@@ -226,6 +227,7 @@ function QBoxTop() {
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
+          <QuestionPopup></QuestionPopup>
         </BtnBox>
         <MiniProfile></MiniProfile>
       </MainDiv>

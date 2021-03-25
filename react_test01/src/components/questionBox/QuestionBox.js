@@ -50,7 +50,7 @@ function FoldMessage() {
   return <FoldAnswerBox message={message}></FoldAnswerBox>;
 }
 
-function QuestionBox() {
+function QuestionBox(props) {
 
   return (
     <SiteDiv>
