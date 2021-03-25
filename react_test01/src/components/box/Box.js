@@ -43,6 +43,16 @@ const AlmoneySpan = styled.span`
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
 
+const AlmoneyDiv = styled.div`
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+`;
+
 
 function Box() {
   const [replyToggle, setReplyToggle] = useState(true);
@@ -51,10 +61,10 @@ function Box() {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <div>
-          <div>
+          <AlmoneyDiv>
             <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImg>
             <AlmoneySpan>3,000</AlmoneySpan>
-          </div>
+          </AlmoneyDiv>
         </div>
         <QBoxTop></QBoxTop>
         <Contents></Contents>
