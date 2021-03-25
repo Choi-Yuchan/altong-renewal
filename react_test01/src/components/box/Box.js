@@ -54,9 +54,9 @@ const AlmoneyDiv = styled.div`
 `;
 
 
-function Box() {
+function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
-
+  const replyCount = 1;
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
@@ -69,7 +69,7 @@ function Box() {
         <QBoxTop></QBoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}></ReplyBox>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount}></ReplyBox>
         <ReplyList replyToggle={replyToggle}></ReplyList>
 
         <div className="overlay">

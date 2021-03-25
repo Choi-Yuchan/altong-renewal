@@ -1,5 +1,11 @@
 import QuestionBox from './components/questionBox/QuestionBox'
 
+const SSRJSON = [
+  {
+    
+  },
+]
+
 function App() {
   return (
     <div className="App">
