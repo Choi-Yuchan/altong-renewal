@@ -24,13 +24,15 @@ const MainDiv = styled.div`
 function AnswerBox() {
   const [replyToggle, setReplyToggle] = useState(true);
   
+  const replyCount = 1;
+
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}></ReplyBox>
+        <ReplyBox replyToggle={replyToggle} replyCount={replyCount} setReplyToggle={setReplyToggle}></ReplyBox>
         <ReplyList replyToggle={replyToggle}></ReplyList>
 
         <div className="overlay">
