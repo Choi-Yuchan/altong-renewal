@@ -19,7 +19,6 @@ const MainDiv = styled.div`
   font-size: 16px;
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
   color: #333;
-  
 `;
 
 function AnswerBox() {

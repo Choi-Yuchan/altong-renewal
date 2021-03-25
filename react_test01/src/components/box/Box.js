@@ -22,6 +22,27 @@ const MainDiv = styled.div`
   
 `;
 
+const AnswerAlmoneyImg = styled.img`
+  width: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  cursor: pointer;
+`;
+
+const AlmoneySpan = styled.span`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  color: #ff255f;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+`;
+
 
 function Box() {
   const [replyToggle, setReplyToggle] = useState(true);
@@ -29,6 +50,12 @@ function Box() {
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
+        <div>
+          <div>
+            <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImg>
+            <AlmoneySpan>3,000</AlmoneySpan>
+          </div>
+        </div>
         <QBoxTop></QBoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
