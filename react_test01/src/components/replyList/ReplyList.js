@@ -95,7 +95,7 @@ const ShowViewNone = styled.div`
 const ShowView = styled.div`
     transition:height 1s ease-out;
     height: auto;
-    overflow:hidden;
+    overflow:visible;
 `;
 
 function ShowList(props){
