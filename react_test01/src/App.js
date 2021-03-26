@@ -9,22 +9,22 @@ const SSRJSON = [
     head: 
     {
       profile:"/test_source/10010006.png", locale:"KOR", thankAlmoney:"100", uLv:"1", nick: "똑똑똑", title: "지방간에 좋은 음식은 어떤 음식이 있을까요",
-      persent:"100", date:"2021-03-22 10:23:42 UTC+9", readCount: "8111", 
+      persent:"100", date:"2021-03-22 11:23:42 UTC+9", readCount: "8111", 
     },
     contents: "지방에 들3어가2312세요",
     replys: [
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      date:"2021-03-22 08:00:38"  },
       { profile: { seqId:"10037135", img: "/test_source/10010006.png",
       locale: "KOR", nick: "커피낙1타"}, content:"운동3도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      date:"2021-03-22 07:00:38"  },
       { profile: { seqId:"10010006", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      date:"2021-03-22 06:00:38"  },
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙3타"}, content:"1운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      date:"2021-03-22 05:00:38"  },
     ],
     almoney:"99,000"
   },
@@ -39,11 +39,11 @@ const SSRJSON = [
     contents: "지방에 들어가2312세요",
     replys: [
       { profile: { seqId:"10010006", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      locale: "KOR", nick: "커피낙타aa"}, content:"운동도 도움이 클것 같습니다.111", 
+      date:"2021-03-22 01:00:38"  },
       { profile: { seqId:"10010006", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      locale: "KOR", nick: "커피낙타bb"}, content:"운동도 도움이 클것 같습니다.222", 
+      date:"2021-03-22 02:00:38"  },
 
     ],
     almoney:"3,000"
@@ -59,8 +59,8 @@ const SSRJSON = [
     contents: "지방간에 좋은 음식은 어떤 음식이 있을까요2222",
     replys: [
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      locale: "KOR", nick: "커피낙타zz"}, content:"운동도 도움이 클것 같습니다333.", 
+      date:"2021-03-22 03:00:38"  },
     ],
     almoney:"3,000"
   },
@@ -75,8 +75,8 @@ const SSRJSON = [
     contents: "지방간에 좋은 음식은 어떤 음식이 있을까요3333",
     replys: [
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 14:00:38"  },
+      locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.444", 
+      date:"2021-03-22 04:00:38"  },
     ],
     almoney:"3,000"
   

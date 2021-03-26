@@ -145,7 +145,7 @@ function ShowView(props){
     if(props.timeToggle === false){
         return <>3초 전</>
     }
-    return <>3초 전<ReplyLocaleSpan>2021-03-22 14:00:38</ReplyLocaleSpan></>
+    return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
 }
 
 //{props.reply.}
@@ -168,7 +168,7 @@ function Reply(props) {
                   <tr>
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
-                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
