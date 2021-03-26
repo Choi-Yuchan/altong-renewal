@@ -59,20 +59,23 @@ function RenderTop(props){
   return view
 }
 
+//jsonArr
+
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const replyCount = 1;
+
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <div>
           <AlmoneyDiv>
             <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImg>
-            <AlmoneySpan>3,000</AlmoneySpan>
+            <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <QBoxTop ></QBoxTop>
-        <Contents></Contents>
+        <QBoxTop head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent} ></QBoxTop>
+        <Contents contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount}></ReplyBox>
         <ReplyList replyToggle={replyToggle}></ReplyList>

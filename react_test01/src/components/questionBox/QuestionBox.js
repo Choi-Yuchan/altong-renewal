@@ -71,7 +71,6 @@ function QuestionBox(props) {
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox> */}
-          <Box></Box>
           <BoxController SSRJSON={props.SSRJSON}></BoxController>
         </WrapperDiv>
       </MainDiv>

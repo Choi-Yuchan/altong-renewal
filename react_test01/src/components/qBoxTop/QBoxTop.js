@@ -196,13 +196,19 @@ const ViewCountImg = styled.img`
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
+    return <> 1시간 전 · <Datespan>{props.date}</Datespan> </>
   }
   return <>  1시간 전 · </>
 }
 
+const UlvText = (props) => {
+  const LV=['알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  return LV[props];
+}
 
 // atm_top_wrap
+// head
+// {props.head.}
 function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
@@ -210,19 +216,20 @@ function QBoxTop(props) {
     return (
       <MainDiv className="QBoxTop">
         <HeadFigure>
-          <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
-          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
-          <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
+          <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
+          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
+          </HeadFigureLocaleImg>
+          <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
         </HeadFigure>
-        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" >100</HeadSpan></HeadH2>
+        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" >{props.head.thankAlmoney}</HeadSpan></HeadH2>
         <WrapUl>
           <Wrapli>
-            <WrapSpan>수호천사</WrapSpan>
-            <WrapStrong className="prgNickname_Q">똑똑똑</WrapStrong>님의 질문입니다.</Wrapli>
-          <WrapTitleli>지방간에 좋은 음식은 어떤 음식이 있을까요</WrapTitleli>
-          <WrapThankli>감사알 지급률<WrapB>100%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8</WrapThankli>
+            <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+            <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
+          <WrapTitleli>{props.head.title}</WrapTitleli>
+          <WrapThankli>감사알 지급률<WrapB>{props.head.thankAlmoney}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
+          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}</WrapThankli>
         </WrapUl>
         <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
           <BtnBoxI></BtnBoxI>

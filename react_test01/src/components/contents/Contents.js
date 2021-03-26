@@ -21,10 +21,10 @@ const ContentsP = styled.p`
 
 
 
-function Contents() {
+function Contents(props) {
   return (
     <MainDiv className="Contents">
-        <ContentsP>지방간에 좋은 음식은 어떤 음식이 있을까요</ContentsP>
+        <ContentsP>{props.contents}</ContentsP>
     </MainDiv>
   );
 }
