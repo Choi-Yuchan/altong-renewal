@@ -105,10 +105,11 @@ function ShowList(props){
         </ShowViewNone>);
     }
 
-    return (<ShowView>
+    return (
+    <ShowView>
         <form>
               <div>
-                  <TextArea placeholder="커피낙타 님의 의견을 댓글로 입력해주세요."></TextArea>
+                  <TextArea placeholder="사용자(ssr 수정정) 님의 의견을 댓글로 입력해주세요."></TextArea>
                   <AutoRenewDiv>
                       <AutoRenewP>
                           <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
@@ -131,7 +132,6 @@ function ShowList(props){
 function ReplyList(props) {
     return (
       <ShowList replyToggle={props.replyToggle} className="ReplyList" replys={props.replys}>
-          
       </ShowList>
     );
   }

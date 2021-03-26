@@ -36,7 +36,7 @@ function AnswerBox(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop head={props.jsonArr.head}></ABoxTop>
-        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message} ></Contents>
+        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message}></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)} setReplyToggle={setReplyToggle}></ReplyBox>
         <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
