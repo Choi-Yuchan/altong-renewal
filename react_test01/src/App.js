@@ -13,7 +13,7 @@ const SSRJSON = [
   },
   contents: "지방간에 좋은 음식은 어떤 음식이 있을까요",
   replys: [
-    { profile: { img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"운동도 도움이 클것 같습니다.", seqId:"10037135", date:"2021-03-22 14:00:38" } },
+    { profile: { seqId:"10037135", img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"운동도 도움이 클것 같습니다.",  date:"2021-03-22 14:00:38" } },
   ],
 
 },
@@ -24,7 +24,7 @@ const SSRJSON = [
 function App() {
   return (
     <div className="App">
-      <QuestionBox></QuestionBox>
+      <QuestionBox SSRJSON={SSRJSON}></QuestionBox>
     </div>
   );
 }

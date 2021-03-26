@@ -50,14 +50,22 @@ function FoldMessage() {
   return <FoldAnswerBox message={message}></FoldAnswerBox>;
 }
 
+function ForechRenderBox(props){
+  const SSRJSON = props.SSRJSON
+  const view = SSRJSON.map((val) => <Box ssrjson={SSRJSON}></Box> )
+  return view
+}
+
 function QuestionBox(props) {
+
 
   return (
     <SiteDiv>
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
-          <Box></Box>
+          <ForechRenderBox SSRJSON={props.SSRJSON}></ForechRenderBox>
+          <Box ></Box>
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox>

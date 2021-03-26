@@ -203,7 +203,7 @@ function TimeToggler(props) {
 
 
 // atm_top_wrap
-function QBoxTop() {
+function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
   
@@ -214,7 +214,7 @@ function QBoxTop() {
           <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
           <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
         </HeadFigure>
-        <HeadH2>Q.<HeadSpan className="yellow" >100</HeadSpan></HeadH2>
+        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" >100</HeadSpan></HeadH2>
         <WrapUl>
           <Wrapli>
             <WrapSpan>수호천사</WrapSpan>
