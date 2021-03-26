@@ -60,10 +60,12 @@ function RenderTop(props){
 }
 
 //jsonArr
+const replyCount = (replys) => {
+  return replys.length
+}
 
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
-  const replyCount = 1;
 
   return (
     <MainDiv className="Box">
@@ -77,8 +79,8 @@ function Box(props) {
         <QBoxTop head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent} ></QBoxTop>
         <Contents contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount}></ReplyBox>
-        <ReplyList replyToggle={replyToggle}></ReplyList>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)}></ReplyBox>
+        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
 
         <div className="overlay">
         </div>
