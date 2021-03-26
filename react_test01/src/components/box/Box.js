@@ -53,12 +53,6 @@ const AlmoneyDiv = styled.div`
   -webkit-tap-highlight-color: transparent;
 `;
 
-function RenderTop(props){
-  const SSRJSON = props.SSRJSON
-  const view = SSRJSON.map((val) => <QBoxTop ssrjson={val.seqComponent}></QBoxTop> )
-  return view
-}
-
 //jsonArr
 const replyCount = (replys) => {
   return replys.length

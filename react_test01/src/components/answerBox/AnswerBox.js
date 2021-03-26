@@ -6,6 +6,7 @@ import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
+import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom'
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
@@ -28,13 +29,14 @@ const replyCount = (replys) => {
 // jsonArr
 function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
-  
+  const [openAnswer, setOpenAnswer] = useState('close');
+  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
 
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop head={props.jsonArr.head}></ABoxTop>
-        <Contents></Contents>
+        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message} ></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)} setReplyToggle={setReplyToggle}></ReplyBox>
         <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
