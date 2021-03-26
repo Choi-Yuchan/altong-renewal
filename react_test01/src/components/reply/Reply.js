@@ -148,6 +148,10 @@ function ShowView(props){
     return <>3초 전<ReplyLocaleSpan>2021-03-22 14:00:38</ReplyLocaleSpan></>
 }
 
+//{props.reply.}
+const Replys = (replys) => {
+    replys.map((reply) => reply )
+}
 
 function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
@@ -159,16 +163,16 @@ function Reply(props) {
                   <tr>
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
-                                <ReplyImg src={process.env.PUBLIC_URL + '/test_source/10037135.png'}></ReplyImg>
-                                <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></ReplyLocaleImg>
+                                <ReplyImg src={process.env.PUBLIC_URL + props.img}></ReplyImg>
+                                <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.locale +'.svg'}></ReplyLocaleImg>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                      <ReplyContents>{props.reply.}운동도 도움이 클것 같습니다.</ReplyContents>
+                      <ReplyContents>{props.content}</ReplyContents>
                   </tr>
                   <tr>
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
-                        <ReplyAhref>커피낙타</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        <ReplyAhref>{props.img}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>

@@ -127,14 +127,14 @@ function ShowList(props){
                   </ReplySubmit>
               </div>
           </form>
-          <Reply></Reply>
+          <Reply reply={props.replys}></Reply>
     </ShowView>
     );
 }
 
 function ReplyList(props) {
     return (
-      <ShowList replyToggle={props.replyToggle} className="ReplyList">
+      <ShowList replyToggle={props.replyToggle} className="ReplyList" replys={props.replys}>
           
       </ShowList>
     );

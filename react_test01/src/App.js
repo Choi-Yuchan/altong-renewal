@@ -38,9 +38,8 @@ const SSRJSON = [
       date:"2021-03-22 14:00:38"  },
     ],
     almoney:"3,000"
-  
   },
-  { 
+  {
     seqComponent: "A",
     seqId: "10010006",
     head: 
