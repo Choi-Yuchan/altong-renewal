@@ -71,7 +71,7 @@ function Box(props) {
             <AlmoneySpan>3,000</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <QBoxTop></QBoxTop>
+        <QBoxTop ></QBoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount}></ReplyBox>

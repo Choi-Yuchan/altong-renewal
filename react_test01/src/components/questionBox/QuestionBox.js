@@ -65,7 +65,8 @@ function QuestionBox(props) {
         <TopNavi></TopNavi>
         <WrapperDiv>
           <ForechRenderBox SSRJSON={props.SSRJSON}></ForechRenderBox>
-          <Box ></Box>
+          {/* 박스 컨트롤러 위치(박스마다 Q,A인지 확인하고 해당 박스를 넘겨줌) */}
+          <Box></Box>
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox>
