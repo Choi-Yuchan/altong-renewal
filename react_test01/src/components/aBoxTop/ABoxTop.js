@@ -176,15 +176,15 @@ function TimeToggler(props) {
 }
 
 // atm_top_wrap
-function ABoxTop() {
+function ABoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
 
     return (
       <MainDiv className="ABoxTop">
         <HeadFigure>
-          <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
-          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
+          <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
+          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg>
           <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
         </HeadFigure>
         <WrapUl>

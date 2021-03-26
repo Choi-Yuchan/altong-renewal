@@ -98,10 +98,6 @@ const ShowView = styled.div`
     overflow:visible;
 `;
 
-const MakeReplyList = (replys) => {
-    replys.map( (val) => {} )
-}
-
 function ShowList(props){
     if(props.replyToggle === true){
         return (<ShowViewNone>

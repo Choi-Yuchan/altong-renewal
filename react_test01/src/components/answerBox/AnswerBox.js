@@ -21,19 +21,23 @@ const MainDiv = styled.div`
   color: #333;
 `;
 
-function AnswerBox() {
+const replyCount = (replys) => {
+  return replys.length
+}
+
+// jsonArr
+function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   
-  const replyCount = 1;
 
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
-        <ABoxTop></ABoxTop>
+        <ABoxTop head={props.jsonArr.head}></ABoxTop>
         <Contents></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} replyCount={replyCount} setReplyToggle={setReplyToggle}></ReplyBox>
-        <ReplyList replyToggle={replyToggle}></ReplyList>
+        <ReplyBox replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)} setReplyToggle={setReplyToggle}></ReplyBox>
+        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
 
         <div className="overlay">
         </div>
