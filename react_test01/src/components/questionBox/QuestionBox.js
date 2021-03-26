@@ -5,6 +5,8 @@ import TopNavi from './../topNavi/TopNavi'
 import AnswerBox from './../answerBox/AnswerBox'
 import FoldAnswerBox from './../foldAnswerBox/test'
 
+import BoxController from '../boxContainer/BoxContainer'
+
 const MainDiv = styled.div`
   display: flex;
   min-height: 100vh;
@@ -58,18 +60,19 @@ function ForechRenderBox(props){
 
 function QuestionBox(props) {
 
-
   return (
     <SiteDiv>
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
-          <ForechRenderBox SSRJSON={props.SSRJSON}></ForechRenderBox>
+          {/* <ForechRenderBox SSRJSON={props.SSRJSON}></ForechRenderBox> */}
           {/* 박스 컨트롤러 위치(박스마다 Q,A인지 확인하고 해당 박스를 넘겨줌) */}
-          <Box></Box>
+          {/* <Box></Box>
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
-          <AnswerBox></AnswerBox>
+          <AnswerBox></AnswerBox> */}
+          <Box></Box>
+          <BoxController SSRJSON={props.SSRJSON}></BoxController>
         </WrapperDiv>
       </MainDiv>
     </SiteDiv>
