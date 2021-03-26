@@ -13,8 +13,12 @@ const SSRJSON = [
     },
     contents: "지방에 들어가2312세요",
     replys: [
-      { profile: { seqId:"10037135", img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"운동도 도움이 클것 같습니다.",  date:"2021-03-22 14:00:38" } },
-      { profile: { seqId:"10037135", img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"폐활량이 커지면 좋겠습니다.",  date:"2021-03-23 12:01:55" } },
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
 
     ],
     almoney:"3,000"
@@ -29,7 +33,9 @@ const SSRJSON = [
     },
     contents: "지방간에 좋은 음식은 어떤 음식이 있을까요2222",
     replys: [
-      { profile: { seqId:"10037135", img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"운동도 도움이 클것 같습니다.",  date:"2021-03-22 14:00:38" } },
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
     ],
     almoney:"3,000"
   
@@ -44,7 +50,9 @@ const SSRJSON = [
     },
     contents: "지방간에 좋은 음식은 어떤 음식이 있을까요3333",
     replys: [
-      { profile: { seqId:"10037135", img: "/test_source/10037135.png", locale: "KOR", nick: "커피낙타", content:"운동도 도움이 클것 같습니다.",  date:"2021-03-22 14:00:38" } },
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
     ],
     almoney:"3,000"
   

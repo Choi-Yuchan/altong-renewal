@@ -149,7 +149,7 @@ function ShowView(props){
 }
 
 
-function Reply() {
+function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
 
     return (
@@ -163,7 +163,7 @@ function Reply() {
                                 <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></ReplyLocaleImg>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                      <ReplyContents>운동도 도움이 클것 같습니다.</ReplyContents>
+                      <ReplyContents>{props.reply.}운동도 도움이 클것 같습니다.</ReplyContents>
                   </tr>
                   <tr>
                       <ReplyBotton></ReplyBotton>

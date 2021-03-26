@@ -80,7 +80,7 @@ function Box(props) {
         <Contents contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)}></ReplyBox>
-        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
+        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>
 
         <div className="overlay">
         </div>
