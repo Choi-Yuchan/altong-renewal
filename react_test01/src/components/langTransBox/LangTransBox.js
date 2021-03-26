@@ -37,7 +37,7 @@ const OriginDiv = styled.div`
   right: -18px;
   transform: translateY(-50%);
 }
-  
+
 `;
 
 const LangDiv = styled.div`

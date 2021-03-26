@@ -55,7 +55,8 @@ const LangImgNone = styled(LangImg)`
 function CustomView(props){
   const isView = props.isView;
   if (isView === "open"){
-    return <LangImgNone src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImgNone>
+    return <LangImgNone src={process.env.PUBLIC_URL + 
+      '/test_source/language.svg'}></LangImgNone>
   }
   return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
 }
@@ -73,8 +74,10 @@ function Contents(props) {
 
   return (
     <MainDiv className="Contents">
-        <ContentsP onClick={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); setOpen(''); }}>{props.message}
-          <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage} setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
+        <ContentsP onClick={() => { props.setOpenAnswer('open'); 
+        props.setMessage(props.allMessage); setOpen(''); }}>{props.message}
+          <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage}
+          setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
           <CustomView isView={props.openAnswer}></CustomView>
         </ContentsP>
         

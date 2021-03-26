@@ -71,7 +71,7 @@ function Box(props) {
           </AlmoneyDiv>
         </div>
         <QBoxTop head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent} ></QBoxTop>
-        <Contents contents={props.jsonArr.contents}></Contents>
+        <Contents seqComponent={props.jsonArr.seqComponent} contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)}></ReplyBox>
         <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>

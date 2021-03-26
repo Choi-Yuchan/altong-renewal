@@ -26,6 +26,19 @@ const replyCount = (replys) => {
   return replys.length
 }
 
+function OpenDiv(props){
+  if(props.openAnswer === 'open'){
+    return (
+      <>
+      <LangTransBox></LangTransBox>
+      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}></ReplyBox>
+      <ReplyList replyToggle={props.replyToggle} replys={props.replys}></ReplyList>
+      </>
+    );
+  }
+  return <AUnBoxBottom></AUnBoxBottom>
+}
+
 // jsonArr
 function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
@@ -36,11 +49,11 @@ function AnswerBox(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop head={props.jsonArr.head}></ABoxTop>
-        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message}></Contents>
-        <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)} setReplyToggle={setReplyToggle}></ReplyBox>
-        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys}></ReplyList>
-
+        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer}
+        setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
+        <OpenDiv replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
+          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys}
+        ></OpenDiv>
         <div className="overlay">
         </div>
     </MainDiv>

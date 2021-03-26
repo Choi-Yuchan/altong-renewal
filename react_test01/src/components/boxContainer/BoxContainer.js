@@ -1,6 +1,5 @@
 import Box from './../box/Box'
 import AnswerBox from './../answerBox/AnswerBox'
-import FoldAnswerBox from './../foldAnswerBox/test'
 
 function BoxController(props) {
     const Boxs = props.SSRJSON.map
