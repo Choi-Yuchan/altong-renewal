@@ -14,12 +14,17 @@ const SSRJSON = [
     contents: "지방에 들3어가2312세요",
     replys: [
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도 도움이 클것 같습니다.", 
+      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 클것 같습니다.", 
       date:"2021-03-22 14:00:38"  },
       { profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙2타"}, content:"운동도 도움이 클것 같습니다.", 
+      locale: "KOR", nick: "커피낙1타"}, content:"운동3도 도움이 클것 같습니다.", 
       date:"2021-03-22 14:00:38"  },
-
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
+      { profile: { seqId:"10037135", img: "/test_source/10037135.png",
+      locale: "KOR", nick: "커피낙3타"}, content:"1운동도 도움이 클것 같습니다.", 
+      date:"2021-03-22 14:00:38"  },
     ],
     almoney:"3,000"
   },

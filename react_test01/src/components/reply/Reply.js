@@ -149,11 +149,6 @@ function ShowView(props){
 }
 
 //{props.reply.}
-const Replys = (replys) => {
-    replys.map((reply) => reply )
-}
-
-
 function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
 
@@ -164,16 +159,16 @@ function Reply(props) {
                   <tr>
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
-                                <ReplyImg src={process.env.PUBLIC_URL + props.img}></ReplyImg>
-                                <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.locale +'.svg'}></ReplyLocaleImg>
+                                <ReplyImg src={process.env.PUBLIC_URL + props.reply.profile.img}></ReplyImg>
+                                <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                      <ReplyContents>{props.content}</ReplyContents>
+                      <ReplyContents>{props.reply.content}</ReplyContents>
                   </tr>
                   <tr>
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
-                        <ReplyAhref>{props.img}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>

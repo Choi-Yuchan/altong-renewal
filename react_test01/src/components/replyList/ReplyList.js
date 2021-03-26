@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Reply from '../reply/Reply'
+import ReplyContainer from '../replyContainer/ReplyContainer'
 
 
 const AutoRenewP = styled.p`
@@ -127,7 +127,7 @@ function ShowList(props){
                   </ReplySubmit>
               </div>
           </form>
-          <Reply reply={props.replys}></Reply>
+          <ReplyContainer replys={props.replys}></ReplyContainer>
     </ShowView>
     );
 }

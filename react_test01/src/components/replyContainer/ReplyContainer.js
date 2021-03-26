@@ -1,15 +1,14 @@
 import Reply from '../reply/Reply'
 
 
-const MakeReplyList = (replys) => {
-    replys.map( (reply) => <Reply ></Reply> );
+function MakeReplyList(props){
+    return props.replys.map( (reply) => <Reply reply={reply}></Reply> );
 }
 
 
 function ReplyContainer(props) {
     return (
-        <div>
-        </div>
+        <MakeReplyList replys={props.replys}></MakeReplyList>
     );
 }
 
