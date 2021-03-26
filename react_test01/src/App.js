@@ -54,7 +54,7 @@ const SSRJSON = [
     head: 
     {
       profile:"/test_source/10037135.png", locale:"KOR", thankAlmoney:"100", uLv:"3", nick: "1234", title: "지방간에 좋은 음식은 어떤 음식이 있을까요",
-      persent:"100", date:"2021-03-22 10:23:47 UTC+9", readCount: "8", 
+      persent:"100", date:"2021-03-22 10:23:47 UTC+9", readCount: "558", 
     },
     contents: "지방간에 좋은 음식은 어떤 음식이 있을까요2222",
     replys: [
