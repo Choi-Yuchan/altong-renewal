@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-import Box from './../box/Box'
 import TopNavi from './../topNavi/TopNavi'
-import AnswerBox from './../answerBox/AnswerBox'
-import FoldAnswerBox from './../foldAnswerBox/test'
 
 import BoxController from '../boxContainer/BoxContainer'
 
@@ -47,16 +44,6 @@ const WrapperDiv = styled.div`
   margin-bottom: 20px;
 `;
 
-function FoldMessage() {
-  const message = "It's a good diet for fatty liver fresh vegetables, seaweed, and grains, and adequate portions of fruits. and I would recommend eating high-protein foods such as fish, tofu, skinless chicken.";
-  return <FoldAnswerBox message={message}></FoldAnswerBox>;
-}
-
-function ForechRenderBox(props){
-  const SSRJSON = props.SSRJSON
-  const view = SSRJSON.map((val) => <Box ssrjson={SSRJSON}></Box> )
-  return view
-}
 
 function QuestionBox(props) {
 

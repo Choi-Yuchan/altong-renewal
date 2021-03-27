@@ -175,6 +175,12 @@ function TimeToggler(props) {
   return <>  1시간 전 · </>
 }
 
+const UlvText = (props) => {
+  const LV=['알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  return LV[props];
+}
+
+
 // atm_top_wrap
 function ABoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
@@ -189,9 +195,9 @@ function ABoxTop(props) {
         </HeadFigure>
         <WrapUl>
           <Wrapli>
-            <WrapSpan>알천사</WrapSpan>
+            <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
             <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
-          <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+          <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}
           <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>

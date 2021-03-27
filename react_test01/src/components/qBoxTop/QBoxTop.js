@@ -227,7 +227,7 @@ function QBoxTop(props) {
             <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
             <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>{props.head.title}</WrapTitleli>
-          <WrapThankli>감사알 지급률<WrapB>{props.head.thankAlmoney}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+          <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}</WrapThankli>
         </WrapUl>

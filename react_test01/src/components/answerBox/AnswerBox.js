@@ -26,6 +26,7 @@ const replyCount = (replys) => {
   return replys.length
 }
 
+
 function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
