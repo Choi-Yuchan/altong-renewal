@@ -49,10 +49,11 @@ function AnswerBox(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop head={props.jsonArr.head}></ABoxTop>
-        <Contents contents={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer}
+        <Contents contents={message} setOpenAnswer={setOpenAnswer} 
+        openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
-        <OpenDiv replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
-          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys}
+        <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
+          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}
         ></OpenDiv>
         <div className="overlay">
         </div>

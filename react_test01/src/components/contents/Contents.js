@@ -64,7 +64,7 @@ function DelSpan(props){
   if(isOpen === '열고~ㅇ'){
     return <ContentsSpan>{props.open}</ContentsSpan>;
   }
-  return <span>{props.open}</span>;
+  return <span></span>;
 }
 
 function QorA(props){
@@ -73,7 +73,7 @@ function QorA(props){
     return (
       <ContentsP onClick={props.onClick2}>
         {props.contents}
-        <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage}
+        <DelSpan setMessage={props.setMessage}
           setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
         <CustomView isView={props.openAnswer}></CustomView>
       </ContentsP>
@@ -100,10 +100,8 @@ function Contents(props) {
           <CustomView isView={props.openAnswer}></CustomView>
         </ContentsP> */}
         <QorA onClick2={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); setOpen(''); } }
-        setOpen={setOpen} contents={props.contents} allMessage={props.allMessage} open={open}
-        openAnswer={props.openAnswer}
-        
-        ></QorA>
+          setOpen={setOpen} contents={props.contents} allMessage={props.allMessage} open={open}
+          openAnswer={props.openAnswer} seqComponent={props.seqComponent} > </QorA>
 
       </MainDiv>
   );

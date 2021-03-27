@@ -124,7 +124,7 @@ const AlScoreStrong = styled.strong`
 
 function AUnBoxBottom(props) {
   return (
-      <MainOl>
+      <MainOl className="AUnBoxBottom">
           <AlScoreLi>
               <AlScoreDiv>
                 <Img1 src={process.env.PUBLIC_URL + '/test_source/esti_1_b.png'}></Img1>
