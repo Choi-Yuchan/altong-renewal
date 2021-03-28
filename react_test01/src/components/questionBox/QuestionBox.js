@@ -44,6 +44,7 @@ const WrapperDiv = styled.div`
   margin-bottom: 20px;
 `;
 
+// 로그인 유저에 대한 정보를 보낼지 말지 정함.
 
 function QuestionBox(props) {
 

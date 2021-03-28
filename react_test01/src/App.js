@@ -3,6 +3,15 @@ import QuestionBox from './components/questionBox/QuestionBox'
 
 // 기능은 대부분 해당 유저의 seq 값으로 움직이도록 설계
 const SSRJSON = [
+  {
+    seqComponent: "user", 
+    info: {
+      seq: 10035484,
+      name: "낙타커핑",
+      lv: 1,
+      
+    }
+  },
   { 
     id:1,
     seqComponent: "Q",
