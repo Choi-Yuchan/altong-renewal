@@ -187,15 +187,17 @@ function ABoxTop(props) {
   const [popToggle, setPopToggle] = useState(false);
   const [showMini, setShowMini] = useState(false);
 
-  if(props.clicked === false){
-    console.log("zzz");
-  }
+  useEffect(() => {
+    if(props.clicked === true){
+      setShowMini(false);
+    }
+  }, [props.clicked]);
 
   return (
     <MainDiv className="ABoxTop">
       <HeadFigure onClick={(e) => {
-        setShowMini(true);
         props.setClicked(false);
+        setShowMini(true);
         e.stopPropagation();
       }}>
         <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>

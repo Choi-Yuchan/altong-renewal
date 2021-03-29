@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
@@ -212,6 +212,12 @@ function QBoxTop(props) {
   const [popToggle, setPopToggle] = useState(false);
   const [showMini, setShowMini] = useState(false);
   
+  useEffect(() => {
+    if(props.clicked === true){
+      setShowMini(false);
+    }
+  }, [props.clicked]);
+
     return (
       <MainDiv className="QBoxTop">
         <HeadFigure onClick={(e) => {
