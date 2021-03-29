@@ -152,11 +152,11 @@ function MiniProfile(props) {
                     </th>
                 </tr>
                 <tr>
-                    <MoneyInfoTd>누적수익 : <span>{props.mini.giveThankNum}</span>알</MoneyInfoTd>
+                    <MoneyInfoTd>누적수익 : <span>{props.mini.alBenefit}</span>알</MoneyInfoTd>
                 </tr>
                 </tbody>
             </MainTable>
-            <MiniContentP>Celebrity</MiniContentP>
+            <MiniContentP>{props.mini.descript}</MiniContentP>
             <MiniIconLine></MiniIconLine>
             <MiniInfoTable>
                 <tbody>
@@ -167,10 +167,10 @@ function MiniProfile(props) {
                         <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
                     </MiniInfoTableTr>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTh>340,700알</MiniInfoTableTh>
-                        <MiniInfoTableTh>1,023,580</MiniInfoTableTh>
-                        <MiniInfoTableTh>3609</MiniInfoTableTh>
-                        <MiniInfoTableTh>98%</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.qBenefit}알</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.ABenefit}알</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.giveThankNum}</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
                     </MiniInfoTableTr>
                 </tbody>
             </MiniInfoTable>
