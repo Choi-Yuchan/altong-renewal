@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 import TopNavi from './../topNavi/TopNavi'
 
@@ -62,10 +63,15 @@ function WhatU(props){
   return findhead;
 };
 
+function BodyClick(props){
+  props.setBodyClicked(false)
+}
+
 function QuestionBox(props) {
+  const [bodyClicked, setBodyClicked] = useState(false);
 
   return (
-    <SiteDiv>
+    <SiteDiv onClick={() => {console.log("bodyClicked")}}>
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>

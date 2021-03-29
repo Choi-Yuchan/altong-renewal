@@ -126,13 +126,13 @@ function MiniProfile(props) {
                 <tr>
                     <th>
                     <MiniSpan>수호천사</MiniSpan>똑똑똑</th>
-                    <th rowspan="2">
+                    <th rowSpan="2">
                     <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addFriends.svg'}></MainTableImg>
                     </th>
-                    <th rowspan="2">
+                    <th rowSpan="2">
                     <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addMento.svg'}></MainTableImg>
                     </th>
-                    <th rowspan="2">
+                    <th rowSpan="2">
                     <MainTableImgLast src={process.env.PUBLIC_URL + '/test_source/message.svg'}></MainTableImgLast>
                     </th>
                 </tr>
