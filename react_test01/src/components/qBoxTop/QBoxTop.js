@@ -206,9 +206,7 @@ const UlvText = (props) => {
   return LV[props];
 }
 
-// atm_top_wrap
-// head
-// {props.head.}
+//clicked
 function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
@@ -218,6 +216,7 @@ function QBoxTop(props) {
       <MainDiv className="QBoxTop">
         <HeadFigure onClick={(e) => {
           setShowMini(true);
+          props.setClicked(false);
           e.stopPropagation();
         }}>
           <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
@@ -241,7 +240,7 @@ function QBoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile showMini={showMini} mini={props.mini}></MiniProfile>
+        <MiniProfile showMini={showMini} mini={props.mini} clicked={props.clicked} setShowMini={setShowMini}></MiniProfile>
       </MainDiv>
     );
   }

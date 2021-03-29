@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, effectState } from 'react';
 
 import ABoxTop from '../aBoxTop/ABoxTop';
 import Contents from '../contents/Contents';
@@ -90,12 +90,12 @@ function AnswerBox(props) {
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini}></ABoxTop>
+        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} clicked={props.clicked} setClicked={props.setClicked} ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
         openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
-          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
+          setReplyToggle={setReplyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} etimate={props.jsonArr.etimate}
         ></OpenDiv>
         <div className="overlay">

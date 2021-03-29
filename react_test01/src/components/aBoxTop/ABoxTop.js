@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
@@ -187,35 +187,40 @@ function ABoxTop(props) {
   const [popToggle, setPopToggle] = useState(false);
   const [showMini, setShowMini] = useState(false);
 
-    return (
-      <MainDiv className="ABoxTop">
-        <HeadFigure onClick={(e) => {
-          setShowMini(true);
-          e.stopPropagation();
-        }}>
-          <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
-          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg>
-          <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
-        </HeadFigure>
-        <WrapUl>
-          <Wrapli>
-            <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
-            <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
-          <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}
-          <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
-          </WrapThankli>
-        </WrapUl>
-        <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
-          <BtnBoxI></BtnBoxI>
-          <BtnBoxI></BtnBoxI>
-          <BtnBoxI></BtnBoxI>
-          <QuestionPopup popToggle={popToggle}></QuestionPopup>
-        </BtnBox>
-        <MiniProfile mini={props.mini} showMini={showMini} ></MiniProfile>
-      </MainDiv>
-    );
+  if(props.clicked === false){
+    console.log("zzz");
+  }
+
+  return (
+    <MainDiv className="ABoxTop">
+      <HeadFigure onClick={(e) => {
+        setShowMini(true);
+        props.setClicked(false);
+        e.stopPropagation();
+      }}>
+        <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
+        <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg>
+        <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
+      </HeadFigure>
+      <WrapUl>
+        <Wrapli>
+          <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+          <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
+        <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+          onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
+        <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}
+        <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
+        </WrapThankli>
+      </WrapUl>
+      <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <QuestionPopup popToggle={popToggle}></QuestionPopup>
+      </BtnBox>
+      <MiniProfile mini={props.mini} showMini={showMini} clicked={props.clicked} setShowMini={setShowMini}></MiniProfile>
+    </MainDiv>
+  );
   }
   
   export default ABoxTop;

@@ -101,9 +101,9 @@ const ShowView = styled.div`
 function ShowList(props){
     const USER= props.USER;
     
-    const SEQ = USER !== null ? USER.seq : "";
+    //const SEQ = USER !== null ? USER.seq : "";
     const NAME = USER !== null ? USER.info.name : "";
-    const LV = USER !== null ? USER.lv : "";
+    //const LV = USER !== null ? USER.lv : "";
 
     if(props.replyToggle === true){
         return (<ShowViewNone>

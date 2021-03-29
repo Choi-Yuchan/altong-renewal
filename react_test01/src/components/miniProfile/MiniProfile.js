@@ -127,7 +127,8 @@ const UlvText = (props) => {
 
 
 function MiniProfile(props) {
-    if(props.showMini === false){
+    
+    if(props.showMini === false || props.clicked){
         return <MainDivNone></MainDivNone>
     }
     return (
