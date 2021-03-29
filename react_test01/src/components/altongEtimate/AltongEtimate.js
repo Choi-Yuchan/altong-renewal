@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 
+import Etimate from './etimate/Etimate'
+
 const MainUl = styled.ul`
     text-align: center;
     width: 100%;
@@ -18,7 +20,8 @@ function AltongEtimate(props) {
 
   return (
     <MainUl>
-        
+        <Etimate></Etimate>
+
     </MainUl>
   );
 }

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 
-import ABoxTop from '../aBoxTop/ABoxTop'
-import Contents from '../contents/Contents'
-import LangTransBox from '../langTransBox/LangTransBox'
-import ReplyBox from '../replyBox/ReplyBox'
-import ReplyList from '../replyList/ReplyList'
-import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom'
+import ABoxTop from '../aBoxTop/ABoxTop';
+import Contents from '../contents/Contents';
+import LangTransBox from '../langTransBox/LangTransBox';
+import ReplyBox from '../replyBox/ReplyBox';
+import ReplyList from '../replyList/ReplyList';
+import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
+import AltongEtimate from '../altongEtimate/AltongEtimate';
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
@@ -62,6 +63,7 @@ function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
       <>
+      <AltongEtimate></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}
        good={props.good} bad={props.bad}
