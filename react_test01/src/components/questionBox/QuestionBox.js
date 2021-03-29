@@ -46,6 +46,12 @@ const WrapperDiv = styled.div`
 
 // 로그인 유저에 대한 정보를 보낼지 말지 정함.
 
+function WhatU(props){
+  const findhead = props.find((j) => (j.seqComponent === "U") );
+
+  return findhead;
+};
+
 function QuestionBox(props) {
 
   return (
@@ -59,7 +65,7 @@ function QuestionBox(props) {
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox> */}
-          <BoxController SSRJSON={props.SSRJSON}></BoxController>
+          <BoxController SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
         </WrapperDiv>
       </MainDiv>
     </SiteDiv>

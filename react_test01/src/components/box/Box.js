@@ -58,6 +58,8 @@ const replyCount = (replys) => {
   return replys.length
 }
 
+// USER={props.USER}
+
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
 
@@ -74,7 +76,7 @@ function Box(props) {
         <Contents seqComponent={props.jsonArr.seqComponent} contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
         <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)}></ReplyBox>
-        <ReplyList replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>
+        <ReplyList USER={props.USER} replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>
 
         <div className="overlay">
         </div>

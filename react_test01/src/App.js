@@ -4,7 +4,7 @@ import QuestionBox from './components/questionBox/QuestionBox'
 // 기능은 대부분 해당 유저의 seq 값으로 움직이도록 설계
 const SSRJSON = [
   {
-    seqComponent: "user", 
+    seqComponent: "U", 
     info: {
       seq: 10035484,
       name: "낙타커핑",
@@ -24,7 +24,7 @@ const SSRJSON = [
     contents: "지방에 들3어가2312세요",
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 클것 같습니다.", 
+      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
       date:"2021-03-22 08:00:38"  },
       { id: 2, profile: { seqId:"10037135", img: "/test_source/10010006.png",
       locale: "KOR", nick: "커피낙1타"}, content:"운동3도 도움이 클것 같습니다.", 
@@ -32,9 +32,6 @@ const SSRJSON = [
       { id: 3, profile: { seqId:"10010006", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
       date:"2021-03-22 06:00:38"  },
-      { id: 4, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙3타"}, content:"1운동도 도움이 클것 같습니다.", 
-      date:"2021-03-22 05:00:38"  },
     ],
     almoney:"99,000"
   },
@@ -54,7 +51,7 @@ const SSRJSON = [
       date:"2021-03-22 01:00:38"  },
       { id: 2, profile: { seqId:"10010006", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙타bb"}, content:"운동도 도움이 클것 같습니다.222", 
-      date:"2021-03-22 02:00:38"  },
+      date:"2021-03-22 02:10:38"  },
 
     ],
     almoney:"3,000"

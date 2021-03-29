@@ -99,6 +99,12 @@ const ShowView = styled.div`
 `;
 
 function ShowList(props){
+    const USER= props.USER;
+    
+    const SEQ = USER !== null ? USER.seq : "";
+    const NAME = USER !== null ? USER.info.name : "";
+    const LV = USER !== null ? USER.lv : "";
+
     if(props.replyToggle === true){
         return (<ShowViewNone>
             
@@ -106,10 +112,11 @@ function ShowList(props){
     }
 
     return (
-    <ShowView>
+    <ShowView >
         <form>
               <div>
-                  <TextArea placeholder="사용자(ssr 수정정) 님의 의견을 댓글로 입력해주세요."></TextArea>
+                  <TextArea placeholder=
+                  { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}></TextArea>
                   <AutoRenewDiv>
                       <AutoRenewP>
                           <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
@@ -131,7 +138,7 @@ function ShowList(props){
 
 function ReplyList(props) {
     return (
-      <ShowList replyToggle={props.replyToggle} className="ReplyList" replys={props.replys}>
+      <ShowList USER={props.USER} replyToggle={props.replyToggle} className="ReplyList" replys={props.replys}>
       </ShowList>
     );
   }
