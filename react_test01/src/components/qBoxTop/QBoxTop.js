@@ -183,10 +183,11 @@ const BtnBoxI = styled.i`
 
 const HeadFigureLocaleImg = styled.img`
   border-radius: 0;
-  width: 40%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: 22px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-right:3px;
+  margin-top:-2px;
 `;
 
 const ViewCountImg = styled.img`
@@ -215,6 +216,7 @@ function QBoxTop(props) {
   useEffect(() => {
     if(props.clicked === true){
       setShowMini(false);
+      setPopToggle(false);
     }
   }, [props.clicked]);
 
@@ -226,13 +228,13 @@ function QBoxTop(props) {
           e.stopPropagation();
         }}>
           <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
-          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
-          </HeadFigureLocaleImg>
+          
           <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
         </HeadFigure>
         <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" >{props.head.thankAlmoney}</HeadSpan></HeadH2>
         <WrapUl>
-          <Wrapli>
+          <Wrapli><HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
+          </HeadFigureLocaleImg>
             <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
             <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>{props.head.title}</WrapTitleli>
@@ -240,7 +242,11 @@ function QBoxTop(props) {
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}</WrapThankli>
         </WrapUl>
-        <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
+        <BtnBox onClick={(e) => {
+          setPopToggle(!popToggle);
+          props.setClicked(false);
+          e.stopPropagation();
+          }}>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>

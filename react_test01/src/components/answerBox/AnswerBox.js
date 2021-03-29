@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState, effectState } from 'react';
+import React, { useState } from 'react';
 
 import ABoxTop from '../aBoxTop/ABoxTop';
 import Contents from '../contents/Contents';
