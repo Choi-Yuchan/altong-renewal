@@ -37,7 +37,7 @@ const SSRJSON = [
     ],
     almoney:"99,000",
     mini:{
-      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
+      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:1244000, ABenefit:1232300, giveThankNum:3609, giveThankRate:98, descript:"Celebrity", alBenefit: 23312000
     }
   },
   { 
@@ -71,7 +71,7 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "로건123", uLv:"4", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:1234, giveThankRate:12, descript:"Celebrity"
+      nick: "로건123", uLv:"4", uHref:"", qBenefit:1230000, ABenefit:4595900, giveThankNum:1234, giveThankRate:12, descript:"Celebrity", alBenefit: 8880000
     }
   },
   { 
@@ -101,7 +101,7 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "똑똑합니다1414", uLv:"1", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
+      nick: "똑똑합니다1414", uLv:"1", uHref:"", qBenefit:13213, ABenefit:5151515, giveThankNum:3609, giveThankRate:98, descript:"Celebrity", alBenefit: 654210
     }
   },
   {
@@ -131,7 +131,7 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
+      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:300000, ABenefit:45542 , giveThankNum:3609, giveThankRate:98, descript:"Celebrity", alBenefit: 141410
     }
   
   },

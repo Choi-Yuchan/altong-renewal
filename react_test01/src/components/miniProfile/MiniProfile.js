@@ -152,7 +152,7 @@ function MiniProfile(props) {
                     </th>
                 </tr>
                 <tr>
-                    <MoneyInfoTd>누적수익 : <span>14,708,934</span>알</MoneyInfoTd>
+                    <MoneyInfoTd>누적수익 : <span>{props.mini.giveThankNum}</span>알</MoneyInfoTd>
                 </tr>
                 </tbody>
             </MainTable>
