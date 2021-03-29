@@ -132,11 +132,11 @@ function ReplyBox(props) {
           <EmotionList>
               <EmotionListIconDiv className="smileIcon">
                   <EmotionImg src={process.env.PUBLIC_URL + '/test_source/smile.svg'}></EmotionImg>
-                  <EmotionB>0</EmotionB>
+                  <EmotionB>{props.good}</EmotionB>
               </EmotionListIconDiv>
               <EmotionListIconDiv className="sadIcon">
                   <EmotionImg src={process.env.PUBLIC_URL + '/test_source/sad.svg'}></EmotionImg>
-                  <EmotionB>0</EmotionB>
+                  <EmotionB>{props.bad}</EmotionB>
               </EmotionListIconDiv>
           </EmotionList>
           <AnswerDoList>

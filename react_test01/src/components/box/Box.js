@@ -75,7 +75,7 @@ function Box(props) {
         <QBoxTop head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent} ></QBoxTop>
         <Contents seqComponent={props.jsonArr.seqComponent} contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)}></ReplyBox>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good} bad={props.jsonArr.bad}></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>
 
         <div className="overlay">

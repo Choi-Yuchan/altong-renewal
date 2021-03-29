@@ -22,6 +22,37 @@ const MainDiv = styled.div`
   color: #333;
 `;
 
+const AlmoneyDiv = styled.div`
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+`;
+
+const AnswerAlmoneyImgB = styled.img`
+  width: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  cursor: pointer;
+`;
+
+const AlmoneySpan = styled.span`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  color: #ff255f;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+`;
+
 const replyCount = (replys) => {
   return replys.length
 }
@@ -32,7 +63,9 @@ function OpenDiv(props){
     return (
       <>
       <LangTransBox></LangTransBox>
-      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}></ReplyBox>
+      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}
+       good={props.good} bad={props.bad}
+      ></ReplyBox>
       <ReplyList USER={props.USER}  replyToggle={props.replyToggle} replys={props.replys}></ReplyList>
       </>
     );
@@ -49,12 +82,18 @@ function AnswerBox(props) {
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
+        <div>
+          <AlmoneyDiv>
+            <AnswerAlmoneyImgB src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImgB>
+            <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
+          </AlmoneyDiv>
+        </div>
         <ABoxTop head={props.jsonArr.head}></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
         openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
-          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}
+          setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} 
         ></OpenDiv>
         <div className="overlay">
