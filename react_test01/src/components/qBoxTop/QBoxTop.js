@@ -212,10 +212,14 @@ const UlvText = (props) => {
 function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
+  const [showMini, setShowMini] = useState(false);
   
     return (
       <MainDiv className="QBoxTop">
-        <HeadFigure>
+        <HeadFigure onClick={(e) => {
+          setShowMini(true);
+          e.stopPropagation();
+        }}>
           <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
           <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
           </HeadFigureLocaleImg>
@@ -237,7 +241,7 @@ function QBoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile></MiniProfile>
+        <MiniProfile showMini={showMini}></MiniProfile>
       </MainDiv>
     );
   }

@@ -24,6 +24,9 @@ const MainDiv = styled.div`
     transform: rotate(45deg);
 }
 `;
+const MainDivNone = styled.div`
+    display:none;
+`;
 const MainTable = styled.table`
     width: 100%;
     text-align: justify;
@@ -119,10 +122,12 @@ const MiniInfoTableTh = styled.th`
 
 
 function MiniProfile(props) {
+    if(props.showMini === false){
+        return <MainDivNone></MainDivNone>
+    }
     return (
         <MainDiv className="MiniProfile"
         onClick={(e)=>{
-            console.log("event 멈춰!");
             e.stopPropagation();
         }}>
             <MainTable>
