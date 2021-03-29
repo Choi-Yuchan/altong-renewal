@@ -58,7 +58,7 @@ const replyCount = (replys) => {
   return replys.length
 }
 
-// USER={props.USER}
+// white={props.white} setWhite={props.setWhite}
 
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);

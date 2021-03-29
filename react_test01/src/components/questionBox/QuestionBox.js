@@ -70,13 +70,17 @@ function WhatU(props){
 
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
+  const [whiteClick, setWhiteClick] = useState(true);
 
   return (
-    <SiteDiv onClick={() => setBodyClicked(true)}>
+    <SiteDiv onClick={() => {
+      setBodyClicked(true);
+      setWhiteClick(true);
+    }}>
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
-          <BoxController clicked={bodyClicked} setClicked={setBodyClicked} SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
+          <BoxController white={whiteClick} setWhite={setWhiteClick} clicked={bodyClicked} setClicked={setBodyClicked} SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
         </WrapperDiv>
       </MainDiv>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>

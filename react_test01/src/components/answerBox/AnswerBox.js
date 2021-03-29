@@ -75,7 +75,8 @@ function OpenDiv(props){
   return <AUnBoxBottom></AUnBoxBottom>
 }
 
-// jsonArr
+// white={props.white} setWhite={props.setWhite}
+
 function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [openAnswer, setOpenAnswer] = useState('close');
