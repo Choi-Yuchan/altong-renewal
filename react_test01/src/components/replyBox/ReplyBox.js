@@ -126,7 +126,7 @@ function ReplyBox(props) {
       <OlBox className="ReplyBox">
           <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
               <HrefA>
-                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon>댓글<HrefASpan>{props.replyCount}</HrefASpan>
+                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon><HrefASpan>{props.replyCount}</HrefASpan>
               </HrefA>
           </ListReply>
           <EmotionList>
