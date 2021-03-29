@@ -58,6 +58,51 @@ const MiniContentP = styled.p`
     font-weight: bold;
     font-size: 15px;
 `;
+const MiniProfileGo = styled.a`
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 20px;
+    background: transparent;
+    transition: all 0.3s;
+    padding: 5px 0;
+    margin: 15px 0 10px;
+    text-decoration: none;
+    color: #333;
+`;
+const MiniInfoTable = styled.table`
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+const MiniInfoTableTr = styled.tr`
+    margin-bottom: 5px;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+const MiniInfoTableTd = styled.td`
+    font-weight: 500;
+    color: #888;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+const MiniInfoTableTh = styled.th`
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+
 
 
 function MiniProfile(props) {
@@ -85,6 +130,23 @@ function MiniProfile(props) {
             </MainTable>
             <MiniContentP>Celebrity</MiniContentP>
             <MiniIconLine></MiniIconLine>
+            <MiniInfoTable>
+                <tbody>
+                    <MiniInfoTableTr>
+                        <MiniInfoTableTd>질문 수익</MiniInfoTableTd>
+                        <MiniInfoTableTd>답변 수익</MiniInfoTableTd>
+                        <MiniInfoTableTd>감사알 지급 건수</MiniInfoTableTd>
+                        <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
+                    </MiniInfoTableTr>
+                    <MiniInfoTableTr>
+                        <MiniInfoTableTh>340,700알</MiniInfoTableTh>
+                        <MiniInfoTableTh>1,023,580</MiniInfoTableTh>
+                        <MiniInfoTableTh>3609</MiniInfoTableTh>
+                        <MiniInfoTableTh>98%</MiniInfoTableTh>
+                    </MiniInfoTableTr>
+                </tbody>
+            </MiniInfoTable>
+            <MiniProfileGo>프로필 보러가기</MiniProfileGo>
         </MainDiv>
     );
   }
