@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 // atm_top_wrap
 const MainDiv = styled.div`
+&{
     width: 400px;
     background: #fff;
     position: absolute;
@@ -10,6 +11,18 @@ const MainDiv = styled.div`
     border-radius: 20px;
     padding: 15px;
     transition: all 0.3s;
+}
+&:after{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    transform: rotate(45deg);
+}
 `;
 const MainTable = styled.table`
     width: 100%;
