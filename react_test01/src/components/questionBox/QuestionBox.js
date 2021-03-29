@@ -80,7 +80,9 @@ function QuestionBox(props) {
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
-          <BoxController white={whiteClick} setWhite={setWhiteClick} clicked={bodyClicked} setClicked={setBodyClicked} SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
+          <BoxController white={whiteClick} setWhite={setWhiteClick}
+          clicked={bodyClicked} setClicked={setBodyClicked}
+          SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
         </WrapperDiv>
       </MainDiv>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>

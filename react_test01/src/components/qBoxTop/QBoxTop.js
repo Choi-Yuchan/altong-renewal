@@ -208,6 +208,7 @@ const UlvText = (props) => {
 }
 
 //clicked
+// white={props.white} setWhite={props.setWhite}
 function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
@@ -219,6 +220,13 @@ function QBoxTop(props) {
       setPopToggle(false);
     }
   }, [props.clicked]);
+
+  useEffect(() => {
+    if(props.white === true){
+      setShowMini(false);
+      setPopToggle(false);
+    }
+  }, [props.white]);
 
     return (
       <MainDiv className="QBoxTop">
@@ -244,7 +252,7 @@ function QBoxTop(props) {
         </WrapUl>
         <BtnBox onClick={(e) => {
           setPopToggle(!popToggle);
-          props.setClicked(false);
+          props.setWhite(false);
           e.stopPropagation();
           }}>
           <BtnBoxI></BtnBoxI>

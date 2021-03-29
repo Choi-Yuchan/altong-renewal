@@ -91,12 +91,15 @@ function AnswerBox(props) {
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} clicked={props.clicked} setClicked={props.setClicked} ></ABoxTop>
+        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini}
+          clicked={props.clicked} setClicked={props.setClicked} ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
-        openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
-        setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
-        <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
-          setReplyToggle={setReplyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
+          openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
+          setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
+        <OpenDiv className="OpenDiv" replyToggle={replyToggle}
+          replyCount={replyCount(props.jsonArr.replys)}
+          setReplyToggle={setReplyToggle} replys={props.jsonArr.replys}
+          openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} etimate={props.jsonArr.etimate}
         ></OpenDiv>
         <div className="overlay">

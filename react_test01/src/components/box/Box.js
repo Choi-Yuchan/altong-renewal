@@ -68,15 +68,23 @@ function Box(props) {
         {/* atm_top_wrap */}
         <div>
           <AlmoneyDiv>
-            <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImg>
+            <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}>
+            </AnswerAlmoneyImg>
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <QBoxTop clicked={props.clicked} setClicked={props.setClicked} head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent} mini={props.jsonArr.mini} ></QBoxTop>
-        <Contents seqComponent={props.jsonArr.seqComponent} contents={props.jsonArr.contents}></Contents>
+        <QBoxTop clicked={props.clicked} setClicked={props.setClicked}
+          white={props.white} setWhite={props.setWhite}
+          head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
+          mini={props.jsonArr.mini} ></QBoxTop>
+        <Contents seqComponent={props.jsonArr.seqComponent}
+          contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle} replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good} bad={props.jsonArr.bad}></ReplyBox>
-        <ReplyList USER={props.USER} replyToggle={replyToggle} replys={props.jsonArr.replys} ></ReplyList>
+        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}
+          replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good}
+          bad={props.jsonArr.bad}></ReplyBox>
+        <ReplyList USER={props.USER} replyToggle={replyToggle}
+          replys={props.jsonArr.replys} ></ReplyList>
 
         <div className="overlay">
         </div>

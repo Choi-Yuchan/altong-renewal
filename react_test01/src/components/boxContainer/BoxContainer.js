@@ -6,8 +6,10 @@ function BoxController(props) {
     ( (jaar) => jaar.seqComponent === "Q"?
         <Box key={jaar.id} jsonArr={jaar} USER={props.USER}
         white={props.white} setWhite={props.setWhite}
-        clicked={props.clicked} setClicked={props.setClicked}></Box>: 
-        jaar.seqComponent === "A" ? <AnswerBox key={jaar.id} jsonArr={jaar}
+        clicked={props.clicked} setClicked={props.setClicked}>
+        </Box>: 
+        jaar.seqComponent === "A" ?
+        <AnswerBox key={jaar.id} jsonArr={jaar}
         white={props.white} setWhite={props.setWhite}
         USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}>
         </AnswerBox> : ""
