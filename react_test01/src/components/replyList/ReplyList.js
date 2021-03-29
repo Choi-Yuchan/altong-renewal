@@ -23,14 +23,18 @@ const AutoRenewDiv = styled.div`
     color: #333;
 `;
 
-const ReplyImg = styled.img`
-    width: 13px;
-    display: inline-block;
-    margin-bottom: -2px;
-`;
+// const ReplyImg = styled.img`
+//     width: 13px;
+//     display: inline-block;
+//     margin-bottom: -2px;
+// `;
 
 const TextArea = styled.textarea`
-    width: 100%;
+    flex-grow: 1;
+    padding: 9px 20px;
+    margin: 0;
+    width: auto;
+    transition: all 0.3s;
     height: 40px;
     resize: none;
     font-size: 14px;
@@ -38,12 +42,7 @@ const TextArea = styled.textarea`
     color: #666;
     border-radius: 5px;
     outline: none;
-    padding: 11px 20px;
-    margin: 0;
-    margin-top: 10px;
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const ReplySubmit = styled.div`
@@ -65,15 +64,18 @@ const ReplySubmitP = styled.p`
 `;
 
 const ReplyButton = styled.button`
-    display: inline-block;
-    border: 1px solid #999;
+    flex-grow: 0;
+    height: 40px;
     background: #fff;
-    border-radius: 30px;
-    width: 65px;
-    padding: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     cursor: pointer;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-    outline: none;
+    text-align: center;
+    padding: 5px 10px;
+    white-space: nowrap;
+    margin-left: 3px;
+    color: #737373;
+    font-size: 12px;
 `;
 
 const ReplySubmitI = styled.i`
@@ -82,13 +84,11 @@ const ReplySubmitI = styled.i`
     color: #999;
     font-size: 12px;
 `;
-
 const ReplySubmitImg = styled.img`
     display: inline-block;
     width: 12px;
     margin-bottom: -1px;
 `;
-
 const ShowViewNone = styled.div`
     
 `;
@@ -96,6 +96,17 @@ const ShowView = styled.div`
     transition:height 1s ease-out;
     height: auto;
     overflow:visible;
+`;
+const TextAreaDiv = styled.div`
+    transition:height 1s ease-out;
+    height: auto;
+    overflow:visible;
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
 `;
 
 function ShowList(props){
@@ -115,8 +126,13 @@ function ShowList(props){
     <ShowView >
         <form>
               <div>
+                  <TextAreaDiv>
                   <TextArea placeholder=
                   { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}></TextArea>
+                  <ReplyButton>
+                        등록
+                    </ReplyButton>
+                  </TextAreaDiv>
                   <AutoRenewDiv>
                       {/* <AutoRenewP>
                           <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
@@ -125,9 +141,7 @@ function ShowList(props){
                   <ReplySubmit>
                       <ReplySubmitP>
                           <span>0</span>/400</ReplySubmitP>
-                      <ReplyButton>
-                          <ReplySubmitImg src={process.env.PUBLIC_URL + '/test_source/modify03.svg'}></ReplySubmitImg><ReplySubmitI>등록</ReplySubmitI>
-                      </ReplyButton>
+                      
                   </ReplySubmit>
               </div>
           </form>
