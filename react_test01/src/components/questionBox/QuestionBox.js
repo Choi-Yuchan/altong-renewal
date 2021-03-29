@@ -44,6 +44,16 @@ const WrapperDiv = styled.div`
   margin-bottom: 20px;
 `;
 
+const BlackDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background: rgba(0, 0, 0, 0.3);
+`;
+
 // 로그인 유저에 대한 정보를 보낼지 말지 정함.
 
 function WhatU(props){
@@ -68,6 +78,7 @@ function QuestionBox(props) {
           <BoxController SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
         </WrapperDiv>
       </MainDiv>
+      <BlackDiv></BlackDiv>
     </SiteDiv>
   );
 }

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 
 const MainDiv = styled.div`
-    display: none;
     width: 400px;
     background: #fff;
     position: absolute;
@@ -40,10 +39,7 @@ const MoneyInfoTd = styled.td`
     font-weight: 500;
 `;
 
-
-
-
-function MiniProfile() {
+function MiniProfile(props) {
     return (
         <MainDiv className="MiniProfile">
             <MainTable>
