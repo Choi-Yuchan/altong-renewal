@@ -74,12 +74,11 @@ const ReplyAhrefA = styled.a`
 `;
 
 const ReplyLocaleImg = styled.img`
-    width: 50%;
+    width: 20px;
     border-radius: 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    display: block;
+    display: inline-block;
+    margin-right:2px;
+    margin-bottom:-2px;
 `;
 
 const ReplyLocaleTh = styled.th`
@@ -140,6 +139,11 @@ const ReplyLangBtnBallImg = styled.img`
     display: inline-block;
     vertical-align: top;
 `;
+const ReplyLocalDiv = styled.div`
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+`;
 
 function ShowView(props){
     if(props.timeToggle === false){
@@ -160,7 +164,7 @@ function Reply(props) {
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
                                 <ReplyImg src={process.env.PUBLIC_URL + props.reply.profile.img}></ReplyImg>
-                                <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                                <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
                       <ReplyContents>{props.reply.content}</ReplyContents>
@@ -168,7 +172,9 @@ function Reply(props) {
                   <tr>
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
-                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                      <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                      
+                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>

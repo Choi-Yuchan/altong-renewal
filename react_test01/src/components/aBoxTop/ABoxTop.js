@@ -151,10 +151,11 @@ const BtnBoxI = styled.i`
 
 const HeadFigureLocaleImg = styled.img`
   border-radius: 0;
-  width: 40%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  width: 22px;
+  display:inline-block;
+  vertical-align:middle;
+  margin-right:3px;
+  margin-top:-2px;
 `;
 
 const ViewCountImg = styled.img`
@@ -201,12 +202,11 @@ function ABoxTop(props) {
         e.stopPropagation();
       }}>
         <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
-        <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg>
         <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
       </HeadFigure>
       <WrapUl>
         <Wrapli>
-          <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+        <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
           <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
         <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
