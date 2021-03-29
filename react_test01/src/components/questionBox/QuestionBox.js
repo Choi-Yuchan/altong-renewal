@@ -48,7 +48,7 @@ const WrapperDiv = styled.div`
 
 function WhatU(props){
   const findhead = props.find((j) => (j.seqComponent === "U") );
-
+  
   return findhead;
 };
 

@@ -3,9 +3,9 @@ import AnswerBox from './../answerBox/AnswerBox'
 
 function BoxController(props) {
     const Boxs = props.SSRJSON.map
-    ( (jaar) => jaar.seqComponent=="Q"?
+    ( (jaar) => jaar.seqComponent === "Q"?
         <Box key={jaar.id} jsonArr={jaar} USER={props.USER}></Box>: 
-        jaar.seqComponent=="A"? <AnswerBox key={jaar.id} jsonArr={jaar} USER={props.USER}></AnswerBox> : ""
+        jaar.seqComponent === "A"? <AnswerBox key={jaar.id} jsonArr={jaar} USER={props.USER}></AnswerBox> : ""
     );
     return Boxs;
 }

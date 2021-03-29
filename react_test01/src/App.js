@@ -25,7 +25,9 @@ const SSRJSON = [
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
-      date:"2021-03-22 08:00:38"  },
+      date:"2021-03-22 08:00:38",
+      
+    },
       { id: 2, profile: { seqId:"10037135", img: "/test_source/10010006.png",
       locale: "KOR", nick: "커피낙1타"}, content:"운동3도 도움이 클것 같습니다.", 
       date:"2021-03-22 07:00:38"  },

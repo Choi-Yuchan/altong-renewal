@@ -33,7 +33,7 @@ function OpenDiv(props){
       <>
       <LangTransBox></LangTransBox>
       <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}></ReplyBox>
-      <ReplyList replyToggle={props.replyToggle} replys={props.replys}></ReplyList>
+      <ReplyList USER={props.USER}  replyToggle={props.replyToggle} replys={props.replys}></ReplyList>
       </>
     );
   }
@@ -55,6 +55,7 @@ function AnswerBox(props) {
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
           setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}
+          USER={props.USER} 
         ></OpenDiv>
         <div className="overlay">
         </div>
