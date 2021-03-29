@@ -138,9 +138,9 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "ㅁㄴㅇㄹ", uLv:"5", uHref:"", qBenefit:300000, ABenefit:45542 , giveThankNum:3609, giveThankRate:100, descript:"안녕하세요 ㅁㄴㅇㄹ 에요.", alBenefit: 141410
+      nick: "ㅁㄴㅇㄹ", uLv:"5", uHref:"", qBenefit:300000, ABenefit:45542 ,
+      giveThankNum:3609, giveThankRate:100, descript:"안녕하세요 ㅁㄴㅇㄹ 에요.", alBenefit: 141410
     }
-  
   },
 
 ]

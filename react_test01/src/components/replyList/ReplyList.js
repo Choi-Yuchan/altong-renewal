@@ -118,9 +118,9 @@ function ShowList(props){
                   <TextArea placeholder=
                   { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}></TextArea>
                   <AutoRenewDiv>
-                      <AutoRenewP>
+                      {/* <AutoRenewP>
                           <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
-                      </AutoRenewP>
+                      </AutoRenewP> */}
                   </AutoRenewDiv>
                   <ReplySubmit>
                       <ReplySubmitP>
