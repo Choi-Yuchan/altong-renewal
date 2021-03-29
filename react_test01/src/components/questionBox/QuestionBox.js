@@ -63,15 +63,11 @@ function WhatU(props){
   return findhead;
 };
 
-function BodyClick(props){
-  props.setBodyClicked(false)
-}
-
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(false);
 
   return (
-    <SiteDiv onClick={() => {console.log("bodyClicked")}}>
+    <SiteDiv onClick={() => setBodyClicked(false)}>
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
@@ -81,7 +77,7 @@ function QuestionBox(props) {
           <FoldMessage></FoldMessage>
           <AnswerBox></AnswerBox>
           <AnswerBox></AnswerBox> */}
-          <BoxController SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
+          <BoxController clicked={bodyClicked} setClicked={setBodyClicked} SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
         </WrapperDiv>
       </MainDiv>
       <BlackDiv></BlackDiv>

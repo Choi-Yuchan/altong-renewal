@@ -120,13 +120,18 @@ const MiniInfoTableTh = styled.th`
 
 function MiniProfile(props) {
     return (
-        <MainDiv className="MiniProfile">
+        <MainDiv className="MiniProfile"
+        onClick={(e)=>{
+            console.log("event 멈춰!");
+            e.stopPropagation();
+        }}>
             <MainTable>
                 <tbody>
                 <tr>
                     <th>
                     <MiniSpan>수호천사</MiniSpan>똑똑똑</th>
-                    <th rowSpan="2">
+                    <th rowSpan="2" 
+                    >
                     <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addFriends.svg'}></MainTableImg>
                     </th>
                     <th rowSpan="2">
