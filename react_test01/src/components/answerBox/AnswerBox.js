@@ -90,7 +90,7 @@ function AnswerBox(props) {
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <ABoxTop head={props.jsonArr.head}></ABoxTop>
+        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini}></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
         openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>

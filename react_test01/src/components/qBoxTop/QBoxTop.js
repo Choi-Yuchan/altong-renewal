@@ -241,7 +241,7 @@ function QBoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile showMini={showMini}></MiniProfile>
+        <MiniProfile showMini={showMini} mini={props.mini}></MiniProfile>
       </MainDiv>
     );
   }

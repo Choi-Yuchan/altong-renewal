@@ -209,7 +209,7 @@ function ABoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile></MiniProfile>
+        <MiniProfile mini={props.mini}></MiniProfile>
       </MainDiv>
     );
   }

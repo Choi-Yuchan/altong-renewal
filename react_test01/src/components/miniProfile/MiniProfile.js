@@ -119,6 +119,11 @@ const MiniInfoTableTh = styled.th`
     -webkit-tap-highlight-color: transparent;
 `;
 
+const UlvText = (props) => {
+    const LV=['알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+    return LV[props];
+  }
+
 
 
 function MiniProfile(props) {
@@ -134,7 +139,7 @@ function MiniProfile(props) {
                 <tbody>
                 <tr>
                     <th>
-                    <MiniSpan>수호천사</MiniSpan>똑똑똑</th>
+                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
                     <th rowSpan="2" 
                     >
                     <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addFriends.svg'}></MainTableImg>

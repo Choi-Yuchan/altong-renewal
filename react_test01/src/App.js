@@ -71,7 +71,7 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "로건", uLv:"4", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:1234, giveThankRate:12, descript:"Celebrity"
+      nick: "로건123", uLv:"4", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:1234, giveThankRate:12, descript:"Celebrity"
     }
   },
   { 
@@ -101,7 +101,7 @@ const SSRJSON = [
       v6:9,
     },
     mini:{
-      nick: "똑똑합니다", uLv:"1", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
+      nick: "똑똑합니다1414", uLv:"1", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
     }
   },
   {
