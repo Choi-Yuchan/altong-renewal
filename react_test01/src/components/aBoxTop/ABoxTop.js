@@ -185,13 +185,17 @@ const UlvText = (props) => {
 function ABoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
+  const [showMini, setShowMini] = useState(false);
 
     return (
       <MainDiv className="ABoxTop">
-        <HeadFigure>
+        <HeadFigure onClick={(e) => {
+          setShowMini(true);
+          e.stopPropagation();
+        }}>
           <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
           <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg>
-          <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
+          <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
         </HeadFigure>
         <WrapUl>
           <Wrapli>
@@ -209,7 +213,7 @@ function ABoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile mini={props.mini}></MiniProfile>
+        <MiniProfile mini={props.mini} showMini={showMini} ></MiniProfile>
       </MainDiv>
     );
   }
