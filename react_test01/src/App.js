@@ -35,7 +35,10 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
       date:"2021-03-22 06:00:38"  },
     ],
-    almoney:"99,000"
+    almoney:"99,000",
+    mini:{
+      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
+    }
   },
   { 
     id:2,
@@ -66,6 +69,9 @@ const SSRJSON = [
       v4:20,
       v5:3,
       v6:9,
+    },
+    mini:{
+      nick: "로건", uLv:"4", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:1234, giveThankRate:12, descript:"Celebrity"
     }
   },
   { 
@@ -93,6 +99,9 @@ const SSRJSON = [
       v4:20,
       v5:3,
       v6:9,
+    },
+    mini:{
+      nick: "똑똑합니다", uLv:"1", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
     }
   },
   {
@@ -120,6 +129,9 @@ const SSRJSON = [
       v4:20,
       v5:3,
       v6:9,
+    },
+    mini:{
+      nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:"", ABenefit:"", giveThankNum:3609, giveThankRate:98, descript:"Celebrity"
     }
   
   },
