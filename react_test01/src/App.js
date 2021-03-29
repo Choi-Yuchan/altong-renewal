@@ -27,9 +27,7 @@ const SSRJSON = [
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
       locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
-      date:"2021-03-22 08:00:38",
-      
-    },
+      date:"2021-03-22 08:00:38"  },
       { id: 2, profile: { seqId:"10037135", img: "/test_source/10010006.png",
       locale: "KOR", nick: "커피낙1타"}, content:"운동3도 도움이 클것 같습니다.", 
       date:"2021-03-22 07:00:38"  },
@@ -37,15 +35,7 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
       date:"2021-03-22 06:00:38"  },
     ],
-    almoney:"99,000",
-    etimate:{
-      1:1,
-      2:9,
-      3:10,
-      4:20,
-      5:3,
-      6:9,
-    }
+    almoney:"99,000"
   },
   { 
     id:2,
@@ -68,7 +58,15 @@ const SSRJSON = [
       date:"2021-03-22 02:10:38"  },
 
     ],
-    almoney:"399,000"
+    almoney:"399,000",
+    etimate:{
+      v1:1,
+      v2:9,
+      v3:10,
+      v4:20,
+      v5:3,
+      v6:9,
+    }
   },
   { 
     id:3,
@@ -87,7 +85,15 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙타zz"}, content:"운동도 도움이 클것 같습니다333.", 
       date:"2021-03-22 03:00:38"  },
     ],
-    almoney:"13,000"
+    almoney:"13,000",
+    etimate:{
+      v1:1,
+      v2:9,
+      v3:10,
+      v4:20,
+      v5:3,
+      v6:9,
+    }
   },
   {
     id:4,
@@ -106,7 +112,15 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.444", 
       date:"2021-03-22 04:00:38"  },
     ],
-    almoney:"9,000"
+    almoney:"9,000",
+    etimate:{
+      v1:1,
+      v2:9,
+      v3:10,
+      v4:20,
+      v5:3,
+      v6:9,
+    }
   
   },
 

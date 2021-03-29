@@ -13,14 +13,25 @@ const MainUl = styled.ul`
     margin-bottom: 10px;
 `;
 
+function EstiArr(props){
+    const EstiView = 
+    <>
+        <Etimate img={1} num={props.etimate.v1}></Etimate>
+        <Etimate img={2} num={props.etimate.v2}></Etimate>
+        <Etimate img={3} num={props.etimate.v3}></Etimate>
+        <Etimate img={4} num={props.etimate.v4}></Etimate>
+        <Etimate img={5} num={props.etimate.v5}></Etimate>
+        <Etimate img={6} num={props.etimate.v6}></Etimate>
+    </>;
 
-// USER={props.USER}
+    return EstiView;
+}
 
 function AltongEtimate(props) {
 
   return (
     <MainUl>
-        <Etimate></Etimate>
+        <EstiArr etimate={props.etimate}></EstiArr>
 
     </MainUl>
   );

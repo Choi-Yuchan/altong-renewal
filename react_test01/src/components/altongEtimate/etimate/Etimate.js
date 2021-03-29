@@ -40,19 +40,23 @@ const EtimateEm = styled.em`
     color: #fd0031;
     font-weight: bold;
     margin-left: 3px;
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
+
+const langEsti = (img) => {
+    const arr = ['알통', '감사', '수고', '불만', '분노', '재미'];
+    return arr[img]
+}
 
 function Etimate(props) {
 
   return (
     <MainLi>
         <EtimateA>
-            <EtimateImg></EtimateImg>
-            <EtimateSpan>알통<EtimateEm>1</EtimateEm></EtimateSpan>
+            <EtimateImg  src={process.env.PUBLIC_URL + '/test_source/esti_'+props.img+'.png'}></EtimateImg>
+            <EtimateSpan>{langEsti(props.img-1)}<EtimateEm>{props.num}</EtimateEm></EtimateSpan>
         </EtimateA>
     </MainLi>
   );

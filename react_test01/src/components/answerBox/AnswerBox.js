@@ -63,7 +63,7 @@ function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
       <>
-      <AltongEtimate></AltongEtimate>
+      <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}
        good={props.good} bad={props.bad}
@@ -96,7 +96,7 @@ function AnswerBox(props) {
         setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv className="OpenDiv" replyToggle={replyToggle} replyCount={replyCount(props.jsonArr.replys)}
           setReplyToggle={setReplyToggle} replyToggle={replyToggle} replys={props.jsonArr.replys} openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
-          USER={props.USER} 
+          USER={props.USER} etimate={props.jsonArr.etimate}
         ></OpenDiv>
         <div className="overlay">
         </div>
