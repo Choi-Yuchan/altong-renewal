@@ -92,7 +92,9 @@ function AnswerBox(props) {
           </AlmoneyDiv>
         </div>
         <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini}
-          clicked={props.clicked} setClicked={props.setClicked} ></ABoxTop>
+          clicked={props.clicked} setClicked={props.setClicked}
+          white={props.white} setWhite={props.setWhite}
+          ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
           setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>

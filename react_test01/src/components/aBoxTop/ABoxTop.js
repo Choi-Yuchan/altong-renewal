@@ -194,6 +194,13 @@ function ABoxTop(props) {
     }
   }, [props.clicked]);
 
+  useEffect(() => {
+    if(props.white === true){
+      setShowMini(false);
+      setPopToggle(false);
+    }
+  }, [props.white]);
+
   return (
     <MainDiv className="ABoxTop">
       <HeadFigure onClick={(e) => {
@@ -209,12 +216,18 @@ function ABoxTop(props) {
         <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+props.head.locale+'.svg'}></HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
           <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
         <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-          onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
+          onClick={() => {
+            setTimeToggle(!timeToggle);
+            }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
         <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}
         <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
         </WrapThankli>
       </WrapUl>
-      <BtnBox onClick={() => {setPopToggle(!popToggle) }}>
+      <BtnBox onClick={(e) => {
+        setPopToggle(!popToggle);
+        props.setWhite(false);
+        e.stopPropagation();
+        }}>
         <BtnBoxI></BtnBoxI>
         <BtnBoxI></BtnBoxI>
         <BtnBoxI></BtnBoxI>
