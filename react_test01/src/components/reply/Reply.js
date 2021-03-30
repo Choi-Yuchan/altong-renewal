@@ -182,10 +182,11 @@ function Reply(props) {
                       <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
                       
                       <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
-                            setTimeToggle(!timeToggle);
                             props.setWhite(false);
+                            setTimeToggle(!timeToggle);
                             e.stopPropagation();
-                        }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        }
+                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>

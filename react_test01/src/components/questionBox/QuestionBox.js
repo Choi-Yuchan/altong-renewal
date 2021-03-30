@@ -73,7 +73,7 @@ function QuestionBox(props) {
   const [whiteClick, setWhiteClick] = useState(true);
 
   return (
-    <SiteDiv onClick={() => {
+    <SiteDiv onClickCapture={() => {
       setBodyClicked(true);
       setWhiteClick(true);
     }}>
