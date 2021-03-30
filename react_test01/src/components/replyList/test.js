@@ -90,9 +90,9 @@ const ReplyButton = styled.button`
 // `;
 
 const ShowView = styled.div`
-    transition-property: max-height;
-    transition-duration: 0.5s;
-    
+    transition-property: ${props => props.row ? 'max-height': 'max-height'};;
+    transition-duration: 0.3s;
+    height:auto;
     max-height: ${props => props.row ? 0: '10000px'};
     overflow:hidden;
 

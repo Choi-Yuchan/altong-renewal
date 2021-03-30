@@ -23,6 +23,18 @@ const ContentsP = styled.p`
   /* transition-property: height;
   transition-duration: 1s; */
 `;
+const ContentsP2 = styled.p`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  word-break: break-all;
+  font-size: 15px;
+  height:auto;
+  
+  max-height: ${props => props.row ? 0: '10000px'};
+  transition-duration: 1s;
+`;
 
 const ContentsSpan = styled.span`
   display: inline-block;
@@ -75,12 +87,12 @@ function QorA(props){
   const isShow = props.seqComponent;
   if(isShow === 'A'){
     return (
-      <ContentsP onClick={props.onClick2}>
+      <ContentsP2 isShow={isShow} onClick={props.onClick2}>
         {props.contents}
         <DelSpan setMessage={props.setMessage}
           setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
         <CustomView isView={props.openAnswer}></CustomView>
-      </ContentsP>
+      </ContentsP2>
     );
   }
   return (

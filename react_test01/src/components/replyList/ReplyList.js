@@ -88,16 +88,17 @@ const ReplyButton = styled.button`
 //     width: 12px;
 //     margin-bottom: -1px;
 // `;
-const ShowViewNone = styled.div`
-    
-`;
+
 const ShowView = styled.div`
-    transition:height 1s ease-out;
-    height: auto;
-    overflow:visible;
+    transition-property: ${props => props.row ? 'max-height': 'max-height'};;
+    transition-duration: 0.3s;
+    height:auto;
+    max-height: ${props => props.row ? 0: '10000px'};
+    overflow:hidden;
+
 `;
 const TextAreaDiv = styled.div`
-    transition:height 1s ease-out;
+    transition:height 1s;
     height: auto;
     overflow:visible;
     height: 40px;
@@ -109,20 +110,15 @@ const TextAreaDiv = styled.div`
 `;
 
 function ShowList(props){
+
     const USER= props.USER;
     
     //const SEQ = USER !== null ? USER.seq : "";
     const NAME = USER !== null ? USER.info.name : "";
     //const LV = USER !== null ? USER.lv : "";
 
-    if(props.replyToggle === true){
-        return (<ShowViewNone>
-            
-        </ShowViewNone>);
-    }
-
     return (
-    <ShowView >
+    <ShowView row={props.replyToggle}>
         <form>
               <div>
                   <TextAreaDiv>
