@@ -1,6 +1,6 @@
-import styled, {keyframes, css} from 'styled-components';
-import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import ReplyContainer from '../replyContainer/ReplyContainer'
 
 
 // const AutoRenewP = styled.p`
@@ -89,52 +89,18 @@ const ReplyButton = styled.button`
 //     width: 12px;
 //     margin-bottom: -1px;
 // `;
-const ShowViewNone = styled.div`
-    
-`;
-
-const slideUp = keyframes`
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`;
-
-const slideDown = keyframes`
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(0px);
-  }
-`;
 
 const ShowView = styled.div`
-    transition:height 1s ease-out;
-    height: auto;
-    overflow:visible;
+    transition-property: max-height;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+    
+    max-height: ${props => props.row ? 0: '10000px'};
+    overflow:hidden;
 
-    animation-duration: 0.25s;
-    animation-timing-function: ease-out;
-    animation-name: ${slideUp};
-    animation-fill-mode: forwards;
-
-    ${props =>
-        props.disappear &&
-        css`
-        animation-name: ${slideDown};
-    `}
-`;
-const ShowBox = styled.div`
-    height:auto;
-    overflow: hidden;
 `;
 const TextAreaDiv = styled.div`
-    transition:height 1s ease-out;
+    transition:height 1s;
     height: auto;
     overflow:visible;
     height: 40px;
@@ -146,9 +112,6 @@ const TextAreaDiv = styled.div`
 `;
 
 function ShowList(props){
-    const [animate, setAnimate] = useState(false);
-
-
 
     const USER= props.USER;
     
@@ -156,41 +119,32 @@ function ShowList(props){
     const NAME = USER !== null ? USER.info.name : "";
     //const LV = USER !== null ? USER.lv : "";
 
-
-    if(props.replyToggle === true){
-        return (<ShowViewNone>
-            
-        </ShowViewNone>);
-    }
-
     return (
-    <ShowBox>
-        <ShowView disappear={false}>
-            <form>
-                <div>
-                    <TextAreaDiv>
-                    <TextArea placeholder=
-                    { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}
-                    maxlength="400"></TextArea>
-                    <ReplyButton>
-                            등록
-                        </ReplyButton>
-                    </TextAreaDiv>
-                    <AutoRenewDiv>
-                        {/* <AutoRenewP>
-                            <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
-                        </AutoRenewP> */}
-                    </AutoRenewDiv>
-                    <ReplySubmit>
-                        <ReplySubmitP>
-                            <span>0</span>/400</ReplySubmitP>
-                        
-                    </ReplySubmit>
-                </div>
-            </form>
-            <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
-        </ShowView>
-    </ShowBox>
+    <ShowView row={props.replyToggle}>
+        <form>
+              <div>
+                  <TextAreaDiv>
+                  <TextArea placeholder=
+                  { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}
+                  maxlength="400"></TextArea>
+                  <ReplyButton>
+                        등록
+                    </ReplyButton>
+                  </TextAreaDiv>
+                  <AutoRenewDiv>
+                      {/* <AutoRenewP>
+                          <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
+                      </AutoRenewP> */}
+                  </AutoRenewDiv>
+                  <ReplySubmit>
+                      <ReplySubmitP>
+                          <span>0</span>/400</ReplySubmitP>
+                      
+                  </ReplySubmit>
+              </div>
+          </form>
+          <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
+    </ShowView>
     );
 }
 
