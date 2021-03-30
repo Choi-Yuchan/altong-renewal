@@ -18,6 +18,10 @@ const ContentsP = styled.p`
   -webkit-tap-highlight-color: transparent;
   word-break: break-all;
   font-size: 15px;
+  height:auto;
+  
+  /* transition-property: height;
+  transition-duration: 1s; */
 `;
 
 const ContentsSpan = styled.span`
@@ -92,13 +96,6 @@ function Contents(props) {
 
   return (
       <MainDiv className="Contents">
-        {/* <ContentsP onClick={() => { props.setOpenAnswer('open'); 
-          props.setMessage(props.allMessage); setOpen(''); }}>
-          {props.contents}
-          <DelSpan setOpenAnswer={props.setOpenAnswer} setMessage={props.setMessage}
-            setOpen={setOpen} allMessage={props.allMessage} open={open}></DelSpan>
-          <CustomView isView={props.openAnswer}></CustomView>
-        </ContentsP> */}
         <QorA onClick2={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); setOpen(''); } }
           setOpen={setOpen} contents={props.contents} allMessage={props.allMessage} open={open}
           openAnswer={props.openAnswer} seqComponent={props.seqComponent} > </QorA>
