@@ -93,9 +93,11 @@ function AnswerBox(props) {
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini}
+        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
           clicked={props.clicked} setClicked={props.setClicked}
+          replyCount={replyCount(props.jsonArr.replys)}
           white={props.white} setWhite={props.setWhite}
+          openAnswer={openAnswer}
           ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
