@@ -5,7 +5,7 @@ import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
-import ReplyList from '../replyList/ReplyList'
+import ReplyList from '../replyList/test'
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
