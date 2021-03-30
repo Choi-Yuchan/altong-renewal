@@ -145,14 +145,17 @@ function ShowList(props){
                   </ReplySubmit>
               </div>
           </form>
-          <ReplyContainer replys={props.replys}></ReplyContainer>
+          <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
     </ShowView>
     );
 }
 
+// white={props.white} setWhite={props.setWhite}
 function ReplyList(props) {
     return (
-      <ShowList USER={props.USER} replyToggle={props.replyToggle} className="ReplyList" replys={props.replys}>
+      <ShowList USER={props.USER} replyToggle={props.replyToggle}
+        white={props.white} setWhite={props.setWhite}
+        className="ReplyList" replys={props.replys}>
       </ShowList>
     );
   }

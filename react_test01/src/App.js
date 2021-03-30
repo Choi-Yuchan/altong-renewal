@@ -56,7 +56,7 @@ const SSRJSON = [
       profile:"/test_source/10037135.png", locale:"KOR", thankAlmoney:"100", uLv:"4", nick: "로건", title: "지방간에 좋은 음식은 어떤 음식이 있을까요",
       persent:"87", date:"2021-03-22 10:23:47 UTC+9", readCount: "8111", 
     },
-    contents: "지방에 들어가2312세요",
+    contents: "지방We find happiness only when we have self-esteem and love ourselves. That way, you know how to love others too. You must be proud of yourself in an attitude of loving, caring, and humble in a relationship, not selfish love. Happiness should be found in yourself, not in others. Did you think too much about me? I've been living so it is. My family and people around me become happy when I am healthy and happy. If the family is harmonious and the body and mind are healthy, it will be happiness. Most importantly, everyone in the family should be healthy. By serving my 97-year-old mother until her death, I learned more about the importance of health.에 들어가2312세요",
     good:5,
     bad:4,
     replys: [
@@ -90,7 +90,7 @@ const SSRJSON = [
       profile:"/test_source/10037135.png", locale:"KOR", thankAlmoney:"100", uLv:"3", nick: "1234", title: "지방간에 좋은 음식은 어떤 음식이 있을까요",
       persent:"68", date:"2021-03-22 10:23:47 UTC+9", readCount: "558", 
     },
-    contents: "지방간에 좋은 음식은 어떤 음식이 있을까요2222",
+    contents: "지방간에 좋은 We find happiness only when we have self-esteem and love ourselves. That way, you know how to love others too. You must be proud of yourself in an attitude of loving, caring, and humble in a relationship, not selfish love. Happiness should be found in yourself, not in others. Did you think too much about me? I've been living so it is. My family and people around me become happy when I am healthy and happy. If the family is harmonious and the body and mind are healthy, it will be happiness. Most importantly, everyone in the family should be healthy. By serving my 97-year-old mother until her death, I learned more about the importance of health. 어떤 음식이 있을까요2222",
     good:13,
     bad:2,
     replys: [
@@ -120,7 +120,7 @@ const SSRJSON = [
       profile:"/test_source/10037135.png", locale:"KOR", thankAlmoney:"100", uLv:"2", nick: "ㅁㄴㅇㄹ", title: "지방간에 좋은 음식은 어떤 음식이 있을까요",
       persent:"57", date:"2021-03-22 10:23:47 UTC+9", readCount: "8", 
     },
-    contents: "지방간에 좋은 음식은 어떤 음식이 있을까요3333",
+    contents: "We find happiness only when we have self-esteem and love ourselves. That way, you know how to love others too. You must be proud of yourself in an attitude of loving, caring, and humble in a relationship, not selfish love. Happiness should be found in yourself, not in others. Did you think too much about me? I've been living so it is. My family and people around me become happy when I am healthy and happy. If the family is harmonious and the body and mind are healthy, it will be happiness. Most importantly, everyone in the family should be healthy. By serving my 97-year-old mother until her death, I learned more about the importance of health.",
     good:10,
     bad:1,
     replys: [

@@ -28,7 +28,7 @@ const HrefA = styled.a`
     position: relative;
     display: inline-block;
     text-decoration: none;
-    color: #333;
+    color: #737373;
 `;
 
 const HrefAIcon = styled.img`
@@ -126,7 +126,7 @@ function ReplyBox(props) {
       <OlBox className="ReplyBox">
           <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
               <HrefA>
-                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon><HrefASpan>{props.replyCount}</HrefASpan>
+                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon>{props.replyCount}
               </HrefA>
           </ListReply>
           <EmotionList>

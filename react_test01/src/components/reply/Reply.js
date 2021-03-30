@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 
@@ -151,10 +151,17 @@ function ShowView(props){
     }
     return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
 }
-
+//white={props.white} setWhite={props.setWhite}
 //{props.reply.}
 function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
+
+    
+    useEffect(() => {
+        if(props.white === true){
+            setTimeToggle(false);
+        }
+    }, [props.white]);
 
     return (
       <MainContents className="Reply">
@@ -174,7 +181,11 @@ function Reply(props) {
                       <ReplyBotton>
                       <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
                       
-                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ () => { setTimeToggle( !timeToggle) }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
+                            setTimeToggle(!timeToggle);
+                            props.setWhite(false);
+                            e.stopPropagation();
+                        }} ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>

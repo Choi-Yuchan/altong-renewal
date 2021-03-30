@@ -84,8 +84,8 @@ function Box(props) {
           replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good}
           bad={props.jsonArr.bad}></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
+          white={props.white} setWhite={props.setWhite}
           replys={props.jsonArr.replys} ></ReplyList>
-
         <div className="overlay">
         </div>
     </MainDiv>
