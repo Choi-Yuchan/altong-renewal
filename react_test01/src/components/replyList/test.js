@@ -93,7 +93,6 @@ const ReplyButton = styled.button`
 const ShowView = styled.div`
     transition-property: max-height;
     transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
     
     max-height: ${props => props.row ? 0: '10000px'};
     overflow:hidden;
