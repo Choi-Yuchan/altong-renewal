@@ -35,7 +35,6 @@ const TextArea = styled.textarea`
     margin: 0;
     width: auto;
     transition: all 0.3s;
-    height: 40px;
     resize: none;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -128,7 +127,8 @@ function ShowList(props){
               <div>
                   <TextAreaDiv>
                   <TextArea placeholder=
-                  { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}></TextArea>
+                  { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}
+                  maxlength="400"></TextArea>
                   <ReplyButton>
                         등록
                     </ReplyButton>
