@@ -39,25 +39,25 @@ const HrefAIcon = styled.img`
     -webkit-tap-highlight-color: transparent;
 `;
 
-const HrefASpan = styled.span`
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    display: block;
-    font-size: 10px;
-    width: 15px;
-    height: 15px;
-    text-align: center;
-    line-height: 13px;
-    border: 1px solid #d3d3d3;
-    border-radius: 7px;
-    background: #fff;
-    position: absolute;
-    top: -5px;
-    right: -3px;
-    color: #333;
-`;
+// const HrefASpan = styled.span`
+//     margin: 0;
+//     padding: 0;
+//     box-sizing: border-box;
+//     -webkit-tap-highlight-color: transparent;
+//     display: block;
+//     font-size: 10px;
+//     width: 15px;
+//     height: 15px;
+//     text-align: center;
+//     line-height: 13px;
+//     border: 1px solid #d3d3d3;
+//     border-radius: 7px;
+//     background: #fff;
+//     position: absolute;
+//     top: -5px;
+//     right: -3px;
+//     color: #333;
+// `;
 
 const EmotionList = styled.li`
     margin-left: 20px;

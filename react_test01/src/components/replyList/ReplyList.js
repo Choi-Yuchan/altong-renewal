@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 
 
-const AutoRenewP = styled.p`
-    display: inline-block;
-    font-size: 12px;
-    padding: 4px 10px;
-    border: 1px solid #d0d0d0;
-    border-radius: 20px;
-    color: #888;
-    background: #fff;
-    cursor: pointer;
-    margin: 0;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-`;
+// const AutoRenewP = styled.p`
+//     display: inline-block;
+//     font-size: 12px;
+//     padding: 4px 10px;
+//     border: 1px solid #d0d0d0;
+//     border-radius: 20px;
+//     color: #888;
+//     background: #fff;
+//     cursor: pointer;
+//     margin: 0;
+//     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+// `;
 
 const AutoRenewDiv = styled.div`
     display: inline-block;
@@ -77,17 +77,17 @@ const ReplyButton = styled.button`
     font-size: 12px;
 `;
 
-const ReplySubmitI = styled.i`
-    display: inline-block;
-    font-style: normal;
-    color: #999;
-    font-size: 12px;
-`;
-const ReplySubmitImg = styled.img`
-    display: inline-block;
-    width: 12px;
-    margin-bottom: -1px;
-`;
+// const ReplySubmitI = styled.i`
+//     display: inline-block;
+//     font-style: normal;
+//     color: #999;
+//     font-size: 12px;
+// `;
+// const ReplySubmitImg = styled.img`
+//     display: inline-block;
+//     width: 12px;
+//     margin-bottom: -1px;
+// `;
 const ShowViewNone = styled.div`
     
 `;
