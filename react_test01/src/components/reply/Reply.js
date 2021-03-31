@@ -23,6 +23,18 @@ const ReplyContents = styled.th`
     -webkit-tap-highlight-color: transparent;
     margin: 0;
 `;
+const AldolReplyContents = styled.th`
+    font-style: italic;
+    background: #fff;
+    color: #666;
+    border: 1px dashed #999;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 15px 15px 15px 0;
+    word-break: break-all;
+    margin: 0;
+`;
 
 const ReplyBotton = styled.td`
     font-size: 12px;
@@ -145,18 +157,27 @@ const ReplyLocalDiv = styled.div`
     color: #666;
 `;
 
+
 function ShowView(props){
     if(props.timeToggle === false){
         return <>3초 전</>
     }
     return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
 }
+function AldolViewImg(props){
+    return <ReplyImg src={process.env.PUBLIC_URL + props.img}></ReplyImg>
+}
+function AldolViewContents(props){
+    if(props.seqId === "10003513"){
+        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 {props.al}알을 증정하셨어요.</AldolReplyContents>
+    }
+    return <ReplyContents>{props.content}</ReplyContents>
+}
+
 //white={props.white} setWhite={props.setWhite}
 //{props.reply.}
 function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
-
-    
     useEffect(() => {
         if(props.white === true){
             setTimeToggle(false);
@@ -170,11 +191,13 @@ function Reply(props) {
                   <tr>
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
-                                <ReplyImg src={process.env.PUBLIC_URL + props.reply.profile.img}></ReplyImg>
+                                <AldolViewImg img={props.reply.profile.img} seqId={props.reply.profile.seqId}></AldolViewImg>
                                 <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                      <ReplyContents>{props.reply.content}</ReplyContents>
+                        <AldolViewContents content={props.reply.content} from={props.reply.from}
+                            seqId={props.reply.profile.seqId} to={props.reply.to}>
+                        </AldolViewContents>
                   </tr>
                   <tr>
                       <ReplyBotton></ReplyBotton>
