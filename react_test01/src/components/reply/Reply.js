@@ -196,7 +196,7 @@ function Reply(props) {
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
                         <AldolViewContents content={props.reply.content} from={props.reply.from}
-                            seqId={props.reply.profile.seqId} to={props.reply.to}>
+                            seqId={props.reply.profile.seqId} to={props.reply.to} al={props.reply.al}>
                         </AldolViewContents>
                   </tr>
                   <tr>

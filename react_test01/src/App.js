@@ -10,7 +10,6 @@ const SSRJSON = [
       seq: 10035484,
       name: "낙타커핑",
       lv: 1,
-      
     }
   },
   { 
@@ -28,19 +27,19 @@ const SSRJSON = [
     bad:6,
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
+      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", time:"3",
       date:"2021-03-22 08:00:38"  },
       { id: 2, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
+      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", time:"3",
       date:"2021-03-22 08:00:38"  },
       { id: 3, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", 
+      locale: "KOR", nick: "커피낙타"}, content:"운동도4 도움이 4124124124클것 같습니다.", time:"3",
       date:"2021-03-22 08:00:38"  },
       { id: 4, profile: { seqId:"10003513", img: "/test_source/10003513_202102081725405_thumb.png",
-      locale: "KOR", nick: "알돌이"}, content:"", to:"키티별", from: "똑똑합니다",al:1000 ,
+      locale: "KOR", nick: "알돌이"}, content:"", to:"키티별", from: "똑똑합니다", al:1000 ,time:"3",
       date:"2021-03-22 07:00:38"  },
       { id: 5, profile: { seqId:"10010006", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", 
+      locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", time:"3",
       date:"2021-03-22 06:00:38"  },
     ],
     almoney:"99,000",
@@ -62,10 +61,10 @@ const SSRJSON = [
     bad:4,
     replys: [
       { id: 1, profile: { seqId:"10010006", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타aa"}, content:"운동도 도움이 클것 같습니다.111", 
+      locale: "KOR", nick: "커피낙타aa"}, content:"운동도 도움이 클것 같습니다.111", time:"3",
       date:"2021-03-22 01:00:38"  },
       { id: 2, profile: { seqId:"10010006", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타bb"}, content:"운동도 도움이 클것 같습니다.222", 
+      locale: "KOR", nick: "커피낙타bb"}, content:"운동도 도움이 클것 같습니다.222", time:"3",
       date:"2021-03-22 02:10:38"  },
 
     ],
@@ -98,7 +97,7 @@ const SSRJSON = [
     bad:2,
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타zz"}, content:"운동도 도움이 클것 같습니다333.", 
+      locale: "KOR", nick: "커피낙타zz"}, content:"운동도 도움이 클것 같습니다333.", time:"3",
       date:"2021-03-22 03:00:38"  },
     ],
     almoney:"13,000",
@@ -130,7 +129,7 @@ const SSRJSON = [
     bad:1,
     replys: [
       { id: 1, profile: { seqId:"10037135", img: "/test_source/10037135.png",
-      locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.444", 
+      locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.444", time:"3",
       date:"2021-03-22 04:00:38"  },
     ],
     almoney:"9,000",
