@@ -151,37 +151,6 @@ const ViewCountReplyImg = styled.img`
   margin-left: 2px;
   margin-right: 2px;
 `;
-const ChoiceH3 = styled.h3`
-  position: relative;
-  margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-`;
-const ChoiceDiv = styled.div`
-  display: block;
-  float: right;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-`;
-const ChoiceP = styled.p`
-  display: inline-block;
-  font-size: 16px;
-  padding: 0;
-  margin: 0;
-  color: #fd8d0d;
-  overflow: hidden;
-  cursor: pointer;
-`;
-const ChoiceImg = styled.img`
-  width: 25px;
-  margin-bottom: -7px;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-`;
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
@@ -224,12 +193,6 @@ function ABoxTop(props) {
 
   return (
     <MainDiv className="ABoxTop">
-      <ChoiceH3>
-        <ChoiceDiv>
-          <ChoiceP>
-            <ChoiceImg src={process.env.PUBLIC_URL + '/test_source/choice_askerC.png'} ></ChoiceImg>질문자선택</ChoiceP>
-        </ChoiceDiv>
-      </ChoiceH3>
       <HeadFigure onClick={(e) => {
         props.setClicked(false);
         setShowMini(true);

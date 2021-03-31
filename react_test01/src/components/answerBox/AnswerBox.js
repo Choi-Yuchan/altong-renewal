@@ -22,7 +22,6 @@ const MainDiv = styled.div`
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
   color: #333;
 `;
-
 const AlmoneyDiv = styled.div`
   display: inline-block;
   cursor: pointer;
@@ -32,7 +31,6 @@ const AlmoneyDiv = styled.div`
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 `;
-
 const AnswerAlmoneyImgB = styled.img`
   width: 20px;
   display: inline-block;
@@ -40,7 +38,6 @@ const AnswerAlmoneyImgB = styled.img`
   margin-right: 5px;
   cursor: pointer;
 `;
-
 const AlmoneySpan = styled.span`
   margin: 0;
   padding: 0;
@@ -52,6 +49,46 @@ const AlmoneySpan = styled.span`
   vertical-align: middle;
   cursor: pointer;
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+`;
+const TopH3 = styled.h3`
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+`;
+const TopH3Div = styled.div`
+  display: block;
+  float: right;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+`;
+const TopChoiceP = styled.p`
+  display: inline-block;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  color: #fd8d0d;
+  overflow: hidden;
+  word-break: break-all;
+  cursor: pointer;
+`;
+const TopNetizenP = styled.p`
+  color: #a5a5a5;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  word-break: break-all;
+  cursor: pointer;
+`;
+const TopImg = styled.img`
+  width: 25px;
+  margin-bottom: -7px;
+  padding: 0;
 `;
 
 const replyCount = (replys) => {
@@ -87,12 +124,18 @@ function AnswerBox(props) {
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
-        <div>
+        <TopH3>
           <AlmoneyDiv>
             <AnswerAlmoneyImgB src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImgB>
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
-        </div>
+          <TopH3Div>
+            <TopChoiceP>
+              <TopImg src={process.env.PUBLIC_URL + '/test_source/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
+            <TopNetizenP>
+              <TopImg src={process.env.PUBLIC_URL + '/test_source/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
+          </TopH3Div>
+        </TopH3>
         <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
           clicked={props.clicked} setClicked={props.setClicked}
           replyCount={replyCount(props.jsonArr.replys)}
