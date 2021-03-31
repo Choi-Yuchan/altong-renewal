@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
+import Num3Comma from '../functions/num3comma/Num3Comma'
 
 const MainDiv = styled.div`
   position: relative;
@@ -129,6 +130,7 @@ const DateDiv = styled.b`
   display: inline-block;
   position: relative;
   cursor: pointer;
+  margin-right: 4px;
 `;
 
 const Datespan = styled.span`
@@ -239,7 +241,7 @@ function QBoxTop(props) {
           
           <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
         </HeadFigure>
-        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" >{props.head.thankAlmoney}</HeadSpan></HeadH2>
+        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
         <WrapUl>
           <Wrapli><HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
           </HeadFigureLocaleImg>
@@ -248,7 +250,7 @@ function QBoxTop(props) {
           <WrapTitleli>{props.head.title}</WrapTitleli>
           <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}</WrapThankli>
+          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
         </WrapUl>
         <BtnBox onClick={(e) => {
           setPopToggle(!popToggle);

@@ -86,6 +86,7 @@ const DateDiv = styled.b`
   display: inline-block;
   position: relative;
   cursor: pointer;
+  margin-right: 4px;
 `;
 const Datespan = styled.span`
 &{
