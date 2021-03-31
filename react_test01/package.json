@@ -1,11 +1,13 @@
 {
   "name": "react_test01",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "http-proxy-middleware": "^0.19.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
@@ -24,6 +26,8 @@
       "react-app/jest"
     ]
   },
+  "propxy": "http://192.168.0.201:80",
+
   "browserslist": {
     "production": [
       ">0.2%",

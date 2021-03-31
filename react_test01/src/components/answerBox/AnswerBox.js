@@ -66,7 +66,7 @@ function OpenDiv(props){
       <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}
-       good={props.good} bad={props.bad}
+       good={props.good} bad={props.bad} seqComponent={props.seqComponent}
       ></ReplyBox>
       <ReplyList USER={props.USER}  replyToggle={props.replyToggle} 
         white={props.white} setWhite={props.setWhite}
@@ -107,7 +107,7 @@ function AnswerBox(props) {
           setReplyToggle={setReplyToggle} replys={props.jsonArr.replys}
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} etimate={props.jsonArr.etimate}
-          white={props.white} setWhite={props.setWhite}
+          white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
         ></OpenDiv>
         <div className="overlay">
         </div>

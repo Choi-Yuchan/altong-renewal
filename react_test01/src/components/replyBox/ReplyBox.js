@@ -102,6 +102,20 @@ const AnswerBtnA = styled.a`
     cursor: pointer;
 `;
 
+const AnswerBtnAB = styled.a`
+    width: 40%;
+    padding: 3px 0;
+    text-align: center;
+    border: 1px solid #fd8d0d !important;
+    color: #fd8d0d !important;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 100px;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+`;
+
 const LangBtnA = styled.a`
     color: #f30;
     border: 1px solid #f30;
@@ -117,7 +131,12 @@ const LangBtnA = styled.a`
     cursor: pointer;
 `;
 
-
+function ViewAnswerBtn(props){
+    if(props.seqComponent !== 'A'){
+        return <AnswerBtnA>채택하기</AnswerBtnA>
+    }
+    return <AnswerBtnAB>답변하기</AnswerBtnAB>
+}
 
 
 function ReplyBox(props) {
@@ -140,7 +159,7 @@ function ReplyBox(props) {
               </EmotionListIconDiv>
           </EmotionList>
           <AnswerDoList>
-            <AnswerBtnA>답변하기</AnswerBtnA>
+            <ViewAnswerBtn seqComponent={props.seqComponent}></ViewAnswerBtn>
             <LangBtnA>번역하기</LangBtnA>
           </AnswerDoList>
       </OlBox>

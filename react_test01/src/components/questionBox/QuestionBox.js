@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import TopNavi from './../topNavi/TopNavi'
 
@@ -71,6 +72,20 @@ function WhatU(props){
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
+
+  useEffect(()=>{
+    axios.get("/rest/hello")
+    .then( data => (data.data) )
+      .then(
+        (result) => {
+          console.log(result)
+          console.log("result : " + result["test1"]);
+        },
+        (error) => {
+          console.log("error + " + error);
+        }
+      )
+  }, [])
 
   return (
     <SiteDiv onClickCapture={() => {
