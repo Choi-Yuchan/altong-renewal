@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
+import Num3Comma from '../functions/num3comma/Num3Comma'
 
 const MainDiv = styled.div`
   position: relative;
@@ -212,7 +213,7 @@ function ABoxTop(props) {
           onClick={() => {
             setTimeToggle(!timeToggle);
             }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-        <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>{props.head.readCount}
+        <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
         <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} ></OpenAnswerView>
         </WrapThankli>
       </WrapUl>
