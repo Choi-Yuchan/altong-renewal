@@ -79,7 +79,7 @@ function QuestionBox(props) {
       .then(
         (result) => {
           console.log(result)
-          console.log("result : " + result["test1"]);
+          console.log("result : " + result.test1);
         },
         (error) => {
           console.log("error + " + error);

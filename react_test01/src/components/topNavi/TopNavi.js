@@ -86,7 +86,8 @@ const HamburgerSpan = styled.span`
 `;
 
 const LogoH1 = styled.h1`
-position: absolute;
+    cursor: pointer;
+    position: absolute;
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -204,6 +205,7 @@ const SearchImg = styled.img`
 `;
 
 const ColumnBoxPC = styled.p`
+    cursor: pointer;
     width: 50%;
     padding: 5px;
     padding-top: 0;
