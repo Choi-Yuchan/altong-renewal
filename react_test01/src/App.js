@@ -46,7 +46,7 @@ const SSRJSON = [
     almoney:"99,000",
     mini:{
       nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:1244000, ABenefit:1232300, giveThankNum:3609, giveThankRate:98, descript:"똑똑 문 열어주세요.", alBenefit: 23312000
-    }
+    },
   },
   { 
     id:2,
@@ -80,7 +80,9 @@ const SSRJSON = [
     },
     mini:{
       nick: "로건", uLv:"4", uHref:"", qBenefit:1230000, ABenefit:4595900, giveThankNum:1234, giveThankRate:12, descript:"로건을 아시나요?", alBenefit: 8880000
-    }
+    },
+    choice:true,
+    netizen:false,
   },
   { 
     id:3,
@@ -110,7 +112,9 @@ const SSRJSON = [
     },
     mini:{
       nick: "1234", uLv:"1", uHref:"", qBenefit:13213, ABenefit:5151515, giveThankNum:3609, giveThankRate:55, descript:"ㅋㅋㅋ 1234 입니다.", alBenefit: 654210
-    }
+    },
+    choice:false,
+    netizen:false,
   },
   {
     id:4,
@@ -141,7 +145,9 @@ const SSRJSON = [
     mini:{
       nick: "ㅁㄴㅇㄹ", uLv:"5", uHref:"", qBenefit:300000, ABenefit:45542 ,
       giveThankNum:3609, giveThankRate:100, descript:"안녕하세요 ㅁㄴㅇㄹ 에요.", alBenefit: 141410
-    }
+    },
+    choice:true,
+    netizen:true,
   },
 
 ]

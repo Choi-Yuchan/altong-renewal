@@ -114,6 +114,19 @@ function OpenDiv(props){
   return <AUnBoxBottom></AUnBoxBottom>
 }
 
+// choice:true,
+// netizen:true,
+
+const ChoiceView = (props) => {
+  if(props.choice) return <TopChoiceP><TopImg src={process.env.PUBLIC_URL + '/test_source/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
+  return '';
+}
+const ChoiceNetizenView = (props) => {
+  if(props.netizen) return <TopNetizenP><TopImg src={process.env.PUBLIC_URL + '/test_source/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
+  return '';
+}
+
+
 // white={props.white} setWhite={props.setWhite}
 
 function AnswerBox(props) {
@@ -130,10 +143,8 @@ function AnswerBox(props) {
             <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
           </AlmoneyDiv>
           <TopH3Div>
-            <TopChoiceP>
-              <TopImg src={process.env.PUBLIC_URL + '/test_source/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
-            <TopNetizenP>
-              <TopImg src={process.env.PUBLIC_URL + '/test_source/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
+            <ChoiceView choice={props.jsonArr.choice}></ChoiceView>
+            <ChoiceNetizenView netizen={props.jsonArr.netizen}></ChoiceNetizenView>
           </TopH3Div>
         </TopH3>
         <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
