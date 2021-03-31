@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
+import React, { useState } from 'react';
 
 
 const AutoRenewDiv = styled.div`
@@ -74,7 +75,7 @@ const TextAreaDiv = styled.div`
 `;
 
 function ShowList(props){
-
+    const [length, setlength] = useState(0);
     const USER= props.USER;
     
     //const SEQ = USER !== null ? USER.seq : "";
@@ -88,7 +89,7 @@ function ShowList(props){
                   <TextAreaDiv>
                   <TextArea placeholder=
                   { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}
-                  maxlength="400"></TextArea>
+                  maxLength="400" onChange={(e) => setlength(e.target.value.length) }></TextArea>
                   <ReplyButton>
                         등록
                     </ReplyButton>
@@ -100,7 +101,7 @@ function ShowList(props){
                   </AutoRenewDiv>
                   <ReplySubmit>
                       <ReplySubmitP>
-                          <span>0</span>/400</ReplySubmitP>
+                          <span>{length}</span>/400</ReplySubmitP>
                       
                   </ReplySubmit>
               </div>
