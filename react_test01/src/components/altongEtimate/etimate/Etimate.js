@@ -8,6 +8,7 @@ const MainLi = styled.li`
     list-style: none;
 `;
 const EtimateA = styled.a`
+    cursor: pointer;
     display: block;
     width: 100%;
     text-decoration: none;

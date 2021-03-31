@@ -132,7 +132,7 @@ const LangBtnA = styled.a`
 `;
 
 function ViewAnswerBtn(props){
-    if(props.seqComponent !== 'A'){
+    if(props.seqComponent === 'A'){
         return <AnswerBtnA>채택하기</AnswerBtnA>
     }
     return <AnswerBtnAB>답변하기</AnswerBtnAB>
