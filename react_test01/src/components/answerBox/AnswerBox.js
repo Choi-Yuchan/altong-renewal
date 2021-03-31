@@ -8,6 +8,7 @@ import ReplyBox from '../replyBox/ReplyBox';
 import ReplyList from '../replyList/test';
 import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
 import AltongEtimate from '../altongEtimate/AltongEtimate';
+import Num3Comma from '../functions/num3comma/Num3Comma'
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
@@ -140,7 +141,7 @@ function AnswerBox(props) {
         <TopH3>
           <AlmoneyDiv>
             <AnswerAlmoneyImgB src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImgB>
-            <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
+            <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
           <TopH3Div>
             <ChoiceView choice={props.jsonArr.choice}></ChoiceView>

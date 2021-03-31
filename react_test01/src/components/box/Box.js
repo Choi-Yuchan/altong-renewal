@@ -6,7 +6,7 @@ import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/test'
-
+import Num3Comma from '../functions/num3comma/Num3Comma'
 const MainDiv = styled.div`
   border: 1px solid #ddd;
   padding: 15px 20px;
@@ -70,7 +70,7 @@ function Box(props) {
           <AlmoneyDiv>
             <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}>
             </AnswerAlmoneyImg>
-            <AlmoneySpan>{props.jsonArr.almoney}</AlmoneySpan>
+            <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
         </div>
         <QBoxTop clicked={props.clicked} setClicked={props.setClicked}

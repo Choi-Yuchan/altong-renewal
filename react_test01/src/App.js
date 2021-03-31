@@ -42,7 +42,7 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙2타"}, content:"운2동도 도움이 클것 같습니다.", time:"3",
       date:"2021-03-22 06:00:38"  },
     ],
-    almoney:"99,000",
+    almoney:"99000",
     mini:{
       nick: "똑똑합니다", uLv:"5", uHref:"", qBenefit:1244000, ABenefit:1232300, giveThankNum:3609, giveThankRate:98, descript:"똑똑 문 열어주세요.", alBenefit: 23312000
     },
@@ -68,14 +68,14 @@ const SSRJSON = [
       date:"2021-03-22 02:10:38"  },
 
     ],
-    almoney:"399,000",
+    almoney:"399000",
     etimate:{
-      v1:1,
-      v2:9,
-      v3:10,
-      v4:20,
-      v5:3,
-      v6:9,
+      v1:10,
+      v2:2,
+      v3:13,
+      v4:2,
+      v5:8,
+      v6:99,
     },
     mini:{
       nick: "로건", uLv:"4", uHref:"", qBenefit:1230000, ABenefit:4595900, giveThankNum:1234, giveThankRate:12, descript:"로건을 아시나요?", alBenefit: 8880000
@@ -100,14 +100,14 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙타zz"}, content:"운동도 도움이 클것 같습니다333.", time:"3",
       date:"2021-03-22 03:00:38"  },
     ],
-    almoney:"13,000",
+    almoney:"13000",
     etimate:{
-      v1:1,
-      v2:9,
-      v3:1,
-      v4:20,
-      v5:3,
-      v6:9,
+      v1:21,
+      v2:1,
+      v3:12,
+      v4:33,
+      v5:1,
+      v6:2,
     },
     mini:{
       nick: "1234", uLv:"1", uHref:"", qBenefit:13213, ABenefit:5151515, giveThankNum:3609, giveThankRate:55, descript:"ㅋㅋㅋ 1234 입니다.", alBenefit: 654210
@@ -132,7 +132,7 @@ const SSRJSON = [
       locale: "KOR", nick: "커피낙타123"}, content:"운동도 도움이 클것 같습니다.444", time:"3",
       date:"2021-03-22 04:00:38"  },
     ],
-    almoney:"9,000",
+    almoney:"9000",
     etimate:{
       v1:1,
       v2:9,
