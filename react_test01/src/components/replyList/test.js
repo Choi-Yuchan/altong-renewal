@@ -2,19 +2,6 @@ import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 
 
-// const AutoRenewP = styled.p`
-//     display: inline-block;
-//     font-size: 12px;
-//     padding: 4px 10px;
-//     border: 1px solid #d0d0d0;
-//     border-radius: 20px;
-//     color: #888;
-//     background: #fff;
-//     cursor: pointer;
-//     margin: 0;
-//     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-// `;
-
 const AutoRenewDiv = styled.div`
     display: inline-block;
     width: 50%;
@@ -22,13 +9,6 @@ const AutoRenewDiv = styled.div`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
 `;
-
-// const ReplyImg = styled.img`
-//     width: 13px;
-//     display: inline-block;
-//     margin-bottom: -2px;
-// `;
-
 const TextArea = styled.textarea`
     flex-grow: 1;
     padding: 9px 20px;
@@ -43,7 +23,6 @@ const TextArea = styled.textarea`
     outline: none;
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
-
 const ReplySubmit = styled.div`
     text-align: right;
     margin-left: -5px;
@@ -53,7 +32,6 @@ const ReplySubmit = styled.div`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
 `;
-
 const ReplySubmitP = styled.p`
     display: inline-block;
     font-size: 12px;
@@ -61,7 +39,6 @@ const ReplySubmitP = styled.p`
     color: #ccc;
     margin-bottom: 0;
 `;
-
 const ReplyButton = styled.button`
     flex-grow: 0;
     height: 40px;
@@ -76,19 +53,6 @@ const ReplyButton = styled.button`
     color: #737373;
     font-size: 12px;
 `;
-
-// const ReplySubmitI = styled.i`
-//     display: inline-block;
-//     font-style: normal;
-//     color: #999;
-//     font-size: 12px;
-// `;
-// const ReplySubmitImg = styled.img`
-//     display: inline-block;
-//     width: 12px;
-//     margin-bottom: -1px;
-// `;
-
 const ShowView = styled.div`
     transition-property: 'max-height';
     transition-duration: ${props => props.row ? '0.1s': '0.3s'};
