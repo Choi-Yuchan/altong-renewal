@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "http-proxy-middleware": "^0.19.1",
     "react": "^17.0.1",
+    "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "styled-components": "^5.2.1",
@@ -27,7 +28,6 @@
     ]
   },
   "propxy": "http://192.168.0.201:80",
-
   "browserslist": {
     "production": [
       ">0.2%",
