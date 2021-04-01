@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
 
+import ViewJson from '../../json/view-test.json'
+
 import TopNavi from './../topNavi/TopNavi'
 
 import BoxController from '../boxContainer/BoxContainer'
@@ -74,9 +76,9 @@ function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
   const [cookies] = useCookies();
+  const SSRJSON = ViewJson
   
   const [SESS] = useState(cookies.SESS);
-
   useEffect(()=>{
     // axios.get("/rest/hello")
     // .then( data => (data.data) )
@@ -95,7 +97,9 @@ function QuestionBox(props) {
     })
     .then((response) => response.data)
     .then( (data) => {
-      console.log(data.test1);
+      console.log(data[0].test1);
+      console.log(data[0].userSeq);
+      
     })
     .catch(function (error) {
       console.log(error)
@@ -113,7 +117,7 @@ function QuestionBox(props) {
         <WrapperDiv>
           <BoxController white={whiteClick} setWhite={setWhiteClick}
           clicked={bodyClicked} setClicked={setBodyClicked}
-          SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)} SESS={SESS}></BoxController>
+          SSRJSON={SSRJSON} USER={WhatU(SSRJSON)} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
