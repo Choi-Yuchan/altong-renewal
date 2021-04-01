@@ -99,7 +99,7 @@ function QuestionBox(props) {
     .then( (data) => {
       console.log(data[0].test1);
       console.log(data[0].userSeq);
-      
+      console.log(props.match.params.questions)
     })
     .catch(function (error) {
       console.log(error)
