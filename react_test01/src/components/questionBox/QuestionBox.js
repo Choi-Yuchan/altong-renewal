@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useCookies } from 'react-cookie'
 
 import TopNavi from './../topNavi/TopNavi'
 
@@ -72,20 +73,35 @@ function WhatU(props){
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
+  const [cookies] = useCookies();
+  
+  const [SESS] = useState(cookies.SESS);
 
   useEffect(()=>{
-    axios.get("/rest/hello")
-    .then( data => (data.data) )
-      .then(
-        (result) => {
-          console.log(result)
-          console.log("result : " + result.test1);
-        },
-        (error) => {
-          console.log("error + " + error);
-        }
-      )
-  }, [])
+    // axios.get("/rest/hello")
+    // .then( data => (data.data) )
+    //   .then(
+    //     (result) => {
+    //       console.log(result)
+    //       console.log("result : " + result.test1);
+    //       console.log("SESS : " + SESS);
+    //     },
+    //     (error) => {
+    //       console.log("error + " + error);
+    //     }
+    //   );
+    axios.post("/rest/cookie/sess",{
+      "SESS": SESS
+    })
+    .then((response) => response.data)
+    .then( (data) => {
+      console.log(data.test1);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+  , []);
 
   return (
     <SiteDiv onClickCapture={() => {
@@ -97,7 +113,7 @@ function QuestionBox(props) {
         <WrapperDiv>
           <BoxController white={whiteClick} setWhite={setWhiteClick}
           clicked={bodyClicked} setClicked={setBodyClicked}
-          SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)}></BoxController>
+          SSRJSON={props.SSRJSON} USER={WhatU(props.SSRJSON)} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
