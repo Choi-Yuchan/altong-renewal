@@ -98,7 +98,7 @@ function QuestionBox(props) {
     })
     .then((response) => response.data)
     .then( (data) => {
-      console.log("replyList_reply : "+data[0].Answer);
+      console.log("contents : "+data[0].contents);
       console.log("length : "+data.length);
       console.log(props.match.params.questions)
     })
