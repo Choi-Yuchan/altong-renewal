@@ -79,7 +79,7 @@ function ShowList(props){
     const USER= props.USER;
     
     //const SEQ = USER !== null ? USER.seq : "";
-    const NAME = USER !== null ? USER.info.name : "";
+    const NAME = USER !== undefined ? USER.info.name : "";
     //const LV = USER !== null ? USER.lv : "";
 
     return (

@@ -93,9 +93,9 @@ const TopImg = styled.img`
 `;
 
 const replyCount = (replys) => {
+  if(replys==null) return 0
   return replys.length
 }
-
 
 function OpenDiv(props){
   if(props.openAnswer === 'open'){

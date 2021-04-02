@@ -76,9 +76,11 @@ function WhatU(props){
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
+  const [jsonList, setJsonList] = useState(ViewJson);
   const [cookies] = useCookies();
-  const SSRJSON = ViewJson
-  
+  //const SSRJSON = ViewJson
+  const SSRJSON = jsonList
+
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
     // axios.get("/rest/hello")
@@ -98,9 +100,10 @@ function QuestionBox(props) {
     })
     .then((response) => response.data)
     .then( (data) => {
+      setJsonList(data);
       console.log("contents : "+data[0].contents);
       console.log("length : "+data.length);
-      console.log(props.match.params.questions)
+      console.log(props.match.params.questions);
     })
     .catch(function (error) {
       console.log(error)
