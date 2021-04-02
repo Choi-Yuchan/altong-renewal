@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
+import GlobalFonts from "../../fonts/fonts"
 
 import ViewJson from '../../json/view-test.json'
 
@@ -92,13 +93,13 @@ function QuestionBox(props) {
     //       console.log("error + " + error);
     //     }
     //   );
-    axios.post("/rest/cookie/sess",{
-      "SESS": SESS
+    axios.post("/rest/questions/"+props.match.params.questions,{
+      "questions": props.match.params.questions
     })
     .then((response) => response.data)
     .then( (data) => {
-      console.log(data[0].test1);
-      console.log(data[0].userSeq);
+      console.log("replyList_reply : "+data[0].Answer);
+      console.log("length : "+data.length);
       console.log(props.match.params.questions)
     })
     .catch(function (error) {
@@ -112,6 +113,7 @@ function QuestionBox(props) {
       setBodyClicked(true);
       setWhiteClick(true);
     }}>
+      {/* <GlobalFonts></GlobalFonts> */}
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
