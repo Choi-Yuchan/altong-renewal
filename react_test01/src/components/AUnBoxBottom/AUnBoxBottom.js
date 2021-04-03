@@ -127,9 +127,9 @@ function AUnBoxBottom(props) {
       <MainOl className="AUnBoxBottom">
           <AlScoreLi>
               <AlScoreDiv>
-                <Img1 src={process.env.PUBLIC_URL + '/test_source/esti_1_b.png'}></Img1>
-                <Img2 src={process.env.PUBLIC_URL + '/test_source/esti_3_b.png'}></Img2>
-                <Img3 src={process.env.PUBLIC_URL + '/test_source/esti_2_b.png'}></Img3>
+                <Img1 src="/Common/images/esti_1.png"></Img1>
+                <Img2 src="/Common/images/esti_3.png"></Img2>
+                <Img3 src="/Common/images/esti_2.png"></Img3>
                 <AlScoreSpan>21점</AlScoreSpan>
               </AlScoreDiv>
           </AlScoreLi>

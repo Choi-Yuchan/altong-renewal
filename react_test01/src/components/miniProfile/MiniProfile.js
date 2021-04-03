@@ -143,13 +143,13 @@ function MiniProfile(props) {
                     <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
                     <th rowSpan="2" 
                     >
-                    <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addFriends.svg'}></MainTableImg>
+                    <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
                     </th>
                     <th rowSpan="2">
-                    <MainTableImg src={process.env.PUBLIC_URL + '/test_source/addMento.svg'}></MainTableImg>
+                    <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
                     </th>
                     <th rowSpan="2">
-                    <MainTableImgLast src={process.env.PUBLIC_URL + '/test_source/message.svg'}></MainTableImgLast>
+                    <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
                     </th>
                 </tr>
                 <tr>

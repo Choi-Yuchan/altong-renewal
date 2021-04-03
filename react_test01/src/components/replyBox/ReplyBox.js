@@ -145,16 +145,16 @@ function ReplyBox(props) {
       <OlBox className="ReplyBox">
           <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
               <HrefA>
-                  <HrefAIcon src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></HrefAIcon>{props.replyCount}
+                  <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
               </HrefA>
           </ListReply>
           <EmotionList>
               <EmotionListIconDiv className="smileIcon">
-                  <EmotionImg src={process.env.PUBLIC_URL + '/test_source/smile.svg'}></EmotionImg>
+                  <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                   <EmotionB>{props.good}</EmotionB>
               </EmotionListIconDiv>
               <EmotionListIconDiv className="sadIcon">
-                  <EmotionImg src={process.env.PUBLIC_URL + '/test_source/sad.svg'}></EmotionImg>
+                  <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                   <EmotionB>{props.bad}</EmotionB>
               </EmotionListIconDiv>
           </EmotionList>

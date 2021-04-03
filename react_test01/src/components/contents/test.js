@@ -58,7 +58,7 @@ function CustomView(props){
     return <LangImgNone src={process.env.PUBLIC_URL + 
       '/test_source/language.svg'}></LangImgNone>
   }
-  return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
+  return <LangImg src="/Common/images/language.svg"></LangImg>
 }
 
 function DelSpan(props){

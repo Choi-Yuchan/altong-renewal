@@ -243,14 +243,14 @@ function QBoxTop(props) {
         </HeadFigure>
         <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
         <WrapUl>
-          <Wrapli><HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'+ props.head.locale +'.svg'}>
+          <Wrapli><HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}>
           </HeadFigureLocaleImg>
             <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
             <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>{props.head.title}</WrapTitleli>
           <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
            onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
+          <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
         </WrapUl>
         <BtnBox onClick={(e) => {
           setPopToggle(!popToggle);
@@ -262,7 +262,8 @@ function QBoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <QuestionPopup popToggle={popToggle}></QuestionPopup>
         </BtnBox>
-        <MiniProfile showMini={showMini} mini={props.mini} clicked={props.clicked} setShowMini={setShowMini}></MiniProfile>
+        <MiniProfile showMini={showMini} mini={props.mini} clicked={props.clicked} 
+        setShowMini={setShowMini}></MiniProfile>
       </MainDiv>
     );
   }

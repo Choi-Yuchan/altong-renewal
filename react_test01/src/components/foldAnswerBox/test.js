@@ -27,7 +27,8 @@ function Open(props){
     return (<> 
       <LangTransBox>
       </LangTransBox>
-      <ReplyBox setReplyToggle={props.setReplyToggle} replyToggle={props.replyToggle} replyCount={props.replyCount}>
+      <ReplyBox setReplyToggle={props.setReplyToggle} replyToggle={props.replyToggle}
+      replyCount={props.replyCount}>
       </ReplyBox>
       <ReplyList replyToggle={props.replyToggle}>
       </ReplyList> 
@@ -47,8 +48,10 @@ function FoldAnswerBox(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <ABoxTop></ABoxTop>
-        <Contents message={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer} setMessage={setMessage} allMessage={props.message} ></Contents>
-        <Open openAnswer={openAnswer} setReplyToggle={setReplyToggle} replyToggle={replyToggle} replyCount={replyCount}></Open>
+        <Contents message={message} setOpenAnswer={setOpenAnswer} openAnswer={openAnswer}
+        setMessage={setMessage} allMessage={props.message} ></Contents>
+        <Open openAnswer={openAnswer} setReplyToggle={setReplyToggle}
+        replyToggle={replyToggle} replyCount={replyCount}></Open>
         {/* <LangTransBox></LangTransBox> */}
         {/* <ReplyBox></ReplyBox> */}
         {/* <ReplyList></ReplyList> */}

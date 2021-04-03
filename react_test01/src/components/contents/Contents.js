@@ -72,7 +72,7 @@ function CustomView(props){
     return <LangImgNone src={process.env.PUBLIC_URL + 
       '/test_source/language.svg'}></LangImgNone>
   }
-  return <LangImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></LangImg>
+  return <LangImg src="/Common/images/language.svg"></LangImg>
 }
 
 function DelSpan(props){
@@ -108,7 +108,8 @@ function Contents(props) {
 
   return (
       <MainDiv className="Contents">
-        <QorA onClick2={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage); setOpen(''); } }
+        <QorA onClick2={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage);
+        setOpen(''); } }
           setOpen={setOpen} contents={props.contents} allMessage={props.allMessage} open={open}
           openAnswer={props.openAnswer} seqComponent={props.seqComponent} > </QorA>
 

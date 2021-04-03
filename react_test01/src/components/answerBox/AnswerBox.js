@@ -103,7 +103,8 @@ function OpenDiv(props){
       <>
       <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
-      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount} setReplyToggle={props.setReplyToggle}
+      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount}
+      setReplyToggle={props.setReplyToggle}
        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
       ></ReplyBox>
       <ReplyList USER={props.USER}  replyToggle={props.replyToggle} 
@@ -140,7 +141,7 @@ function AnswerBox(props) {
         {/* atm_top_wrap */}
         <TopH3>
           <AlmoneyDiv>
-            <AnswerAlmoneyImgB src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}></AnswerAlmoneyImgB>
+            <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
           <TopH3Div>

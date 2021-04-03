@@ -68,7 +68,7 @@ function Box(props) {
         {/* atm_top_wrap */}
         <div>
           <AlmoneyDiv>
-            <AnswerAlmoneyImg src={process.env.PUBLIC_URL + '/test_source/answer_almoney.svg'}>
+            <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
             </AnswerAlmoneyImg>
             <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>

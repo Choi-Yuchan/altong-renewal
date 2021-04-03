@@ -50,23 +50,23 @@ function QuestionPopup(props) {
     return (
         <MainUl popToggle={props.popToggle}>
             <MainLi>
-                <Popup text="찜" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_1.png'}>
+                <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
             <MainLi2>
-                <Popup text="공유" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_2.png'}>
+                <Popup text="공유" imgurl="/pub/answer/answerList/images/atm_more_2.png" >
                 </Popup>
             </MainLi2>
             <MainLi>
-                <Popup text="꼭대기" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_4.png'}>
+                <Popup text="꼭대기" imgurl="/pub/answer/answerList/images/atm_more_4.png" >
                 </Popup>
             </MainLi>
             <MainLi>
-                <Popup text="훈훈알" imgurl={process.env.PUBLIC_URL + '/test_source/answer_almoney_gg.svg'}>
+                <Popup text="훈훈알" imgurl="/Common/images/answer_almoney_gg.svg" >
                 </Popup>
             </MainLi>
             <MainLi>
-                <Popup text="신고" imgurl={process.env.PUBLIC_URL + '/test_source/atm_more_3.png'}>
+                <Popup text="신고" imgurl="/pub/answer/answerList/images/atm_more_3.png" >
                 </Popup>
             </MainLi>
         </MainUl>

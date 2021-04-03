@@ -211,7 +211,7 @@ function Reply(props) {
                         }
                         } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
-                            <ReplyLangBtnBallImg src={process.env.PUBLIC_URL + '/test_source/language.svg'}></ReplyLangBtnBallImg>
+                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
                       </ReplyBotton>
                   </tr>
