@@ -272,7 +272,7 @@ function TopNavi() {
             </MainHeaderAhref>
             <LogoH1 className="Logo">
                 <LogoAhrefA>
-                    <LogoImg src={process.env.PUBLIC_URL + '/test_source/logo3.png'}></LogoImg>
+                    <LogoImg src="/Common/images/logo3.png"></LogoImg>
                 </LogoAhrefA>
             </LogoH1>
             <ColumnDiv>
@@ -281,16 +281,16 @@ function TopNavi() {
                         <SearchBoxInput placeholder="검색어를 입력해 주세요." type="text"></SearchBoxInput>
                         <SearchBoxSubmit type="submit"></SearchBoxSubmit>
                         <SearchSpan>
-                            <SearchImg src={process.env.PUBLIC_URL + '/test_source/nicksearch.svg'}></SearchImg>
+                            <SearchImg src="/Common/images/mainico/nicksearch.svg"></SearchImg>
                         </SearchSpan>
                     </form>
                 </SearchBox>
                 <ColumnBoxPC>
                     <ColumnBoxAhref>
-                        <TopcolumnBoxImg src={process.env.PUBLIC_URL + '/test_source/que_icon.svg'}></TopcolumnBoxImg>
+                        <TopcolumnBoxImg src="/Common/images/que_icon.svg" ></TopcolumnBoxImg>
                     </ColumnBoxAhref>
                     <ColumnBoxAhref2>
-                        <TopcolumnBoxImg2 src={process.env.PUBLIC_URL + '/test_source/list_icon.svg'}></TopcolumnBoxImg2>
+                        <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg"></TopcolumnBoxImg2>
                     </ColumnBoxAhref2>
                 </ColumnBoxPC>
             </ColumnDiv>

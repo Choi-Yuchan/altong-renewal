@@ -55,7 +55,7 @@ function Etimate(props) {
   return (
     <MainLi>
         <EtimateA>
-            <EtimateImg  src={process.env.PUBLIC_URL + '/test_source/esti_'+props.img+'.png'}></EtimateImg>
+            <EtimateImg  src={"/Common/images/esti_"+props.img+'.png'}></EtimateImg>
             <EtimateSpan>{langEsti(props.img-1)}<EtimateEm>{props.num}</EtimateEm></EtimateSpan>
         </EtimateA>
     </MainLi>

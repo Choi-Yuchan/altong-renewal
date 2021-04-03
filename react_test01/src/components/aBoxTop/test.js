@@ -174,8 +174,8 @@ function ABoxTop() {
     return (
       <MainDiv className="ABoxTop">
         <HeadFigure>
-          <HeadFigureImg src={process.env.PUBLIC_URL + '/test_source/10010006.png'}></HeadFigureImg>
-          <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/KOR.svg'}></HeadFigureLocaleImg>
+          <HeadFigureImg src="/pub/css/profile/img_thum_base0.jpg"></HeadFigureImg>
+          <HeadFigureLocaleImg src="/Common/images/nation/KOR.svg"></HeadFigureLocaleImg>
           <HeadFigureFigcaption>KOR</HeadFigureFigcaption>
         </HeadFigure>
         <WrapUl>
@@ -183,8 +183,8 @@ function ABoxTop() {
             <WrapSpan>알천사</WrapSpan>
             <WrapStrong className="prgNickname_Q">Logan님의 답변입니다.</WrapStrong></Wrapli>
           <WrapThankli>답변 채택률<WrapB>100%</WrapB> · <DateDiv>1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan></DateDiv>
-          <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg>8
-          <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>
+          <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg>8
+          <ViewCountReplyImg src="/Common/images/icon_reply.svg"></ViewCountReplyImg>
           </WrapThankli>
         </WrapUl>
         <BtnBox>

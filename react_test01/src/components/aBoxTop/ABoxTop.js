@@ -213,7 +213,7 @@ function ABoxTop(props) {
           onClick={() => {
             setTimeToggle(!timeToggle);
             }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-        <ViewCountImg src={process.env.PUBLIC_URL + '/test_source/icon_view.svg'}></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
+        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
         <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} ></OpenAnswerView>
         </WrapThankli>
       </WrapUl>

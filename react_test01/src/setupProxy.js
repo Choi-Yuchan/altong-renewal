@@ -5,7 +5,7 @@ module.exports = function(app){
     app.use(
         proxy('/rest', 
         {
-            target: 'http://192.168.0.201:80',
+            target: 'http://docker-nginx',
             changeOrigin: true
         })
     );
