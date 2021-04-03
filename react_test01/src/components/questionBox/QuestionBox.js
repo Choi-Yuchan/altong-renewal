@@ -79,7 +79,8 @@ function QuestionBox(props) {
   const [jsonList, setJsonList] = useState(ViewJson);
   const [cookies] = useCookies();
   //const SSRJSON = ViewJson
-  const SSRJSON = jsonList
+  // const SSRJSON = jsonList < - --
+  const SSRJSON = ViewJson
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{

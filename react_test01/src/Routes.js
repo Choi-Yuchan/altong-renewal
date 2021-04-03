@@ -7,7 +7,7 @@ export default class Routes extends React.Component{
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/questions/:questions" component={QuestionBox}/>
+                    <Route exact path="/view/questions/:questions" component={QuestionBox}/>
                 </Switch>
             </Router>
         )
