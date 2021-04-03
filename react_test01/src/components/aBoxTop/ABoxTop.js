@@ -205,8 +205,7 @@ function ABoxTop(props) {
       </HeadFigure>
       <WrapUl>
         <Wrapli>
-        <HeadFigureLocaleImg src={process.env.PUBLIC_URL + '/test_source/'
-          +props.head.locale+'.svg'}>
+        <HeadFigureLocaleImg src={"/Common/images/nation/" + props.head.locale+'.svg'}>
             </HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
           <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
         <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
