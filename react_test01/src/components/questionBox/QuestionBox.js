@@ -105,6 +105,11 @@ function QuestionBox(props) {
       console.log("contents : "+data[0].contents);
       console.log("length : "+data.length);
       console.log(props.match.params.questions);
+      console.log("replys length : "+data[0].replys.length);
+      console.log("replys id : "+data[0].replys[0].id);
+      console.log("nick : "+data[0].replys[0].profile);
+      console.log("nick : "+data[0].replys[0].profile.nick);
+      console.log("nick : "+data[0].replys[0].content);
     })
     .catch(function (error) {
       console.log(error)

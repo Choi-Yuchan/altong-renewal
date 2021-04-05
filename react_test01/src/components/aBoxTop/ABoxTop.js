@@ -174,6 +174,10 @@ function OpenAnswerView(props){
   return '';
 }
 
+const handleImgError = (e) => {
+  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+}
+
 // atm_top_wrap
 function ABoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
@@ -200,7 +204,7 @@ function ABoxTop(props) {
         setShowMini(true);
         e.stopPropagation();
       }}>
-        <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
+        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
         <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
       </HeadFigure>
       <WrapUl>
@@ -212,8 +216,11 @@ function ABoxTop(props) {
           onClick={() => {
             setTimeToggle(!timeToggle);
             }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
-        <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} ></OpenAnswerView>
+        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg>
+        <Num3Comma num={props.head.readCount}></Num3Comma>
+        <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} >
+          
+        </OpenAnswerView>
         </WrapThankli>
       </WrapUl>
       <BtnBox onClick={(e) => {

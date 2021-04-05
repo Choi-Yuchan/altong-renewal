@@ -209,6 +209,10 @@ const UlvText = (props) => {
   return LV[props];
 }
 
+const handleImgError = (e) => {
+  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+}
+
 //clicked
 // white={props.white} setWhite={props.setWhite}
 function QBoxTop(props) {
@@ -237,7 +241,7 @@ function QBoxTop(props) {
           props.setClicked(false);
           e.stopPropagation();
         }}>
-          <HeadFigureImg src={process.env.PUBLIC_URL + props.head.profile}></HeadFigureImg>
+          <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
           
           <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
         </HeadFigure>
