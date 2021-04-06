@@ -271,7 +271,7 @@ function TopNavi() {
                 </HamburgerDiv>
             </MainHeaderAhref>
             <LogoH1 className="Logo">
-                <LogoAhrefA>
+                <LogoAhrefA href="/">
                     <LogoImg src="/Common/images/logo3.png"></LogoImg>
                 </LogoAhrefA>
             </LogoH1>

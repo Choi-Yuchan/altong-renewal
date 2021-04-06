@@ -78,37 +78,14 @@ function QuestionBox(props) {
   const [whiteClick, setWhiteClick] = useState(true);
   const [jsonList, setJsonList] = useState(ViewJson);
   const [cookies] = useCookies();
-  //const SSRJSON = ViewJson
-  // const SSRJSON = jsonList < - --
   const SSRJSON = jsonList
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
-    // axios.get("/rest/hello")
-    // .then( data => (data.data) )
-    //   .then(
-    //     (result) => {
-    //       console.log(result)
-    //       console.log("result : " + result.test1);
-    //       console.log("SESS : " + SESS);
-    //     },
-    //     (error) => {
-    //       console.log("error + " + error);
-    //     }
-    //   );
     axios.get("/rest/questions/"+props.match.params.questions)
     .then((response) => response.data)
     .then( (data) => {
       setJsonList(data);
-
-      // console.log("contents : "+data[0].contents);
-      // console.log("length : "+data.length);
-      // console.log(props.match.params.questions);
-      // console.log("replys length : "+data[0].replys.length);
-      // console.log("replys id : "+data[0].replys[0].id);
-      // console.log("nick : "+data[0].replys[0].profile);
-      // console.log("nick : "+data[0].replys[0].profile.nick);
-      // console.log("nick : "+data[0].replys[0].content);
     })
     .catch(function (error) {
       console.log(error)

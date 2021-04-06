@@ -104,12 +104,13 @@ function OpenDiv(props){
       <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox
-      pageSeq={props.pageSeq}
-      replyToggle={props.replyToggle} replyCount={props.replyCount}
-      setReplyToggle={props.setReplyToggle}
-       good={props.good} bad={props.bad} seqComponent={props.seqComponent}
+        pageSeq={props.pageSeq}
+        replyToggle={props.replyToggle} replyCount={props.replyCount}
+        setReplyToggle={props.setReplyToggle}
+        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
       ></ReplyBox>
-      <ReplyList USER={props.USER}  replyToggle={props.replyToggle} 
+      <ReplyList
+        USER={props.USER}  replyToggle={props.replyToggle} 
         white={props.white} setWhite={props.setWhite}
         replys={props.replys}></ReplyList>
       </>
@@ -129,8 +130,6 @@ const ChoiceNetizenView = (props) => {
   if(props.netizen) return <TopNetizenP><TopImg src={process.env.PUBLIC_URL + '/test_source/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
   return '';
 }
-
-
 // white={props.white} setWhite={props.setWhite}
 
 function AnswerBox(props) {
