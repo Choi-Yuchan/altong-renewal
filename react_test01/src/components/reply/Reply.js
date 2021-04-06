@@ -156,7 +156,9 @@ const ReplyLocalDiv = styled.div`
     font-size: 10px;
     color: #666;
 `;
-
+const handleImgError = (e) => {
+    e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+  }
 
 function ShowView(props){
     if(props.timeToggle === false){
@@ -214,7 +216,7 @@ function Reply(props) {
                         }
                         } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
-                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
+                            <ReplyLangBtnBallImg src="/Common/images/language.svg" onError={handleImgError}></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
                       </ReplyBotton>
                   </tr>
