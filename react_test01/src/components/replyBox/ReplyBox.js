@@ -151,7 +151,6 @@ function ReplyBox(props) {
                 console.log("seqComponent : " + props.seqComponent);
                 console.log("props.pageSeq : " + props.pageSeq);
                 const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
-        
                 axios.get(voteUrl)
                 .then((response) => response.data)
                 .then( (data) => {

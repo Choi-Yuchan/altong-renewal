@@ -167,7 +167,7 @@ function ShowView(props){
     return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
 }
 function AldolViewImg(props){
-    return <ReplyImg src={"/"+props.img}></ReplyImg>
+    return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
 }
 function AldolViewContents(props){
     if(props.seqId === "10003513"){
@@ -196,6 +196,7 @@ function Reply(props) {
                                 <AldolViewImg
                                 seqId={props.reply.profile.seqId}
                                 img={props.reply.profile.img}
+                                onError={handleImgError}
                                 ></AldolViewImg>
                                 <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
@@ -216,7 +217,7 @@ function Reply(props) {
                         }
                         } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
                         <ReplyLangBtnBallDiv>
-                            <ReplyLangBtnBallImg src="/Common/images/language.svg" onError={handleImgError}></ReplyLangBtnBallImg>
+                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
                       </ReplyBotton>
                   </tr>
