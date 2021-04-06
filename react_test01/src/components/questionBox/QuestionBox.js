@@ -96,20 +96,19 @@ function QuestionBox(props) {
     //       console.log("error + " + error);
     //     }
     //   );
-    axios.post("/rest/questions/"+props.match.params.questions,{
-      "questions": props.match.params.questions
-    })
+    axios.get("/rest/questions/"+props.match.params.questions)
     .then((response) => response.data)
     .then( (data) => {
       setJsonList(data);
-      console.log("contents : "+data[0].contents);
-      console.log("length : "+data.length);
-      console.log(props.match.params.questions);
-      console.log("replys length : "+data[0].replys.length);
-      console.log("replys id : "+data[0].replys[0].id);
-      console.log("nick : "+data[0].replys[0].profile);
-      console.log("nick : "+data[0].replys[0].profile.nick);
-      console.log("nick : "+data[0].replys[0].content);
+
+      // console.log("contents : "+data[0].contents);
+      // console.log("length : "+data.length);
+      // console.log(props.match.params.questions);
+      // console.log("replys length : "+data[0].replys.length);
+      // console.log("replys id : "+data[0].replys[0].id);
+      // console.log("nick : "+data[0].replys[0].profile);
+      // console.log("nick : "+data[0].replys[0].profile.nick);
+      // console.log("nick : "+data[0].replys[0].content);
     })
     .catch(function (error) {
       console.log(error)

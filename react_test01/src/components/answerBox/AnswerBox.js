@@ -104,7 +104,7 @@ function OpenDiv(props){
       <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox
-      seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
+      pageSeq={props.pageSeq}
       replyToggle={props.replyToggle} replyCount={props.replyCount}
       setReplyToggle={props.setReplyToggle}
        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
