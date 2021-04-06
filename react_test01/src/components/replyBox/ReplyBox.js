@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 const EmotionImg = styled.img`
@@ -142,6 +143,31 @@ function ViewAnswerBtn(props){
 
 
 function ReplyBox(props) {
+
+    useEffect(()=>{
+        if(props.pageSeq === "" || vote === true){
+            console("none");
+            return
+        }
+        console.log("props.pageSeq : " + props.pageSeq);
+        const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
+
+        axios.get(voteUrl)
+        .then((response) => response.data)
+        .then( (data) => {
+            console.log("voteUrl : " + voteUrl);
+            setVote(true);
+            setGood(data.good);
+            setBad(data.bad);
+        })
+        .catch(function (error) {
+            console.log("error voteUrl : " + voteUrl);
+            console.log(error)
+        })
+      }
+      , []);
+    
+
     const [vote,setVote] = useState("false");
     const [good,setGood] = useState(0);
     const [bad,setBad] = useState(0);
@@ -156,11 +182,11 @@ function ReplyBox(props) {
           <EmotionList>
               <EmotionListIconDiv className="smileIcon">
                   <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
-                  <EmotionB>{props.good}</EmotionB>
+                  <EmotionB>{good}</EmotionB>
               </EmotionListIconDiv>
               <EmotionListIconDiv className="sadIcon">
                   <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
-                  <EmotionB>{props.bad}</EmotionB>
+                  <EmotionB>{bad}</EmotionB>
               </EmotionListIconDiv>
           </EmotionList>
           <AnswerDoList>

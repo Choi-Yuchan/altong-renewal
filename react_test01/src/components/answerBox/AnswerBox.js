@@ -103,7 +103,9 @@ function OpenDiv(props){
       <>
       <AltongEtimate etimate={props.etimate}></AltongEtimate>
       <LangTransBox></LangTransBox>
-      <ReplyBox replyToggle={props.replyToggle} replyCount={props.replyCount}
+      <ReplyBox
+      seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
+      replyToggle={props.replyToggle} replyCount={props.replyCount}
       setReplyToggle={props.setReplyToggle}
        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
       ></ReplyBox>
@@ -158,7 +160,9 @@ function AnswerBox(props) {
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
           setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
-        <OpenDiv className="OpenDiv" replyToggle={replyToggle}
+        <OpenDiv
+          pageSeq={props.jsonArr.pageSeq}
+          className="OpenDiv" replyToggle={replyToggle}
           replyCount={replyCount(props.jsonArr.replys)}
           setReplyToggle={setReplyToggle} replys={props.jsonArr.replys}
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}

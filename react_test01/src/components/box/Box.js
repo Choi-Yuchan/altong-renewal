@@ -80,9 +80,11 @@ function Box(props) {
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
-        <ReplyBox replyToggle={replyToggle} setReplyToggle={setReplyToggle}
+        <ReplyBox
+          seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
+          replyToggle={replyToggle} setReplyToggle={setReplyToggle}
           replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good}
-          bad={props.jsonArr.bad}></ReplyBox>
+          bad={props.jsonArr.bad} ></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
           replys={props.jsonArr.replys} ></ReplyList>

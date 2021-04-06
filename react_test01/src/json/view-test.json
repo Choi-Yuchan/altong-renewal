@@ -11,6 +11,7 @@
       "id":1,
       "seqComponent": "Q",
       "seqId": "10010006",
+      "pageId" : "266096",
       "head": 
       {
         "profile":"/test_source/10010006.png", "locale":"KOR", "thankAlmoney":"101230", "uLv":"5",
@@ -36,6 +37,7 @@
       "id":2,
       "seqComponent": "A",
       "seqId": "10010006",
+      "pageId" : "0",
       "head": 
       {
         "profile":"/test_source/10037135.png", "locale":"KOR",  "uLv":"4", "nick": "로건", 
