@@ -84,7 +84,7 @@ function QuestionBox(props) {
   useEffect(()=>{
     axios.get("/rest/questions/"+props.match.params.questions)
     .then((response) => response.data)
-    .then( (data) => {
+    .then((data) => {
       setJsonList(data);
     })
     .catch(function (error) {

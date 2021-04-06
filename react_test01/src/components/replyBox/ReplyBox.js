@@ -145,22 +145,16 @@ function ViewAnswerBtn(props){
 function ReplyBox(props) {
 
     useEffect(()=>{
-            if(props.pageSeq === undefined){
-                console.log("none");
-            }else{
-                console.log("seqComponent : " + props.seqComponent);
-                console.log("props.pageSeq : " + props.pageSeq);
+            if(props.pageSeq === undefined){}else{
                 const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
                 axios.get(voteUrl)
                 .then((response) => response.data)
                 .then( (data) => {
-                    console.log("voteUrl : " + voteUrl);
                     setVote(true);
                     setGood(data.good);
                     setBad(data.bad);
                 })
                 .catch(function (error) {
-                    console.log("error voteUrl : " + voteUrl);
                     console.log(error)
                 })
             }

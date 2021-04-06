@@ -140,14 +140,16 @@ function AnswerBox(props) {
   const [extraAlmoney, setExtraAlmoney] = useState(0);
 
   useEffect(()=>{
-    axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
-    .then((response) => response.data)
-    .then( (data) => {
-      setExtraAlmoney(data.ExtraAlmoney);
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+    if(props.jsonArr.pageSeq===undefined){}else{
+      axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+      .then((response) => response.data)
+      .then( (data) => {
+        setExtraAlmoney(data.ExtraAlmoney);
+      })
+      .catch(function (error) {
+        console.log(error)
+      })  
+    }
   }
   , []);
 
