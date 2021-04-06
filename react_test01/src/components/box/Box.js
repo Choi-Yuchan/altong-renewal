@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
@@ -62,6 +64,19 @@ const replyCount = (replys) => {
 
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
+  const [extraAlmoney, setExtraAlmoney] = useState(0);
+
+  useEffect(()=>{
+    axios.get("/rest/questions/"+props.jsonArr.pageSeq+"/almoney")
+    .then((response) => response.data)
+    .then( (data) => {
+      setExtraAlmoney(data.ExtraAlmoney);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+  , []);
 
   return (
     <MainDiv className="Box">
@@ -70,7 +85,7 @@ function Box(props) {
           <AlmoneyDiv>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
             </AnswerAlmoneyImg>
-            <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
+            <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
         </div>
         <QBoxTop clicked={props.clicked} setClicked={props.setClicked}

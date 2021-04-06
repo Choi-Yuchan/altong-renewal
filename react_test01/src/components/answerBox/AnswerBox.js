@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
 
 import ABoxTop from '../aBoxTop/ABoxTop';
 import Contents from '../contents/Contents';
@@ -136,6 +137,19 @@ function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [openAnswer, setOpenAnswer] = useState('close');
   const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
+  const [extraAlmoney, setExtraAlmoney] = useState(0);
+
+  useEffect(()=>{
+    axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+    .then((response) => response.data)
+    .then( (data) => {
+      setExtraAlmoney(data.ExtraAlmoney);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+  , []);
 
   return (
     <MainDiv className="Box">
@@ -143,7 +157,7 @@ function AnswerBox(props) {
         <TopH3>
           <AlmoneyDiv>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
-            <AlmoneySpan><Num3Comma num={props.jsonArr.almoney}></Num3Comma></AlmoneySpan>
+            <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
           <TopH3Div>
             <ChoiceView choice={props.jsonArr.choice}></ChoiceView>

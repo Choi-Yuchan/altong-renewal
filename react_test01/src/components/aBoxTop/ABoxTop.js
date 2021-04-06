@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
