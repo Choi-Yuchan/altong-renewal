@@ -205,7 +205,7 @@ function Reply(props) {
                   <tr>
                       <ReplyBotton></ReplyBotton>
                       <ReplyBotton>
-                      <ReplyLocaleImg src={process.env.PUBLIC_URL + '/test_source/' + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                      <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
                       
                       <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
                             props.setWhite(false);
