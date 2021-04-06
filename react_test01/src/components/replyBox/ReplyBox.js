@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
+
 
 const EmotionImg = styled.img`
     display: block;
@@ -140,6 +142,9 @@ function ViewAnswerBtn(props){
 
 
 function ReplyBox(props) {
+    const [vote,setVote] = useState("false");
+    const [good,setGood] = useState(0);
+    const [bad,setBad] = useState(0);
 
     return (
       <OlBox className="ReplyBox">

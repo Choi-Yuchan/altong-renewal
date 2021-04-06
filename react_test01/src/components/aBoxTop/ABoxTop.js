@@ -162,13 +162,13 @@ function TimeToggler(props) {
 }
 
 const UlvText = (props) => {
-  const LV=['알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
   return LV[props];
 }
 function OpenAnswerView(props){
   if(props.openAnswer === 'close'){
     return <>
-      <ViewCountReplyImg src={process.env.PUBLIC_URL + '/test_source/icon_reply.svg'}></ViewCountReplyImg>{props.replyCount}
+      <ViewCountReplyImg src={"/Common/images/icon_reply.svg"}></ViewCountReplyImg>{props.replyCount}
     </>
   }
   return '';
