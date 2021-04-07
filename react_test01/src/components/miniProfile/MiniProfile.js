@@ -11,7 +11,7 @@ const MainDiv = styled.div`
     border-radius: 20px;
     padding: 15px;
     transition: all 0.3s;
-    display: ${(props) => props.showMini?"block":"none" }
+    display: ${(props) => props.showMini? "block":"none" }
 }
 &:after{
     content: "";

@@ -10,6 +10,7 @@ import ViewJson from '../../json/view-test.json'
 import TopNavi from './../topNavi/TopNavi'
 
 import BoxController from '../boxContainer/BoxContainer'
+import Popli5Button from '../popup/popAlmoney/PopAlmoney';
 
 const MainDiv = styled.div`
   display: flex;
@@ -126,6 +127,8 @@ function QuestionBox(props) {
           SSRJSON={SSRJSON} USER={WhatU(SSRJSON)} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>
+      
+      <Popli5Button></Popli5Button>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );

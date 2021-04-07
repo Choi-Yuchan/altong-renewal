@@ -73,6 +73,8 @@ function AlmoneyAxios(pageSeq){
 //props.seqComponent
 
 function QuestionPopup(props) {
+    const [showAlmoney, setShowAlmoney] = useState(false);
+    
     useEffect(()=>{
         console.log("팝업 생성");
       }

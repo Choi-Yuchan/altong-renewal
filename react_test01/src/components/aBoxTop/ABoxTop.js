@@ -186,6 +186,7 @@ function ABoxTop(props) {
   const [popToggle, setPopToggle] = useState(false);
   const [showMini, setShowMini] = useState(false);
 
+
   useEffect(() => {
     if(props.clicked === true){
       setShowMini(false);
