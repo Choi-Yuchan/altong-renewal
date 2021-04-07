@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
+import TrueMap from '../functions/trueMap/TrueMap'
 import GlobalFonts from "../../fonts/fonts"
 
 import ViewJson from '../../json/view-test.json'
@@ -80,6 +81,13 @@ function QuestionBox(props) {
   const [cookies] = useCookies();
   const SSRJSON = jsonList
 
+  const[capture, setCapture] = useState({
+    "black":true, "white":true
+  });
+  const[bubble, setBubble] = useState({
+    "black":true, "white":true
+  });
+
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
     axios.get("/rest/questions/"+props.match.params.questions)
@@ -94,10 +102,21 @@ function QuestionBox(props) {
   , []);
 
   return (
-    <SiteDiv onClickCapture={() => {
-      setBodyClicked(true);
-      setWhiteClick(true);
-    }}>
+    <SiteDiv
+      onClickCapture={ () => 
+        {
+          setBodyClicked(true);
+          setWhiteClick(true);
+          
+          setCapture(TrueMap);
+        }
+      }
+      onClick={ () =>
+        {
+          setBubble(TrueMap);
+        }
+      }
+    >
       {/* <GlobalFonts></GlobalFonts> */}
       <MainDiv>
         <TopNavi></TopNavi>

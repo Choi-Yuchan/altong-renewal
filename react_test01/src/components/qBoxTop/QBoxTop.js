@@ -267,11 +267,13 @@ function QBoxTop(props) {
           <BtnBoxI></BtnBoxI>
           <BtnBoxI></BtnBoxI>
           <QuestionPopup
+            setClicked={props.setClicked}
             pageSeq={props.pageSeq}
             seqComponent={props.seqComponent} popToggle={popToggle}
           ></QuestionPopup>
         </BtnBox>
-        <MiniProfile showMini={showMini} mini={props.mini} clicked={props.clicked} 
+        <MiniProfile setClicked={props.setClicked} showMini={showMini}
+         mini={props.mini} clicked={props.clicked} 
         setShowMini={setShowMini}></MiniProfile>
       </MainDiv>
     );

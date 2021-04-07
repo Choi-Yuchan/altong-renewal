@@ -11,6 +11,7 @@ const MainDiv = styled.div`
     border-radius: 20px;
     padding: 15px;
     transition: all 0.3s;
+    display: ${(props) => props.showMini?"block":"none" }
 }
 &:after{
     content: "";
@@ -128,12 +129,12 @@ const UlvText = (props) => {
 
 function MiniProfile(props) {
 
-    if(props.showMini === false){
-        return <MainDivNone></MainDivNone>
-    }
+    
     return (
-        <MainDiv className="MiniProfile"
+        <MainDiv showMini={props.showMini} className="MiniProfile"
         onClick={(e)=>{
+            props.setClicked(false);
+            props.setShowMini(true);
             e.stopPropagation();
         }}>
             <MainTable>

@@ -44,12 +44,26 @@ const MainLi2 = styled.li`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-
-function ZzimAxios(props){
-    axios.get("/rest/questions/"+props.pageSeq+"/Zzim")
+// 찜
+function ZzimAxios(pageSeq){
+    console.log("pageSeq : " + pageSeq);
+    axios.post("/rest/questions/"+pageSeq+"/Zzim")
     .then((response) => response.data)
     .then( (data) => {
-        console.log(data.message);
+        alert(data.message);
+    })
+    .catch(function (error) {
+        console.log("실패 : "+error);
+    });
+}
+
+// 훈훈알
+function AlmoneyAxios(pageSeq){
+    console.log("pageSeq : " + pageSeq);
+    axios.post("/rest/questions/"+pageSeq+"/almoney")
+    .then((response) => response.data)
+    .then( (data) => {
+        alert(data.message);
     })
     .catch(function (error) {
         console.log("실패 : "+error);
@@ -59,10 +73,18 @@ function ZzimAxios(props){
 //props.seqComponent
 
 function QuestionPopup(props) {
+    useEffect(()=>{
+        console.log("팝업 생성");
+      }
+      , []);
 
     return (
-        <MainUl popToggle={props.popToggle}>
-            <MainLi onClick={ZzimAxios}>
+        <MainUl onClick={() => { console.log("팝업클릭"); }} popToggle={props.popToggle}>
+            <MainLi onClick={(e) => {
+                    ZzimAxios(props.pageSeq);
+                    e.stopPropagation();
+                }
+            }>
                 <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
@@ -74,7 +96,12 @@ function QuestionPopup(props) {
                 <Popup text="꼭대기" imgurl="/pub/answer/answerList/images/atm_more_4.png" >
                 </Popup>
             </MainLi>
-            <MainLi>
+            <MainLi onClick={(e) => {
+                    AlmoneyAxios(props.pageSeq);
+                    props.setClicked(false);
+                    e.stopPropagation();
+                }
+            }>
                 <Popup text="훈훈알" imgurl="/Common/images/answer_almoney_gg.svg" >
                 </Popup>
             </MainLi>
