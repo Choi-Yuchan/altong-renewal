@@ -49,10 +49,10 @@ function ZzimAxios(props){
     axios.get("/rest/questions/"+props.pageSeq+"/Zzim")
     .then((response) => response.data)
     .then( (data) => {
-        setExtraAlmoney(data.ExtraAlmoney);
+        console.log(data.message);
     })
     .catch(function (error) {
-        console.log(error);
+        console.log("실패 : "+error);
     });
 }
 //popToggle
