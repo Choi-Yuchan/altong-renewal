@@ -93,6 +93,7 @@ function Box(props) {
         <QBoxTop clicked={props.clicked} setClicked={props.setClicked}
           white={props.white} setWhite={props.setWhite}
           head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
+          pageSeq={props.jsonArr.pageSeq}
           mini={props.jsonArr.mini} ></QBoxTop>
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>

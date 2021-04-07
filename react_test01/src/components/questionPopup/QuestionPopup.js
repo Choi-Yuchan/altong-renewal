@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import Popup from '../popup/Popup'
+import React, { useState, useEffect } from 'react';
+
+import axios from 'axios';
 
 const MainUl = styled.ul`
     position: absolute;
@@ -42,14 +45,24 @@ const MainLi2 = styled.li`
     -webkit-tap-highlight-color: transparent;
 `;
 
-
+function ZzimAxios(props){
+    axios.get("/rest/questions/"+props.pageSeq+"/Zzim")
+    .then((response) => response.data)
+    .then( (data) => {
+        setExtraAlmoney(data.ExtraAlmoney);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 //popToggle
+//props.seqComponent
 
 function QuestionPopup(props) {
 
     return (
         <MainUl popToggle={props.popToggle}>
-            <MainLi>
+            <MainLi onClick={ZzimAxios}>
                 <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
@@ -73,5 +86,5 @@ function QuestionPopup(props) {
     );
 }
   
-  export default QuestionPopup;
+export default QuestionPopup;
   
