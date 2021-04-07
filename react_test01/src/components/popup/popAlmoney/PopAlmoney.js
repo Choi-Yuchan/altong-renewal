@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 
 const PopAlDiv = styled.div`
     display: ${(props) => props.showAlmoney?"block":"none"};
@@ -102,16 +104,23 @@ const Popli5Button = styled.button`
     cursor: pointer;
 `;
 
-
-
 // atm_top_wrap
 function PopAlmoney(props) {
+    const [maxAlmoney,setMaxAlmoney] = useState(30000);
 
     useEffect(() => {
-      if(props.clicked === true){
-        props.setShowAlmoney(false);
-      }
-    }, [props.clicked]);
+        if(props.clicked === true){
+          props.setShowAlmoney(false);
+        }
+      }, [props.clicked]);
+
+    useEffect(() => {
+    if(props.showAlmoney === true){
+        // 증정 가능한 훈훈알 반환
+        console.log("al!!");
+
+    }
+    }, [props.showAlmoney,props.clicked]);
 
     return (
         <PopAlDiv showAlmoney={props.showAlmoney} onClick={(e) => {
@@ -125,9 +134,10 @@ function PopAlmoney(props) {
                 </Popli>
                 <Popli>
                     <PopP>금일 증정 가능하신 훈훈알은 <br>
-                    </br> 총 <PopSpan>30,000</PopSpan>알 입니다.</PopP>
+                    </br> 총 <PopSpan>{maxAlmoney}</PopSpan>알 입니다.</PopP>
                 </Popli>
-                <Popli3><PopH3Input></PopH3Input>알</Popli3>
+                <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
+                autofocus type="number"></PopH3Input>알</Popli3>
                 <Popli4>
                     <Popli4Button>취소</Popli4Button>
                 </Popli4>

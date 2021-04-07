@@ -20,7 +20,6 @@ const MainUl = styled.ul`
     margin: 0;
     display: ${props => props.popToggle ? "block" : "none"};
 `;
-
 const MainLi = styled.li`
     height: 35px;
     width: 100%;
@@ -31,7 +30,6 @@ const MainLi = styled.li`
     list-style: none;
     cursor: pointer;
 `;
-
 const MainLi2 = styled.li`
     font-size: 14px;
     font-weight: normal;
@@ -56,7 +54,6 @@ function ZzimAxios(pageSeq){
         console.log("실패 : "+error);
     });
 }
-
 // 훈훈알
 function AlmoneyAxios(pageSeq){
     console.log("pageSeq : " + pageSeq);
@@ -69,9 +66,7 @@ function AlmoneyAxios(pageSeq){
         console.log("실패 : "+error);
     });
 }
-//popToggle
-//props.seqComponent
-//setShowAlmoney={props.setShowAlmoney}
+
 function QuestionPopup(props) {
     
     useEffect(()=>{

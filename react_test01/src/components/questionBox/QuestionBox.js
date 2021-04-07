@@ -10,7 +10,7 @@ import ViewJson from '../../json/view-test.json'
 import TopNavi from './../topNavi/TopNavi'
 
 import BoxController from '../boxContainer/BoxContainer'
-import Popli5Button from '../popup/popAlmoney/PopAlmoney';
+import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 
 const MainDiv = styled.div`
   display: flex;
@@ -116,7 +116,7 @@ function QuestionBox(props) {
         </WrapperDiv>
       </MainDiv>
       
-      <Popli5Button setShowAlmoney={setShowAlmoney} setClicked={setBodyClicked} showAlmoney={showAlmoney} clicked={bodyClicked}></Popli5Button>
+      <PopAlmoney setShowAlmoney={setShowAlmoney} setClicked={setBodyClicked} showAlmoney={showAlmoney} clicked={bodyClicked}></PopAlmoney>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );
