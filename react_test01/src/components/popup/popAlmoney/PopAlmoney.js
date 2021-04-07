@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
 const PopAlDiv = styled.div`
-    display: block;
+    display: ${(props) => props.showAlmoney?"block":"none"};
     padding: 10px;
     max-width: 320px;
     text-align: center;
@@ -14,6 +15,7 @@ const PopAlDiv = styled.div`
     border-radius: 20px;
     overflow: hidden;
     width: 80%;
+    z-index:199;
 `;
 const PopUl = styled.ul`
     width: 100%;
@@ -104,8 +106,19 @@ const Popli5Button = styled.button`
 
 // atm_top_wrap
 function PopAlmoney(props) {
+
+    useEffect(() => {
+      if(props.clicked === true){
+        props.setShowAlmoney(false);
+      }
+    }, [props.clicked]);
+
     return (
-        <PopAlDiv>
+        <PopAlDiv showAlmoney={props.showAlmoney} onClick={(e) => {
+            props.setClicked(false);
+            props.setShowAlmoney(true);
+            e.stopPropagation();
+          }}>
             <PopUl>
                 <Popli>
                     <PopH3>훈훈알 증정하기</PopH3>

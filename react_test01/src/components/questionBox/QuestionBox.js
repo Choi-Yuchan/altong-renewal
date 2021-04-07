@@ -81,13 +81,8 @@ function QuestionBox(props) {
   const [jsonList, setJsonList] = useState(ViewJson);
   const [cookies] = useCookies();
   const SSRJSON = jsonList
-
-  const[capture, setCapture] = useState({
-    "black":true, "white":true
-  });
-  const[bubble, setBubble] = useState({
-    "black":true, "white":true
-  });
+  
+  const [showAlmoney, setShowAlmoney] = useState(false);
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -108,13 +103,6 @@ function QuestionBox(props) {
         {
           setBodyClicked(true);
           setWhiteClick(true);
-          
-          setCapture(TrueMap);
-        }
-      }
-      onClick={ () =>
-        {
-          setBubble(TrueMap);
         }
       }
     >
@@ -123,12 +111,12 @@ function QuestionBox(props) {
         <TopNavi></TopNavi>
         <WrapperDiv>
           <BoxController white={whiteClick} setWhite={setWhiteClick}
-          clicked={bodyClicked} setClicked={setBodyClicked}
+          clicked={bodyClicked} setClicked={setBodyClicked} setShowAlmoney={setShowAlmoney}
           SSRJSON={SSRJSON} USER={WhatU(SSRJSON)} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>
       
-      <Popli5Button></Popli5Button>
+      <Popli5Button setShowAlmoney={setShowAlmoney} setClicked={setBodyClicked} showAlmoney={showAlmoney} clicked={bodyClicked}></Popli5Button>
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );

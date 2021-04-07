@@ -6,12 +6,16 @@ function BoxController(props) {
     ( (jaar) => jaar.seqComponent === "Q"?
         <Box key={jaar.id} jsonArr={jaar} USER={props.USER}
         white={props.white} setWhite={props.setWhite}
-        clicked={props.clicked} setClicked={props.setClicked}>
+        clicked={props.clicked} setClicked={props.setClicked}
+        setShowAlmoney={props.setShowAlmoney}
+        >
         </Box>: 
         jaar.seqComponent === "A" ?
         <AnswerBox key={jaar.id} jsonArr={jaar}
         white={props.white} setWhite={props.setWhite}
-        USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}>
+        USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}
+        setShowAlmoney={props.setShowAlmoney}
+        >
         </AnswerBox> : ""
     );
     return Boxs;
@@ -20,7 +24,7 @@ function BoxController(props) {
 function BoxContainer(props) {
   return (
       <BoxController SSRJSON={props.SSRJSON} USER={props.USER}
-      white={props.white} setWhite={props.setWhite}
+      white={props.white} setWhite={props.setWhite} setShowAlmoney={props.setShowAlmoney}
       clicked={props.clicked} setClicked={props.setClicked}></BoxController>
   );
 }

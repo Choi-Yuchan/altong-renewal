@@ -71,9 +71,8 @@ function AlmoneyAxios(pageSeq){
 }
 //popToggle
 //props.seqComponent
-
+//setShowAlmoney={props.setShowAlmoney}
 function QuestionPopup(props) {
-    const [showAlmoney, setShowAlmoney] = useState(false);
     
     useEffect(()=>{
         console.log("팝업 생성");
@@ -99,8 +98,9 @@ function QuestionPopup(props) {
                 </Popup>
             </MainLi>
             <MainLi onClick={(e) => {
-                    AlmoneyAxios(props.pageSeq);
                     props.setClicked(false);
+                    props.setShowAlmoney(true);
+                    AlmoneyAxios(props.pageSeq);
                     e.stopPropagation();
                 }
             }>
