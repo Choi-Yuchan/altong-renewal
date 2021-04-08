@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Num3Comma from '../../functions/num3comma/Num3Comma'
 
 const PopAlDiv = styled.div`
     display: ${(props) => props.showAlmoney?"block":"none"};
@@ -117,14 +118,22 @@ function PopAlmoney(props) {
     useEffect(() => {
     if(props.showAlmoney === true){
         // 증정 가능한 훈훈알 반환
-        console.log("al!!");
-        axios.get("/rest/questions/"+props.match.params.questions+"/almoney/extra")
+        console.log(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney/extra":
+        "/rest/answers/"+props.page+"/almoney/extra");
+        axios.post(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney/extra":
+        "/rest/answers/"+props.page+"/almoney/extra")
             .then((response) => response.data)
             .then((data) => {
-                setJsonList(data);
+                if(data.code === "rowlv"){
+                    alert(data.message);
+                    props.setClicked(true);
+                    props.setShowAlmoney({show:false, page:0, seq:'Q'});
+                }else if(data.code === "find"){
+                    setMaxAlmoney(parseInt(data.almoney,10));
+                }
             })
             .catch(function (error) {
-                console.log(error)
+                console.log("error : " + error)
             }
         )};
     }, [props.showAlmoney]);
@@ -141,7 +150,7 @@ function PopAlmoney(props) {
                 </Popli>
                 <Popli>
                     <PopP>금일 증정 가능하신 훈훈알은 <br>
-                    </br> 총 <PopSpan>{maxAlmoney}</PopSpan>알 입니다.</PopP>
+                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>알 입니다.</PopP>
                 </Popli>
                 <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
                 autofocus type="number"></PopH3Input>알</Popli3>

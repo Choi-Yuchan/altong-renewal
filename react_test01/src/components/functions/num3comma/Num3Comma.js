@@ -1,7 +1,7 @@
 function Num3Comma(props){
-    if(!isNaN(props.num)) return props.num;
-    const number = props.num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    if(isNaN(parseInt(String(props.num),10)) === true) return props.num;
+    const number = String(props.num);
 
-    return number;
+    return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 export default Num3Comma;
