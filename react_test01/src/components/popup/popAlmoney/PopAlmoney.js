@@ -118,8 +118,15 @@ function PopAlmoney(props) {
     if(props.showAlmoney === true){
         // 증정 가능한 훈훈알 반환
         console.log("al!!");
-
-    }
+        axios.get("/rest/questions/"+props.match.params.questions+"/almoney/extra")
+            .then((response) => response.data)
+            .then((data) => {
+                setJsonList(data);
+            })
+            .catch(function (error) {
+                console.log(error)
+            }
+        )};
     }, [props.showAlmoney]);
 
     return (
