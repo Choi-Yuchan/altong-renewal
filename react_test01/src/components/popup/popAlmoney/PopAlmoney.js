@@ -110,7 +110,7 @@ function PopAlmoney(props) {
 
     useEffect(() => {
         if(props.clicked === true){
-          props.setShowAlmoney(false);
+          props.setShowAlmoney({show:false, page:0, seq:'Q'});
         }
       }, [props.clicked]);
 
@@ -132,7 +132,7 @@ function PopAlmoney(props) {
     return (
         <PopAlDiv showAlmoney={props.showAlmoney} onClick={(e) => {
             props.setClicked(false);
-            props.setShowAlmoney(true);
+            props.setShowAlmoney({show:true, page:props.page, seq:props.seq});
             e.stopPropagation();
           }}>
             <PopUl>

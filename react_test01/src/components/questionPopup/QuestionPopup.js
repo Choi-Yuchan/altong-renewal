@@ -94,7 +94,7 @@ function QuestionPopup(props) {
             </MainLi>
             <MainLi onClick={(e) => {
                     props.setClicked(false);
-                    props.setShowAlmoney(true);
+                    props.setShowAlmoney({show:true, page:props.pageSeq, seq:'Q'});
                     AlmoneyAxios(props.pageSeq);
                     e.stopPropagation();
                 }
