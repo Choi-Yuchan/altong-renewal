@@ -107,8 +107,7 @@ function Box(props) {
         <ReplyList USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
           replys={props.jsonArr.replys} ></ReplyList>
-        <div className="overlay">
-        </div>
+        
     </MainDiv>
   );
 }

@@ -170,6 +170,8 @@ function AnswerBox(props) {
           clicked={props.clicked} setClicked={props.setClicked}
           replyCount={replyCount(props.jsonArr.replys)}
           white={props.white} setWhite={props.setWhite}
+          pageSeq={props.jsonArr.pageSeq}
+          setShowAlmoney={props.setShowAlmoney}
           openAnswer={openAnswer}
           ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
@@ -184,8 +186,7 @@ function AnswerBox(props) {
           USER={props.USER} etimate={props.jsonArr.etimate}
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
         ></OpenDiv>
-        <div className="overlay">
-        </div>
+        
     </MainDiv>
   );
 }

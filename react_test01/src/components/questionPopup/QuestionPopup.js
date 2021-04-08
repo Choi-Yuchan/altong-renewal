@@ -54,23 +54,11 @@ function ZzimAxios(pageSeq){
         console.log("실패 : "+error);
     });
 }
-// 훈훈알
-function AlmoneyAxios(pageSeq){
-    console.log("pageSeq : " + pageSeq);
-    axios.post("/rest/questions/"+pageSeq+"/almoney")
-    .then((response) => response.data)
-    .then( (data) => {
-        alert(data.message);
-    })
-    .catch(function (error) {
-        console.log("실패 : "+error);
-    });
-}
 
 function QuestionPopup(props) {
     
     useEffect(()=>{
-        console.log("팝업 생성");
+        
       }
       , []);
 
@@ -95,7 +83,6 @@ function QuestionPopup(props) {
             <MainLi onClick={(e) => {
                     props.setClicked(false);
                     props.setShowAlmoney({show:true, page:props.pageSeq, seq:'Q'});
-                    AlmoneyAxios(props.pageSeq);
                     e.stopPropagation();
                 }
             }>
