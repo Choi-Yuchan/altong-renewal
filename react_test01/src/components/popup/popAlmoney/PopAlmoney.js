@@ -120,7 +120,7 @@ function PopAlmoney(props) {
         console.log("al!!");
 
     }
-    }, [props.showAlmoney,props.clicked]);
+    }, [props.showAlmoney]);
 
     return (
         <PopAlDiv showAlmoney={props.showAlmoney} onClick={(e) => {
