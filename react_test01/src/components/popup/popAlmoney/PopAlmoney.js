@@ -115,20 +115,33 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney) {
         })
     .then((response) => response.data)
     .then((data) => {
-        console.log("extraAlmoney : " + extraAlmoney);
-        console.log("message : " + data.message);
-        console.log(data.message);
-        console.log("code : " + data.code);
-        console.log("game : " + data.game);
-        console.log("msg : " + data.msg);
-        console.log(data.msg);
-        if(data.code === "rowlv"){
+        if(data.code === "fail"){
+            setextraAlmoney(0);
+            alert(data.msg);
+        }else if(data.code === "error"){
+            setextraAlmoney(0);
+            console.log("extraAlmoney : " + extraAlmoney);
+            console.log("message : " + data.message);
+            console.log(data.message);
+            console.log("code : " + data.code);
+            console.log("game : " + data.game);
+            console.log("msg : " + data.msg);
+            console.log(data.msg);
+        }else if( data.code === "rowlv" ){
             alert(data.message);
             props.setClicked(true);
-            props.setShowAlmoney({show:false, page:props.page, 
-                seq:props.seq});
-        }else if(data.code === "find"){
-            setMaxAlmoney(parseInt(data.almoney,10));
+            props.setShowAlmoney({show:false, page:0, seq:'Q'});
+        }else if(data.code === "good"){
+            if( data.game === "no" ){
+                setextraAlmoney(0);
+                setMaxAlmoney(parseInt(data.almoney,10));
+            }else{
+                // 룰렛 게임 처리
+                setextraAlmoney(0);
+                setMaxAlmoney(parseInt(data.almoney,10));
+            }
+            
+            
         }
     })
     .catch(function (error) {
