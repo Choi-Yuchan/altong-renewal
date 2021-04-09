@@ -105,7 +105,36 @@ const Popli5Button = styled.button`
     cursor: pointer;
 `;
 
-
+function giveAlmoney(props, extraAlmoney, setMaxAlmoney) {
+        
+    console.log("extra.. : " + extraAlmoney);
+    console.log("extra..type : " + extraAlmoney);
+    axios.put(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
+        "/rest/answers/"+props.page+"/almoney",{
+            "extraAlmoney":parseInt(extraAlmoney)
+        })
+    .then((response) => response.data)
+    .then((data) => {
+        console.log("extraAlmoney : " + extraAlmoney);
+        console.log("message : " + data.message);
+        console.log(data.message);
+        console.log("code : " + data.code);
+        console.log("game : " + data.game);
+        console.log("msg : " + data.msg);
+        console.log(data.msg);
+        if(data.code === "rowlv"){
+            alert(data.message);
+            props.setClicked(true);
+            props.setShowAlmoney({show:false, page:props.page, 
+                seq:props.seq});
+        }else if(data.code === "find"){
+            setMaxAlmoney(parseInt(data.almoney,10));
+        }
+    })
+    .catch(function (error) {
+        console.log("error : " + error)
+    });
+}
 
 // atm_top_wrap
 function PopAlmoney(props) {
@@ -115,30 +144,13 @@ function PopAlmoney(props) {
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
     }
-
-    const giveAlmoney = () => {
-    axios.post(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
-        "/rest/answers/"+props.page+"/almoney",{
-            "extraAlmoney":extraAlmoney
-        })
-        .then((response) => response.data)
-        .then((data) => {
-            if(data.code === "rowlv"){
-                alert(data.message);
-                props.setClicked(true);
-                props.setShowAlmoney({show:false, page:0, seq:'Q'});
-            }else if(data.code === "find"){
-                setMaxAlmoney(parseInt(data.almoney,10));
-            }
-        })
-        .catch(function (error) {
-            console.log("error : " + error)
-        })
-    };
+    
+    
 
     useEffect(() => {
         if(props.clicked === true){
-          props.setShowAlmoney({show:false, page:0, seq:'Q'});
+            props.setShowAlmoney({show:false, page:props.page, 
+                seq:props.seq});
         }
       }, [props.clicked]);
 
@@ -177,16 +189,17 @@ function PopAlmoney(props) {
                 </Popli>
                 <Popli>
                     <PopP>금일 증정 가능하신 훈훈알은 <br>
-                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney} value={extraAlmoney} onChange={(e) => handleChange(e)}></Num3Comma></PopSpan>알 입니다.</PopP>
+                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>알 입니다.</PopP>
                 </Popli>
                 <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
+                    value={extraAlmoney} onChange={(e) => handleChange(e)}
                 autofocus type="number"></PopH3Input>알</Popli3>
                 <Popli4>
                     <Popli4Button>취소</Popli4Button>
                 </Popli4>
                 <Popli5>
                     <Popli5Button onClick={() =>{
-                        giveAlmoney()
+                        giveAlmoney(props, extraAlmoney, setMaxAlmoney);
                     }}>확인</Popli5Button>
                 </Popli5>
             </PopUl>
