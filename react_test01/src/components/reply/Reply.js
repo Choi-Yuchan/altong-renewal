@@ -170,7 +170,7 @@ function AldolViewImg(props){
     return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
 }
 function AldolViewContents(props){
-    if(props.seqId === "10003513"){
+    if(props.seqId === 10003513){
         return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 {props.al}알을 증정하셨어요.</AldolReplyContents>
     }
     return <ReplyContents>{props.content}</ReplyContents>

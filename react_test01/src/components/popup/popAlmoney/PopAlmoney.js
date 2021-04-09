@@ -105,7 +105,7 @@ const Popli5Button = styled.button`
     cursor: pointer;
 `;
 
-function giveAlmoney(props, extraAlmoney, setMaxAlmoney) {
+function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney) {
         
     console.log("extra.. : " + extraAlmoney);
     console.log("extra..type : " + extraAlmoney);
@@ -134,14 +134,12 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney) {
         }else if(data.code === "good"){
             if( data.game === "no" ){
                 setextraAlmoney(0);
-                setMaxAlmoney(parseInt(data.almoney,10));
+                setMaxAlmoney(maxAlmoney - extraAlmoney);
             }else{
                 // 룰렛 게임 처리
                 setextraAlmoney(0);
-                setMaxAlmoney(parseInt(data.almoney,10));
+                setMaxAlmoney(maxAlmoney - extraAlmoney);
             }
-            
-            
         }
     })
     .catch(function (error) {
@@ -208,11 +206,18 @@ function PopAlmoney(props) {
                     value={extraAlmoney} onChange={(e) => handleChange(e)}
                 autofocus type="number"></PopH3Input>알</Popli3>
                 <Popli4>
-                    <Popli4Button>취소</Popli4Button>
+                    <Popli4Button
+                        onClick={(e) =>{
+                            props.setClicked(true);
+                            props.setShowAlmoney({show:false, page:0, seq:'Q'});
+                            e.stopPropagation();
+                        }}
+                    >취소</Popli4Button>
                 </Popli4>
                 <Popli5>
                     <Popli5Button onClick={() =>{
-                        giveAlmoney(props, extraAlmoney, setMaxAlmoney);
+                        giveAlmoney(props, extraAlmoney,
+                            setMaxAlmoney, setextraAlmoney, maxAlmoney);
                     }}>확인</Popli5Button>
                 </Popli5>
             </PopUl>
