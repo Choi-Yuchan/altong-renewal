@@ -105,9 +105,36 @@ const Popli5Button = styled.button`
     cursor: pointer;
 `;
 
+
+
 // atm_top_wrap
 function PopAlmoney(props) {
     const [maxAlmoney,setMaxAlmoney] = useState(30000);
+    const [extraAlmoney,setextraAlmoney] = useState(0);
+
+    const handleChange = (e) => {
+        setextraAlmoney(e.target.value);
+    }
+
+    const giveAlmoney = () => {
+    axios.post(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
+        "/rest/answers/"+props.page+"/almoney",{
+            "extraAlmoney":extraAlmoney
+        })
+        .then((response) => response.data)
+        .then((data) => {
+            if(data.code === "rowlv"){
+                alert(data.message);
+                props.setClicked(true);
+                props.setShowAlmoney({show:false, page:0, seq:'Q'});
+            }else if(data.code === "find"){
+                setMaxAlmoney(parseInt(data.almoney,10));
+            }
+        })
+        .catch(function (error) {
+            console.log("error : " + error)
+        })
+    };
 
     useEffect(() => {
         if(props.clicked === true){
@@ -150,7 +177,7 @@ function PopAlmoney(props) {
                 </Popli>
                 <Popli>
                     <PopP>금일 증정 가능하신 훈훈알은 <br>
-                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>알 입니다.</PopP>
+                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney} value={extraAlmoney} onChange={(e) => handleChange(e)}></Num3Comma></PopSpan>알 입니다.</PopP>
                 </Popli>
                 <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
                 autofocus type="number"></PopH3Input>알</Popli3>
@@ -158,7 +185,9 @@ function PopAlmoney(props) {
                     <Popli4Button>취소</Popli4Button>
                 </Popli4>
                 <Popli5>
-                    <Popli5Button>확인</Popli5Button>
+                    <Popli5Button onClick={() =>{
+                        giveAlmoney()
+                    }}>확인</Popli5Button>
                 </Popli5>
             </PopUl>
         </PopAlDiv>
