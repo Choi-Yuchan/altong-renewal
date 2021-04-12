@@ -83,12 +83,19 @@ function DelSpan(props){
   return <span></span>;
 }
 
+const contentConvert = (contents) => {
+  const contentArray = contents;
+  
+  
+  return contentArray;
+}
+
 function QorA(props){
   const isShow = props.seqComponent;
   if(isShow === 'A'){
     return (
       <ContentsP2 isShow={isShow} onClick={props.onClick2}>
-        {props.contents}
+        {contentConvert(props.contents)}
         <DelSpan setMessage={props.setMessage}
           setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
         <CustomView isView={props.openAnswer}></CustomView>
@@ -97,11 +104,10 @@ function QorA(props){
   }
   return (
     <ContentsP> 
-        {props.contents}
+      {contentConvert(props.contents)}
     </ContentsP>
   );
 }
-
 
 function Contents(props) {
   const [open, setOpen] = useState('열고~ㅇ');

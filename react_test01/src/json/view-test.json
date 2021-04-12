@@ -1,12 +1,4 @@
 [
-    {
-      "seqComponent": "U", 
-      "info": {
-        "seq": 10035484,
-        "name": "로딩중",
-        "lv": 1
-      }
-    },
     { 
       "id":1,
       "seqComponent": "Q",
@@ -14,59 +6,23 @@
       "pageId" : "266096",
       "head": 
       {
-        "profile":"/test_source/10010006.png", "locale":"KOR", "thankAlmoney":"101230", "uLv":"5",
+        "profile":"/test_source/10010006.png", "locale":"KOR", "thankAlmoney":"101230", "uLv":"1",
          "nick": "로딩 중~", 
-        "title": "김치가 코로나에 좋나요요",
+        "title": "로딩 중~",
         "persent":"79", "date":"2021-03-22 11:23:42 UTC+9", "readCount": "8111"
       },
-      "contents": "지방에 들3어가2312세요",
+      "contents": "로딩 중~",
       "good":7,
       "bad":6,
       "replys": [
         { "id": 1, "profile": { "seqId":"10037135", "img": "/test_source/10037135.png",
-          "locale": "KOR", "nick": "커피낙타"}, "content":"운동도4 도움이 4124124124클것 같습니다.", "time":"3",
+          "locale": "KOR", "nick": "로딩 중~"}, "content":"로딩 중~", "time":"3",
           "date":"2021-03-22 08:00:38"  }
       ],
       "almoney":"99000",
       "mini":{
-        "nick": "똑똑합니다", "uLv":"5", "uHref":"", "qBenefit":1244000, "ABenefit":1232300, 
-        "giveThankNum":3609, "giveThankRate":98, "descript":"똑똑 문 열어주세요.", "alBenefit": 23312000
+        "nick": "로딩 중~", "uLv":"5", "uHref":"", "qBenefit":1244000, "ABenefit":1232300, 
+        "giveThankNum":3609, "giveThankRate":98, "descript":"로딩 중~", "alBenefit": 23312000
       }
-    },
-    { 
-      "id":2,
-      "seqComponent": "A",
-      "seqId": "10010006",
-      "pageId" : "0",
-      "head": 
-      {
-        "profile":"/test_source/10037135.png", "locale":"KOR",  "uLv":"4", "nick": "로건", 
-        "persent":"87", "date":"2021-03-22 10:23:47 UTC+9", "readCount": "8111"
-      },
-      "contents": "로딩 중입니다.",
-      "good":5,
-      "bad":4,
-      "replys": [
-        { "id": 1, "profile": { "seqId":"10037135", "img": "/test_source/10037135.png",
-          "locale": "KOR", "nick": "커피낙타"}, "content":"운동도4 도움이 4124124124클것 같습니다.", "time":"3",
-          "date":"2021-03-22 08:00:38"  }
-      ],
-      "almoney":"399000",
-      "etimate":{
-        "v1":10,
-        "v2":2,
-        "v3":13,
-        "v4":2,
-        "v5":8,
-        "v6":99
-      },
-      "mini":{
-        "nick": "로건", "uLv":"4", "uHref":"", "qBenefit":1230000,
-        "ABenefit":4595900, "giveThankNum":1234, "giveThankRate":12, 
-        "descript":"로건을 아시나요?", "alBenefit": 8880000
-      },
-      "choice":true,
-      "netizen":false
     }
-  
   ]

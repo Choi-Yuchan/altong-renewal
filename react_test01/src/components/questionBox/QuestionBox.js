@@ -74,11 +74,15 @@ function WhatU(props){
   
   return findhead;
 };
+//     "seq": 10035484,
+//     "name": "로딩중",
+//     "lv": 1
 
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
   const [jsonList, setJsonList] = useState(ViewJson);
+  const [user, setUser] = useState(null);
   const [cookies] = useCookies();
   const SSRJSON = jsonList
   
@@ -90,6 +94,18 @@ function QuestionBox(props) {
     .then((response) => response.data)
     .then((data) => {
       setJsonList(data);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }
+  , []);
+
+  useEffect(()=>{
+    axios.get("/rest/user")
+    .then((response) => response.data)
+    .then((data) => {
+      setUser(data);
     })
     .catch(function (error) {
       console.log(error)
@@ -112,7 +128,7 @@ function QuestionBox(props) {
         <WrapperDiv>
           <BoxController white={whiteClick} setWhite={setWhiteClick}
           clicked={bodyClicked} setClicked={setBodyClicked} setShowAlmoney={setShowAlmoney}
-          SSRJSON={SSRJSON} USER={WhatU(SSRJSON)} SESS={SESS}></BoxController>
+          SSRJSON={SSRJSON} USER={user} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>
       

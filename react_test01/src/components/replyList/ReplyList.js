@@ -1,19 +1,7 @@
 import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
+import React, { useState } from 'react';
 
-
-// const AutoRenewP = styled.p`
-//     display: inline-block;
-//     font-size: 12px;
-//     padding: 4px 10px;
-//     border: 1px solid #d0d0d0;
-//     border-radius: 20px;
-//     color: #888;
-//     background: #fff;
-//     cursor: pointer;
-//     margin: 0;
-//     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-// `;
 
 const AutoRenewDiv = styled.div`
     display: inline-block;
@@ -22,13 +10,6 @@ const AutoRenewDiv = styled.div`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
 `;
-
-// const ReplyImg = styled.img`
-//     width: 13px;
-//     display: inline-block;
-//     margin-bottom: -2px;
-// `;
-
 const TextArea = styled.textarea`
     flex-grow: 1;
     padding: 9px 20px;
@@ -43,7 +24,6 @@ const TextArea = styled.textarea`
     outline: none;
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
-
 const ReplySubmit = styled.div`
     text-align: right;
     margin-left: -5px;
@@ -53,7 +33,6 @@ const ReplySubmit = styled.div`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
 `;
-
 const ReplySubmitP = styled.p`
     display: inline-block;
     font-size: 12px;
@@ -61,7 +40,6 @@ const ReplySubmitP = styled.p`
     color: #ccc;
     margin-bottom: 0;
 `;
-
 const ReplyButton = styled.button`
     flex-grow: 0;
     height: 40px;
@@ -76,19 +54,6 @@ const ReplyButton = styled.button`
     color: #737373;
     font-size: 12px;
 `;
-
-// const ReplySubmitI = styled.i`
-//     display: inline-block;
-//     font-style: normal;
-//     color: #999;
-//     font-size: 12px;
-// `;
-// const ReplySubmitImg = styled.img`
-//     display: inline-block;
-//     width: 12px;
-//     margin-bottom: -1px;
-// `;
-
 const ShowView = styled.div`
     transition-property: 'max-height';
     transition-duration: ${props => props.row ? '0.1s': '0.3s'};
@@ -110,38 +75,39 @@ const TextAreaDiv = styled.div`
 `;
 
 function ShowList(props){
-
+    const [length, setlength] = useState(0);
     const USER= props.USER;
     
     //const SEQ = USER !== null ? USER.seq : "";
-    const NAME = USER !== null ? USER.info.name : "";
+    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
+    
     //const LV = USER !== null ? USER.lv : "";
 
     return (
     <ShowView row={props.replyToggle}>
-        <form>
-              <div>
-                  <TextAreaDiv>
-                  <TextArea placeholder=
-                  { NAME===""? "로그인 후 이용하시기 바랍니다.": NAME+" 님의 의견을 댓글로 입력해주세요."}
-                  maxlength="400"></TextArea>
-                  <ReplyButton>
-                        등록
-                    </ReplyButton>
-                  </TextAreaDiv>
-                  <AutoRenewDiv>
-                      {/* <AutoRenewP>
-                          <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
-                      </AutoRenewP> */}
-                  </AutoRenewDiv>
-                  <ReplySubmit>
-                      <ReplySubmitP>
-                          <span>0</span>/400</ReplySubmitP>
-                      
-                  </ReplySubmit>
-              </div>
-          </form>
-          <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
+        <div>
+            <TextAreaDiv>
+            <TextArea placeholder=
+            { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
+            maxLength="400" onChange={(e) => setlength(e.target.value.length) }></TextArea>
+            <ReplyButton onClick={() => {
+                console.log("click!");
+            } }>
+                등록
+            </ReplyButton>
+            </TextAreaDiv>
+            <AutoRenewDiv>
+                {/* <AutoRenewP>
+                    <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
+                </AutoRenewP> */}
+            </AutoRenewDiv>
+            <ReplySubmit>
+                <ReplySubmitP>
+                    <span>{length}</span>/400</ReplySubmitP>
+                
+            </ReplySubmit>
+        </div>
+        <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
     </ShowView>
     );
 }

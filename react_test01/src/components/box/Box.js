@@ -7,7 +7,7 @@ import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
-import ReplyList from '../replyList/test'
+import ReplyList from '../replyList/ReplyList'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 const MainDiv = styled.div`
   border: 1px solid #ddd;
@@ -23,7 +23,6 @@ const MainDiv = styled.div`
   color: #333;
   
 `;
-
 const AnswerAlmoneyImg = styled.img`
   width: 20px;
   display: inline-block;
@@ -31,7 +30,6 @@ const AnswerAlmoneyImg = styled.img`
   margin-right: 5px;
   cursor: pointer;
 `;
-
 const AlmoneySpan = styled.span`
   margin: 0;
   padding: 0;
@@ -44,9 +42,8 @@ const AlmoneySpan = styled.span`
   cursor: pointer;
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
-
 const AlmoneyDiv = styled.div`
-  display: inline-block;
+  display: ${ props => props.num === 0 ? "none" : "inline-block"};
   cursor: pointer;
   position: relative;
   margin: 0;
@@ -54,7 +51,6 @@ const AlmoneyDiv = styled.div`
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 `;
-
 //jsonArr
 const replyCount = (replys) => {
   return replys.length
@@ -84,7 +80,7 @@ function Box(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <div>
-          <AlmoneyDiv>
+          <AlmoneyDiv num={extraAlmoney}>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
             </AnswerAlmoneyImg>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>

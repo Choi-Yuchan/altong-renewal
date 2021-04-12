@@ -6,7 +6,7 @@ import ABoxTop from '../aBoxTop/ABoxTop';
 import Contents from '../contents/Contents';
 import LangTransBox from '../langTransBox/LangTransBox';
 import ReplyBox from '../replyBox/ReplyBox';
-import ReplyList from '../replyList/test';
+import ReplyList from '../replyList/ReplyList';
 import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
 import AltongEtimate from '../altongEtimate/AltongEtimate';
 import Num3Comma from '../functions/num3comma/Num3Comma'
@@ -25,7 +25,7 @@ const MainDiv = styled.div`
   color: #333;
 `;
 const AlmoneyDiv = styled.div`
-  display: inline-block;
+  display: ${ props => props.num === 0 ? "none" : "inline-block"};
   cursor: pointer;
   position: relative;
   margin: 0;
@@ -157,7 +157,7 @@ function AnswerBox(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <TopH3>
-          <AlmoneyDiv>
+          <AlmoneyDiv num={extraAlmoney}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
