@@ -102,6 +102,7 @@ function Box(props) {
           bad={props.jsonArr.bad} ></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
+          pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
           replys={props.jsonArr.replys} ></ReplyList>
         
     </MainDiv>

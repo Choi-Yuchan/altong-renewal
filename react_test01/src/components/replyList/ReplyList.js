@@ -74,32 +74,42 @@ const TextAreaDiv = styled.div`
     box-sizing: border-box;
 `;
 
+const SendReply = (pageSeq, QorA, text) => {
+    axios.put(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":
+        "/rest/answers/"+pageSeq+"/reply",{
+            "text":text
+        })
+    .then((response) => response.data)
+    .then((data) => {
+        console.log(data);
+    })
+    .catch(function (error) {
+        console.log("error : " + error)
+    });
+}
+// {props.pageSeq} seqComponent={props.seqComponent}
 function ShowList(props){
     const [length, setlength] = useState(0);
+    const [text, setText] = useState("");
     const USER= props.USER;
     
-    //const SEQ = USER !== null ? USER.seq : "";
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     
-    //const LV = USER !== null ? USER.lv : "";
-
     return (
     <ShowView row={props.replyToggle}>
         <div>
             <TextAreaDiv>
             <TextArea placeholder=
             { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
-            maxLength="400" onChange={(e) => setlength(e.target.value.length) }></TextArea>
+            maxLength="400" onChange={(e) => {
+                setlength(e.target.value.length);
+                setText(e.target.value);
+            } } value={text} ></TextArea>
             <ReplyButton onClick={() => {
-                console.log("click!");
-            } }>
-                등록
-            </ReplyButton>
+                SendReply(props.pageSeq, props.seqComponent, text);
+            } }>등록</ReplyButton>
             </TextAreaDiv>
             <AutoRenewDiv>
-                {/* <AutoRenewP>
-                    <ReplyImg src={process.env.PUBLIC_URL + '/test_source/autorenew.svg'}></ReplyImg>새로고침
-                </AutoRenewP> */}
             </AutoRenewDiv>
             <ReplySubmit>
                 <ReplySubmitP>
@@ -112,7 +122,6 @@ function ShowList(props){
     );
 }
 
-// white={props.white} setWhite={props.setWhite}
 function ReplyList(props) {
     return (
       <ShowList USER={props.USER} replyToggle={props.replyToggle}

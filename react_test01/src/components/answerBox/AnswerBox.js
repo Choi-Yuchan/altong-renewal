@@ -113,7 +113,9 @@ function OpenDiv(props){
       <ReplyList
         USER={props.USER}  replyToggle={props.replyToggle} 
         white={props.white} setWhite={props.setWhite}
-        replys={props.replys}></ReplyList>
+        replys={props.replys}
+        pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
+        ></ReplyList>
       </>
     );
   }
