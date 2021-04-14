@@ -141,10 +141,36 @@ function ViewAnswerBtn(props){
     return <AnswerBtnA>답변하기</AnswerBtnA>
 }
 
+const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
+    axios.put(seqComponent==='Q' ? "/rest/questions/" +
+    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
+        estiSeq:"G"
+    })
+    .then((response) => response.data)
+    .then((data) => {
+        if(data.code == "success"){
+            setGood(data.good);
+            setBad(data.bad);
+        }
+    });
+}
+const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
+    axios.put(seqComponent==='Q' ? "/rest/questions/" +
+    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
+        estiSeq:"B"
+    })
+    .then((response) => response.data)
+    .then((data) => {
+        if(data.code == "success"){
+            setGood(data.good);
+            setBad(data.bad);
+        }
+    });
+}
+
 
 function ReplyBox(props) {
-    const reply = props.reply;
-    const setReply = props.setReply;
+    
 
     useEffect(()=>{
             if(props.pageSeq === undefined){}else{
@@ -176,11 +202,15 @@ function ReplyBox(props) {
               </HrefA>
           </ListReply>
           <EmotionList>
-              <EmotionListIconDiv className="smileIcon" >
+              <EmotionListIconDiv className="smileIcon" onClick={()=> {
+                  SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
+              }}>
                   <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                   <EmotionB >{good}</EmotionB>
               </EmotionListIconDiv>
-              <EmotionListIconDiv className="sadIcon">
+              <EmotionListIconDiv className="sadIcon" onClick={()=> {
+                  SendBad(props.seqComponent, props.pageSeq);
+              }}>
                   <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                   <EmotionB >{bad}</EmotionB>
               </EmotionListIconDiv>
