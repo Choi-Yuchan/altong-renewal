@@ -102,7 +102,6 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
 }
 // {props.pageSeq} seqComponent={props.seqComponent}
 function ShowList(props){
-    const [length, setlength] = useState(0);
     const [text, setText] = useState("");
     const USER= props.USER;
 
@@ -117,7 +116,6 @@ function ShowList(props){
             <TextArea placeholder=
             { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
             maxLength="400" onChange={(e) => {
-                setlength(e.target.value.length);
                 setText(e.target.value);
             } } value={text} ></TextArea>
             <ReplyButton onClick={() => {
@@ -128,7 +126,7 @@ function ShowList(props){
             </AutoRenewDiv>
             <ReplySubmit>
                 <ReplySubmitP>
-                    <span>{length}</span>/400</ReplySubmitP>
+                    <span>{text.length}</span>/400</ReplySubmitP>
                 
             </ReplySubmit>
         </div>
