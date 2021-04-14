@@ -102,7 +102,7 @@ function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
       <>
-      <AltongEtimate etimate={props.etimate}></AltongEtimate>
+      <AltongEtimate etimate={props.etimate} pageSeq={props.pageSeq}></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox
         pageSeq={props.pageSeq}

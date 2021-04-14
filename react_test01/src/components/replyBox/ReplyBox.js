@@ -178,7 +178,6 @@ function ReplyBox(props) {
                 axios.get(voteUrl)
                 .then((response) => response.data)
                 .then( (data) => {
-                    setVote(true);
                     setGood(data.good);
                     setBad(data.bad);
                 })
@@ -189,8 +188,6 @@ function ReplyBox(props) {
         }
     , []);
     
-
-    const [vote,setVote] = useState("false");
     const [good,setGood] = useState(0);
     const [bad,setBad] = useState(0);
 
@@ -209,7 +206,7 @@ function ReplyBox(props) {
                   <EmotionB >{good}</EmotionB>
               </EmotionListIconDiv>
               <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                  SendBad(props.seqComponent, props.pageSeq);
+                  SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
               }}>
                   <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                   <EmotionB >{bad}</EmotionB>

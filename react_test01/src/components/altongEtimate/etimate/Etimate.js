@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import axios from 'axios';
 
 const MainLi = styled.li`
     display: inline-block;
@@ -50,16 +51,43 @@ const langEsti = (img) => {
     return arr[img]
 }
 
-function Etimate(props) {
+const GetEstimate = (pageSeq, select, setEtimates) => {
+    axios.put("/rest/answers/"+pageSeq+"/estimate",{
+        esti: select
+    })
+    .then((response) => response.data)
+    .then( (data) => {
+        console.log(data);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 
-  return (
-    <MainLi>
-        <EtimateA>
-            <EtimateImg  src={"/Common/images/esti_"+props.img+'.png'}></EtimateImg>
-            <EtimateSpan>{langEsti(props.img-1)}<EtimateEm>{props.num}</EtimateEm></EtimateSpan>
-        </EtimateA>
-    </MainLi>
-  );
+    axios.get("/rest/answers/"+pageSeq+"/estimate")
+    .then((response) => response.data)
+    .then( (data) => {
+        setEtimates(data);
+    })
+    .catch(function (error) {
+        console.log(error)
+    });
+  }
+
+
+
+function Etimate(props) {
+    const setEtimates = props.setEtimates;
+
+    return (
+        <MainLi onClick={()=>{
+            GetEstimate(props.pageSeq, props.img, setEtimates);
+        }}>
+            <EtimateA>
+                <EtimateImg  src={"/Common/images/esti_"+props.img+'.png'}></EtimateImg>
+                <EtimateSpan>{langEsti(props.img-1)}<EtimateEm>{props.num}</EtimateEm></EtimateSpan>
+            </EtimateA>
+        </MainLi>
+    );
 }
 
 export default Etimate;
