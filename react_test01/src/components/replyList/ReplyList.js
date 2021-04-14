@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
+import axios from 'axios';
 
 
 const AutoRenewDiv = styled.div`
@@ -74,17 +75,28 @@ const TextAreaDiv = styled.div`
     box-sizing: border-box;
 `;
 
-const SendReply = (pageSeq, QorA, text) => {
+const SendReply = (pageSeq, QorA, text, setText) => {
+    console.log(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":"/rest/answers/"+pageSeq+"/reply");
+    
     axios.put(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":
         "/rest/answers/"+pageSeq+"/reply",{
             "text":text
         })
     .then((response) => response.data)
     .then((data) => {
+        setText("");
+        console.log("data : ..");
         console.log(data);
+
+        if(data.code == "success"){
+            
+        }else if(data.code == ""){
+
+        }
     })
     .catch(function (error) {
-        console.log("error : " + error)
+        console.log("error : " + error);
+        console.log(error);
     });
 }
 // {props.pageSeq} seqComponent={props.seqComponent}
@@ -92,6 +104,8 @@ function ShowList(props){
     const [length, setlength] = useState(0);
     const [text, setText] = useState("");
     const USER= props.USER;
+
+    const replys = props.replys;
     
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     
@@ -106,7 +120,7 @@ function ShowList(props){
                 setText(e.target.value);
             } } value={text} ></TextArea>
             <ReplyButton onClick={() => {
-                SendReply(props.pageSeq, props.seqComponent, text);
+                SendReply(props.pageSeq, props.seqComponent, text, setText);
             } }>등록</ReplyButton>
             </TextAreaDiv>
             <AutoRenewDiv>
@@ -117,7 +131,7 @@ function ShowList(props){
                 
             </ReplySubmit>
         </div>
-        <ReplyContainer white={props.white} setWhite={props.setWhite} replys={props.replys}></ReplyContainer>
+        <ReplyContainer white={props.white} setWhite={props.setWhite} replys={replys}></ReplyContainer>
     </ShowView>
     );
 }
@@ -125,8 +139,11 @@ function ShowList(props){
 function ReplyList(props) {
     return (
       <ShowList USER={props.USER} replyToggle={props.replyToggle}
+        pageSeq={props.pageSeq} seqComponent={props.seqComponent}
         white={props.white} setWhite={props.setWhite}
-        className="ReplyList" replys={props.replys}>
+        className="ReplyList" replys={props.replys}
+        setReplys={props.setReplys}
+        >
       </ShowList>
     );
   }

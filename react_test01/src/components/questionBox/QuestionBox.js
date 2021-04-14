@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
-import TrueMap from '../functions/trueMap/TrueMap'
-import GlobalFonts from "../../fonts/fonts"
 
 import ViewJson from '../../json/view-test.json'
 

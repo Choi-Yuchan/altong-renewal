@@ -143,6 +143,8 @@ function ViewAnswerBtn(props){
 
 
 function ReplyBox(props) {
+    const reply = props.reply;
+    const setReply = props.setReply;
 
     useEffect(()=>{
             if(props.pageSeq === undefined){}else{
@@ -176,11 +178,11 @@ function ReplyBox(props) {
           <EmotionList>
               <EmotionListIconDiv className="smileIcon">
                   <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
-                  <EmotionB>{good}</EmotionB>
+                  <EmotionB >{good}</EmotionB>
               </EmotionListIconDiv>
               <EmotionListIconDiv className="sadIcon">
                   <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
-                  <EmotionB>{bad}</EmotionB>
+                  <EmotionB >{bad}</EmotionB>
               </EmotionListIconDiv>
           </EmotionList>
           <AnswerDoList>

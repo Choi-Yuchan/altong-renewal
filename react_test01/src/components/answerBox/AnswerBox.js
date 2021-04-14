@@ -111,10 +111,11 @@ function OpenDiv(props){
         good={props.good} bad={props.bad} seqComponent={props.seqComponent}
       ></ReplyBox>
       <ReplyList
+        setReplys={props.setReplys}
         USER={props.USER}  replyToggle={props.replyToggle} 
         white={props.white} setWhite={props.setWhite}
         replys={props.replys}
-        pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
+        pageSeq={props.pageSeq} seqComponent={props.seqComponent}
         ></ReplyList>
       </>
     );
@@ -140,6 +141,7 @@ function AnswerBox(props) {
   const [openAnswer, setOpenAnswer] = useState('close');
   const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
   const [extraAlmoney, setExtraAlmoney] = useState(0);
+  const [replys, setReplys] = useState(props.jsonArr.replys);
 
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
@@ -170,7 +172,7 @@ function AnswerBox(props) {
         </TopH3>
         <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
           clicked={props.clicked} setClicked={props.setClicked}
-          replyCount={replyCount(props.jsonArr.replys)}
+          replyCount={replyCount(replys)}
           white={props.white} setWhite={props.setWhite}
           pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
@@ -181,9 +183,10 @@ function AnswerBox(props) {
           setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv
           pageSeq={props.jsonArr.pageSeq}
+          setReplys={setReplys}
           className="OpenDiv" replyToggle={replyToggle}
-          replyCount={replyCount(props.jsonArr.replys)}
-          setReplyToggle={setReplyToggle} replys={props.jsonArr.replys}
+          replyCount={replyCount(replys)}
+          setReplyToggle={setReplyToggle} replys={replys}
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} etimate={props.jsonArr.etimate}
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}

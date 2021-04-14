@@ -61,6 +61,7 @@ const replyCount = (replys) => {
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [extraAlmoney, setExtraAlmoney] = useState(0);
+  const [replys, setReplys] = useState(props.jsonArr.replys);
 
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
@@ -98,12 +99,14 @@ function Box(props) {
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
-          replyCount={replyCount(props.jsonArr.replys)} good={props.jsonArr.good}
+          replyCount={replyCount(reply)} good={props.jsonArr.good}
+          
           bad={props.jsonArr.bad} ></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
           pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
-          replys={props.jsonArr.replys} ></ReplyList>
+          setReplys={setReplys}
+          replys={replys} ></ReplyList>
         
     </MainDiv>
   );

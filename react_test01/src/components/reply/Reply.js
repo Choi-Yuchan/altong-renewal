@@ -201,8 +201,8 @@ function Reply(props) {
                                 <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                        <AldolViewContents content={props.reply.content} from={props.reply.from}
-                            seqId={props.reply.profile.seqId} to={props.reply.to} al={props.reply.al}>
+                        <AldolViewContents content={props.reply.content} from={props.reply.nick2}
+                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}>
                         </AldolViewContents>
                   </tr>
                   <tr>
