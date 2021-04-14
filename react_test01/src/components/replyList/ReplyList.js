@@ -101,6 +101,10 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
         }else if(data.code == "continuetime"){
             alert("연속으로 댓글을 등록하실 수는 없습니다. \n이전 댓글 등록 후부터 "+
             data.num + "초 경과 후에 다시 댓글을 등록하여 주십시오!");
+        }else if(data.code == "notlogin"){
+            alert("로그인후 이용 가능합니다.");
+        }else if(data.code == "nulldata"){
+            alert("댓글 내용을 입력하세요!");
         }
 
     })
