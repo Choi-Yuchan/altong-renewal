@@ -91,7 +91,12 @@ function QuestionBox(props) {
     axios.get("/rest/questions/"+props.match.params.questions)
     .then((response) => response.data)
     .then((data) => {
-      setJsonList(data);
+      if(data.code=="error"){
+        console.log("error");
+        console.log(data.error);
+      }else{
+        setJsonList(data);
+      }
     })
     .catch(function (error) {
       console.log(error)
@@ -103,13 +108,7 @@ function QuestionBox(props) {
     axios.get("/rest/user")
     .then((response) => response.data)
     .then((data) => {
-      if(data.code=="error"){
-        console.log("error");
-        console.log(data.error);
-      }else{
         setUser(data);
-      }
-      
     })
     .catch(function (error) {
       console.log(error)

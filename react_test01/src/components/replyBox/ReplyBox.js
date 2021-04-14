@@ -176,7 +176,7 @@ function ReplyBox(props) {
               </HrefA>
           </ListReply>
           <EmotionList>
-              <EmotionListIconDiv className="smileIcon">
+              <EmotionListIconDiv className="smileIcon" >
                   <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                   <EmotionB >{good}</EmotionB>
               </EmotionListIconDiv>

@@ -2,7 +2,14 @@ import Reply from '../reply/Reply'
 
 
 function MakeReplyList(props){
-    return props.replys.map( (reply) => <Reply white={props.white} setWhite={props.setWhite} key={reply.id} reply={reply}></Reply> );
+    
+    return props.replys.map( (reply) => 
+    <Reply 
+        white={props.white} setWhite={props.setWhite}
+        key={reply.id} reply={reply}>
+    </Reply> ).sort(function(a, b){
+        return b.key - a.key;
+    });
 }
 
 
