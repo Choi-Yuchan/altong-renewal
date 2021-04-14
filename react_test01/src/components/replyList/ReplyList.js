@@ -91,9 +91,18 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
 
         if(data.code == "success"){
             setReplys(data.replys);
-        }else if(data.code == ""){
-
+        }else if(data.code == "daydup"){
+            if(data.num > 0){
+                alert("1일 기준, 동일 제목 또는 내용의 답변글은 중복 " + 
+                data.num + "건 까지만 허용 등록될 수 있습니다. \n다른 제목 또는 내용으로 글을 다시 등록하여 주십시오!");
+            }else{
+                alert("1일 기준, 동일 내용의 댓글이 이미 등록되어 있습니다. \n다른 내용으로 댓글을 다시 등록하여 주십시오!");
+            }
+        }else if(data.code == "continuetime"){
+            alert("연속으로 댓글을 등록하실 수는 없습니다. \n이전 댓글 등록 후부터 "+
+            data.num + "초 경과 후에 다시 댓글을 등록하여 주십시오!");
         }
+
     })
     .catch(function (error) {
         console.log("error : " + error);
