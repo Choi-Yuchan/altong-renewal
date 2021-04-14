@@ -75,21 +75,22 @@ const TextAreaDiv = styled.div`
     box-sizing: border-box;
 `;
 
-const SendReply = (pageSeq, QorA, text, setText) => {
+const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
     console.log(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":"/rest/answers/"+pageSeq+"/reply");
     
+    const textV = text;
+    setText("");
     axios.put(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":
         "/rest/answers/"+pageSeq+"/reply",{
-            "text":text
+            "text":textV
         })
     .then((response) => response.data)
     .then((data) => {
-        setText("");
         console.log("data : ..");
         console.log(data);
 
         if(data.code == "success"){
-            
+            setReplys(data.replys);
         }else if(data.code == ""){
 
         }
@@ -120,7 +121,7 @@ function ShowList(props){
                 setText(e.target.value);
             } } value={text} ></TextArea>
             <ReplyButton onClick={() => {
-                SendReply(props.pageSeq, props.seqComponent, text, setText);
+                SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys);
             } }>등록</ReplyButton>
             </TextAreaDiv>
             <AutoRenewDiv>

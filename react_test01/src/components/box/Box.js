@@ -99,7 +99,7 @@ function Box(props) {
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
-          replyCount={replyCount(reply)} good={props.jsonArr.good}
+          replyCount={replyCount(replys)} good={props.jsonArr.good}
           
           bad={props.jsonArr.bad} ></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
