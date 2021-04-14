@@ -103,7 +103,13 @@ function QuestionBox(props) {
     axios.get("/rest/user")
     .then((response) => response.data)
     .then((data) => {
-      setUser(data);
+      if(data.code=="error"){
+        console.log("error");
+        console.log(data.error);
+      }else{
+        setUser(data);
+      }
+      
     })
     .catch(function (error) {
       console.log(error)
