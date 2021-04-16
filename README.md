@@ -35,3 +35,10 @@ cd code/git/react_test01;npm i -g create-react-app; npm i -g axios; npm i -g sty
 ```
 npm run build;serve -l 3000 -s build;
 ```
+
+
+Library 추가 (2021-04-16)
+'''
+npm i react-confirm
+
+'''
