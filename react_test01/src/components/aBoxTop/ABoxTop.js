@@ -6,6 +6,101 @@ import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
+function TimeToggler(props) {
+  if(props.timeToggle !== true ){
+    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
+  }
+  return <>  1시간 전 · </>
+}
+
+const UlvText = (props) => {
+  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  return LV[props];
+}
+
+function OpenAnswerView(props){
+  if(props.openAnswer === 'close'){
+    return <>
+      <ViewCountReplyImg src={"/Common/images/icon_reply.svg"}></ViewCountReplyImg>{props.replyCount}
+    </>
+  }
+  return '';
+}
+
+const handleImgError = (e) => {
+  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+}
+
+// atm_top_wrap
+function ABoxTop(props) {
+  const [timeToggle, setTimeToggle] = useState(true);
+  const [popToggle, setPopToggle] = useState(false);
+  const [showMini, setShowMini] = useState(false);
+
+
+  useEffect(() => {
+    if(props.clicked === true){
+      setShowMini(false);
+    }
+  }, [props.clicked]);
+
+  useEffect(() => {
+    if(props.white === true){
+      setShowMini(false);
+      setPopToggle(false);
+    }
+  }, [props.white]);
+
+  return (
+    <MainDiv className="ABoxTop">
+      <HeadFigure onClick={(e) => {
+        props.setClicked(false);
+        setShowMini(true);
+        e.stopPropagation();
+      }}>
+        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
+        <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
+      </HeadFigure>
+      <WrapUl>
+        <Wrapli>
+        <HeadFigureLocaleImg src={"/Common/images/nation/" + props.head.locale+'.svg'}>
+            </HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+          <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
+        <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+          onClick={() => {
+            setTimeToggle(!timeToggle);
+            }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
+        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg>
+        <Num3Comma num={props.head.readCount}></Num3Comma>
+        <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} >
+          
+        </OpenAnswerView>
+        </WrapThankli>
+      </WrapUl>
+      <BtnBox onClick={(e) => {
+        setPopToggle(!popToggle);
+        props.setWhite(false);
+        e.stopPropagation();
+        }}>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <QuestionPopup 
+          setShowAlmoney={props.setShowAlmoney}
+          setClicked={props.setClicked}
+          pageSeq={props.pageSeq}
+          seqComponent={props.seqComponent} popToggle={popToggle}
+        ></QuestionPopup>
+      </BtnBox>
+      <MiniProfile setClicked={props.setClicked} showMini={showMini}
+         mini={props.mini} clicked={props.clicked} 
+        setShowMini={setShowMini}></MiniProfile>
+    </MainDiv>
+  );
+  }
+  
+  export default ABoxTop;
+
 const MainDiv = styled.div`
   position: relative;
   padding-left: 75px;
@@ -156,97 +251,5 @@ const ViewCountReplyImg = styled.img`
   margin-right: 2px;
 `;
 
-function TimeToggler(props) {
-  if(props.timeToggle !== true ){
-    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
-  }
-  return <>  1시간 전 · </>
-}
 
-const UlvText = (props) => {
-  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
-  return LV[props];
-}
-function OpenAnswerView(props){
-  if(props.openAnswer === 'close'){
-    return <>
-      <ViewCountReplyImg src={"/Common/images/icon_reply.svg"}></ViewCountReplyImg>{props.replyCount}
-    </>
-  }
-  return '';
-}
-
-const handleImgError = (e) => {
-  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
-}
-
-// atm_top_wrap
-function ABoxTop(props) {
-  const [timeToggle, setTimeToggle] = useState(true);
-  const [popToggle, setPopToggle] = useState(false);
-  const [showMini, setShowMini] = useState(false);
-
-
-  useEffect(() => {
-    if(props.clicked === true){
-      setShowMini(false);
-    }
-  }, [props.clicked]);
-
-  useEffect(() => {
-    if(props.white === true){
-      setShowMini(false);
-      setPopToggle(false);
-    }
-  }, [props.white]);
-
-  return (
-    <MainDiv className="ABoxTop">
-      <HeadFigure onClick={(e) => {
-        props.setClicked(false);
-        setShowMini(true);
-        e.stopPropagation();
-      }}>
-        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
-        <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
-      </HeadFigure>
-      <WrapUl>
-        <Wrapli>
-        <HeadFigureLocaleImg src={"/Common/images/nation/" + props.head.locale+'.svg'}>
-            </HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
-          <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
-        <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-          onClick={() => {
-            setTimeToggle(!timeToggle);
-            }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
-        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg>
-        <Num3Comma num={props.head.readCount}></Num3Comma>
-        <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} >
-          
-        </OpenAnswerView>
-        </WrapThankli>
-      </WrapUl>
-      <BtnBox onClick={(e) => {
-        setPopToggle(!popToggle);
-        props.setWhite(false);
-        e.stopPropagation();
-        }}>
-        <BtnBoxI></BtnBoxI>
-        <BtnBoxI></BtnBoxI>
-        <BtnBoxI></BtnBoxI>
-        <QuestionPopup 
-          setShowAlmoney={props.setShowAlmoney}
-          setClicked={props.setClicked}
-          pageSeq={props.pageSeq}
-          seqComponent={props.seqComponent} popToggle={popToggle}
-        ></QuestionPopup>
-      </BtnBox>
-      <MiniProfile setClicked={props.setClicked} showMini={showMini}
-         mini={props.mini} clicked={props.clicked} 
-        setShowMini={setShowMini}></MiniProfile>
-    </MainDiv>
-  );
-  }
-  
-  export default ABoxTop;
   

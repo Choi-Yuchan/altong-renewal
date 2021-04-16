@@ -11,6 +11,117 @@ import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
 import AltongEtimate from '../altongEtimate/AltongEtimate';
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
+const replyCount = (replys) => {
+  if(replys==null) return 0
+  return replys.length
+}
+
+function OpenDiv(props){
+  if(props.openAnswer === 'open'){
+    return (
+      <>
+      <AltongEtimate etimate={props.etimate} pageSeq={props.pageSeq}></AltongEtimate>
+      <LangTransBox></LangTransBox>
+      <ReplyBox
+        pageSeq={props.pageSeq}
+        replyToggle={props.replyToggle} replyCount={props.replyCount}
+        setReplyToggle={props.setReplyToggle}
+        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
+      ></ReplyBox>
+      <ReplyList
+        setReplys={props.setReplys}
+        USER={props.USER}  replyToggle={props.replyToggle} 
+        white={props.white} setWhite={props.setWhite}
+        replys={props.replys}
+        pageSeq={props.pageSeq} seqComponent={props.seqComponent}
+        ></ReplyList>
+      </>
+    );
+  }
+  return <AUnBoxBottom></AUnBoxBottom>
+}
+
+// choice:true,
+// netizen:true,
+
+const ChoiceView = (props) => {
+  if(props.choice) return <TopChoiceP><TopImg src={'/Common/images/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
+  return '';
+}
+const ChoiceNetizenView = (props) => {
+  if(props.netizen) return <TopNetizenP><TopImg src={'/Common/images/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
+  return '';
+}
+// white={props.white} setWhite={props.setWhite}
+
+function AnswerBox(props) {
+  const [replyToggle, setReplyToggle] = useState(true);
+  const [openAnswer, setOpenAnswer] = useState('close');
+  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
+  const [extraAlmoney, setExtraAlmoney] = useState(0);
+  const [replys, setReplys] = useState(props.jsonArr.replys);
+
+  useEffect(()=>{
+    if(props.jsonArr.pageSeq===undefined){}else{
+      axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+      .then((response) => response.data)
+      .then( (data) => {
+        setExtraAlmoney(data.ExtraAlmoney);
+      })
+      .catch(function (error) {
+        console.log(error)
+      })  
+    }
+  }
+  , []);
+
+  return (
+    <MainDiv className="Box">
+        {/* atm_top_wrap */}
+        <TopH3>
+          <AlmoneyDiv num={extraAlmoney}>
+            <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
+            <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
+          </AlmoneyDiv>
+          <TopH3Div>
+            <ChoiceView choice={props.jsonArr.choice}></ChoiceView>
+            <ChoiceNetizenView netizen={props.jsonArr.netizen}></ChoiceNetizenView>
+          </TopH3Div>
+        </TopH3>
+        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
+          clicked={props.clicked} setClicked={props.setClicked}
+          replyCount={replyCount(replys)}
+          white={props.white} setWhite={props.setWhite}
+          pageSeq={props.jsonArr.pageSeq}
+          setShowAlmoney={props.setShowAlmoney}
+          openAnswer={openAnswer}
+          ></ABoxTop>
+        <Contents contents={message} setOpenAnswer={setOpenAnswer} 
+          openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
+          setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
+        <OpenDiv
+          pageSeq={props.jsonArr.pageSeq}
+          setReplys={setReplys}
+          className="OpenDiv" replyToggle={replyToggle}
+          replyCount={replyCount(replys)}
+          setReplyToggle={setReplyToggle} replys={replys}
+          openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
+          USER={props.USER} etimate={props.jsonArr.etimate}
+          white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
+        ></OpenDiv>
+        <PopupADdiv>
+          <PopupADdivIn>
+            <PopupADImg >
+            </PopupADImg>
+          </PopupADdivIn>
+        </PopupADdiv>
+        
+    </MainDiv>
+  );
+}
+
+export default AnswerBox;
+
 const MainDiv = styled.div`
   border: 1px solid #ddd;
   padding: 15px 20px;
@@ -118,113 +229,4 @@ const PopupADImg = styled.img`
 `;
 
 
-const replyCount = (replys) => {
-  if(replys==null) return 0
-  return replys.length
-}
 
-function OpenDiv(props){
-  if(props.openAnswer === 'open'){
-    return (
-      <>
-      <AltongEtimate etimate={props.etimate} pageSeq={props.pageSeq}></AltongEtimate>
-      <LangTransBox></LangTransBox>
-      <ReplyBox
-        pageSeq={props.pageSeq}
-        replyToggle={props.replyToggle} replyCount={props.replyCount}
-        setReplyToggle={props.setReplyToggle}
-        good={props.good} bad={props.bad} seqComponent={props.seqComponent}
-      ></ReplyBox>
-      <ReplyList
-        setReplys={props.setReplys}
-        USER={props.USER}  replyToggle={props.replyToggle} 
-        white={props.white} setWhite={props.setWhite}
-        replys={props.replys}
-        pageSeq={props.pageSeq} seqComponent={props.seqComponent}
-        ></ReplyList>
-      </>
-    );
-  }
-  return <AUnBoxBottom></AUnBoxBottom>
-}
-
-// choice:true,
-// netizen:true,
-
-const ChoiceView = (props) => {
-  if(props.choice) return <TopChoiceP><TopImg src={process.env.PUBLIC_URL + '/test_source/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
-  return '';
-}
-const ChoiceNetizenView = (props) => {
-  if(props.netizen) return <TopNetizenP><TopImg src={process.env.PUBLIC_URL + '/test_source/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
-  return '';
-}
-// white={props.white} setWhite={props.setWhite}
-
-function AnswerBox(props) {
-  const [replyToggle, setReplyToggle] = useState(true);
-  const [openAnswer, setOpenAnswer] = useState('close');
-  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
-  const [extraAlmoney, setExtraAlmoney] = useState(0);
-  const [replys, setReplys] = useState(props.jsonArr.replys);
-
-  useEffect(()=>{
-    if(props.jsonArr.pageSeq===undefined){}else{
-      axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
-      .then((response) => response.data)
-      .then( (data) => {
-        setExtraAlmoney(data.ExtraAlmoney);
-      })
-      .catch(function (error) {
-        console.log(error)
-      })  
-    }
-  }
-  , []);
-
-  return (
-    <MainDiv className="Box">
-        {/* atm_top_wrap */}
-        <TopH3>
-          <AlmoneyDiv num={extraAlmoney}>
-            <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
-            <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
-          </AlmoneyDiv>
-          <TopH3Div>
-            <ChoiceView choice={props.jsonArr.choice}></ChoiceView>
-            <ChoiceNetizenView netizen={props.jsonArr.netizen}></ChoiceNetizenView>
-          </TopH3Div>
-        </TopH3>
-        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
-          clicked={props.clicked} setClicked={props.setClicked}
-          replyCount={replyCount(replys)}
-          white={props.white} setWhite={props.setWhite}
-          pageSeq={props.jsonArr.pageSeq}
-          setShowAlmoney={props.setShowAlmoney}
-          openAnswer={openAnswer}
-          ></ABoxTop>
-        <Contents contents={message} setOpenAnswer={setOpenAnswer} 
-          openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
-          setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
-        <OpenDiv
-          pageSeq={props.jsonArr.pageSeq}
-          setReplys={setReplys}
-          className="OpenDiv" replyToggle={replyToggle}
-          replyCount={replyCount(replys)}
-          setReplyToggle={setReplyToggle} replys={replys}
-          openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
-          USER={props.USER} etimate={props.jsonArr.etimate}
-          white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
-        ></OpenDiv>
-        <PopupADdiv>
-          <PopupADdivIn>
-            <PopupADImg >
-            </PopupADImg>
-          </PopupADdivIn>
-        </PopupADdiv>
-        
-    </MainDiv>
-  );
-}
-
-export default AnswerBox;
