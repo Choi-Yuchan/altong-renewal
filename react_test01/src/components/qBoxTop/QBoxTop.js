@@ -95,6 +95,7 @@ const WrapSpan = styled.span`
   position: relative;
   top: -1px;
   list-style: none;
+  display: ${(props) => props.show ? "display" : "none" }
 `;
 
 const WrapStrong = styled.strong`
@@ -251,7 +252,7 @@ function QBoxTop(props) {
         <WrapUl>
           <Wrapli><HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}>
           </HeadFigureLocaleImg>
-            <WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+            <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
             <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
           <WrapTitleli>{props.head.title}</WrapTitleli>
           <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}

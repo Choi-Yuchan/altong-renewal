@@ -64,7 +64,7 @@ function ABoxTop(props) {
       <WrapUl>
         <Wrapli>
         <HeadFigureLocaleImg src={"/Common/images/nation/" + props.head.locale+'.svg'}>
-            </HeadFigureLocaleImg><WrapSpan>{UlvText(props.head.uLv)}</WrapSpan>
+            </HeadFigureLocaleImg><WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
           <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
         <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
           onClick={() => {
@@ -163,6 +163,7 @@ const WrapSpan = styled.span`
   position: relative;
   top: -1px;
   list-style: none;
+  display: ${(props) => props.show ? "display" : "none" }
 `;
 const WrapStrong = styled.strong`
   margin-left: 10px;

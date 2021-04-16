@@ -70,7 +70,6 @@ function moveTopAxios(pageSeq){
 }
 
 function QuestionPopup(props) {
-    
     useEffect(()=>{  
       }
       , []);
