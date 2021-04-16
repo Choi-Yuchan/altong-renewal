@@ -92,6 +92,31 @@ const TopImg = styled.img`
   margin-bottom: -7px;
   padding: 0;
 `;
+const PopupADdiv = styled.div`
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none;
+`;
+const PopupADdivIn = styled.div`
+  width: 85%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+const PopupADImg = styled.img`
+  max-width: 505px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  width: 100%;
+`;
+
 
 const replyCount = (replys) => {
   if(replys==null) return 0
@@ -191,6 +216,12 @@ function AnswerBox(props) {
           USER={props.USER} etimate={props.jsonArr.etimate}
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
         ></OpenDiv>
+        <PopupADdiv>
+          <PopupADdivIn>
+            <PopupADImg >
+            </PopupADImg>
+          </PopupADdivIn>
+        </PopupADdiv>
         
     </MainDiv>
   );

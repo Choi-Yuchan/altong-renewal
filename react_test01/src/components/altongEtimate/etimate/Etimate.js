@@ -57,12 +57,19 @@ const GetEstimate = (pageSeq, select, setEtimates) => {
     })
     .then((response) => response.data)
     .then( (data) => {
-        console.log(data);
+        if(data.returnCode === "0"){
+            SetEstimate(pageSeq, select, setEtimates);
+        }else{
+            console.log(data);
+        }
     })
     .catch(function (error) {
         console.log(error);
     });
 
+    
+  }
+  const SetEstimate = (pageSeq, select, setEtimates) => {
     axios.get("/rest/answers/"+pageSeq+"/estimate")
     .then((response) => response.data)
     .then( (data) => {
