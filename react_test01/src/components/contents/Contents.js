@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 
+import Nbsp from '../functions/nbsp/Nbsp';
+
 const MainDiv = styled.div`
   padding: 0 10px;
   margin: 20px 0 30px;
@@ -66,6 +68,13 @@ const LangImgNone = styled(LangImg)`
   display: none;
 `;
 
+const NomalP = styled.p`
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+`
+
 function CustomView(props){
   const isView = props.isView;
   if (isView === "open"){
@@ -83,11 +92,23 @@ function DelSpan(props){
   return <span></span>;
 }
 
+// http://125.7.228.198/answer/answerList?Seq=266098&CurPageName=bestList&Section1=0&src_Sort=Seq&src_OrderBy=DESC&SP=&ticketQueChk=
 const contentConvert = (contents) => {
-  const contentArray = contents;
+  const contentArray = contents.replace("<br>","<br></br>");
+  const listResult = contentArray.split(/\<[^\>]+\>/).filter((element) => element !== "");
+
+  const arr1 = contentArray.split(/(\<[^\>]+\>)/).filter((element) => element !== "");
   
-  
-  return contentArray;
+
+  console.log(contentArray);
+  console.log(arr1);
+  //(\<[^\>]+\>)
+  const result = listResult.map( (list) => {
+      return <NomalP>{list.split("&nbsp;").map((ls)=>{
+        return <>{ls}<Nbsp></Nbsp></>
+      })}</NomalP>
+    } );
+  return result;
 }
 
 function QorA(props){
@@ -103,9 +124,15 @@ function QorA(props){
     );
   }
   return (
-    <ContentsP> 
-      {contentConvert(props.contents)}
-    </ContentsP>
+    <>
+      <ContentsP>
+        {props.contents}
+      </ContentsP>
+      <br></br>
+      <ContentsP> 
+        {contentConvert(props.contents)}
+      </ContentsP>
+    </>
   );
 }
 
