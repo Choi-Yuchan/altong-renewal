@@ -6,6 +6,91 @@ import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
+
+function TimeToggler(props) {
+  if(props.timeToggle !== true ){
+    return <> 1시간 전 · <Datespan>{props.date}</Datespan> </>
+  }
+  return <>  1시간 전 · </>
+}
+
+const UlvText = (props) => {
+  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  return LV[props];
+}
+
+const handleImgError = (e) => {
+  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+}
+
+//clicked
+// white={props.white} setWhite={props.setWhite}
+function QBoxTop(props) {
+  const [timeToggle, setTimeToggle] = useState(true);
+  const [popToggle, setPopToggle] = useState(false);
+  const [showMini, setShowMini] = useState(false);
+
+  
+  useEffect(() => {
+    if(props.clicked === true){
+      setShowMini(false);
+      setPopToggle(false);
+    }
+  }, [props.clicked]);
+
+  useEffect(() => {
+    if(props.white === true){
+      setShowMini(false);
+      setPopToggle(false);
+    }
+  }, [props.white]);
+
+  return (
+    <MainDiv className="QBoxTop">
+      <HeadFigure onClick={(e) => {
+        setShowMini(true);
+        props.setClicked(false);
+        e.stopPropagation();
+      }}>
+        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
+        
+        <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
+      </HeadFigure>
+      <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
+      <WrapUl>
+        <Wrapli><HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}>
+        </HeadFigureLocaleImg>
+          <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
+          <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
+        <WrapTitleli>{props.head.title}</WrapTitleli>
+        <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+          onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
+        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
+      </WrapUl>
+      <BtnBox onClick={(e) => {
+        setPopToggle(!popToggle);
+        props.setWhite(false);
+        e.stopPropagation();
+        }}>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <BtnBoxI></BtnBoxI>
+        <QuestionPopup
+          setShowAlmoney={props.setShowAlmoney}
+          setClicked={props.setClicked}
+          pageSeq={props.pageSeq}
+          seqComponent={props.seqComponent} popToggle={popToggle}
+        ></QuestionPopup>
+      </BtnBox>
+      <MiniProfile setClicked={props.setClicked} showMini={showMini}
+        mini={props.mini} clicked={props.clicked} 
+      setShowMini={setShowMini}></MiniProfile>
+    </MainDiv>
+  );
+}
+  
+export default QBoxTop;
+
 const MainDiv = styled.div`
   position: relative;
   padding-left: 130px;
@@ -199,87 +284,4 @@ const ViewCountImg = styled.img`
   margin-right: 2px;
 `;
 
-function TimeToggler(props) {
-  if(props.timeToggle !== true ){
-    return <> 1시간 전 · <Datespan>{props.date}</Datespan> </>
-  }
-  return <>  1시간 전 · </>
-}
-
-const UlvText = (props) => {
-  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
-  return LV[props];
-}
-
-const handleImgError = (e) => {
-  e.target.src = "/pub/css/profile/img_thum_base0.jpg";
-}
-
-//clicked
-// white={props.white} setWhite={props.setWhite}
-function QBoxTop(props) {
-  const [timeToggle, setTimeToggle] = useState(true);
-  const [popToggle, setPopToggle] = useState(false);
-  const [showMini, setShowMini] = useState(false);
-
-  
-  useEffect(() => {
-    if(props.clicked === true){
-      setShowMini(false);
-      setPopToggle(false);
-    }
-  }, [props.clicked]);
-
-  useEffect(() => {
-    if(props.white === true){
-      setShowMini(false);
-      setPopToggle(false);
-    }
-  }, [props.white]);
-
-    return (
-      <MainDiv className="QBoxTop">
-        <HeadFigure onClick={(e) => {
-          setShowMini(true);
-          props.setClicked(false);
-          e.stopPropagation();
-        }}>
-          <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
-          
-          <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
-        </HeadFigure>
-        <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
-        <WrapUl>
-          <Wrapli><HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}>
-          </HeadFigureLocaleImg>
-            <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
-            <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
-          <WrapTitleli>{props.head.title}</WrapTitleli>
-          <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
-        </WrapUl>
-        <BtnBox onClick={(e) => {
-          setPopToggle(!popToggle);
-          props.setWhite(false);
-          e.stopPropagation();
-          }}>
-          <BtnBoxI></BtnBoxI>
-          <BtnBoxI></BtnBoxI>
-          <BtnBoxI></BtnBoxI>
-          <QuestionPopup
-            setShowAlmoney={props.setShowAlmoney}
-            setClicked={props.setClicked}
-            pageSeq={props.pageSeq}
-            seqComponent={props.seqComponent} popToggle={popToggle}
-          ></QuestionPopup>
-        </BtnBox>
-        <MiniProfile setClicked={props.setClicked} showMini={showMini}
-         mini={props.mini} clicked={props.clicked} 
-        setShowMini={setShowMini}></MiniProfile>
-      </MainDiv>
-    );
-  }
-  
-  export default QBoxTop;
   
