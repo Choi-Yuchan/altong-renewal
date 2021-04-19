@@ -102,11 +102,39 @@ const contentConvert = (contents) => {
 
   console.log(contentArray);
   console.log(arr1);
+
+  console.log(<div></div>);
+  // 정규표현식으로 맵에서 시작 태그를 찾음 (html 태그값만 가져옴) -> jsx 요소로 return 함
+  // 일반 값인 경우 
+  arr1.map((val)=>{
+    // tag 인 경우 
+    // @@ 작성중 ~ 
+    if(/\<[^\>]+\>/.test(val)){
+      switch(val.replace(/\<\/|\</, "").replace(/[ ][^\>]+\>/, "").replace(">", "") ){
+        case "br" :
+          break;
+        case "p" :
+          break;
+        case "span" :
+          break;
+        default :
+          break;
+      }
+
+    }else{
+
+    }
+  });
+
+
+
   //(\<[^\>]+\>)
   const result = listResult.map( (list) => {
-      return <NomalP>{list.split("&nbsp;").map((ls)=>{
-        return <>{ls}<Nbsp></Nbsp></>
-      })}</NomalP>
+      return <NomalP>{
+        list.split("&nbsp;").map((ls)=>{
+          return <>{ls}<Nbsp></Nbsp></>
+        })
+      }</NomalP>
     } );
   return result;
 }
