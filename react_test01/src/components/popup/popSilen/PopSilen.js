@@ -77,6 +77,10 @@ function PopAlmoney(props) {
                                     </label>
                                 </ReportReportReasonDivTableTbodyTrTd>
                             </ReportReportReasonDivTableTbodyTr>
+                            <ReportReportReasonDivTableTbodyTr colSpan="2">
+                                <ReportReportReasonDivTableTbodyTrTextarea placeholder="남기실 말씀이 있으시면 입력해주세요." maxLength="1000" >
+                                </ReportReportReasonDivTableTbodyTrTextarea>
+                            </ReportReportReasonDivTableTbodyTr>
                         </ReportReportReasonDivTableTbody>
                     </ReportReportReasonDivTable>
                 </ReportReportReasonDiv>
@@ -100,6 +104,18 @@ const ReportReportReasonDivTable = styled.table`
 `
 const ReportReportReasonDivTableTbody = styled.tbody``
 const ReportReportReasonDivTableTbodyTr = styled.tr``
+const ReportReportReasonDivTableTbodyTrTextarea = styled.textarea`
+    resize: none;
+    width: 100%;
+    margin-top: 13px;
+    padding: 5px 10px;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    line-height: 22px;
+    border: 1px solid #cacaca;
+    min-height: 70px;
+    outline: none;
+`
 const ReportReportReasonDivTableTbodyTrTd = styled.td`
     line-height: 28px;
     font-size: 15px;
