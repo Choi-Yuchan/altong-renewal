@@ -4,31 +4,17 @@ import Nbsp from '../functions/nbsp/Nbsp';
 import ReactDOMServer from 'react-dom/server';
 
 const tagStackQ = ( index, indexStack, array, value, text) => {
-  // 재귀문으로 선언함.
-
-  // 태그를 분석해서 반환해줌
-  // #1 알고리즘
-  // / 문자가 앞에 붙은 태그를 발견시, 처리 => 마지막 태그 배열을 가져옴(팝) => 태그 인스턴스로 만듬
-  // => 
-
-  // 스택 담기 => 스택 닫기 알고리즘
-
-  // #2 param
-  // 스택()
-  
-  // #3 반환 결과
-  //  배열(태그 위치), 배열(값)
   if(index >= array.length ){
     return value;
   }
-  console.log(indexStack.length);
-  console.log(array[index]);
-  console.log(ReactDOMServer.renderToStaticMarkup(value));
+  console.log("leng : " + indexStack.length);
+  console.log("value : " + array[index]);
+  console.log("array : " + ReactDOMServer.renderToStaticMarkup(value));
 
   if( array[index]==="p" || array[index]==="br" || array[index]==="span" || array[index]==="div" ){
     return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
   }else if( array[index]==="/p" || array[index]==="/br" || array[index]==="/span" || array[index]==="/div"){
-    if (indexStack.length <= 1){
+    if (indexStack.length < 1){
       return tagStackQ( index + 1, indexStack.slice(0,-1), array, tagOutInstance(array[index].slice(1), value, text.split("&nbsp;").map(
         (ls,index, arr)=>{
           if(index === arr.length-1) return <>{ls}</>;
@@ -45,8 +31,6 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
   }else{
     return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
   }
-
-
 }
 const tagOutInstance = (seq, tag, val) => {
   switch(seq){
