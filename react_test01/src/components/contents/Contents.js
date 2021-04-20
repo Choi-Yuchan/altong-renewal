@@ -25,78 +25,28 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
   console.log(array[index]);
   console.log(ReactDOMServer.renderToStaticMarkup(value));
 
-  switch(array[index]){
-    case "p" :
-      return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
-    case "br" :
-      return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
-    case "span" : 
-      return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
-    case "div" :
-      return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
-    case "/p" :
-      if (indexStack.length < 1){
-        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("p", value, text.split("&nbsp;").map(
-          (ls,index, arr)=>{
-            if(index-1 === arr.length) return {ls};
-            return <>{ls}<Nbsp></Nbsp></>
-          }
-        )), "");
-      }
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("p", value, text.split("&nbsp;").map(
+  if( array[index]==="p" || array[index]==="br" || array[index]==="span" || array[index]==="div" ){
+    return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
+  }else if( array[index]==="/p" || array[index]==="/br" || array[index]==="/span" || array[index]==="/div"){
+    if (indexStack.length < 1){
+      return tagStackQ( index + 1, indexStack.slice(0,), array, tagOutInstance(array[index].slice(1,), value, text.split("&nbsp;").map(
         (ls,index, arr)=>{
           if(index-1 === arr.length) return {ls};
           return <>{ls}<Nbsp></Nbsp></>
         }
       )), "");
-    case "/br" :
-      if (indexStack.length < 1){
-        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("br", value, text.split("&nbsp;").map(
-          (ls,index, arr)=>{
-            if(index-1 === arr.length) return {ls};
-            return <>{ls}<Nbsp></Nbsp></>
-          }
-        )), "");
+    }
+    return tagStackQ( index + 1, indexStack.slice(0,), array, tagInstance(array[index].slice(1,), value, text.split("&nbsp;").map(
+      (ls,index, arr)=>{
+        if(index-1 === arr.length) return {ls};
+        return <>{ls}<Nbsp></Nbsp></>
       }
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("br", value, text.split("&nbsp;").map(
-        (ls,index, arr)=>{
-          if(index-1 === arr.length) return {ls};
-          return <>{ls}<Nbsp></Nbsp></>
-        }
-      )), "");
-    case "/span" :
-      if (indexStack.length < 1){
-        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("span", value, text.split("&nbsp;").map(
-          (ls,index, arr)=>{
-            if(index-1 === arr.length) return {ls};
-            return <>{ls}<Nbsp></Nbsp></>
-          }
-        )), "");
-      }
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("span", value, text.split("&nbsp;").map(
-        (ls,index, arr)=>{
-          if(index-1 === arr.length) return {ls};
-          return <>{ls}<Nbsp></Nbsp></>
-        }
-      )), "");
-    case "/div" :
-      if (indexStack.length < 1){
-        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("div", value, text.split("&nbsp;").map(
-          (ls,index, arr)=>{
-            if(index-1 === arr.length) return {ls};
-            return <>{ls}<Nbsp></Nbsp></>
-          }
-        )), "");
-      }
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("div", value, text.split("&nbsp;").map(
-        (ls,index, arr)=>{
-          if(index-1 === arr.length) return {ls};
-          return <>{ls}<Nbsp></Nbsp></>
-        }
-      )), "");
-    default :
-      return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
+    )), "");
+  }else{
+    return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
   }
+
+  
 }
 const tagOutInstance = (seq, tag, val) => {
   switch(seq){
