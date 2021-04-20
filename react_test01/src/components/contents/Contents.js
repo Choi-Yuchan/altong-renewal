@@ -28,17 +28,17 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
   if( array[index]==="p" || array[index]==="br" || array[index]==="span" || array[index]==="div" ){
     return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
   }else if( array[index]==="/p" || array[index]==="/br" || array[index]==="/span" || array[index]==="/div"){
-    if (indexStack.length < 1){
-      return tagStackQ( index + 1, indexStack.slice(0,), array, tagOutInstance(array[index].slice(1,), value, text.split("&nbsp;").map(
+    if (indexStack.length <= 1){
+      return tagStackQ( index + 1, indexStack.slice(0,-1), array, tagOutInstance(array[index].slice(1), value, text.split("&nbsp;").map(
         (ls,index, arr)=>{
-          if(index-1 === arr.length) return {ls};
+          if(index === arr.length-1) return <>{ls}</>;
           return <>{ls}<Nbsp></Nbsp></>
         }
       )), "");
     }
-    return tagStackQ( index + 1, indexStack.slice(0,), array, tagInstance(array[index].slice(1,), value, text.split("&nbsp;").map(
+    return tagStackQ( index + 1, indexStack.slice(0,-1), array, tagInstance(array[index].slice(1), value, text.split("&nbsp;").map(
       (ls,index, arr)=>{
-        if(index-1 === arr.length) return {ls};
+        if(index === arr.length-1) return <>{ls}</>;
         return <>{ls}<Nbsp></Nbsp></>
       }
     )), "");
@@ -46,7 +46,7 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
     return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
   }
 
-  
+
 }
 const tagOutInstance = (seq, tag, val) => {
   switch(seq){
