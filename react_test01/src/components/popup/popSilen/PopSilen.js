@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 function PopSilen() {
     return (
         <PopReportDiv>
@@ -29,46 +28,49 @@ function PopSilen() {
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>홍보성</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>홍보성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>유해성</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>유해성</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>장난성</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>장난성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>중복성</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>중복성</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>비속어/반말</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>비속어/반말</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>비 정보·지식</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>비 정보·지식</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>음해/비방</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>음해/비방</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput></ARInput>기타</label>
+                                        <ARInput type="radio" name="H_Reason"></ARInput>기타</label>
                                 </AReasonTbodyTrTd>
                             </tr>
-                            <tr colSpan="2">
-                                <ReTextarea>
-                                </ReTextarea>
+                            <tr>
+                                <ABTd colSpan="2">
+                                    <ReTextarea maxlength="1000" placeholder="남기실 말씀이 있으시면 입력해주세요.">
+                                    </ReTextarea>
+                                </ABTd>
+                                
                             </tr>
                         </tbody>
                     </ReDivTable>
@@ -84,10 +86,10 @@ function PopSilen() {
                         <tbody>
                             <tr>
                                 <td>
-                                    <DRInput></DRInput>
+                                    <DRInput value="취소"></DRInput>
                                 </td>
                                 <td>
-                                    <DSubmit></DSubmit>
+                                    <DSubmit value="제출"></DSubmit>
                                 </td>
                             </tr>
                         </tbody>
@@ -103,6 +105,10 @@ const DReportTable = styled.table`
     margin-top: 10px;
     width: 100%;
     text-align: center;
+`
+const ABTd = styled.td`
+    line-height: 28px;
+    font-size: 15px;
 `
 const DRInput = styled.input`
     text-align: center;
@@ -132,7 +138,6 @@ const DSubmit = styled.input`
     outline: none;
     cursor: pointer;
 `
-
 const DRBottomDiv = styled.div`
     text-align: center;
     margin-top: 5px;
@@ -157,7 +162,6 @@ const DRDivPI = styled.i`
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 `
-
 const RReasonDivP = styled.p`
     font-size: 13px;
     font-weight: bold;
@@ -186,8 +190,6 @@ const ARInput = styled.input`
     margin: 0 4px;
     outline: none;
 `
-
-
 const PopReportDiv = styled.div`
     width: 90%;
     max-width: 520px;
@@ -251,5 +253,3 @@ const BTbodyTrTd = styled.td`
     display: inline-block;
     width: 82%;
 `
-
-

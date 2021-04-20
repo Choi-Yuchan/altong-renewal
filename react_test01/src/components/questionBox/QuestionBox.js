@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
+import PopSilen from '../popup/popSilen/PopSilen'
 
 import ViewJson from '../../json/view-test.json'
 
@@ -9,7 +10,7 @@ import TopNavi from './../topNavi/TopNavi'
 
 import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
-//import PopSilen from '../popup/popSilen/PopSilen';
+import PopSilen from '../popup/popSilen/PopSilen';
 
 
 function ShowBlackDiv(props){
@@ -30,8 +31,8 @@ function QuestionBox(props) {
   const [user, setUser] = useState(null);
   const [cookies] = useCookies();
   const SSRJSON = jsonList
-  
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
+  const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q'});
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -83,9 +84,16 @@ function QuestionBox(props) {
       </MainDiv>
       
       <PopAlmoney 
-        setShowAlmoney={setShowAlmoney} setClicked={setBodyClicked}
-        showAlmoney={showAlmoney.show} clicked={bodyClicked} page={showAlmoney.page} seq={showAlmoney.seq}
+        clicked={bodyClicked} setClicked={setBodyClicked}
+        showAlmoney={showAlmoney.show} page={showAlmoney.page} seq={showAlmoney.seq}
+        setShowAlmoney={setShowAlmoney}
       ></PopAlmoney>
+
+      <PopSilen
+        clicked={bodyClicked} setClicked={setBodyClicked}
+        showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq}
+        setShowSiren={setShowSiren}
+      ></PopSilen>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
@@ -106,12 +114,10 @@ const MainDiv = styled.div`
   width: 800px;
   margin: 0 auto;
   
-  
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
-
 const SiteDiv = styled.div`
   display: flex;
   min-height: 100vh;
@@ -128,7 +134,6 @@ const SiteDiv = styled.div`
   color: #333;
   position: relative;
 `;
-
 const WrapperDiv = styled.div`
   padding-top: 60px;
   flex: 1;
