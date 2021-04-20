@@ -3,8 +3,20 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function PopSilen(props) {
+
+    useEffect(() => {
+        if(props.clicked === true){
+            props.setShowSiren({show:false, page:props.page, 
+                seq:props.seq});
+        }
+      }, [props.clicked]);
+
     return (
-        <PopReportDiv showSiren={props.showSiren}>
+        <PopReportDiv showSiren={props.showSiren} onClick={(e) => {
+            props.setClicked(false);
+            props.setShowSiren({show:true, page:props.page, seq:props.seq});
+            e.stopPropagation();
+          }}>
             <PopReportH4><PopReportDivImg></PopReportDivImg>신고</PopReportH4>
             <ReportWrap>
                 <BDiv>
@@ -200,6 +212,7 @@ const PopReportDiv = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     display: ${(props) => props.showSiren?"block":"none"};
+    z-index: 99;
 `;
 const PopReportDivImg = styled.img`
     width: 19px;

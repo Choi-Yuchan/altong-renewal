@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
-import PopSilen from '../popup/popSilen/PopSilen'
 
 import ViewJson from '../../json/view-test.json'
 
