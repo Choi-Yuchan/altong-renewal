@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import Nbsp from '../functions/nbsp/Nbsp';
+import ReactDOMServer from 'react-dom/server';
 
 const tagStackQ = ( index, indexStack, array, value, text) => {
   // 재귀문으로 선언함.
@@ -20,6 +21,9 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
   if(index >= array.length ){
     return value;
   }
+  console.log(indexStack.length);
+  console.log(array[index]);
+  console.log(ReactDOMServer.renderToStaticMarkup(value));
 
   switch(array[index]){
     case "p" :
@@ -31,15 +35,79 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
     case "div" :
       return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
     case "/p" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("p", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
+      if (indexStack.length < 1){
+        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("p", value, text.split("&nbsp;").map(
+          (ls,index, arr)=>{
+            if(index-1 === arr.length) return {ls};
+            return <>{ls}<Nbsp></Nbsp></>
+          }
+        )), "");
+      }
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("p", value, text.split("&nbsp;").map(
+        (ls,index, arr)=>{
+          if(index-1 === arr.length) return {ls};
+          return <>{ls}<Nbsp></Nbsp></>
+        }
+      )), "");
     case "/br" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("br", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
+      if (indexStack.length < 1){
+        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("br", value, text.split("&nbsp;").map(
+          (ls,index, arr)=>{
+            if(index-1 === arr.length) return {ls};
+            return <>{ls}<Nbsp></Nbsp></>
+          }
+        )), "");
+      }
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("br", value, text.split("&nbsp;").map(
+        (ls,index, arr)=>{
+          if(index-1 === arr.length) return {ls};
+          return <>{ls}<Nbsp></Nbsp></>
+        }
+      )), "");
     case "/span" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("span", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
+      if (indexStack.length < 1){
+        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("span", value, text.split("&nbsp;").map(
+          (ls,index, arr)=>{
+            if(index-1 === arr.length) return {ls};
+            return <>{ls}<Nbsp></Nbsp></>
+          }
+        )), "");
+      }
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("span", value, text.split("&nbsp;").map(
+        (ls,index, arr)=>{
+          if(index-1 === arr.length) return {ls};
+          return <>{ls}<Nbsp></Nbsp></>
+        }
+      )), "");
     case "/div" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("div", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
+      if (indexStack.length < 1){
+        return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagOutInstance("div", value, text.split("&nbsp;").map(
+          (ls,index, arr)=>{
+            if(index-1 === arr.length) return {ls};
+            return <>{ls}<Nbsp></Nbsp></>
+          }
+        )), "");
+      }
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("div", value, text.split("&nbsp;").map(
+        (ls,index, arr)=>{
+          if(index-1 === arr.length) return {ls};
+          return <>{ls}<Nbsp></Nbsp></>
+        }
+      )), "");
     default :
       return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
+  }
+}
+const tagOutInstance = (seq, tag, val) => {
+  switch(seq){
+    case "p" :
+      return OutP(tag, val);
+    case "br" :
+      return OutBr(tag, val);
+    case "span" : 
+      return OutSpan(tag, val);
+    case "div" :
+      return OutDiv(tag, val);
   }
 }
 
@@ -57,16 +125,29 @@ const tagInstance = (seq, tag, val) => {
 }
 
 const InP = (tag, val) => {
-  return <NomalP> {tag} {val} </NomalP>
+  return <NomalP>{tag}{val}</NomalP>
 }
 const InBr = (tag, val) => {
-  return <> <br></br> {tag} {val} </>
+  return <>{tag}<br></br>{val}</>
 }
 const InSpan = (tag, val) => {
-  return <span> {tag} {val} </span>
+  return <span>{tag}{val}</span>
 }
 const InDiv = (tag, val) => {
-  return <div> {tag} {val} </div>
+  return <div>{tag}{val}</div>
+}
+
+const OutP = (tag, val) => {
+  return <>{tag}<NomalP>{val}</NomalP></>
+}
+const OutBr = (tag, val) => {
+  return <>{tag}<br></br>{val}</>
+}
+const OutSpan = (tag, val) => {
+  return <>{tag}<span>{val}</span></>
+}
+const OutDiv = (tag, val) => {
+  return <>{tag}<div>{val}</div></>
 }
 
 const resultConvert = (contents) => {
