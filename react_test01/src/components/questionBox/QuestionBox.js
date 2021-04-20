@@ -85,7 +85,7 @@ function QuestionBox(props) {
         </WrapperDiv>
       </MainDiv>
       
-      <PopAlmoney 
+      <PopAlmoney
         clicked={bodyClicked} setClicked={setBodyClicked}
         showAlmoney={showAlmoney.show} page={showAlmoney.page} seq={showAlmoney.seq}
         setShowAlmoney={setShowAlmoney}

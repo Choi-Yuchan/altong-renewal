@@ -94,6 +94,7 @@ function AnswerBox(props) {
           white={props.white} setWhite={props.setWhite}
           pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
+          setShowSiren={props.setShowSiren}
           openAnswer={openAnswer}
           ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 

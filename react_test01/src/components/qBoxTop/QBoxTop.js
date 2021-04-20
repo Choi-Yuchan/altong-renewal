@@ -77,6 +77,7 @@ function QBoxTop(props) {
         <BtnBoxI></BtnBoxI>
         <QuestionPopup
           setShowAlmoney={props.setShowAlmoney}
+          setShowSiren={props.setShowSiren}
           setClicked={props.setClicked}
           pageSeq={props.pageSeq}
           seqComponent={props.seqComponent} popToggle={popToggle}
