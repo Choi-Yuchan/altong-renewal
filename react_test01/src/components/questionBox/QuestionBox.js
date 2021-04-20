@@ -139,6 +139,9 @@ function QuestionBox(props) {
         setShowAlmoney={setShowAlmoney} setClicked={setBodyClicked}
         showAlmoney={showAlmoney.show} clicked={bodyClicked} page={showAlmoney.page} seq={showAlmoney.seq}
       ></PopAlmoney>
+
+      
+
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );
