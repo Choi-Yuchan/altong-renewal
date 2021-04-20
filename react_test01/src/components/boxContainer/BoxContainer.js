@@ -1,5 +1,6 @@
 import Box from './../box/Box'
 import AnswerBox from './../answerBox/AnswerBox'
+import PopSilen from '../popup/popSilen/PopSilen'
 
 function BoxController(props) {
     const Boxs = props.SSRJSON.map
@@ -23,9 +24,11 @@ function BoxController(props) {
 
 function BoxContainer(props) {
   return (
+      <>
       <BoxController SSRJSON={props.SSRJSON} USER={props.USER}
       white={props.white} setWhite={props.setWhite} setShowAlmoney={props.setShowAlmoney}
       clicked={props.clicked} setClicked={props.setClicked}></BoxController>
+      <PopSilen></PopSilen></>
   );
 }
 

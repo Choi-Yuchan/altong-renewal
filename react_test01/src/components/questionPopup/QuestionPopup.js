@@ -71,9 +71,7 @@ function moveTopAxios(pageSeq){
 // 신고하기
 // curl -d '{"ACT":"CheckSiren", "H_Type":"Q", "H_Seq":"266096", "H_Reason":"4", "H_Reason_txt":"siren test"}' 
 // -H "Content-Type: application/json"  -b cookie.txt -X PUT http://192.168.0.5/restApi/commons/siren
-function sirenApi(){
-    
-}
+
 
 function QuestionPopup(props) {
     useEffect(()=>{  

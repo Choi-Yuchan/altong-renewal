@@ -3,121 +3,108 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-function PopAlmoney(props) {
-    
-   
-
+function PopSilen() {
     return (
         <PopReportDiv>
-            <PopReportH4><PopReportDivImg src="/pub/answer/answerList/images/atm_more_3.png" alt="신고하기"></PopReportDivImg>신고</PopReportH4>
+            <PopReportH4><PopReportDivImg></PopReportDivImg>신고</PopReportH4>
             <ReportWrap>
-                <ReportReportTargertDiv>
-                    <ReportReportTargertDivTable>
-                        <ReportReportTargertDivTableTbody>
-                            <ReportReportTargertDivTableTbodyTr>
-                                <ReportReportTargertDivTableTbodyTrTh>작성자</ReportReportTargertDivTableTbodyTrTh>
-                                <ReportReportTargertDivTableTbodyTrTd>(닉네임)</ReportReportTargertDivTableTbodyTrTd>
-                            </ReportReportTargertDivTableTbodyTr>
-                            <ReportReportTargertDivTableTbodyTr>
-                                <ReportReportTargertDivTableTbodyTrTh>내용</ReportReportTargertDivTableTbodyTrTh>
-                                <ReportReportTargertDivTableTbodyTrTd>(제목)</ReportReportTargertDivTableTbodyTrTd>
-                            </ReportReportTargertDivTableTbodyTr>
-                        </ReportReportTargertDivTableTbody>
-                    </ReportReportTargertDivTable>
-                </ReportReportTargertDiv>
-                <ReportReportReasonDiv>
-                    <ReportReportReasonDivP>- 신고 사유 선택</ReportReportReasonDivP>
-                    <ReportReportReasonDivTable>
-                        <ReportReportReasonDivTableTbody>
-                            <ReportReportReasonDivTableTbodyTr>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                <BDiv>
+                    <BTable>
+                        <BTbody>
+                            <BTr>
+                                <BTbodyTrTh>작성자</BTbodyTrTh>
+                                <BTbodyTrTd>(닉네임)</BTbodyTrTd>
+                            </BTr>
+                            <BTr>
+                                <BTbodyTrTh>내용</BTbodyTrTh>
+                                <BTbodyTrTd>(제목)</BTbodyTrTd>
+                            </BTr>
+                        </BTbody>
+                    </BTable>
+                </BDiv>
+                <div>
+                    <RReasonDivP>- 신고 사유 선택</RReasonDivP>
+                    <ReDivTable>
+                        <tbody>
+                            <tr>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>홍보성</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>홍보성</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>유해성</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                            </ReportReportReasonDivTableTbodyTr>
-                            <ReportReportReasonDivTableTbodyTr>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>유해성</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>장난성</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>장난성</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>중복성</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                            </ReportReportReasonDivTableTbodyTr>
-                            <ReportReportReasonDivTableTbodyTr>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>중복성</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>비속어/반말</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>비속어/반말</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>비 정보·지식</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                            </ReportReportReasonDivTableTbodyTr>
-                            <ReportReportReasonDivTableTbodyTr>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>비 정보·지식</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>음해/비방</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                                <ReportReportReasonDivTableTbodyTrTd>
+                                        <ARInput></ARInput>음해/비방</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
                                     <label>
-                                        <ReportReportReasonDivTableTbodyTrTdLabelInput>기타</ReportReportReasonDivTableTbodyTrTdLabelInput>
-                                    </label>
-                                </ReportReportReasonDivTableTbodyTrTd>
-                            </ReportReportReasonDivTableTbodyTr>
-                            <ReportReportReasonDivTableTbodyTr colSpan="2">
-                                <ReportReportReasonDivTableTbodyTrTextarea placeholder="남기실 말씀이 있으시면 입력해주세요." maxLength="1000" >
-                                </ReportReportReasonDivTableTbodyTrTextarea>
-                            </ReportReportReasonDivTableTbodyTr>
-                        </ReportReportReasonDivTableTbody>
-                    </ReportReportReasonDivTable>
-                </ReportReportReasonDiv>
-                <ReportReportBottomDiv>
-                    <ReportReportBottomDivP>
-                        <ReportReportBottomDivPI>warning</ReportReportBottomDivPI>
-                    </ReportReportBottomDivP>
-                    <ReportReportBottomDivP>무고한 게시물을 신고하실 경우 향후 사이트 이용 시<br></br> 불이익이 있을 수도 있으니 신중을 기해주세요.</ReportReportBottomDivP>
-                </ReportReportBottomDiv>
-                <ReportReportButtonDiv>
-                    <ReportReportButtonDivTable>
+                                        <ARInput></ARInput>기타</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr colSpan="2">
+                                <ReTextarea>
+                                </ReTextarea>
+                            </tr>
+                        </tbody>
+                    </ReDivTable>
+                </div>
+                <DRBottomDiv>
+                    <RDivP>
+                        <DRDivPI>warning</DRDivPI>
+                    </RDivP>
+                    <RDivP>무고한 게시물을 신고하실 경우 향후 사이트 이용 시<br></br> 불이익이 있을 수도 있으니 신중을 기해주세요.</RDivP>
+                </DRBottomDiv>
+                <div>
+                    <DReportTable>
                         <tbody>
                             <tr>
                                 <td>
-                                    <ReportReportButtonDivInput></ReportReportButtonDivInput>
+                                    <DRInput></DRInput>
                                 </td>
                                 <td>
-                                    <ReportReportButtonDivInputSubmit></ReportReportButtonDivInputSubmit>
+                                    <DSubmit></DSubmit>
                                 </td>
                             </tr>
                         </tbody>
-                    </ReportReportButtonDivTable>
-                </ReportReportButtonDiv>
+                    </DReportTable>
+                </div>
             </ReportWrap>
         </PopReportDiv>
     );
 }
   
-export default PopAlmoney;
-
-const ReportReportButtonDiv = styled.div``
-const ReportReportButtonDivTable = styled.table`
+export default PopSilen;
+const DReportTable = styled.table`
     margin-top: 10px;
     width: 100%;
     text-align: center;
 `
-const ReportReportButtonDivInput = styled.input`
+const DRInput = styled.input`
     text-align: center;
     width: 90%;
     background: #fff;
@@ -131,7 +118,7 @@ const ReportReportButtonDivInput = styled.input`
     outline: none;
     cursor: pointer;
 `
-const ReportReportButtonDivInputSubmit = styled.input`
+const DSubmit = styled.input`
     border: 1px solid #2bb330;
     color: #2bb330;
     text-align: center;
@@ -146,15 +133,15 @@ const ReportReportButtonDivInputSubmit = styled.input`
     cursor: pointer;
 `
 
-const ReportReportBottomDiv = styled.div`
+const DRBottomDiv = styled.div`
     text-align: center;
     margin-top: 5px;
     color: #989898;
 `
-const ReportReportBottomDivP = styled.p`
+const RDivP = styled.p`
     font-size: 14px;
 `
-const ReportReportBottomDivPI = styled.i`
+const DRDivPI = styled.i`
     font-size: 20px;
     margin-bottom: 8px;
     font-family: 'Material Icons';
@@ -171,18 +158,15 @@ const ReportReportBottomDivPI = styled.i`
     -webkit-font-smoothing: antialiased;
 `
 
-const ReportReportReasonDiv = styled.div``
-const ReportReportReasonDivP = styled.p`
+const RReasonDivP = styled.p`
     font-size: 13px;
     font-weight: bold;
     line-height: 26px;
 `
-const ReportReportReasonDivTable = styled.table`
+const ReDivTable = styled.table`
     width: 100%;
 `
-const ReportReportReasonDivTableTbody = styled.tbody``
-const ReportReportReasonDivTableTbodyTr = styled.tr``
-const ReportReportReasonDivTableTbodyTrTextarea = styled.textarea`
+const ReTextarea = styled.textarea`
     resize: none;
     width: 100%;
     margin-top: 13px;
@@ -194,11 +178,11 @@ const ReportReportReasonDivTableTbodyTrTextarea = styled.textarea`
     min-height: 70px;
     outline: none;
 `
-const ReportReportReasonDivTableTbodyTrTd = styled.td`
+const AReasonTbodyTrTd = styled.td`
     line-height: 28px;
     font-size: 15px;
 `
-const ReportReportReasonDivTableTbodyTrTdLabelInput = styled.input`
+const ARInput = styled.input`
     margin: 0 4px;
     outline: none;
 `
@@ -231,33 +215,33 @@ const PopReportH4 = styled.h4`
 const ReportWrap = styled.div`
     padding: 20px;
 `
-const ReportReportTargertDiv = styled.div`
+const BDiv = styled.div`
     border: 1px dashed #da3030;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
 `
-const ReportReportTargertDivTable = styled.table`
+const BTable = styled.table`
     text-align: justify;
     display: block;
     width: 100%;
 `
-const ReportReportTargertDivTableTbody = styled.tbody`
+const BTbody = styled.tbody`
     display: block;
     width: 100%;
 `
-const ReportReportTargertDivTableTbodyTr = styled.tr`
+const BTr = styled.tr`
     display: block;
     width: 100%;
 `
-const ReportReportTargertDivTableTbodyTrTh = styled.th`
+const BTbodyTrTh = styled.th`
     padding: 4px 0;
     font-size: 14px;
     letter-spacing: -0.5px;
     display: inline-block;
     width: 16%;
 `
-const ReportReportTargertDivTableTbodyTrTd = styled.td`
+const BTbodyTrTd = styled.td`
     line-height: 24px;
     padding: 3px 0;
     font-size: 15px;
