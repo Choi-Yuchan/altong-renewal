@@ -31,18 +31,16 @@ const tagStackQ = ( index, indexStack, array, value, text) => {
     case "div" :
       return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
     case "/p" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("p", value, text), "");
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("p", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
     case "/br" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("br", value, text), "");
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("br", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
     case "/span" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("span", value, text), "");
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("span", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
     case "/div" :
-      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("div", value, text), "");
+      return tagStackQ( index + 1, indexStack.slice(0, -1), array, tagInstance("div", value, text.split("&nbsp;").map((ls)=>{return <>{ls}<Nbsp></Nbsp></>})), "");
     default :
       return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
   }
-  
-  return tagStackQ( index + 1 , indexStack, array );
 }
 
 const tagInstance = (seq, tag, val) => {
@@ -71,6 +69,22 @@ const InDiv = (tag, val) => {
   return <div> {tag} {val} </div>
 }
 
+const resultConvert = (contents) => {
+  
+  const contentArray = contents.replace("<br>","<br></br>");
+  const arr1 = contentArray.split(/(\<[^\>]+\>)/).filter((element) => element !== "");
+  
+  const arrConvert = arr1.map((val)=>{
+    if(/\<[^\>]+\>/.test(val)){
+      return val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "");
+    }else{
+      //console.log( val );
+      return val;
+    }
+  });
+
+  return tagStackQ(0,[],arrConvert,'',"");
+}
 
 // http://125.7.228.198/answer/answerList?Seq=266098&CurPageName=bestList&Section1=0&src_Sort=Seq&src_OrderBy=DESC&SP=&ticketQueChk=
 const contentConvert = (contents) => {
@@ -88,7 +102,6 @@ const contentConvert = (contents) => {
 
   const arrConvert = arr1.map((val)=>{
     // stack 을 내부에 전달하면서 for 처리해줌..
-    
     if(/\<[^\>]+\>/.test(val)){
       //console.log( val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "") );
       return val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "");
@@ -97,7 +110,8 @@ const contentConvert = (contents) => {
       return val;
     }
   });
-
+  tagStackQ(0,[],arrConvert,'',"");
+  
   // 불가능이라고 판단 후, 설계 다시함.
   // 각 jsx 는 무조건 한쌍을 가지고 있어야함. 따라서 <jsx> {in} </jsx> 형태로 모든 태그를 만들어주고 배열에서 처리하도록 함.
   
@@ -130,9 +144,12 @@ function QorA(props){
         {props.contents}
       </ContentsP>
       <br></br>
-      <ContentsP> 
+      {/* <ContentsP> 
         {contentConvert(props.contents)}
-      </ContentsP>
+      </ContentsP> */}
+      <contentsP>
+        {resultConvert(props.contents)}
+      </contentsP>
     </>
   );
 }
