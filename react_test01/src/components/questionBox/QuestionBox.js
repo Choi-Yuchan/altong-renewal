@@ -78,7 +78,9 @@ function QuestionBox(props) {
         <TopNavi></TopNavi>
         <WrapperDiv>
           <BoxController white={whiteClick} setWhite={setWhiteClick}
-          clicked={bodyClicked} setClicked={setBodyClicked} setShowAlmoney={setShowAlmoney}
+          clicked={bodyClicked} setClicked={setBodyClicked}
+          setShowAlmoney={setShowAlmoney}
+          setShowSiren={setShowSiren}
           SSRJSON={SSRJSON} USER={user} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>

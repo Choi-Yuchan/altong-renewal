@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function PopSilen() {
+function PopSilen(props) {
     return (
-        <PopReportDiv>
+        <PopReportDiv showSiren={props.showSiren}>
             <PopReportH4><PopReportDivImg></PopReportDivImg>신고</PopReportH4>
             <ReportWrap>
                 <BDiv>
@@ -199,6 +199,7 @@ const PopReportDiv = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: ${(props) => props.showSiren?"block":"none"};
 `;
 const PopReportDivImg = styled.img`
     width: 19px;
