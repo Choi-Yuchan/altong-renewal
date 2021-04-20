@@ -1,5 +1,6 @@
 
 import Routes from "./Routes"
+import './App.css'
 
 
 // 기능은 대부분 해당 유저의 seq 값으로 움직이도록 설계

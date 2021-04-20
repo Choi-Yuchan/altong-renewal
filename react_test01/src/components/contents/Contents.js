@@ -3,150 +3,14 @@ import React, { useState } from 'react';
 import Nbsp from '../functions/nbsp/Nbsp';
 import ReactDOMServer from 'react-dom/server';
 
-const tagStackQ = ( index, indexStack, array, value, text) => {
-  if(index >= array.length ){
-    return value;
-  }
-  console.log("leng : " + indexStack.length);
-  console.log("value : " + array[index]);
-  console.log("array : " + ReactDOMServer.renderToStaticMarkup(value));
-
-  if( array[index]==="p" || array[index]==="br" || array[index]==="span" || array[index]==="div" ){
-    return tagStackQ( index + 1, indexStack.concat(index), array, value, text);
-  }else if( array[index]==="/p" || array[index]==="/br" || array[index]==="/span" || array[index]==="/div"){
-    if (indexStack.length < 1){
-      return tagStackQ( index + 1, indexStack.slice(0,-1), array, tagOutInstance(array[index].slice(1), value, text.split("&nbsp;").map(
-        (ls,index, arr)=>{
-          if(index === arr.length-1) return <>{ls}</>;
-          return <>{ls}<Nbsp></Nbsp></>
-        }
-      )), "");
-    }
-    return tagStackQ( index + 1, indexStack.slice(0,-1), array, tagInstance(array[index].slice(1), value, text.split("&nbsp;").map(
-      (ls,index, arr)=>{
-        if(index === arr.length-1) return <>{ls}</>;
-        return <>{ls}<Nbsp></Nbsp></>
-      }
-    )), "");
-  }else{
-    return tagStackQ( index + 1, indexStack, array, value, text + array[index]);
-  }
-}
-const tagOutInstance = (seq, tag, val) => {
-  switch(seq){
-    case "p" :
-      return OutP(tag, val);
-    case "br" :
-      return OutBr(tag, val);
-    case "span" : 
-      return OutSpan(tag, val);
-    case "div" :
-      return OutDiv(tag, val);
-  }
-}
-
-const tagInstance = (seq, tag, val) => {
-  switch(seq){
-    case "p" :
-      return InP(tag, val);
-    case "br" :
-      return InBr(tag, val);
-    case "span" : 
-      return InSpan(tag, val);
-    case "div" :
-      return InDiv(tag, val);
-  }
-}
-
-const InP = (tag, val) => {
-  return <NomalP>{tag}{val}</NomalP>
-}
-const InBr = (tag, val) => {
-  return <>{tag}<br></br>{val}</>
-}
-const InSpan = (tag, val) => {
-  return <span>{tag}{val}</span>
-}
-const InDiv = (tag, val) => {
-  return <div>{tag}{val}</div>
-}
-
-const OutP = (tag, val) => {
-  return <>{tag}<NomalP>{val}</NomalP></>
-}
-const OutBr = (tag, val) => {
-  return <>{tag}<br></br>{val}</>
-}
-const OutSpan = (tag, val) => {
-  return <>{tag}<span>{val}</span></>
-}
-const OutDiv = (tag, val) => {
-  return <>{tag}<div>{val}</div></>
-}
-
-const resultConvert = (contents) => {
-  
-  const contentArray = contents.replace("<br>","<br></br>");
-  const arr1 = contentArray.split(/(\<[^\>]+\>)/).filter((element) => element !== "");
-  
-  const arrConvert = arr1.map((val)=>{
-    if(/\<[^\>]+\>/.test(val)){
-      return val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "");
-    }else{
-      //console.log( val );
-      return val;
-    }
-  });
-
-  return tagStackQ(0,[],arrConvert,'',"");
-}
-
 // http://125.7.228.198/answer/answerList?Seq=266098&CurPageName=bestList&Section1=0&src_Sort=Seq&src_OrderBy=DESC&SP=&ticketQueChk=
-const contentConvert = (contents) => {
-  const contentArray = contents.replace("<br>","<br></br>");
-  const listResult = contentArray.split(/\<[^\>]+\>/).filter((element) => element !== "");
-  const arr1 = contentArray.split(/(\<[^\>]+\>)/).filter((element) => element !== "");
-
-  //console.log(contentArray);
-  //console.log(arr1);
-  //console.log(<div></div>);
-
-  // 정규표현식으로 맵에서 시작 태그를 찾음 (html 태그값만 가져옴) -> jsx 요소로 return 함
-  // 일반 값인 경우 
-
-
-  const arrConvert = arr1.map((val)=>{
-    // stack 을 내부에 전달하면서 for 처리해줌..
-    if(/\<[^\>]+\>/.test(val)){
-      //console.log( val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "") );
-      return val.replace(/[ ][^\>]+\>/, "").replace("<", "").replace(">", "");
-    }else{
-      //console.log( val );
-      return val;
-    }
-  });
-  tagStackQ(0,[],arrConvert,'',"");
-  
-  // 불가능이라고 판단 후, 설계 다시함.
-  // 각 jsx 는 무조건 한쌍을 가지고 있어야함. 따라서 <jsx> {in} </jsx> 형태로 모든 태그를 만들어주고 배열에서 처리하도록 함.
-  
-  //(\<[^\>]+\>)
-  const result = listResult.map( (list) => {
-      return <NomalP>{
-        list.split("&nbsp;").map((ls)=>{
-          return <>{ls}<Nbsp></Nbsp></>
-        })
-      }</NomalP>
-    } );
-  return result;
-}
 
 function QorA(props){
   const isShow = props.seqComponent;
   if(isShow === 'A'){
     return (
       <ContentsP2 isShow={isShow} onClick={props.onClick2}>
-        {contentConvert(props.contents)}
+        <div dangerouslySetInnerHTML={{__html: props.contents}}></div>
         <DelSpan setMessage={props.setMessage}
           setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
         <CustomView isView={props.openAnswer}></CustomView>
@@ -155,16 +19,11 @@ function QorA(props){
   }
   return (
     <>
-      <ContentsP>
+      {/* <ContentsP>
         {props.contents}
-      </ContentsP>
-      <br></br>
-      {/* <ContentsP> 
-        {contentConvert(props.contents)}
       </ContentsP> */}
-      <contentsP>
-        {resultConvert(props.contents)}
-      </contentsP>
+      <ContentsP dangerouslySetInnerHTML={{__html: props.contents}}>
+      </ContentsP>
     </>
   );
 }
