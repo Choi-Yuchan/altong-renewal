@@ -84,14 +84,92 @@ function PopAlmoney(props) {
                         </ReportReportReasonDivTableTbody>
                     </ReportReportReasonDivTable>
                 </ReportReportReasonDiv>
-                <ReportReportBottomDiv></ReportReportBottomDiv>
-                <ReportReportButtonDiv></ReportReportButtonDiv>
+                <ReportReportBottomDiv>
+                    <ReportReportBottomDivP>
+                        <ReportReportBottomDivPI>warning</ReportReportBottomDivPI>
+                    </ReportReportBottomDivP>
+                    <ReportReportBottomDivP>무고한 게시물을 신고하실 경우 향후 사이트 이용 시<br></br> 불이익이 있을 수도 있으니 신중을 기해주세요.</ReportReportBottomDivP>
+                </ReportReportBottomDiv>
+                <ReportReportButtonDiv>
+                    <ReportReportButtonDivTable>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ReportReportButtonDivInput></ReportReportButtonDivInput>
+                                </td>
+                                <td>
+                                    <ReportReportButtonDivInputSubmit></ReportReportButtonDivInputSubmit>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </ReportReportButtonDivTable>
+                </ReportReportButtonDiv>
             </ReportWrap>
         </PopReportDiv>
     );
 }
   
 export default PopAlmoney;
+
+const ReportReportButtonDiv = styled.div``
+const ReportReportButtonDivTable = styled.table`
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+`
+const ReportReportButtonDivInput = styled.input`
+    text-align: center;
+    width: 90%;
+    background: #fff;
+    border: 1px solid #bbbaba;
+    font-size: 14px;
+    border-radius: 20px;
+    line-height: 24px;
+    color: #bbbaba;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    outline: none;
+    cursor: pointer;
+`
+const ReportReportButtonDivInputSubmit = styled.input`
+    border: 1px solid #2bb330;
+    color: #2bb330;
+    text-align: center;
+    width: 90%;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    line-height: 24px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    outline: none;
+    cursor: pointer;
+`
+
+const ReportReportBottomDiv = styled.div`
+    text-align: center;
+    margin-top: 5px;
+    color: #989898;
+`
+const ReportReportBottomDivP = styled.p`
+    font-size: 14px;
+`
+const ReportReportBottomDivPI = styled.i`
+    font-size: 20px;
+    margin-bottom: 8px;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+`
 
 const ReportReportReasonDiv = styled.div``
 const ReportReportReasonDivP = styled.p`
@@ -188,13 +266,6 @@ const ReportReportTargertDivTableTbodyTrTd = styled.td`
     overflow: hidden;
     display: inline-block;
     width: 82%;
-`
-const ReportReportBottomDiv = styled.div`
-    text-align: center;
-    margin-top: 5px;
-    color: #989898;
-`
-const ReportReportButtonDiv = styled.div`
 `
 
 
