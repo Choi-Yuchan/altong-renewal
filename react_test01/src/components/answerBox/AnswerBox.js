@@ -88,7 +88,8 @@ function AnswerBox(props) {
             <ChoiceNetizenView netizen={props.jsonArr.netizen}></ChoiceNetizenView>
           </TopH3Div>
         </TopH3>
-        <ABoxTop head={props.jsonArr.head} mini={props.jsonArr.mini} 
+        <ABoxTop
+          head={props.jsonArr.head} mini={props.jsonArr.mini} 
           clicked={props.clicked} setClicked={props.setClicked}
           replyCount={replyCount(replys)}
           white={props.white} setWhite={props.setWhite}
@@ -97,8 +98,10 @@ function AnswerBox(props) {
           setShowSiren={props.setShowSiren}
           openAnswer={openAnswer}
           seqId={props.jsonArr.seqId}
+          USER={props.USER}
           ></ABoxTop>
-        <Contents contents={message} setOpenAnswer={setOpenAnswer} 
+        <Contents
+          contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
           setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
         <OpenDiv

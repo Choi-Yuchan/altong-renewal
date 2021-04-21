@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const UlvText = (props) => {
     const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
@@ -6,7 +8,29 @@ const UlvText = (props) => {
   }
 
 function MiniProfile(props) {
-    console.log(props.id);
+    const USER= props.USER;
+    const uid = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
+    
+
+    //console.log(props.id);
+    const AddFriend = (e) => {
+        axios.put("/restApi/users/"+ props.id + "/F/partner-save")
+        .then( (response) => response.data )
+        .then( (data) => {
+                alert(data.msg);
+                props.setClicked(true);
+                e.stopPropagation();
+            }
+        )
+        .catch(function (error) {
+                console.log(error);
+                alert("오류가 발생하였습니다. 잠시후에 시도해주세요.");
+                props.setClicked(true);
+                e.stopPropagation();
+            }
+        );
+    }
+
     return (
         <MainDiv showMini={props.showMini} className="MiniProfile"
         onClick={(e)=>{
@@ -20,14 +44,17 @@ function MiniProfile(props) {
                     <th>
                     <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
                     <th rowSpan="2" 
+                        onClick={(e) => {
+                            AddFriend(e);
+                        }}
                     >
-                    <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
+                        <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
                     </th>
                     <th rowSpan="2">
-                    <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
+                        <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
                     </th>
                     <th rowSpan="2">
-                    <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
+                        <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
                     </th>
                 </tr>
                 <tr>

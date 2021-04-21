@@ -98,6 +98,7 @@ function ABoxTop(props) {
           mini={props.mini} clicked={props.clicked}
           id={props.seqId}
           setShowMini={setShowMini}
+          USER={props.USER}
         ></MiniProfile>
     </MainDiv>
   );

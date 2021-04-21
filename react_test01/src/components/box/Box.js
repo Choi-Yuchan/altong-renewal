@@ -45,7 +45,8 @@ function Box(props) {
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
           </AlmoneyDiv>
         </div>
-        <QBoxTop clicked={props.clicked} setClicked={props.setClicked}
+        <QBoxTop
+          clicked={props.clicked} setClicked={props.setClicked}
           white={props.white} setWhite={props.setWhite}
           head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
           pageSeq={props.jsonArr.pageSeq}
@@ -53,6 +54,7 @@ function Box(props) {
           setShowSiren={props.setShowSiren}
           mini={props.jsonArr.mini}
           seqId={props.jsonArr.seqId}
+          USER={props.USER}
           ></QBoxTop>
 
         <Contents seqComponent={props.jsonArr.seqComponent}

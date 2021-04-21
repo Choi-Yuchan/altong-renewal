@@ -5,6 +5,9 @@ import axios from 'axios';
 function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
     const [ reson , setReson ] = useState("");
+    
+    const USER= props.USER;
+    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
 
     const handleChange = (e) => {
         setReson(e.target.value);
@@ -32,8 +35,6 @@ function PopSilen(props) {
         );
     }
 
-    const USER= props.USER;
-    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
 
     useEffect(() => {
         if(props.clicked === true){
