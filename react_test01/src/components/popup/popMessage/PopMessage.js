@@ -13,7 +13,6 @@ function PopMessage(props) {
 
     const sendMessage = (e) => {
         setMessageState("보내는 중~");
-        console.log("/restApi/messages/" + props.user + "/send");
         axios.put("/restApi/messages/" + props.user + "/send",{
             "Contents":message
         })

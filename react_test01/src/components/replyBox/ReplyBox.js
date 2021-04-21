@@ -2,6 +2,94 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+function ViewAnswerBtn(props){
+    if(props.seqComponent === 'A'){
+        return <AnswerBtnAB>채택하기</AnswerBtnAB>
+    }
+    return <AnswerBtnA>답변하기</AnswerBtnA>
+}
+
+const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
+    axios.put(seqComponent==='Q' ? "/rest/questions/" +
+    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
+        estiSeq:"G"
+    })
+    .then((response) => response.data)
+    .then((data) => {
+        if(data.code == "success"){
+            setGood(data.good);
+            setBad(data.bad);
+        }
+    });
+}
+const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
+    axios.put(seqComponent==='Q' ? "/rest/questions/" +
+    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
+        estiSeq:"B"
+    })
+    .then((response) => response.data)
+    .then((data) => {
+        if(data.code == "success"){
+            setGood(data.good);
+            setBad(data.bad);
+        }
+    });
+}
+
+
+function ReplyBox(props) {
+    
+
+    useEffect(()=>{
+            if(props.pageSeq === undefined){}else{
+                const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
+                axios.get(voteUrl)
+                .then((response) => response.data)
+                .then( (data) => {
+                    setGood(data.good);
+                    setBad(data.bad);
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+            }
+        }
+    , []);
+    
+    const [good,setGood] = useState(0);
+    const [bad,setBad] = useState(0);
+
+    return (
+      <OlBox className="ReplyBox">
+          <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
+              <HrefA>
+                  <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
+              </HrefA>
+          </ListReply>
+          <EmotionList>
+              <EmotionListIconDiv className="smileIcon" onClick={()=> {
+                  SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
+              }}>
+                  <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
+                  <EmotionB >{good}</EmotionB>
+              </EmotionListIconDiv>
+              <EmotionListIconDiv className="sadIcon" onClick={()=> {
+                  SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
+              }}>
+                  <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
+                  <EmotionB >{bad}</EmotionB>
+              </EmotionListIconDiv>
+          </EmotionList>
+          <AnswerDoList>
+            <ViewAnswerBtn seqComponent={props.seqComponent}></ViewAnswerBtn>
+            <LangBtnA>번역하기</LangBtnA>
+          </AnswerDoList>
+      </OlBox>
+    );
+  }
+  
+export default ReplyBox;
+
 
 const EmotionImg = styled.img`
     display: block;
@@ -133,91 +221,3 @@ const LangBtnA = styled.a`
     text-decoration: none;
     cursor: pointer;
 `;
-
-function ViewAnswerBtn(props){
-    if(props.seqComponent === 'A'){
-        return <AnswerBtnAB>채택하기</AnswerBtnAB>
-    }
-    return <AnswerBtnA>답변하기</AnswerBtnA>
-}
-
-const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
-    axios.put(seqComponent==='Q' ? "/rest/questions/" +
-    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
-        estiSeq:"G"
-    })
-    .then((response) => response.data)
-    .then((data) => {
-        if(data.code == "success"){
-            setGood(data.good);
-            setBad(data.bad);
-        }
-    });
-}
-const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
-    axios.put(seqComponent==='Q' ? "/rest/questions/" +
-    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
-        estiSeq:"B"
-    })
-    .then((response) => response.data)
-    .then((data) => {
-        if(data.code == "success"){
-            setGood(data.good);
-            setBad(data.bad);
-        }
-    });
-}
-
-
-function ReplyBox(props) {
-    
-
-    useEffect(()=>{
-            if(props.pageSeq === undefined){}else{
-                const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
-                axios.get(voteUrl)
-                .then((response) => response.data)
-                .then( (data) => {
-                    setGood(data.good);
-                    setBad(data.bad);
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            }
-        }
-    , []);
-    
-    const [good,setGood] = useState(0);
-    const [bad,setBad] = useState(0);
-
-    return (
-      <OlBox className="ReplyBox">
-          <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
-              <HrefA>
-                  <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
-              </HrefA>
-          </ListReply>
-          <EmotionList>
-              <EmotionListIconDiv className="smileIcon" onClick={()=> {
-                  SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
-              }}>
-                  <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
-                  <EmotionB >{good}</EmotionB>
-              </EmotionListIconDiv>
-              <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                  SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
-              }}>
-                  <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
-                  <EmotionB >{bad}</EmotionB>
-              </EmotionListIconDiv>
-          </EmotionList>
-          <AnswerDoList>
-            <ViewAnswerBtn seqComponent={props.seqComponent}></ViewAnswerBtn>
-            <LangBtnA>번역하기</LangBtnA>
-          </AnswerDoList>
-      </OlBox>
-    );
-  }
-  
-  export default ReplyBox;
