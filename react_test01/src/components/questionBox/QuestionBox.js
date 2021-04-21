@@ -22,7 +22,6 @@ function ShowBlackDiv(props){
 //     "seq": 10035484,
 //     "name": "로딩중",
 //     "lv": 1
-
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);

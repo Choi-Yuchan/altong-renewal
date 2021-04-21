@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
 function PopSilen(props) {
+    const [ radioN , setRadioN ] = useState(0);
 
     useEffect(() => {
         if(props.clicked === true){
@@ -23,7 +26,7 @@ function PopSilen(props) {
                     <BTable>
                         <BTbody>
                             <BTr>
-                                <BTbodyTrTh>작성자</BTbodyTrTh>
+                                <BTbodyTrTh>작성자{radioN}</BTbodyTrTh>
                                 <BTbodyTrTd>(닉네임)</BTbodyTrTd>
                             </BTr>
                             <BTr>
@@ -40,41 +43,81 @@ function PopSilen(props) {
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>홍보성</label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("1")
+                                            }}
+                                            checked={radioN === "1" ? true : false}
+                                        ></ARInput>홍보성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>유해성</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>장난성</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>중복성</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>비속어/반말</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>비 정보·지식</label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("2")
+                                            }}
+                                            checked={radioN === "2" ? true : false}
+                                        ></ARInput>유해성</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>음해/비방</label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("3")
+                                            }}
+                                            checked={radioN === "3" ? true : false}
+                                        ></ARInput>장난성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
-                                        <ARInput type="radio" name="H_Reason"></ARInput>기타</label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("4")
+                                            }}
+                                            checked={radioN === "4" ? true : false}
+                                        ></ARInput>중복성</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr>
+                                <AReasonTbodyTrTd>
+                                    <label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("5")
+                                            }}
+                                            checked={radioN === "5" ? true : false}
+                                        ></ARInput>비속어/반말</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
+                                    <label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("6")
+                                            }}
+                                            checked={radioN === "6" ? true : false}
+                                        ></ARInput>비 정보·지식</label>
+                                </AReasonTbodyTrTd>
+                            </tr>
+                            <tr>
+                                <AReasonTbodyTrTd>
+                                    <label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("7")
+                                            }}
+                                            checked={radioN === "7" ? true : false}
+                                        ></ARInput>음해/비방</label>
+                                </AReasonTbodyTrTd>
+                                <AReasonTbodyTrTd>
+                                    <label>
+                                        <ARInput type="radio" name="H_Reason"
+                                            onClick={() => {
+                                                setRadioN("8")
+                                            }}
+                                            checked={radioN === "8" ? true : false}
+                                        ></ARInput>기타</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
