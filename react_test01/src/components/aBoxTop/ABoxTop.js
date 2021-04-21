@@ -95,8 +95,10 @@ function ABoxTop(props) {
         ></QuestionPopup>
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
-         mini={props.mini} clicked={props.clicked} 
-        setShowMini={setShowMini}></MiniProfile>
+          mini={props.mini} clicked={props.clicked}
+          id={props.seqId}
+          setShowMini={setShowMini}
+        ></MiniProfile>
     </MainDiv>
   );
   }

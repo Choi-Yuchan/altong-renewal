@@ -86,7 +86,9 @@ function QBoxTop(props) {
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
         mini={props.mini} clicked={props.clicked} 
-      setShowMini={setShowMini}></MiniProfile>
+        id={props.seqId}
+        setShowMini={setShowMini}
+      ></MiniProfile>
     </MainDiv>
   );
 }

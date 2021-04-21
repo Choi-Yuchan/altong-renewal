@@ -52,6 +52,7 @@ function Box(props) {
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
           mini={props.jsonArr.mini} ></QBoxTop>
+          
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>

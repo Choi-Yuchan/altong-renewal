@@ -11,7 +11,6 @@ function PopSilen(props) {
     }
 
     const runSilen = (e, setReson, setClicked) => {
-        console.log("/restApi/questions/" + props.page + "/siren");
         axios.put("/restApi/questions/" + props.page + "/siren",{
             "ACT":"CheckSiren", "H_Type":props.seq , "H_Reason": radioN, "H_Reason_txt": reson
         })

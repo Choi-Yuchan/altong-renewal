@@ -6,7 +6,7 @@ const UlvText = (props) => {
   }
 
 function MiniProfile(props) {
-    
+    console.log(props.id);
     return (
         <MainDiv showMini={props.showMini} className="MiniProfile"
         onClick={(e)=>{
