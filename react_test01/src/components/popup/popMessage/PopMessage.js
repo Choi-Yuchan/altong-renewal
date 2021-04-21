@@ -3,11 +3,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function PopMessage(props) {
+    const USER= props.USER;
+    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     
     return (
-        <MainMessage>
+        <MainMessage show={props.showMessage} onClick={(e) => {
+            props.setClicked(false);
+            props.setShowMessage({show:true, page:props.page, seq:props.seq, title: props.title});
+            e.stopPropagation();
+        }}>
             <MsgH5>
-                <MsgH5Span>(닉네임)</MsgH5Span>님께 쪽지 보내기</MsgH5>
+                <MsgH5Span>{nick}</MsgH5Span> 님께 쪽지 보내기</MsgH5>
                 <MsgDiv>
                     <MsgTextarea></MsgTextarea>
                 </MsgDiv>
@@ -54,7 +60,7 @@ const MsgPSpanSend = styled.span`
 `
 
 const MainMessage = styled.div`
-    display: block;
+    display: ${(props) => props.show?"block":"none"};
     opacity: 1;
     background: #fff;
     width: 90%;

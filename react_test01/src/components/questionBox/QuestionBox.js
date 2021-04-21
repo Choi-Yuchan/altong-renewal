@@ -100,7 +100,7 @@ function QuestionBox(props) {
       <PopMessage
         clicked={bodyClicked} setClicked={setBodyClicked}
         showMessage={showMessage.show} user={showMessage.user}
-        setShowMessage={setShowMessage}
+        setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
