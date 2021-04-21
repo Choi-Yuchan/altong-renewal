@@ -6,6 +6,12 @@ import axios from 'axios';
 
 function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
+    const [ reson , setReson ] = useState("");
+
+    const handleChange = (e) =>{
+        setReson(e.target.value);
+    }
+
 
     const USER= props.USER;
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
@@ -125,7 +131,7 @@ function PopSilen(props) {
                             </tr>
                             <tr>
                                 <ABTd colSpan="2">
-                                    <ReTextarea maxlength="1000" placeholder="남기실 말씀이 있으시면 입력해주세요.">
+                                    <ReTextarea maxlength="1000" placeholder="남기실 말씀이 있으시면 입력해주세요." value={reson} onChange={(e) => {handleChange(e)}}>
                                     </ReTextarea>
                                 </ABTd>
                                 
@@ -144,7 +150,12 @@ function PopSilen(props) {
                         <tbody>
                             <tr>
                                 <td>
-                                    <DRInput value="취소"></DRInput>
+                                    <DRInput value="취소" onClick={(e)=>{
+                                            setReson("");
+                                            props.setClicked(true);
+                                            e.stopPropagation();
+                                        }}
+                                    ></DRInput>
                                 </td>
                                 <td>
                                     <DSubmit value="제출"></DSubmit>
