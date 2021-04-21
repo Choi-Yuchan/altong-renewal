@@ -9,12 +9,30 @@ const UlvText = (props) => {
 
 function MiniProfile(props) {
     const USER= props.USER;
-    const uid = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
+    // const uid = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
     
 
-    //console.log(props.id);
+    // 친구 추가
     const AddFriend = (e) => {
         axios.put("/restApi/users/"+ props.id + "/F/partner-save")
+        .then( (response) => response.data )
+        .then( (data) => {
+                alert(data.msg);
+                props.setClicked(true);
+                e.stopPropagation();
+            }
+        )
+        .catch(function (error) {
+                console.log(error);
+                alert("오류가 발생하였습니다. 잠시후에 시도해주세요.");
+                props.setClicked(true);
+                e.stopPropagation();
+            }
+        );
+    }
+    // 멘토 추가
+    const AddMento = (e) => {
+        axios.put("/restApi/users/"+ props.id + "/M/partner-save")
         .then( (response) => response.data )
         .then( (data) => {
                 alert(data.msg);
@@ -50,7 +68,11 @@ function MiniProfile(props) {
                     >
                         <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan="2" 
+                        onClick={(e) => {
+                            AddMento(e);
+                        }}
+                    >
                         <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
                     </th>
                     <th rowSpan="2">
