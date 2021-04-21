@@ -23,16 +23,22 @@ function PopMessage(props) {
                     alert("메시지를 보냈습니다.");
                     setMessage("");
                     setMessageState("보내기");
+                    props.setClicked(true);
+                    e.stopPropagation();
                 }else{
                     alert(data.msg);
                     setMessage("");
                     setMessageState("보내기");
+                    props.setClicked(true);
+                    e.stopPropagation();
                 }
             }
         )
         .catch(function (error) {
                 console.log(error)
                 setMessageState("보내기");
+                props.setClicked(true);
+                e.stopPropagation();
             }
         );
     }
