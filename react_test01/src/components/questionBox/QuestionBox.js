@@ -10,6 +10,7 @@ import TopNavi from './../topNavi/TopNavi'
 import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
+import PopMessage from '../popup/popMessage/PopMessage';
 
 
 function ShowBlackDiv(props){
@@ -31,6 +32,7 @@ function QuestionBox(props) {
   const SSRJSON = jsonList
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
   const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
+  const [showMessage, setShowMessage] = useState({ show:false, user:0 });
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -94,6 +96,12 @@ function QuestionBox(props) {
         showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq} title={showSiren.title}
         setShowSiren={setShowSiren} USER={user}
       ></PopSilen>
+        
+      <PopMessage
+        clicked={bodyClicked} setClicked={setBodyClicked}
+        showMessage={showMessage.show} user={showMessage.user}
+        setShowMessage={setShowMessage}
+      ></PopMessage>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
