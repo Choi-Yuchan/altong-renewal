@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
 function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
     const [ reson , setReson ] = useState("");
@@ -12,15 +10,21 @@ function PopSilen(props) {
         setReson(e.target.value);
     }
 
-    const runSilen = () => {
+    const runSilen = (e, setReson, setClicked) => {
         console.log("/restApi/questions/" + props.page + "/siren");
         axios.put("/restApi/questions/" + props.page + "/siren",{
             "ACT":"CheckSiren", "H_Type":props.seq , "H_Reason": radioN, "H_Reason_txt": reson
         })
         .then( (response) => response.data )
         .then( (data) => {
-                console.log("data... ")
-                console.log(data);
+                if(data.msg){
+                    alert("신고가 정상적으로 접수되었습니다.");
+                    setReson("");
+                    setClicked(true);
+                    e.stopPropagation();
+                }else{
+                    alert("신고 접수가 실패하였습니다.");
+                }
             }
         )
         .catch(function (error) {
@@ -28,7 +32,6 @@ function PopSilen(props) {
             }
         );
     }
-
 
     const USER= props.USER;
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
@@ -176,7 +179,7 @@ function PopSilen(props) {
                                 </td>
                                 <td>
                                     <DSubmit value="제출" onClick={(e)=>{
-                                            runSilen();
+                                            runSilen(e, setReson, props.setClicked);
                                         }}
                                     ></DSubmit>
                                 </td>
