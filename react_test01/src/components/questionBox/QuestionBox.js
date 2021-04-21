@@ -81,6 +81,7 @@ function QuestionBox(props) {
           clicked={bodyClicked} setClicked={setBodyClicked}
           setShowAlmoney={setShowAlmoney}
           setShowSiren={setShowSiren}
+          setShowMessage={setShowMessage}
           SSRJSON={SSRJSON} USER={user} SESS={SESS}></BoxController>
         </WrapperDiv>
       </MainDiv>

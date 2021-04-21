@@ -96,6 +96,7 @@ function AnswerBox(props) {
           pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
+          setShowMessage={props.setShowMessage}
           openAnswer={openAnswer}
           seqId={props.jsonArr.seqId}
           USER={props.USER}

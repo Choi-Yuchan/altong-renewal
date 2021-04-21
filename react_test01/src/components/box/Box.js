@@ -52,6 +52,7 @@ function Box(props) {
           pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
+          setShowMessage={props.setShowMessage}
           mini={props.jsonArr.mini}
           seqId={props.jsonArr.seqId}
           USER={props.USER}

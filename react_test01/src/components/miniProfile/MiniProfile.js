@@ -75,7 +75,13 @@ function MiniProfile(props) {
                     >
                         <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan="2"
+                        onClick={(e) => {
+                            props.setClicked(false);
+                            props.setShowMessage({show:true, user:props.id});
+                            e.stopPropagation();
+                        }}
+                    >
                         <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
                     </th>
                 </tr>

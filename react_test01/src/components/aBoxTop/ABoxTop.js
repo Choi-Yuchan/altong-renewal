@@ -99,6 +99,7 @@ function ABoxTop(props) {
           id={props.seqId}
           setShowMini={setShowMini}
           USER={props.USER}
+          setShowMessage={props.setShowMessage}
         ></MiniProfile>
     </MainDiv>
   );
