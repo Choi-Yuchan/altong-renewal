@@ -96,6 +96,7 @@ function AnswerBox(props) {
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
           openAnswer={openAnswer}
+          seqId={props.jsonArr.seqId}
           ></ABoxTop>
         <Contents contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}

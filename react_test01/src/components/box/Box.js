@@ -51,8 +51,10 @@ function Box(props) {
           pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
-          mini={props.jsonArr.mini} ></QBoxTop>
-          
+          mini={props.jsonArr.mini}
+          seqId={props.jsonArr.seqId}
+          ></QBoxTop>
+
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>
         <LangTransBox></LangTransBox>
