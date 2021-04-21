@@ -1,5 +1,65 @@
 import styled from 'styled-components';
-// atm_top_wrap
+
+const UlvText = (props) => {
+    const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+    return LV[props];
+  }
+
+function MiniProfile(props) {
+    
+    return (
+        <MainDiv showMini={props.showMini} className="MiniProfile"
+        onClick={(e)=>{
+            props.setClicked(false);
+            props.setShowMini(true);
+            e.stopPropagation();
+        }}>
+            <MainTable>
+                <tbody>
+                <tr>
+                    <th>
+                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
+                    <th rowSpan="2" 
+                    >
+                    <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
+                    </th>
+                    <th rowSpan="2">
+                    <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
+                    </th>
+                    <th rowSpan="2">
+                    <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
+                    </th>
+                </tr>
+                <tr>
+                    <MoneyInfoTd>누적수익 : <span>{props.mini.alBenefit}</span>알</MoneyInfoTd>
+                </tr>
+                </tbody>
+            </MainTable>
+            <MiniContentP>{props.mini.descript}</MiniContentP>
+            <MiniIconLine></MiniIconLine>
+            <MiniInfoTable>
+                <tbody>
+                    <MiniInfoTableTr>
+                        <MiniInfoTableTd>질문 수익</MiniInfoTableTd>
+                        <MiniInfoTableTd>답변 수익</MiniInfoTableTd>
+                        <MiniInfoTableTd>감사알 지급 건수</MiniInfoTableTd>
+                        <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
+                    </MiniInfoTableTr>
+                    <MiniInfoTableTr>
+                        <MiniInfoTableTh>{props.mini.qBenefit}알</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.ABenefit}알</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.giveThankNum}</MiniInfoTableTh>
+                        <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
+                    </MiniInfoTableTr>
+                </tbody>
+            </MiniInfoTable>
+            <MiniProfileGo>프로필 보러가기</MiniProfileGo>
+        </MainDiv>
+    );
+  }
+  
+export default MiniProfile;
+
 const MainDiv = styled.div`
 &{
     width: 400px;
@@ -120,66 +180,4 @@ const MiniInfoTableTh = styled.th`
     -webkit-tap-highlight-color: transparent;
 `;
 
-const UlvText = (props) => {
-    const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
-    return LV[props];
-  }
-
-
-
-function MiniProfile(props) {
-
-    
-    return (
-        <MainDiv showMini={props.showMini} className="MiniProfile"
-        onClick={(e)=>{
-            props.setClicked(false);
-            props.setShowMini(true);
-            e.stopPropagation();
-        }}>
-            <MainTable>
-                <tbody>
-                <tr>
-                    <th>
-                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
-                    <th rowSpan="2" 
-                    >
-                    <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
-                    </th>
-                    <th rowSpan="2">
-                    <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
-                    </th>
-                    <th rowSpan="2">
-                    <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
-                    </th>
-                </tr>
-                <tr>
-                    <MoneyInfoTd>누적수익 : <span>{props.mini.alBenefit}</span>알</MoneyInfoTd>
-                </tr>
-                </tbody>
-            </MainTable>
-            <MiniContentP>{props.mini.descript}</MiniContentP>
-            <MiniIconLine></MiniIconLine>
-            <MiniInfoTable>
-                <tbody>
-                    <MiniInfoTableTr>
-                        <MiniInfoTableTd>질문 수익</MiniInfoTableTd>
-                        <MiniInfoTableTd>답변 수익</MiniInfoTableTd>
-                        <MiniInfoTableTd>감사알 지급 건수</MiniInfoTableTd>
-                        <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
-                    </MiniInfoTableTr>
-                    <MiniInfoTableTr>
-                        <MiniInfoTableTh>{props.mini.qBenefit}알</MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.ABenefit}알</MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.giveThankNum}</MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
-                    </MiniInfoTableTr>
-                </tbody>
-            </MiniInfoTable>
-            <MiniProfileGo>프로필 보러가기</MiniProfileGo>
-        </MainDiv>
-    );
-  }
-  
-  export default MiniProfile;
   
