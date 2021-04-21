@@ -7,17 +7,20 @@ import axios from 'axios';
 function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
 
+    const USER= props.USER;
+    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
+
     useEffect(() => {
         if(props.clicked === true){
             props.setShowSiren({show:false, page:props.page, 
-                seq:props.seq});
+                seq:props.seq, title: props.title});
         }
       }, [props.clicked]);
 
     return (
         <PopReportDiv showSiren={props.showSiren} onClick={(e) => {
             props.setClicked(false);
-            props.setShowSiren({show:true, page:props.page, seq:props.seq});
+            props.setShowSiren({show:true, page:props.page, seq:props.seq, title: props.title});
             e.stopPropagation();
           }}>
             <PopReportH4><PopReportDivImg></PopReportDivImg>신고</PopReportH4>
@@ -26,12 +29,12 @@ function PopSilen(props) {
                     <BTable>
                         <BTbody>
                             <BTr>
-                                <BTbodyTrTh>작성자{radioN}</BTbodyTrTh>
-                                <BTbodyTrTd>(닉네임)</BTbodyTrTd>
+                                <BTbodyTrTh>작성자</BTbodyTrTh>
+                                <BTbodyTrTd>{nick}</BTbodyTrTd>
                             </BTr>
                             <BTr>
                                 <BTbodyTrTh>내용</BTbodyTrTh>
-                                <BTbodyTrTd>(제목)</BTbodyTrTd>
+                                <BTbodyTrTd>{props.title}</BTbodyTrTd>
                             </BTr>
                         </BTbody>
                     </BTable>

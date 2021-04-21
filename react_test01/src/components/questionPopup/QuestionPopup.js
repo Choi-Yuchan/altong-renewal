@@ -67,7 +67,7 @@ function QuestionPopup(props) {
             </MainLi>
             <MainLi show={true} onClick={(e) => {
                     props.setClicked(false);
-                    props.setShowSiren({show:true, page:props.pageSeq, seq:'Q'});
+                    props.setShowSiren({show:true, page:props.pageSeq, seq:'Q', title: props.title});
                     e.stopPropagation();
                 }
             }>

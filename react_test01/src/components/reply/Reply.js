@@ -1,7 +1,82 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 
+const handleImgError = (e) => {
+    e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+  }
 
+function ShowView(props){
+    if(props.timeToggle === false){
+        return <>3초 전</>
+    }
+    return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
+}
+function AldolViewImg(props){
+    return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
+}
+function AldolViewContents(props){
+
+    if(props.seqId === 10003513){
+        if(props.content === "관리자님이 이 질문을 꼭대기로 올리셨어요."){
+            return <AldolReplyContents>관리자님이 이 질문을 꼭대기로 올리셨어요.</AldolReplyContents>
+        }
+        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 {props.al}알을 증정하셨어요.</AldolReplyContents>
+    }
+    return <ReplyContents>{props.content}</ReplyContents>
+}
+
+//white={props.white} setWhite={props.setWhite}
+//{props.reply.}
+function Reply(props) {
+    const [timeToggle, setTimeToggle] = useState(false);
+    useEffect(() => {
+        if(props.white === true){
+            setTimeToggle(false);
+        }
+    }, [props.white]);
+
+    return (
+      <MainContents className="Reply">
+          <Table>
+              <tbody>
+                  <tr>
+                      <ReplyLocaleTh>
+                            <ReplyAhrefA>
+                                <AldolViewImg
+                                seqId={props.reply.profile.seqId}
+                                img={props.reply.profile.img}
+                                onError={handleImgError}
+                                ></AldolViewImg>
+                                <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
+                            </ReplyAhrefA>
+                      </ReplyLocaleTh>
+                        <AldolViewContents content={props.reply.content} from={props.reply.nick2}
+                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}>
+                        </AldolViewContents>
+                  </tr>
+                  <tr>
+                      <ReplyBotton></ReplyBotton>
+                      <ReplyBotton>
+                      <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                      
+                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
+                            props.setWhite(false);
+                            setTimeToggle(!timeToggle);
+                            e.stopPropagation();
+                        }
+                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        <ReplyLangBtnBallDiv>
+                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
+                        </ReplyLangBtnBallDiv>
+                      </ReplyBotton>
+                  </tr>
+              </tbody>
+          </Table>
+      </MainContents>
+    );
+  }
+  
+  export default Reply;
 
 const MainContents = styled.div`
     padding-top: 10px;
@@ -156,79 +231,3 @@ const ReplyLocalDiv = styled.div`
     font-size: 10px;
     color: #666;
 `;
-const handleImgError = (e) => {
-    e.target.src = "/pub/css/profile/img_thum_base0.jpg";
-  }
-
-function ShowView(props){
-    if(props.timeToggle === false){
-        return <>3초 전</>
-    }
-    return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
-}
-function AldolViewImg(props){
-    return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
-}
-function AldolViewContents(props){
-
-    if(props.seqId === 10003513){
-        if(props.content === "관리자님이 이 질문을 꼭대기로 올리셨어요."){
-            return <AldolReplyContents>관리자님이 이 질문을 꼭대기로 올리셨어요.</AldolReplyContents>
-        }
-        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 {props.al}알을 증정하셨어요.</AldolReplyContents>
-    }
-    return <ReplyContents>{props.content}</ReplyContents>
-}
-
-//white={props.white} setWhite={props.setWhite}
-//{props.reply.}
-function Reply(props) {
-    const [timeToggle, setTimeToggle] = useState(false);
-    useEffect(() => {
-        if(props.white === true){
-            setTimeToggle(false);
-        }
-    }, [props.white]);
-
-    return (
-      <MainContents className="Reply">
-          <Table>
-              <tbody>
-                  <tr>
-                      <ReplyLocaleTh>
-                            <ReplyAhrefA>
-                                <AldolViewImg
-                                seqId={props.reply.profile.seqId}
-                                img={props.reply.profile.img}
-                                onError={handleImgError}
-                                ></AldolViewImg>
-                                <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
-                            </ReplyAhrefA>
-                      </ReplyLocaleTh>
-                        <AldolViewContents content={props.reply.content} from={props.reply.nick2}
-                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}>
-                        </AldolViewContents>
-                  </tr>
-                  <tr>
-                      <ReplyBotton></ReplyBotton>
-                      <ReplyBotton>
-                      <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
-                      
-                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
-                            props.setWhite(false);
-                            setTimeToggle(!timeToggle);
-                            e.stopPropagation();
-                        }
-                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
-                        <ReplyLangBtnBallDiv>
-                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
-                        </ReplyLangBtnBallDiv>
-                      </ReplyBotton>
-                  </tr>
-              </tbody>
-          </Table>
-      </MainContents>
-    );
-  }
-  
-  export default Reply;

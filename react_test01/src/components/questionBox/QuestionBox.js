@@ -30,7 +30,7 @@ function QuestionBox(props) {
   const [cookies] = useCookies();
   const SSRJSON = jsonList
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
-  const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q'});
+  const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -91,8 +91,8 @@ function QuestionBox(props) {
 
       <PopSilen
         clicked={bodyClicked} setClicked={setBodyClicked}
-        showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq}
-        setShowSiren={setShowSiren}
+        showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq} title={showSiren.title}
+        setShowSiren={setShowSiren} USER={user}
       ></PopSilen>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>

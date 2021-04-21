@@ -91,6 +91,7 @@ function ABoxTop(props) {
           setClicked={props.setClicked}
           pageSeq={props.pageSeq}
           seqComponent={props.seqComponent} popToggle={popToggle}
+          title={props.head.nick+" 님의 답변입니다."}
         ></QuestionPopup>
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
