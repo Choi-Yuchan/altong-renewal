@@ -8,8 +8,24 @@ function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
     const [ reson , setReson ] = useState("");
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         setReson(e.target.value);
+    }
+
+    const runSilen = () => {
+        axios.put("/restApi/commons/siren",{
+            "ACT":"CheckSiren", "H_Type":"Q", "H_Seq": props.seq, "H_Reason": radioN, "H_Reason_txt": reson
+        })
+        .then( (response) => response.data )
+        .then( (data) => {
+                console.log("data... ")
+                console.log(data);
+            }
+        )
+        .catch(function (error) {
+                console.log(error)
+            }
+        );
     }
 
 
@@ -158,7 +174,10 @@ function PopSilen(props) {
                                     ></DRInput>
                                 </td>
                                 <td>
-                                    <DSubmit value="제출"></DSubmit>
+                                    <DSubmit value="제출" onClick={(e)=>{
+                                            runSilen();
+                                        }}
+                                    ></DSubmit>
                                 </td>
                             </tr>
                         </tbody>
