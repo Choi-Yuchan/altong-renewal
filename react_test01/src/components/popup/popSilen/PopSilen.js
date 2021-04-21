@@ -13,8 +13,9 @@ function PopSilen(props) {
     }
 
     const runSilen = () => {
-        axios.put("/restApi/commons/siren",{
-            "ACT":"CheckSiren", "H_Type":"Q", "H_Seq": props.seq, "H_Reason": radioN, "H_Reason_txt": reson
+        console.log("/restApi/questions/" + props.page + "/siren");
+        axios.put("/restApi/questions/" + props.page + "/siren",{
+            "ACT":"CheckSiren", "H_Type":props.seq , "H_Reason": radioN, "H_Reason_txt": reson
         })
         .then( (response) => response.data )
         .then( (data) => {
