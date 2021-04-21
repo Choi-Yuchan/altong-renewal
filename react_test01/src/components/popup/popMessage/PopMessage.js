@@ -4,39 +4,66 @@ import axios from 'axios';
 
 function PopMessage(props) {
     const [ message , setMessage ] = useState("");
+    const [ messageState, setMessageState] = useState("보내기");
+
 
     const handleChange = (e) => {
         setMessage(e.target.value);
     }
 
-    const USER= props.USER;
-    const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
-    
+    const sendMessage = (e) => {
+        setMessageState("보내는 중~");
+        console.log("/restApi/messages/" + props.user + "/send");
+        axios.put("/restApi/messages/" + props.user + "/send",{
+            "Contents":message
+        })
+        .then( (response) => response.data )
+        .then( (data) => {
+                if(data.msg){
+                    alert("메시지를 보냈습니다.");
+                    setMessage("");
+                    setMessageState("보내기");
+                }else{
+                    alert(data.msg);
+                    setMessage("");
+                    setMessageState("보내기");
+                }
+            }
+        )
+        .catch(function (error) {
+                console.log(error)
+                setMessageState("보내기");
+            }
+        );
+    }
+        
     useEffect(() => {
         if(props.clicked === true){
-            props.setShowMessage({show:false, user:props.user});
+            props.setShowMessage({show:false, user:props.user, nick:props.nick});
         }
       }, [props.clicked]);
 
     return (
         <MainMessage show={props.showMessage} onClick={(e) => {
             props.setClicked(false);
-            props.setShowMessage({show:true, page:props.page, seq:props.seq, title: props.title});
+            props.setShowMessage({show:true, user:props.user, nick:props.nick});
             e.stopPropagation();
         }}>
             <MsgH5>
-                <MsgH5Span>{nick}</MsgH5Span> 님께 쪽지 보내기</MsgH5>
+                <MsgH5Span>{props.nick}</MsgH5Span> 님께 쪽지 보내기</MsgH5>
                 <MsgDiv>
                     <MsgTextarea value={message} onChange={(e) => {handleChange(e)}}></MsgTextarea>
                 </MsgDiv>
                 <MsgP>
                     <MsgPSpanCancel onClick={(e)=>{
                         props.setClicked(true);
-                        props.setShowMessage({show:false, user:0});
+                        props.setShowMessage({show:false, user:0, nick:''});
                         setMessage("");
                         e.stopPropagation();
                     }}>취소</MsgPSpanCancel>
-                    <MsgPSpanSend>보내기</MsgPSpanSend>
+                    <MsgPSpanSend onClick={(e)=>{
+                        sendMessage(e);
+                    }}>{messageState}</MsgPSpanSend>
                 </MsgP>
         </MainMessage>
     );

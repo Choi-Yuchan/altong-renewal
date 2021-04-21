@@ -78,7 +78,7 @@ function MiniProfile(props) {
                     <th rowSpan="2"
                         onClick={(e) => {
                             props.setClicked(false);
-                            props.setShowMessage({show:true, user:props.id});
+                            props.setShowMessage({show:true, user:props.id, nick:props.mini.nick});
                             e.stopPropagation();
                         }}
                     >

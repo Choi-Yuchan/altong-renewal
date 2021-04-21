@@ -32,7 +32,7 @@ function QuestionBox(props) {
   const SSRJSON = jsonList
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
   const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
-  const [showMessage, setShowMessage] = useState({ show:false, user:0 });
+  const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -100,7 +100,7 @@ function QuestionBox(props) {
         
       <PopMessage
         clicked={bodyClicked} setClicked={setBodyClicked}
-        showMessage={showMessage.show} user={showMessage.user}
+        showMessage={showMessage.show} user={showMessage.user} nick={showMessage.nick}
         setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
       
