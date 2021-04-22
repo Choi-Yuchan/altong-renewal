@@ -40,7 +40,6 @@ function OpenDiv(props){
         white={props.white} setWhite={props.setWhite}
         replys={props.replys}
         pageSeq={props.pageSeq} seqComponent={props.seqComponent}
-        resetReplys={props.resetReplys}
         ></ReplyList>
       </>
     );
@@ -71,13 +70,10 @@ function AnswerBox(props) {
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
-  const resetReplys = (seq) => {
-    setReplys(replys.filter( x =>{
-      return x.seq !== seq
-    }));
-  }
+
 
   useEffect(()=>{
+    
     if(props.jsonArr.pageSeq===undefined){}else{
       axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
       .then((response) => response.data)
@@ -131,7 +127,7 @@ function AnswerBox(props) {
           }}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
-            <PopExtraAl showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
+            <PopExtraAl showExtraList={showExtraList} extraList={extras}></PopExtraAl>
           </AlmoneyDiv>
           <TopH3Div>
             <ChoiceView choice={props.jsonArr.choice}></ChoiceView>
@@ -152,9 +148,13 @@ function AnswerBox(props) {
           USER={props.USER}
           ></ABoxTop>
         <Contents
+          setInfoAD={props.setInfoAD}
+          InfoAD={props.InfoAD}
           contents={message} setOpenAnswer={setOpenAnswer} 
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
-          setMessage={setMessage} allMessage={props.jsonArr.contents}></Contents>
+          setMessage={setMessage} allMessage={props.jsonArr.contents}
+          setClicked={props.setClicked}
+        ></Contents>
         <OpenDiv
           pageSeq={props.jsonArr.pageSeq}
           setReplys={setReplys}
@@ -168,7 +168,6 @@ function AnswerBox(props) {
           
           myestiNo={myestiNo}
           setMyestiNo={setMyestiNo}
-          resetReplys={resetReplys}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>

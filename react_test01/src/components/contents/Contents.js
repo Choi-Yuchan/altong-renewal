@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
-import Nbsp from '../functions/nbsp/Nbsp';
-import ReactDOMServer from 'react-dom/server';
+import axios from 'axios';
 
 // http://125.7.228.198/answer/answerList?Seq=266098&CurPageName=bestList&Section1=0&src_Sort=Seq&src_OrderBy=DESC&SP=&ticketQueChk=
 
@@ -33,10 +32,33 @@ function Contents(props) {
 
   return (
       <MainDiv className="Contents">
-        <QorA onClick2={() => { props.setOpenAnswer('open'); props.setMessage(props.allMessage);
-        setOpen(''); } }
-          setOpen={setOpen} contents={props.contents} allMessage={props.allMessage} open={open}
-          openAnswer={props.openAnswer} seqComponent={props.seqComponent} > </QorA>
+        <QorA onClick2={(e) => { 
+            props.setOpenAnswer('open');
+            props.setMessage(props.allMessage);
+            // 광고 받아옴
+            if(open === '열고~ㅇ'){
+              axios.get("/restApi/ads")
+              .then((response) => response.data)
+              .then( (data) => {
+                props.setClicked(false);
+                props.setInfoAD({show:true,
+                  adUrl: data.adUrl, adFile: data.adFile});
+                e.stopPropagation();
+              })
+              .catch(function (error) {
+                console.log(error)
+              });
+            }
+            setOpen('');
+
+            // 광고 봄 처리
+
+            // 광고 봄
+            }}
+            setOpen={setOpen} contents={props.contents}
+            allMessage={props.allMessage} open={open}
+            openAnswer={props.openAnswer} seqComponent={props.seqComponent}
+          > </QorA>
 
       </MainDiv>
   );

@@ -4,21 +4,24 @@ import AnswerBox from './../answerBox/AnswerBox'
 function BoxController(props) {
     const Boxs = props.SSRJSON.map
     ( (jaar) => jaar.seqComponent === "Q"?
-        <Box key={jaar.id} jsonArr={jaar} USER={props.USER}
-        white={props.white} setWhite={props.setWhite}
-        clicked={props.clicked} setClicked={props.setClicked}
-        setShowAlmoney={props.setShowAlmoney}
-        setShowSiren={props.setShowSiren}
-        setShowMessage={props.setShowMessage}
+        <Box
+            key={jaar.id} jsonArr={jaar} USER={props.USER}
+            white={props.white} setWhite={props.setWhite}
+            clicked={props.clicked} setClicked={props.setClicked}
+            setShowAlmoney={props.setShowAlmoney}
+            setShowSiren={props.setShowSiren}
+            setShowMessage={props.setShowMessage}
         >
         </Box>: 
         jaar.seqComponent === "A" ?
-        <AnswerBox key={jaar.id} jsonArr={jaar}
-        white={props.white} setWhite={props.setWhite}
-        USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}
-        setShowAlmoney={props.setShowAlmoney}
-        setShowSiren={props.setShowSiren}
-        setShowMessage={props.setShowMessage}
+        <AnswerBox
+            key={jaar.id} jsonArr={jaar}
+            white={props.white} setWhite={props.setWhite}
+            USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}
+            setShowAlmoney={props.setShowAlmoney}
+            setShowSiren={props.setShowSiren}
+            setShowMessage={props.setShowMessage}
+            infoAD={props.infoAD} setInfoAD={props.setInfoAD}
         >
         </AnswerBox> : ""
     );
@@ -27,12 +30,15 @@ function BoxController(props) {
 
 function BoxContainer(props) {
   return (
-      <BoxController SSRJSON={props.SSRJSON} USER={props.USER}
-      white={props.white} setWhite={props.setWhite}
-      setShowAlmoney={props.setShowAlmoney}
-      setShowSiren={props.setShowSiren}
-      setShowMessage={props.setShowMessage}
-      clicked={props.clicked} setClicked={props.setClicked}></BoxController>
+        <BoxController
+            SSRJSON={props.SSRJSON} USER={props.USER}
+            white={props.white} setWhite={props.setWhite}
+            setShowAlmoney={props.setShowAlmoney}
+            setShowSiren={props.setShowSiren}
+            setShowMessage={props.setShowMessage}
+            clicked={props.clicked} setClicked={props.setClicked}
+            infoAD={props.infoAD} setInfoAD={props.setInfoAD}
+        ></BoxController>
   );
 }
 

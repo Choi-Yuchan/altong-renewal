@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
 
 import Num3Comma from '../../functions/num3comma/Num3Comma'
 import FormatDateAsText from '../../functions/formatDateAsText/FormatDateAsText'

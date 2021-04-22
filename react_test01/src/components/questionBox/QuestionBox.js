@@ -11,6 +11,7 @@ import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
+import PopAD from '../popup/popAD/PopAD'
 
 
 function ShowBlackDiv(props){
@@ -33,6 +34,8 @@ function QuestionBox(props) {
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
   const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
   const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
+  
+  const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -77,12 +80,15 @@ function QuestionBox(props) {
       <MainDiv>
         <TopNavi></TopNavi>
         <WrapperDiv>
-          <BoxController white={whiteClick} setWhite={setWhiteClick}
-          clicked={bodyClicked} setClicked={setBodyClicked}
-          setShowAlmoney={setShowAlmoney}
-          setShowSiren={setShowSiren}
-          setShowMessage={setShowMessage}
-          SSRJSON={SSRJSON} USER={user} SESS={SESS}></BoxController>
+          <BoxController
+            white={whiteClick} setWhite={setWhiteClick}
+            clicked={bodyClicked} setClicked={setBodyClicked}
+            setShowAlmoney={setShowAlmoney}
+            setShowSiren={setShowSiren}
+            setShowMessage={setShowMessage}
+            SSRJSON={SSRJSON} USER={user} SESS={SESS}
+            infoAD={infoAD} setInfoAD={setInfoAD}
+          ></BoxController>
         </WrapperDiv>
       </MainDiv>
       
@@ -103,6 +109,11 @@ function QuestionBox(props) {
         showMessage={showMessage.show} user={showMessage.user} nick={showMessage.nick}
         setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
+
+      <PopAD
+        infoAD={infoAD} setInfoAD={setInfoAD} 
+        clicked={bodyClicked} setClicked={setBodyClicked}
+      ></PopAD>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
