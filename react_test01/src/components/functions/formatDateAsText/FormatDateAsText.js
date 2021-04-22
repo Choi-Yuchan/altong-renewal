@@ -2,7 +2,7 @@ function FormatDateAsText(props){
     const curDate = props.date;
     const nowDate = new Date();
 
-    const gap = nowDate.getTime() - curDate.getTime();
+    const gap = nowDate.getTime() - curDate;
     const gapSec = gap / 1000;
     const gapMin = gapSec / 60;
     const gapHour = gapMin / 60;
@@ -32,3 +32,4 @@ function FormatDateAsText(props){
         }
     }
 }
+export default FormatDateAsText;

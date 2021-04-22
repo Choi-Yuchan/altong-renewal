@@ -2,36 +2,32 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 
 import Num3Comma from '../../functions/num3comma/Num3Comma'
+import FormatDateAsText from '../../functions/formatDateAsText/FormatDateAsText'
 
-//jsonArr
-const replyCount = (replys) => {
-  return replys.length
+
+const ExtraViewer = (nick, money, time) => {
+    return <>
+        <AlmoneyDivUlLi2>
+        <AlmoneyDivUlLi2A>
+            <b>{nick} (<Num3Comma num={money}></Num3Comma>알)</b>
+        </AlmoneyDivUlLi2A> <FormatDateAsText date={Date.parse(time)}></FormatDateAsText></AlmoneyDivUlLi2>
+    </>
 }
 
-function ExtraAlList(props) {
-
-    return (
-        <>
-          <AlmoneyDivUlLi>증정회원</AlmoneyDivUlLi>
-          <AlmoneyDivUlLi2>
-            <AlmoneyDivUlLi2A>
-                <b>(닉네임) ({Num3Comma(10000)}알)</b>
-            </AlmoneyDivUlLi2A>2시간 전</AlmoneyDivUlLi2>
-        </>
-    );
+const ExtraAlList = (lists) => {
+    return lists.map((list)=>{
+        return ExtraViewer(list.nickname, list.almoney, list.conDate);
+    })
   }
  
 function PopExtraAl(props) {
     const extraList = props.extraList;
     const showExtraList= props.showExtraList;
-    const white = props.white;
-
     
-    
-
     return (
         <AlmoneyDivUl show={showExtraList}>
-            {ExtraAlList()}
+            <AlmoneyDivUlLi>증정회원</AlmoneyDivUlLi>
+            {ExtraAlList(extraList)}
         </AlmoneyDivUl>
       );
   }

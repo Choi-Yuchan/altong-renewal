@@ -9,6 +9,8 @@ import ReplyBox from '../replyBox/ReplyBox';
 import ReplyList from '../replyList/ReplyList';
 import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
 import AltongEtimate from '../altongEtimate/AltongEtimate';
+import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
+
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
 const replyCount = (replys) => {
@@ -66,6 +68,8 @@ function AnswerBox(props) {
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [myestiNo, setMyestiNo] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
+  const [showExtraList, setShowExtraList] = useState(false);
+  const [extras, setExtras] = useState([]);
 
   const resetReplys = (seq) => {
     setReplys(replys.filter( x =>{
@@ -82,14 +86,9 @@ function AnswerBox(props) {
       })
       .catch(function (error) {
         console.log(error)
-      })  
-    }
-  }
-  , []);
+      });
 
-  // estimate 몇번째에 체크했는지
-  useEffect(()=>{
-    if(props.jsonArr.pageSeq===undefined){}else{
+      // estimate 몇번째에 체크했는지
       axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/estimate")
       .then((response) => response.data)
       .then( (data) => {
@@ -99,18 +98,40 @@ function AnswerBox(props) {
       })
       .catch(function (error) {
         console.log(error)
-      })  
+      });
+      
+      // 상단 좌측 훈훈알 리스트
+      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users")
+      .then((response) => response.data)
+      .then( (data) => {
+        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
     }
   }
   , []);
+
+  useEffect(()=>{
+    if(props.white === true){
+        setShowExtraList(false);
+    }
+  }
+  , [props.white]);
 
   return (
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <TopH3>
-          <AlmoneyDiv num={extraAlmoney}>
+          <AlmoneyDiv num={extraAlmoney}onClick={(e) => {
+            setShowExtraList(true);
+            props.setWhite(false);
+            e.stopPropagation();
+          }}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
+            <PopExtraAl showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
           </AlmoneyDiv>
           <TopH3Div>
             <ChoiceView choice={props.jsonArr.choice}></ChoiceView>

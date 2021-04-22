@@ -23,7 +23,7 @@ function Box(props) {
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
-  const [extras, setExtras] = useState([])
+  const [extras, setExtras] = useState([]);
 
   const resetReplys = (seq) => {
     setReplys(replys.filter( x =>{
@@ -52,8 +52,7 @@ function Box(props) {
       axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users")
       .then((response) => response.data)
       .then( (data) => {
-        console(data);
-        if(success === data.code) setExtras(data.ExtraAlmoneyList);
+        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
       })
       .catch(function (error) {
         console.log(error)
@@ -74,7 +73,7 @@ function Box(props) {
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
             </AnswerAlmoneyImg>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
-            <PopExtraAl white={props.white} showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
+            <PopExtraAl showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
           </AlmoneyDiv>
         </div>
         <QBoxTop
