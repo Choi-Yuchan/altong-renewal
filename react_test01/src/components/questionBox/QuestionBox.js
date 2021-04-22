@@ -27,7 +27,7 @@ function ShowBlackDiv(props){
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
-  const [jsonList, setJsonList] = useState(ViewJson);
+  const [jsonList, setJsonList] = useState("");
   const [user, setUser] = useState(null);
   const [cookies] = useCookies();
   const SSRJSON = jsonList
@@ -66,8 +66,11 @@ function QuestionBox(props) {
     })
   }
   , []);
-
+  if(jsonList === ""){
+    return <div></div>
+  }
   return (
+    
     <SiteDiv
       onClickCapture={ () => 
         {

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText'
 
 
 import MiniProfile from '../miniProfile/MiniProfile'
@@ -9,9 +10,9 @@ import Num3Comma from '../functions/num3comma/Num3Comma'
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    return <> 1시간 전 · <Datespan>{props.date}</Datespan> </>
+    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{Date(props.date)}</Datespan> </>
   }
-  return <>  1시간 전 · </>
+  return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
 
 const UlvText = (props) => {

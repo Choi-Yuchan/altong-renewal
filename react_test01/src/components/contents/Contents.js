@@ -29,6 +29,7 @@ function QorA(props){
 
 function Contents(props) {
   const [open, setOpen] = useState('열고~ㅇ');
+  const [ads, setAds] = useState(0);
 
   return (
       <MainDiv className="Contents">
@@ -40,6 +41,7 @@ function Contents(props) {
               axios.get("/restApi/ads")
               .then((response) => response.data)
               .then( (data) => {
+                setAds(data.adSeq);
                 props.setClicked(false);
                 props.setInfoAD({show:true,
                   adUrl: data.adUrl, adFile: data.adFile});
@@ -50,14 +52,14 @@ function Contents(props) {
               });
               
               // 광고 봄 처리
-              console.log("/restApi/answers/ads/"+props.pageSeq+"/ads-view");
-              axios.put("/restApi/answers/ads/"+props.pageSeq+"/ads-view")
+              console.log("/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view");
+              axios.put("/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view")
               .then((response) => response.data)
               .then( (data) => {
-                console.log(data)
+                console.log(data);
               })
               .catch(function (error) {
-                console.log(error)
+                console.log(error);
               });
             }
             setOpen('');

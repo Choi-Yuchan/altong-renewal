@@ -15,6 +15,7 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
         })
     .then((response) => response.data)
     .then((data) => {
+        console.log(data);
         if(data.code === "fail"){
             setextraAlmoney(0);
             alert(data.msg);

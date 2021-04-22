@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText'
 import axios from 'axios';
 
 import MiniProfile from '../miniProfile/MiniProfile'
@@ -8,9 +9,9 @@ import Num3Comma from '../functions/num3comma/Num3Comma'
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    return <> 1시간 전 · <Datespan>2021-03-22 10:23:47 UTC+9</Datespan> </>
+    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{Date(props.date)}</Datespan> </>
   }
-  return <>  1시간 전 · </>
+  return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
 
 const UlvText = (props) => {
@@ -69,7 +70,7 @@ function ABoxTop(props) {
         <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
           onClick={() => {
             setTimeToggle(!timeToggle);
-            }}><TimeToggler timeToggle={timeToggle}></TimeToggler></DateDiv>
+            }}><TimeToggler timeToggle={timeToggle} date={props.head.date}></TimeToggler></DateDiv>
         <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg>
         <Num3Comma num={props.head.readCount}></Num3Comma>
         <OpenAnswerView replyCount={props.replyCount} openAnswer={props.openAnswer} >
