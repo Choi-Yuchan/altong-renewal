@@ -2,11 +2,26 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 const MainLi = styled.li`
+&{
     display: inline-block;
     width: 45px;
     margin: 0 20px;
     position: relative;
     list-style: none;
+}
+    
+&:after {
+    content: "";
+    display: block;
+    width: ${ (props) => props.check? "20px" : "0px" };
+    height: 20px;
+    background: url("/Common/images/esti_mark.png") center no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 `;
 const EtimateA = styled.a`
     cursor: pointer;
@@ -51,7 +66,7 @@ const langEsti = (img) => {
     return arr[img]
 }
 
-const GetEstimate = (pageSeq, select, setEtimates) => {
+const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo) => {
     axios.put("/rest/answers/"+pageSeq+"/estimate",{
         esti: select
     })
@@ -59,6 +74,7 @@ const GetEstimate = (pageSeq, select, setEtimates) => {
     .then( (data) => {
         if(data.returnCode === "0"){
             SetEstimate(pageSeq, select, setEtimates);
+            setMyestiNo(select);
         }else{
             console.log(data);
         }
@@ -84,10 +100,11 @@ const GetEstimate = (pageSeq, select, setEtimates) => {
 
 function Etimate(props) {
     const setEtimates = props.setEtimates;
+    const check = props.check;
 
     return (
-        <MainLi onClick={()=>{
-            GetEstimate(props.pageSeq, props.img, setEtimates);
+        <MainLi check={check} onClick={()=>{
+            GetEstimate(props.pageSeq, props.img, setEtimates, props.setMyestiNo);
         }}>
             <EtimateA>
                 <EtimateImg  src={"/Common/images/esti_"+props.img+'.png'}></EtimateImg>

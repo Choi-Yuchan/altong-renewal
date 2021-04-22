@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import ABoxTop from '../aBoxTop/ABoxTop';
@@ -20,7 +20,10 @@ function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
       <>
-      <AltongEtimate etimate={props.etimate} pageSeq={props.pageSeq}></AltongEtimate>
+      <AltongEtimate
+        etimate={props.etimate} pageSeq={props.pageSeq}
+        myestiNo={props.myestiNo} setMyestiNo={props.setMyestiNo}
+      ></AltongEtimate>
       <LangTransBox></LangTransBox>
       <ReplyBox
         pageSeq={props.pageSeq}
@@ -61,6 +64,7 @@ function AnswerBox(props) {
   const [openAnswer, setOpenAnswer] = useState('close');
   const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
   const [extraAlmoney, setExtraAlmoney] = useState(0);
+  const [myestiNo, setMyestiNo] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
 
   const resetReplys = (seq) => {
@@ -75,6 +79,23 @@ function AnswerBox(props) {
       .then((response) => response.data)
       .then( (data) => {
         setExtraAlmoney(data.ExtraAlmoney);
+      })
+      .catch(function (error) {
+        console.log(error)
+      })  
+    }
+  }
+  , []);
+
+  // estimate 몇번째에 체크했는지
+  useEffect(()=>{
+    if(props.jsonArr.pageSeq===undefined){}else{
+      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/estimate")
+      .then((response) => response.data)
+      .then( (data) => {
+        if( data.code === "success" ) {
+          setMyestiNo(data.myEstimateNo);
+        }
       })
       .catch(function (error) {
         console.log(error)
@@ -124,6 +145,8 @@ function AnswerBox(props) {
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
           seqId={props.jsonArr.seqId}
           
+          myestiNo={myestiNo}
+          setMyestiNo={setMyestiNo}
           resetReplys={resetReplys}
         ></OpenDiv>
         <PopupADdiv>
