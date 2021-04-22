@@ -48,10 +48,19 @@ function Contents(props) {
               .catch(function (error) {
                 console.log(error)
               });
+              
+              // 광고 봄 처리
+              console.log("/restApi/answers/ads/"+props.pageSeq+"/ads-view");
+              axios.put("/restApi/answers/ads/"+props.pageSeq+"/ads-view")
+              .then((response) => response.data)
+              .then( (data) => {
+                console.log(data)
+              })
+              .catch(function (error) {
+                console.log(error)
+              });
             }
             setOpen('');
-
-            // 광고 봄 처리
 
             // 광고 봄
             }}

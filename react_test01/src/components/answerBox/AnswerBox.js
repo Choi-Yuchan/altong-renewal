@@ -154,6 +154,7 @@ function AnswerBox(props) {
           openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
           setMessage={setMessage} allMessage={props.jsonArr.contents}
           setClicked={props.setClicked}
+          pageSeq={props.jsonArr.pageSeq}
         ></Contents>
         <OpenDiv
           pageSeq={props.jsonArr.pageSeq}
