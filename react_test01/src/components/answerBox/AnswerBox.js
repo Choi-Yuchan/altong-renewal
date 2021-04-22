@@ -27,6 +27,7 @@ function OpenDiv(props){
         replyToggle={props.replyToggle} replyCount={props.replyCount}
         setReplyToggle={props.setReplyToggle}
         good={props.good} bad={props.bad} seqComponent={props.seqComponent}
+        seqId={props.seqId}
       ></ReplyBox>
       <ReplyList
         setReplys={props.setReplys}
@@ -114,6 +115,7 @@ function AnswerBox(props) {
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
           USER={props.USER} etimate={props.jsonArr.etimate}
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
+          seqId={props.jsonArr.seqId}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>

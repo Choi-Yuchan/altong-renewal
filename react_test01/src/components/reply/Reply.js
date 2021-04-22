@@ -25,10 +25,23 @@ function AldolViewContents(props){
     return <ReplyContents>{props.content}</ReplyContents>
 }
 
-//white={props.white} setWhite={props.setWhite}
-//{props.reply.}
+const DelReply = () => {
+    
+}
+
+const DelViewer = (user, seqId) => {
+    if(user === seqId){
+        return <> · <DelI onClick={()=>{
+
+        }}>삭제</DelI></>
+    }
+    return <></>
+}
+
 function Reply(props) {
     const [timeToggle, setTimeToggle] = useState(false);
+    const seq = props.seq;
+
     useEffect(() => {
         if(props.white === true){
             setTimeToggle(false);
@@ -64,7 +77,7 @@ function Reply(props) {
                             setTimeToggle(!timeToggle);
                             e.stopPropagation();
                         }
-                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag> · <i>삭제</i>
+                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{DelViewer(props.reply.profile.seqId, seq)}
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
@@ -74,10 +87,15 @@ function Reply(props) {
           </Table>
       </MainContents>
     );
-  }
-  
-  export default Reply;
+}
 
+export default Reply;
+
+const DelI = styled.i`
+    font-style: normal;
+    font-weight: 300;
+    cursor: pointer;
+`;
 const MainContents = styled.div`
     padding-top: 10px;
     margin: 0;

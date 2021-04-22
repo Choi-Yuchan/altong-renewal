@@ -3,8 +3,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function ViewAnswerBtn(props){
+
     if(props.seqComponent === 'A'){
-        return <AnswerBtnAB>채택하기</AnswerBtnAB>
+        const page = props.pageSeq;
+        const seqId = props.seqId;
+
+        return <AnswerBtnAB
+            onClick={(e)=>{
+                console.log("/restApi/answers/"+page+"/"+seqId+"/answer-choice");
+                axios.put("/restApi/answers/"+page+"/"+seqId+"/answer-choice")
+                .then((response) => response.data)
+                .then( (data) => {
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            }}
+        >채택하기</AnswerBtnAB>
     }
     return <AnswerBtnA>답변하기</AnswerBtnA>
 }
@@ -81,7 +97,10 @@ function ReplyBox(props) {
               </EmotionListIconDiv>
           </EmotionList>
           <AnswerDoList>
-            <ViewAnswerBtn seqComponent={props.seqComponent}></ViewAnswerBtn>
+            <ViewAnswerBtn
+                seqComponent={props.seqComponent} pageSeq={props.pageSeq}
+                seqId={props.seqId}
+            ></ViewAnswerBtn>
             <LangBtnA>번역하기</LangBtnA>
           </AnswerDoList>
       </OlBox>
@@ -129,26 +148,6 @@ const HrefAIcon = styled.img`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-
-// const HrefASpan = styled.span`
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-//     -webkit-tap-highlight-color: transparent;
-//     display: block;
-//     font-size: 10px;
-//     width: 15px;
-//     height: 15px;
-//     text-align: center;
-//     line-height: 13px;
-//     border: 1px solid #d3d3d3;
-//     border-radius: 7px;
-//     background: #fff;
-//     position: absolute;
-//     top: -5px;
-//     right: -3px;
-//     color: #333;
-// `;
 
 const EmotionList = styled.li`
     margin-left: 20px;

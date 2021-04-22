@@ -121,6 +121,7 @@ function ShowList(props){
     const replys = props.replys;
     
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
+    const seq = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
     
     return (
     <ShowView row={props.replyToggle}>
@@ -143,7 +144,7 @@ function ShowList(props){
                 
             </ReplySubmit>
         </div>
-        <ReplyContainer white={props.white} setWhite={props.setWhite} replys={replys}></ReplyContainer>
+        <ReplyContainer white={props.white} setWhite={props.setWhite} replys={replys} seq={seq}></ReplyContainer>
     </ShowView>
     );
 }

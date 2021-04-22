@@ -65,7 +65,6 @@ function Box(props) {
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
           replyCount={replyCount(replys)} good={props.jsonArr.good}
-          
           bad={props.jsonArr.bad} ></ReplyBox>
         <ReplyList USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
