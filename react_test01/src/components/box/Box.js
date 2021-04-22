@@ -21,6 +21,11 @@ function Box(props) {
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
 
+  const resetReplys = () => {
+    console.log("reset!");
+
+  }
+
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
       axios.get("/rest/questions/"+props.jsonArr.pageSeq+"/almoney")
@@ -70,7 +75,9 @@ function Box(props) {
           white={props.white} setWhite={props.setWhite}
           pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
           setReplys={setReplys}
-          replys={replys} ></ReplyList>
+          replys={replys}
+          resetReplys={resetReplys}
+          ></ReplyList>
         
     </MainDiv>
   );

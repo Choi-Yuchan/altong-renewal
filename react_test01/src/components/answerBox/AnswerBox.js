@@ -35,6 +35,7 @@ function OpenDiv(props){
         white={props.white} setWhite={props.setWhite}
         replys={props.replys}
         pageSeq={props.pageSeq} seqComponent={props.seqComponent}
+        resetReplys={props.resetReplys}
         ></ReplyList>
       </>
     );
@@ -61,6 +62,11 @@ function AnswerBox(props) {
   const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
+
+  const resetReplys = () => {
+    console.log("reset!");
+
+  }
 
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
@@ -116,6 +122,8 @@ function AnswerBox(props) {
           USER={props.USER} etimate={props.jsonArr.etimate}
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
           seqId={props.jsonArr.seqId}
+          
+          resetReplys={resetReplys}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>

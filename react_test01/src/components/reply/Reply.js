@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
@@ -25,22 +26,46 @@ function AldolViewContents(props){
     return <ReplyContents>{props.content}</ReplyContents>
 }
 
-const DelReply = () => {
-    
+const DelReply = (e, seqComponent, replySeq, setReplys) => {
+    console.log(seqComponent==='Q'?"/restApi/answers/"+replySeq+"/Q/reply-del":
+    "/restApi/answers/"+replySeq+"/A/reply-del")
+    axios.delete(seqComponent==='Q'?"/restApi/answers/"+replySeq+"/Q/reply-del":
+    "/restApi/answers/"+replySeq+"/A/reply-del")
+    .then((response) => response.data)
+    .then((data) => {
+        console.log("data : ..");
+        console.log(data);
+        setReplys();
+        if(data.msg==="success"){
+
+        }
+    })
+    .catch(function (error) {
+        console.log("error : " + error);
+        console.log(error);
+    });
 }
 
-const DelViewer = (user, seqId) => {
+const DelViewer = (user, seqId, seqComponent, replySeq, setReplys) => {
     if(user === seqId){
-        return <> · <DelI onClick={()=>{
-
+        return <> · <DelI onClick={(e)=>{
+            DelReply(e, seqComponent, replySeq, setReplys );
         }}>삭제</DelI></>
     }
     return <></>
 }
 
 function Reply(props) {
+    
+    const seqComponent = props.seqComponent;
+    // 댓글 수정
+    const setReplys= props.setReplys;
+
+
     const [timeToggle, setTimeToggle] = useState(false);
     const seq = props.seq;
+    // 댓글 id 값
+    const replySeq = props.reply.seq
 
     useEffect(() => {
         if(props.white === true){
@@ -56,14 +81,15 @@ function Reply(props) {
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
                                 <AldolViewImg
-                                seqId={props.reply.profile.seqId}
-                                img={props.reply.profile.img}
-                                onError={handleImgError}
+                                    seqId={props.reply.profile.seqId}
+                                    img={props.reply.profile.img}
+                                    onError={handleImgError}
                                 ></AldolViewImg>
                                 <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
-                        <AldolViewContents content={props.reply.content} from={props.reply.nick2}
+                        <AldolViewContents
+                            content={props.reply.content} from={props.reply.nick2}
                             seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}>
                         </AldolViewContents>
                   </tr>
@@ -77,7 +103,9 @@ function Reply(props) {
                             setTimeToggle(!timeToggle);
                             e.stopPropagation();
                         }
-                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{DelViewer(props.reply.profile.seqId, seq)}
+                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
+                            DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys )
+                        }
                         <ReplyLangBtnBallDiv>
                             <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
                         </ReplyLangBtnBallDiv>
