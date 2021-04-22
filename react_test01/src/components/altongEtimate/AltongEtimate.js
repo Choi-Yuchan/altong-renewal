@@ -6,7 +6,6 @@ function EstiArr(props){
   const [etimates, setEtimates] = useState(props.etimate);
   const pageSeq = props.pageSeq;
   const myestiNo= props.myestiNo;
-  console.log(myestiNo)
 
   const EstiView = 
   <>

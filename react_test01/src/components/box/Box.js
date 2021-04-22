@@ -8,6 +8,8 @@ import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
+import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
+
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
 //jsonArr
@@ -20,12 +22,21 @@ function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
+  const [showExtraList, setShowExtraList] = useState(false);
+  const [extras, setExtras] = useState([])
 
   const resetReplys = (seq) => {
     setReplys(replys.filter( x =>{
       return x.seq !== seq
     }));
+  };
+
+  useEffect(()=>{
+    if(props.white === true){
+        setShowExtraList(false);
+    }
   }
+  , [props.white]);
 
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
@@ -36,7 +47,17 @@ function Box(props) {
       })
       .catch(function (error) {
         console.log(error)
+      });
+
+      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users")
+      .then((response) => response.data)
+      .then( (data) => {
+        console(data);
+        if(success === data.code) setExtras(data.ExtraAlmoneyList);
       })
+      .catch(function (error) {
+        console.log(error)
+      });
     }
   }
   , []);
@@ -45,10 +66,15 @@ function Box(props) {
     <MainDiv className="Box">
         {/* atm_top_wrap */}
         <div>
-          <AlmoneyDiv num={extraAlmoney}>
+          <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
+            setShowExtraList(true);
+            props.setWhite(false);
+            e.stopPropagation();
+          }}>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
             </AnswerAlmoneyImg>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
+            <PopExtraAl white={props.white} showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
           </AlmoneyDiv>
         </div>
         <QBoxTop
@@ -62,7 +88,7 @@ function Box(props) {
           mini={props.jsonArr.mini}
           seqId={props.jsonArr.seqId}
           USER={props.USER}
-          ></QBoxTop>
+        ></QBoxTop>
 
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>
@@ -83,7 +109,6 @@ function Box(props) {
     </MainDiv>
   );
 }
-
 const MainDiv = styled.div`
   border: 1px solid #ddd;
   padding: 15px 20px;
@@ -96,7 +121,6 @@ const MainDiv = styled.div`
   font-size: 16px;
   font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
   color: #333;
-  
 `;
 const AnswerAlmoneyImg = styled.img`
   width: 20px;
