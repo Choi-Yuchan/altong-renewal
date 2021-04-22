@@ -63,9 +63,10 @@ function AnswerBox(props) {
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
 
-  const resetReplys = () => {
-    console.log("reset!");
-
+  const resetReplys = (seq) => {
+    setReplys(replys.filter( x =>{
+      return x.seq !== seq
+    }));
   }
 
   useEffect(()=>{

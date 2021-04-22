@@ -33,11 +33,11 @@ const DelReply = (e, seqComponent, replySeq, setReplys) => {
     "/restApi/answers/"+replySeq+"/A/reply-del")
     .then((response) => response.data)
     .then((data) => {
-        console.log("data : ..");
-        console.log(data);
-        setReplys();
+        setReplys(replySeq);
         if(data.msg==="success"){
 
+        }else{
+            alert("댓글 삭제가 실패하였습니다.");
         }
     })
     .catch(function (error) {
