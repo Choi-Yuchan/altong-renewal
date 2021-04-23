@@ -5,10 +5,10 @@ import axios from 'axios';
 import Num3Comma from '../../functions/num3comma/Num3Comma'
 
 
-function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney) {
+function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e) {
         
     console.log("extra.. : " + extraAlmoney);
-    console.log("extra..type : " + extraAlmoney);
+    console.log("props.seq : " + props.seq);
     axios.put(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
         "/rest/answers/"+props.page+"/almoney",{
             "extraAlmoney":parseInt(extraAlmoney)
@@ -19,28 +19,49 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
         if(data.code === "fail"){
             setextraAlmoney(0);
             alert(data.msg);
+            setClicked(true);
+            setShowAlmoney({show:false, page:0, seq:'Q'});
+            e.stopPropagation();
         }else if(data.code === "error"){
             setextraAlmoney(0);
-            console.log("extraAlmoney : " + extraAlmoney);
-            console.log("message : " + data.message);
-            console.log(data.message);
-            console.log("code : " + data.code);
-            console.log("game : " + data.game);
-            console.log("msg : " + data.msg);
-            console.log(data.msg);
+            setClicked(true);
+            setShowAlmoney({show:false, page:0, seq:'Q'});
+            e.stopPropagation();
         }else if( data.code === "rowlv" ){
             alert(data.message);
-            props.setClicked(true);
-            props.setShowAlmoney({show:false, page:0, seq:'Q'});
+            setClicked(true);
+            setShowAlmoney({show:false, page:0, seq:'Q'});
+            e.stopPropagation();
         }else if(data.code === "good"){
             if( data.game === "no" ){
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
+                setClicked(true);
+                setShowAlmoney({show:false, page:0, seq:'Q'});
+                e.stopPropagation();
             }else{
                 // 룰렛 게임 처리
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
+                if(window.confirm("축하합니다!\n\n룰렛 이용권 1장을 획득하셨습니다.\n지금 룰렛 이용권을 사용하시겠습니까?\n오늘 내로 사용하지 않으면 자동 소멸됩니다.")){
+                    window.location.href = '/roulette/game';
+                    return null;
+                }
+
+                setClicked(true);
+                setShowAlmoney({show:false, page:0, seq:'Q'});
+                e.stopPropagation();
             }
+        }else if(data.code === "me"){
+            alert("본인에게는 훈훈알을 지급할 수 없습니다.");
+            setClicked(true);
+            setShowAlmoney({show:false, page:0, seq:'Q'});
+            e.stopPropagation();
+        }else if(data.code === "noExist"){
+            alert("존재하지 않는 글입니다.");
+            setClicked(true);
+            setShowAlmoney({show:false, page:0, seq:'Q'});
+            e.stopPropagation();
         }
     })
     .catch(function (error) {
@@ -116,9 +137,9 @@ function PopAlmoney(props) {
                     >취소</Popli4Button>
                 </Popli4>
                 <Popli5>
-                    <Popli5Button onClick={() =>{
+                    <Popli5Button onClick={(e) =>{
                         giveAlmoney(props, extraAlmoney,
-                            setMaxAlmoney, setextraAlmoney, maxAlmoney);
+                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e);
                     }}>확인</Popli5Button>
                 </Popli5>
             </PopUl>
