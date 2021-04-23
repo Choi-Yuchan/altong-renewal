@@ -70,8 +70,6 @@ function AnswerBox(props) {
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
-
-
   useEffect(()=>{
     
     if(props.jsonArr.pageSeq===undefined){}else{

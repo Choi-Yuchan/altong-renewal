@@ -8,7 +8,8 @@ function ViewAnswerBtn(props){
         const page = props.pageSeq;
         const seqId = props.seqId;
 
-        return <AnswerBtnAB
+
+        return <AnswerBtnAB show={props.goQuestion}
             onClick={(e)=>{
                 console.log("/restApi/answers/"+page+"/"+seqId+"/answer-choice");
                 axios.put("/restApi/answers/"+page+"/"+seqId+"/answer-choice")
@@ -22,7 +23,8 @@ function ViewAnswerBtn(props){
             }}
         >채택하기</AnswerBtnAB>
     }
-    return <AnswerBtnA>답변하기</AnswerBtnA>
+    
+    return <AnswerBtnA show={props.goAnswer} >답변하기</AnswerBtnA>
 }
 
 const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
@@ -54,22 +56,56 @@ const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
 
 
 function ReplyBox(props) {
+
+    const [goAnswer,setGoAnswer] = useState(false);
+    const [goQuestion,setGoQuestion] = useState(false);
+
+    useEffect(()=>{
+        if(props.pageSeq === undefined ){}
+        else if(props.seqComponent==="Q"){
+            axios.get("/restApi/answers/" + props.pageSeq + "/answered-check")
+            .then((response) => response.data)
+            .then( (data) => {
+                console.log(data);
+                if(data.code === "error"){
+                    setGoAnswer(false);
+                }else if(data.check === true) setGoAnswer(data.check);
+                else setGoAnswer(false);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }else if(props.seqComponent==="A"){
+            axios.get("/restApi/answers/" + props.pageSeq + "/choiced-check")
+            .then((response) => response.data)
+            .then( (data) => {
+                console.log(data);
+                if(data.code === "error"){
+                    setGoQuestion(false);
+                }else if(data.check === true) setGoQuestion(data.check);
+                else setGoQuestion(false);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+        }
+    }, []);
     
 
     useEffect(()=>{
-            if(props.pageSeq === undefined){}else{
-                const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
-                axios.get(voteUrl)
-                .then((response) => response.data)
-                .then( (data) => {
-                    setGood(data.good);
-                    setBad(data.bad);
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-            }
+        if(props.pageSeq === undefined){}else{
+            const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
+            axios.get(voteUrl)
+            .then((response) => response.data)
+            .then( (data) => {
+                setGood(data.good);
+                setBad(data.bad);
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
         }
+    }
     , []);
     
     const [good,setGood] = useState(0);
@@ -100,6 +136,8 @@ function ReplyBox(props) {
             <ViewAnswerBtn
                 seqComponent={props.seqComponent} pageSeq={props.pageSeq}
                 seqId={props.seqId}
+                goAnswer={goAnswer}
+                goQuestion={goQuestion}
             ></ViewAnswerBtn>
             <LangBtnA>번역하기</LangBtnA>
           </AnswerDoList>
@@ -187,12 +225,13 @@ const AnswerBtnA = styled.a`
     font-weight: bold;
     border: 1px solid #fd0031;
     border-radius: 100px;
-    display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    display: ${(props) => props.show? "inline-block" : "none" };
 `;
 
 const AnswerBtnAB = styled.a`
+    display: ${(props) => props.show? "inline-block" : "none" };
     width: 40%;
     padding: 3px 0;
     text-align: center;
@@ -201,7 +240,6 @@ const AnswerBtnAB = styled.a`
     font-size: 14px;
     font-weight: bold;
     border-radius: 100px;
-    display: inline-block;
     text-decoration: none;
     cursor: pointer;
 `;
