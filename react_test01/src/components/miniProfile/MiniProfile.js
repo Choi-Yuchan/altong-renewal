@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Num3Comma from '../functions/num3comma/Num3Comma';
 
 const UlvText = (props) => {
     const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
@@ -101,9 +102,9 @@ function MiniProfile(props) {
                         <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
                     </MiniInfoTableTr>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTh>{props.mini.qBenefit}알</MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.ABenefit}알</MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.giveThankNum}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={props.mini.qBenefit}></Num3Comma> 알</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={props.mini.ABenefit}></Num3Comma> 알</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={props.mini.giveThankNum}></Num3Comma></MiniInfoTableTh>
                         <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
                     </MiniInfoTableTr>
                 </tbody>

@@ -6,6 +6,7 @@ function ViewAnswerBtn(props){
 
     const page = props.pageSeq;
     const seqId = props.seqId;
+    const setGoQuestion = props.setGoQuestion;
 
     if(props.seqComponent === 'A'){
 
@@ -16,6 +17,7 @@ function ViewAnswerBtn(props){
                 axios.put("/restApi/answers/"+page+"/"+seqId+"/answer-choice")
                 .then((response) => response.data)
                 .then( (data) => {
+                    setGoQuestion(false);
                     console.log(data);
                 })
                 .catch(function (error) {
@@ -140,6 +142,7 @@ function ReplyBox(props) {
                 seqId={props.seqId}
                 goAnswer={goAnswer}
                 goQuestion={goQuestion}
+                setGoQuestion={setGoQuestion}
             ></ViewAnswerBtn>
             <LangBtnA>번역하기</LangBtnA>
           </AnswerDoList>
