@@ -9,12 +9,12 @@ function EstiArr(props){
 
   const EstiView = 
   <>
-      <Etimate check={myestiNo===1} pageSeq={pageSeq} img={1} num={etimates.v1} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
-      <Etimate check={myestiNo===2} pageSeq={pageSeq} img={2} num={etimates.v2} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
-      <Etimate check={myestiNo===3} pageSeq={pageSeq} img={3} num={etimates.v3} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
-      <Etimate check={myestiNo===4} pageSeq={pageSeq} img={4} num={etimates.v4} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
-      <Etimate check={myestiNo===5} pageSeq={pageSeq} img={5} num={etimates.v5} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
-      <Etimate check={myestiNo===6} pageSeq={pageSeq} img={6} num={etimates.v6} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={1} num={etimates.v1} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={2} num={etimates.v2} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={3} num={etimates.v3} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={4} num={etimates.v4} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={5} num={etimates.v5} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
+      <Etimate check={myestiNo} pageSeq={pageSeq} img={6} num={etimates.v6} setEtimates={setEtimates} setMyestiNo={props.setMyestiNo}></Etimate>
   </>;
 
   return EstiView;

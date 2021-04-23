@@ -66,7 +66,11 @@ const langEsti = (img) => {
     return arr[img]
 }
 
-const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo) => {
+const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
+    if(check>0){
+        alert("이미 평가를 완료하였습니다.");
+        return;
+    }
     axios.put("/rest/answers/"+pageSeq+"/estimate",{
         esti: select
     })
@@ -103,8 +107,8 @@ function Etimate(props) {
     const check = props.check;
 
     return (
-        <MainLi check={check} onClick={()=>{
-            GetEstimate(props.pageSeq, props.img, setEtimates, props.setMyestiNo);
+        <MainLi check={check===props.img} onClick={()=>{
+            GetEstimate(props.pageSeq, props.img, setEtimates, props.setMyestiNo, check);
         }}>
             <EtimateA>
                 <EtimateImg  src={"/Common/images/esti_"+props.img+'.png'}></EtimateImg>
