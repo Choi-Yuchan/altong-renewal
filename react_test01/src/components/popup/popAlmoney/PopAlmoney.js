@@ -20,24 +20,24 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
             setextraAlmoney(0);
             alert(data.msg);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:'Q'});
+            setShowAlmoney({show:false, page:0, seq:props.seq});
             e.stopPropagation();
         }else if(data.code === "error"){
             setextraAlmoney(0);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:'Q'});
+            setShowAlmoney({show:false, page:0, seq:props.seq});
             e.stopPropagation();
         }else if( data.code === "rowlv" ){
             alert(data.message);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:'Q'});
+            setShowAlmoney({show:false, page:0, seq:props.seq});
             e.stopPropagation();
         }else if(data.code === "good"){
             if( data.game === "no" ){
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
                 setClicked(true);
-                setShowAlmoney({show:false, page:0, seq:'Q'});
+                setShowAlmoney({show:false, page:0, seq:props.seq});
                 e.stopPropagation();
             }else{
                 // 룰렛 게임 처리
@@ -49,7 +49,7 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 }
 
                 setClicked(true);
-                setShowAlmoney({show:false, page:0, seq:'Q'});
+                setShowAlmoney({show:false, page:0, seq:props.seq});
                 e.stopPropagation();
             }
         }else if(data.code === "me"){
@@ -156,7 +156,7 @@ const PopAlDiv = styled.div`
     text-align: center;
     letter-spacing: -1px;
     background: #fff;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

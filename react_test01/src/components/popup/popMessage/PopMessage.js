@@ -114,7 +114,7 @@ const MainMessage = styled.div`
     background: #fff;
     width: 90%;
     max-width: 400px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

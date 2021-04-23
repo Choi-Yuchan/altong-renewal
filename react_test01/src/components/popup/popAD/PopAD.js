@@ -27,7 +27,7 @@ function PopAD(props) {
 const PopDiv = styled.div`
     z-index: 999;
     width: 85%;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

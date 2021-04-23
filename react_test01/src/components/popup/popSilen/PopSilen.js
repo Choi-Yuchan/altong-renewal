@@ -287,7 +287,7 @@ const PopReportDiv = styled.div`
     max-width: 520px;
     background: #fff;
     box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

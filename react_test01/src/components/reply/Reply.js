@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Num3Comma from '../functions/num3comma/Num3Comma';
+import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText';
 
 const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
@@ -8,9 +10,9 @@ const handleImgError = (e) => {
 
 function ShowView(props){
     if(props.timeToggle === false){
-        return <>3초 전</>
+        return <FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText>
     }
-    return <>3초 전<ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
+    return <><FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText><ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
 }
 function AldolViewImg(props){
     return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
@@ -21,7 +23,7 @@ function AldolViewContents(props){
         if(props.content === "관리자님이 이 질문을 꼭대기로 올리셨어요."){
             return <AldolReplyContents>관리자님이 이 질문을 꼭대기로 올리셨어요.</AldolReplyContents>
         }
-        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 {props.al}알을 증정하셨어요.</AldolReplyContents>
+        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 <Num3Comma num={props.al}></Num3Comma>알을 증정하셨어요.</AldolReplyContents>
     }
     return <ReplyContents>{props.content}</ReplyContents>
 }
