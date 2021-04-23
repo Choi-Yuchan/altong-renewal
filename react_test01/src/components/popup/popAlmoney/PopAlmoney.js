@@ -9,6 +9,8 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
         
     console.log("extra.. : " + extraAlmoney);
     console.log("props.seq : " + props.seq);
+    console.log(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
+    "/rest/answers/"+props.page+"/almoney");
     axios.put(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
         "/rest/answers/"+props.page+"/almoney",{
             "extraAlmoney":parseInt(extraAlmoney)
@@ -39,7 +41,11 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 setClicked(true);
                 setShowAlmoney({show:false, page:0, seq:props.seq});
                 e.stopPropagation();
-            }else{
+            }else if( data.game.code ==="stack" ){
+                setClicked(true);
+                setShowAlmoney({show:false, page:0, seq:props.seq});
+                e.stopPropagation();
+            } else {
                 // 룰렛 게임 처리
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);

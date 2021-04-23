@@ -58,7 +58,7 @@ function QuestionPopup(props) {
             </MainLi>
             <MainLi show={true} onClick={(e) => {
                     props.setClicked(false);
-                    props.setShowAlmoney({show:true, page:props.pageSeq, seq:'A'});
+                    props.setShowAlmoney({show:true, page:props.pageSeq, seq:props.seqComponent});
                     e.stopPropagation();
                 }
             }>
