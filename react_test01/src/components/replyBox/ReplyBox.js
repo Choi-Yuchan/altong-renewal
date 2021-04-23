@@ -4,9 +4,10 @@ import axios from 'axios';
 
 function ViewAnswerBtn(props){
 
+    const page = props.pageSeq;
+    const seqId = props.seqId;
+
     if(props.seqComponent === 'A'){
-        const page = props.pageSeq;
-        const seqId = props.seqId;
 
 
         return <AnswerBtnAB show={props.goQuestion}
@@ -24,7 +25,8 @@ function ViewAnswerBtn(props){
         >채택하기</AnswerBtnAB>
     }
     
-    return <AnswerBtnA show={props.goAnswer} >답변하기</AnswerBtnA>
+    return <AnswerBtnA show={props.goAnswer} href={'/answer/answerWrite?QuestionSeq='+ page +'&CurPageName=&Section1=0&src_Sort=Seq&src_OrderBy=DESC'}
+        >답변하기</AnswerBtnA>
 }
 
 const SendGood = (seqComponent, pageSeq, setGood, setBad) => {

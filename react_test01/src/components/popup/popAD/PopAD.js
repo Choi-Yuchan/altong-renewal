@@ -50,7 +50,7 @@ const PopDivP = styled.p`
     cursor: pointer !important;
 `;
 const PopDivPA = styled.a`
-    display: display;
+    display: block;
     color: #fff;
     text-align: center;
     margin-top: 10px;
