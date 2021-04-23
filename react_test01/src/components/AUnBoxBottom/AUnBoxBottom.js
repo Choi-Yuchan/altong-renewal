@@ -1,5 +1,59 @@
 import styled from 'styled-components';
+import Num3Comma from '../functions/num3comma/Num3Comma'
 
+function AUnBoxBottom(props) {
+    const etimate = props.etimate;
+    const estimateCount = (etimate.v1 * 7) + (etimate.v2 * 3) + (etimate.v3 * 1)+ (etimate.v4 * -1)+ (etimate.v5 * -3);
+
+    const estiList = Object.keys(etimate).map((key) => {
+        return { key : key , value : etimate[key] }
+    } ).sort( (a,b) => {
+        return b.value - a.value;
+    } ).filter( (x,i) => {
+        return x.value != 0 && i < 4 ;
+    } ).map((v,i)=>{
+        return <Img1 take={i} src={"/Common/images/esti_"+v.key.slice(1)+".png"}></Img1>
+    });
+
+    return (
+        <MainOl className="AUnBoxBottom">
+            <AlScoreLi>
+                <AlScoreDiv>
+                    {estiList}
+                  <AlScoreSpan><Num3Comma num={estimateCount}></Num3Comma>점</AlScoreSpan>
+                </AlScoreDiv>
+            </AlScoreLi>
+            <AlScoreLastLi>본문<AlScoreStrong><Num3Comma num={props.count}></Num3Comma></AlScoreStrong>자</AlScoreLastLi>
+        </MainOl>
+    );
+  }
+  
+export default AUnBoxBottom;
+
+const Img1 = styled.img`
+    margin-left: ${props => props.take > 0? "-10px" : "0px" };
+    width: 35px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+const Img2 = styled.img`
+    width: 35px;
+    margin-left: -10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
+const Img3 = styled.img`
+    width: 35px;
+    margin-left: -10px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+`;
 
 const MainOl = styled.ol`
     position: relative;
@@ -43,32 +97,7 @@ const AlScoreLi = styled.li`
     -webkit-tap-highlight-color: transparent;
 `;
 
-const Img1 = styled.img`
-    margin-left: 0;
-    width: 35px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-`;
 
-const Img2 = styled.img`
-    width: 35px;
-    margin-left: -10px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-`;
-
-const Img3 = styled.img`
-    width: 35px;
-    margin-left: -10px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-`;
 
 const AlScoreSpan = styled.span`
     display: inline-block;
@@ -121,21 +150,3 @@ const AlScoreStrong = styled.strong`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-
-function AUnBoxBottom(props) {
-  return (
-      <MainOl className="AUnBoxBottom">
-          <AlScoreLi>
-              <AlScoreDiv>
-                <Img1 src="/Common/images/esti_1.png"></Img1>
-                <Img2 src="/Common/images/esti_3.png"></Img2>
-                <Img3 src="/Common/images/esti_2.png"></Img3>
-                <AlScoreSpan>21점</AlScoreSpan>
-              </AlScoreDiv>
-          </AlScoreLi>
-          <AlScoreLastLi>본문<AlScoreStrong>193</AlScoreStrong>자</AlScoreLastLi>
-      </MainOl>
-  );
-}
-
-export default AUnBoxBottom;

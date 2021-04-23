@@ -76,6 +76,7 @@ const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
     })
     .then((response) => response.data)
     .then( (data) => {
+        console.log(data);
         if(data.returnCode === "0"){
             SetEstimate(pageSeq, select, setEtimates);
             setMyestiNo(select);

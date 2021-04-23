@@ -44,7 +44,7 @@ function OpenDiv(props){
       </>
     );
   }
-  return <AUnBoxBottom></AUnBoxBottom>
+  return <AUnBoxBottom etimate={props.etimate} count={props.contentsCount}></AUnBoxBottom>
 }
 
 // choice:true,
@@ -167,6 +167,8 @@ function AnswerBox(props) {
           
           myestiNo={myestiNo}
           setMyestiNo={setMyestiNo}
+
+          contentsCount={props.jsonArr.contents.length}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>
