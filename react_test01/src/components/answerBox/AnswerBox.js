@@ -106,6 +106,30 @@ function AnswerBox(props) {
     }
   }
   , []);
+  // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
+  useEffect(()=>{
+    if(props.hunAlram === true){
+        axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+        .then((response) => response.data)
+        .then( (data) => {
+          setExtraAlmoney(data.ExtraAlmoney);
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+
+        axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users")
+        .then((response) => response.data)
+        .then( (data) => {
+          if("success" === data.code) setExtras(data.ExtraAlmoneyList);
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+        props.setHunAlram(false);
+    }
+  }
+  , [props.hunAlram]);
 
   useEffect(()=>{
     if(props.white === true){

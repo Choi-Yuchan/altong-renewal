@@ -5,12 +5,8 @@ import axios from 'axios';
 import Num3Comma from '../../functions/num3comma/Num3Comma'
 
 
-function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e) {
+function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram) {
         
-    console.log("extra.. : " + extraAlmoney);
-    console.log("props.seq : " + props.seq);
-    console.log(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
-    "/rest/answers/"+props.page+"/almoney");
     axios.put(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
         "/rest/answers/"+props.page+"/almoney",{
             "extraAlmoney":parseInt(extraAlmoney)
@@ -35,6 +31,7 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
             setShowAlmoney({show:false, page:0, seq:props.seq});
             e.stopPropagation();
         }else if(data.code === "good"){
+            setHunAlram(true);
             if( data.game === "no" ){
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
@@ -79,6 +76,8 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
 function PopAlmoney(props) {
     const [maxAlmoney,setMaxAlmoney] = useState(30000);
     const [extraAlmoney,setextraAlmoney] = useState(0);
+
+    const setHunAlram = props.setHunAlram;
 
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
@@ -145,7 +144,7 @@ function PopAlmoney(props) {
                 <Popli5>
                     <Popli5Button onClick={(e) =>{
                         giveAlmoney(props, extraAlmoney,
-                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e);
+                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e, setHunAlram);
                     }}>확인</Popli5Button>
                 </Popli5>
             </PopUl>

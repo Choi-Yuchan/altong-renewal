@@ -10,7 +10,7 @@ function AUnBoxBottom(props) {
     } ).sort( (a,b) => {
         return b.value - a.value;
     } ).filter( (x,i) => {
-        return x.value != 0 && i < 4 ;
+        return x.value != 0 && i < 3 ;
     } ).map((v,i)=>{
         return <Img1 take={i} src={"/Common/images/esti_"+v.key.slice(1)+".png"}></Img1>
     });

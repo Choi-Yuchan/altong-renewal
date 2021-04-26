@@ -60,6 +60,31 @@ function Box(props) {
     }
   }
   , []);
+  useEffect(()=>{
+    if(props.hunAlram === true){
+        axios.get("/rest/questions/"+props.jsonArr.pageSeq+"/almoney")
+        .then((response) => response.data)
+        .then( (data) => {
+          setExtraAlmoney(data.ExtraAlmoney);
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+        
+        axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users")
+        .then((response) => response.data)
+        .then( (data) => {
+          if("success" === data.code) setExtras(data.ExtraAlmoneyList);
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
+        props.setHunAlram(false);
+    }
+  }
+  , [props.hunAlram]);
+  
+  //hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
 
   return (
     <MainDiv className="Box">

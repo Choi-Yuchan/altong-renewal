@@ -21,9 +21,6 @@ function ShowBlackDiv(props){
   return  <></>;
 }
 
-//     "seq": 10035484,
-//     "name": "로딩중",
-//     "lv": 1
 function QuestionBox(props) {
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
@@ -34,6 +31,8 @@ function QuestionBox(props) {
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
   const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
   const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
+
+  const [hunAlram,setHunAlram] = useState(false);
   
   const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
 
@@ -91,6 +90,7 @@ function QuestionBox(props) {
             setShowMessage={setShowMessage}
             SSRJSON={SSRJSON} USER={user} SESS={SESS}
             infoAD={infoAD} setInfoAD={setInfoAD}
+            hunAlram={hunAlram} setHunAlram={setHunAlram}
           ></BoxController>
         </WrapperDiv>
       </MainDiv>
@@ -99,6 +99,7 @@ function QuestionBox(props) {
         clicked={bodyClicked} setClicked={setBodyClicked}
         showAlmoney={showAlmoney.show} page={showAlmoney.page} seq={showAlmoney.seq}
         setShowAlmoney={setShowAlmoney}
+        setHunAlram={setHunAlram}
       ></PopAlmoney>
 
       <PopSilen

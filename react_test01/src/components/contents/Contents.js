@@ -52,11 +52,9 @@ function Contents(props) {
               });
               
               // 광고 봄 처리
-              console.log("/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view");
               axios.put("/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view")
               .then((response) => response.data)
               .then( (data) => {
-                console.log(data);
               })
               .catch(function (error) {
                 console.log(error);
