@@ -7,9 +7,9 @@ const NaviItems = { ko : [
         { key: 0, img:"/pub/css/mainico/alert.svg" , 
             href:"/member/alarm/alarm", val: "알림", count: 120, i:true },
         { key: 1, img:"/pub/css/mainico/mypage.svg" , 
-            href:"", val: "나의 공간" },
+            href:"", val: "나의 공간", click: "mySpace" },
         { key: 2, img:"/pub/css/mainico/nicksearch.svg" , 
-            href:"", val: "닉네임 검색" },
+            href:"", val: "닉네임 검색", click: "search" },
         { key: 3, img:"/pub/css/mainico/myRecommend.svg" , 
             href:"/member/myRecommend", val: "추천인/ANSWERer" },
         { key: 4, img:"/pub/css/mainico/rangking.svg" , 
@@ -21,7 +21,7 @@ const NaviItems = { ko : [
         { key: 7, img:"/pub/css/mainico/headphones_33.svg" , 
             href:"/default/cs/customerService", val: "고객센터" },
         { key: 8, img:"/pub/css/mainico/keypress.svg" , 
-            href:"", val: "Keysound off" }
+            href:"", val: "Keysound off", click:"press" }
     ]
 }
 
@@ -29,7 +29,7 @@ const ItemLists = (lang) => {
     return NaviItems[lang].map( (navi) => {
         return <NaviItem
             key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
-            count={navi.count} i={navi.i}
+            count={navi.count} i={navi.i} click={navi.click}
         ></NaviItem>
     } ).sort(function(a, b){
         return a.key - b.key;

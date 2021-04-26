@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 import React from 'react';
 
+const NaviAClick = (e, href) => {
+    if( href === "" ){
+        e.preventDefault();
+    }
+    
+
+}
+
 function NaviItem(props) {
     return (
         <NaviItemLi>
-            <NaviA href={props.href}>
+            <NaviA href={props.href} onClick={(e)=>{
+                NaviAClick(e, props.href);
+            }}>
                 <NaviB img={props.img}></NaviB>
                 <span>{props.val}</span>
                 <NaviAlramI show={props.i===true}>{props.i===true?props.count:""}</NaviAlramI>
