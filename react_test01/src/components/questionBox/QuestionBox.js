@@ -83,10 +83,12 @@ function QuestionBox(props) {
       {/* <GlobalFonts></GlobalFonts> */}
       <MainDiv>
         <TopNavi
+          user={user}
           setShowNavi={setShowNavi}
           setWhite={setBodyClicked}
         ></TopNavi>
         <AlNavi
+          user={user}
           show={showNavi} setShowNavi={setShowNavi}
           white={bodyClicked} setWhite={setBodyClicked}
         ></AlNavi>

@@ -49,14 +49,31 @@ const ItemLists = (lang) => {
     } );
 }
 
-function Contents(props) {
-    const [open, setOpen] = useState(0);
+const NotNav = styled.nav`
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: ${props => props.show ? "block" : "none"};
+`;
 
+function AlNavi(props) {
+    const [open, setOpen] = useState(0);
+    console.log("props.user");
+    console.log(props.user);
     useEffect(()=>{
         if(props.white === true){
             props.setShowNavi(false);
         }
-    },[props.white])
+    },[props.white]);
+
+    if( props.user.seq === 0 ){
+        return <AlNaviNav>
+            
+        </AlNaviNav>
+    }
   
     return (
         <AlNaviNav show={props.show} onClick={(e) => {
@@ -100,7 +117,7 @@ function Contents(props) {
     );
   }
   
-  export default Contents;
+  export default AlNavi;
 
 const AlNaviNav = styled.nav`
     height: 100%;
