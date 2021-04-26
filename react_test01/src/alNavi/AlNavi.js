@@ -49,20 +49,44 @@ const ItemLists = (lang) => {
     } );
 }
 
-const NotNav = styled.nav`
+const NotLogInfo = styled.div`
+    width: 100%;
+    height: 150px;
+    padding: 25px 0 5px;
+    position: relative;
+`;
+const NotLogDiv = styled.div`
+    width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    display: ${props => props.show ? "block" : "none"};
+`;
+const NotLogLi = styled.li`
+    display: inline-block;
+    list-style: none;
+`;
+const NotLogLiA1 = styled.a`
+    display: block;
+    padding: 5px 18px;
+    border: 1px solid #fd0031;
+    border-radius: 36px;
+    color: #fd0031;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 20px;
+    text-decoration: none;
+`;
+const NotLogLiA2 = styled.a`
+    border: 1px solid #333;
+    color: #333;
+    display: block;
+    padding: 5px 18px;
+    border-radius: 36px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 20px;
 `;
 
 function AlNavi(props) {
     const [open, setOpen] = useState(0);
-    console.log("props.user");
-    console.log(props.user);
     useEffect(()=>{
         if(props.white === true){
             props.setShowNavi(false);
@@ -70,8 +94,31 @@ function AlNavi(props) {
     },[props.white]);
 
     if( props.user.seq === 0 ){
-        return <AlNaviNav>
-            
+        return <AlNaviNav show={props.show} onClick={(e) => {
+            props.setWhite(false);
+            props.setShowNavi(true);
+            e.stopPropagation();
+        }}>
+            <Navh1>
+                <Navh1Div>
+                    <Navh1Divi1></Navh1Divi1>
+                    <Navh1Divi2></Navh1Divi2>
+                </Navh1Div>
+                <NotLogInfo>
+                    <NotLogDiv>
+                        <h3>로그인이 필요합니다.</h3>
+                    </NotLogDiv>
+                    <ul>
+                        <NotLogLi>
+                            <NotLogLiA1 href="/default/login">로그인</NotLogLiA1>
+                        </NotLogLi>
+                        <NotLogLi>
+                            <NotLogLiA2 href="/default/joinRule">회원가입</NotLogLiA2>
+                        </NotLogLi>
+                    </ul>
+                </NotLogInfo>
+            </Navh1>
+
         </AlNaviNav>
     }
   
