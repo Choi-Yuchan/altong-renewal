@@ -14,6 +14,8 @@ import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD'
 
 
+import AlNavi from '../../alNavi/AlNavi'
+
 function ShowBlackDiv(props){
   if(props.clicked===false){
     return <BlackDiv></BlackDiv>
@@ -31,10 +33,10 @@ function QuestionBox(props) {
   const [showAlmoney, setShowAlmoney] = useState({show:false, page:0, seq:'Q'});
   const [showSiren, setShowSiren] = useState({show:false, page:0, seq:'Q', title:""});
   const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
-
   const [hunAlram,setHunAlram] = useState(false);
-  
   const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
+
+  const [showNavi, setShowNavi] = useState(false);
 
   const [SESS] = useState(cookies.SESS);
   useEffect(()=>{
@@ -80,7 +82,15 @@ function QuestionBox(props) {
     >
       {/* <GlobalFonts></GlobalFonts> */}
       <MainDiv>
-        <TopNavi></TopNavi>
+        <TopNavi
+          setShowNavi={setShowNavi}
+          setWhite={setBodyClicked}
+        ></TopNavi>
+        <AlNavi
+          show={showNavi} setShowNavi={setShowNavi}
+          white={bodyClicked} setWhite={setBodyClicked}
+        ></AlNavi>
+
         <WrapperDiv>
           <BoxController
             white={whiteClick} setWhite={setWhiteClick}

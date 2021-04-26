@@ -1,14 +1,56 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NaviItem from './naviItem/NaviItem';
 
+const NaviItems = { ko : [ 
+        { key: 0, img:"/pub/css/mainico/alert.svg" , 
+            href:"/member/alarm/alarm", val: "알림", count: 120, i:true },
+        { key: 1, img:"/pub/css/mainico/mypage.svg" , 
+            href:"", val: "나의 공간" },
+        { key: 2, img:"/pub/css/mainico/nicksearch.svg" , 
+            href:"", val: "닉네임 검색" },
+        { key: 3, img:"/pub/css/mainico/myRecommend.svg" , 
+            href:"/member/myRecommend", val: "추천인/ANSWERer" },
+        { key: 4, img:"/pub/css/mainico/rangking.svg" , 
+            href:"/question/rankQuestion", val: "랭킹" },
+        { key: 5, img:"/pub/css/mainico/event.svg" , 
+            href:"/question/eventList", val: "이벤트" },
+        { key: 6, img:"/pub/css/mainico/userGuide.svg" , 
+            href:"/default/userGuide", val: "이용안내" },
+        { key: 7, img:"/pub/css/mainico/headphones_33.svg" , 
+            href:"/default/cs/customerService", val: "고객센터" },
+        { key: 8, img:"/pub/css/mainico/keypress.svg" , 
+            href:"", val: "Keysound off" }
+    ]
+}
+
+const ItemLists = (lang) => {
+    return NaviItems[lang].map( (navi) => {
+        return <NaviItem
+            key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
+            count={navi.count} i={navi.i}
+        ></NaviItem>
+    } ).sort(function(a, b){
+        return a.key - b.key;
+    } );
+}
 
 function Contents(props) {
     const [open, setOpen] = useState(0);
+
+    useEffect(()=>{
+        if(props.white === true){
+            props.setShowNavi(false);
+        }
+    },[props.white])
   
     return (
-        <AlNaviNav>
+        <AlNaviNav show={props.show} onClick={(e) => {
+            props.setWhite(false);
+            props.setShowNavi(true);
+            e.stopPropagation();
+        }}>
             <NavDiv>
                 <Navh1>
                     <Navh1Div>
@@ -37,7 +79,7 @@ function Contents(props) {
                     </NavProfileDivLogin>
                 </NavProfileDiv>
                 <SlideUl>
-                    <NaviItem></NaviItem>
+                    {ItemLists("ko")}
                 </SlideUl>
   
             </NavDiv>
@@ -49,23 +91,28 @@ function Contents(props) {
 
 const AlNaviNav = styled.nav`
     height: 100%;
-    width: 100%;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
+    display: ${props => props.show ? "block" : "none"};
 `;
 const NavDiv = styled.div`
+&{
     height: 100%;
     width: 370px;
-    overflow-y: scroll;
     background: #fff;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 10%);
     position: fixed;
     top: 0;
     z-index: 999;
     transition: all 0.5s;
+
+    @media only screen and (max-width: 768px){
+        width: 320px;
+    }
+}
 `;
 const Navh1 = styled.h1`
     width: 100%;
@@ -168,12 +215,13 @@ const InfoDivLocate = styled.div`
     cursor: pointer;
 `;
 const InfoH2 = styled.h2`
-    width: 90%;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 18px;
+
+    @media only screen and (max-width: 768px){
+        font-size: 16px;
+    }
 `;
 const InfoP = styled.p`
     font-size: 12px;

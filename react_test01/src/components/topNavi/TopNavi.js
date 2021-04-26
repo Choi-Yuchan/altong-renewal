@@ -1,4 +1,57 @@
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+
+function TopNavi(props) {
+
+
+    return (
+    <CenterDivContents>
+      <TopHeader>
+          <CenterDiv>
+            <MainHeaderAhref className="HamburgerBar" onClick={(e) => {
+                props.setWhite(false);
+                props.setShowNavi(true);
+                e.stopPropagation();
+            }}>
+                <HamburgerDiv>
+                    <HamburgerDivIFirst></HamburgerDivIFirst>
+                    <HamburgerDivISecond></HamburgerDivISecond>
+                    <HamburgerDivILast></HamburgerDivILast>
+                    <HamburgerSpan></HamburgerSpan>
+                </HamburgerDiv>
+            </MainHeaderAhref>
+            <LogoH1 className="Logo">
+                <LogoAhrefA href="/">
+                    <LogoImg src="/Common/images/logo3.png"></LogoImg>
+                </LogoAhrefA>
+            </LogoH1>
+            <ColumnDiv>
+                <SearchBox>
+                    <form>
+                        <SearchBoxInput placeholder="검색어를 입력해 주세요." type="text"></SearchBoxInput>
+                        <SearchBoxSubmit type="submit"></SearchBoxSubmit>
+                        <SearchSpan>
+                            <SearchImg src="/Common/images/mainico/nicksearch.svg"></SearchImg>
+                        </SearchSpan>
+                    </form>
+                </SearchBox>
+                <ColumnBoxPC>
+                    <ColumnBoxAhref>
+                        <TopcolumnBoxImg src="/Common/images/que_icon.svg" ></TopcolumnBoxImg>
+                    </ColumnBoxAhref>
+                    <ColumnBoxAhref2>
+                        <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg"></TopcolumnBoxImg2>
+                    </ColumnBoxAhref2>
+                </ColumnBoxPC>
+            </ColumnDiv>
+
+          </CenterDiv>
+      </TopHeader>
+      </CenterDivContents>
+    );
+  }
+  
+  export default TopNavi;
 
 const TopHeader = styled.header`
     height: 100%;
@@ -256,49 +309,3 @@ const TopcolumnBoxImg2 = styled.img`
 
 
 
-
-function TopNavi() {
-    return (
-    <CenterDivContents>
-      <TopHeader>
-          <CenterDiv>
-            <MainHeaderAhref className="HamburgerBar">
-                <HamburgerDiv>
-                    <HamburgerDivIFirst></HamburgerDivIFirst>
-                    <HamburgerDivISecond></HamburgerDivISecond>
-                    <HamburgerDivILast></HamburgerDivILast>
-                    <HamburgerSpan></HamburgerSpan>
-                </HamburgerDiv>
-            </MainHeaderAhref>
-            <LogoH1 className="Logo">
-                <LogoAhrefA href="/">
-                    <LogoImg src="/Common/images/logo3.png"></LogoImg>
-                </LogoAhrefA>
-            </LogoH1>
-            <ColumnDiv>
-                <SearchBox>
-                    <form>
-                        <SearchBoxInput placeholder="검색어를 입력해 주세요." type="text"></SearchBoxInput>
-                        <SearchBoxSubmit type="submit"></SearchBoxSubmit>
-                        <SearchSpan>
-                            <SearchImg src="/Common/images/mainico/nicksearch.svg"></SearchImg>
-                        </SearchSpan>
-                    </form>
-                </SearchBox>
-                <ColumnBoxPC>
-                    <ColumnBoxAhref>
-                        <TopcolumnBoxImg src="/Common/images/que_icon.svg" ></TopcolumnBoxImg>
-                    </ColumnBoxAhref>
-                    <ColumnBoxAhref2>
-                        <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg"></TopcolumnBoxImg2>
-                    </ColumnBoxAhref2>
-                </ColumnBoxPC>
-            </ColumnDiv>
-
-          </CenterDiv>
-      </TopHeader>
-      </CenterDivContents>
-    );
-  }
-  
-  export default TopNavi;
