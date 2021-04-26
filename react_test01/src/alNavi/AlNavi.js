@@ -48,6 +48,18 @@ const ItemLists = (lang) => {
         return a.key - b.key;
     } );
 }
+const NotLoginItemLists = (lang) => {
+    return NaviItems[lang].map( (navi) => {
+        return <NaviItem
+            key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
+            count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+        ></NaviItem>
+    } ).sort(function(a, b){
+        return a.key - b.key;
+    } ).filter((val) => {
+        return val.key > 3
+    });
+}
 
 const NotLogInfo = styled.div`
     width: 100%;
@@ -56,8 +68,9 @@ const NotLogInfo = styled.div`
     position: relative;
 `;
 const NotLogDiv = styled.div`
-    width: 100%;
-    height: 100%;
+    text-align: center;
+    padding: 10px;
+    display: block;
 `;
 const NotLogLi = styled.li`
     display: inline-block;
@@ -99,25 +112,31 @@ function AlNavi(props) {
             props.setShowNavi(true);
             e.stopPropagation();
         }}>
-            <Navh1>
-                <Navh1Div>
-                    <Navh1Divi1></Navh1Divi1>
-                    <Navh1Divi2></Navh1Divi2>
-                </Navh1Div>
+            <NavDiv>
+                <Navh1>
+                    <Navh1Div>
+                        <Navh1Divi1></Navh1Divi1>
+                        <Navh1Divi2></Navh1Divi2>
+                    </Navh1Div>
+                    
+                </Navh1>
                 <NotLogInfo>
                     <NotLogDiv>
                         <h3>로그인이 필요합니다.</h3>
+                        <ul>
+                            <NotLogLi>
+                                <NotLogLiA1 href="/default/login">로그인</NotLogLiA1>
+                            </NotLogLi>
+                            <NotLogLi>
+                                <NotLogLiA2 href="/default/joinRule">회원가입</NotLogLiA2>
+                            </NotLogLi>
+                        </ul>
                     </NotLogDiv>
-                    <ul>
-                        <NotLogLi>
-                            <NotLogLiA1 href="/default/login">로그인</NotLogLiA1>
-                        </NotLogLi>
-                        <NotLogLi>
-                            <NotLogLiA2 href="/default/joinRule">회원가입</NotLogLiA2>
-                        </NotLogLi>
-                    </ul>
                 </NotLogInfo>
-            </Navh1>
+                <ul>
+                    {NotLoginItemLists("ko")}
+                </ul>
+            </NavDiv>
 
         </AlNaviNav>
     }
