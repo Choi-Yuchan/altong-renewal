@@ -130,6 +130,27 @@ const InfoH2 = styled.h2`
     transform: translate(-50%, -50%);
     cursor: pointer;
 `;
+const InfoP = styled.p`
+    font-size: 12px;
+`;
+const InfoSpan = styled.span`
+    margin-right: 10px;
+`;
+const ModifyDiv = styled.div`
+    display: inline-block;
+    font-size: 10px;
+    padding: 0 5px 1px 17px;
+    border: 1px solid rgb(51, 51, 51);
+    border-radius: 20px;
+    background: url(/pub/css/mainico/modify.svg) 7px 4px no-repeat;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    cursor: pointer;
+`;
+const SlideUl = styled.ul`
+    margin-right: 10px;
+`;
 
 function Contents(props) {
   const [open, setOpen] = useState(0);
@@ -154,10 +175,19 @@ function Contents(props) {
                       <InfoDiv>
                           <InfoDivLocate>
                               <InfoH2>커피낙타</InfoH2>
+                              <InfoP>
+                                <InfoSpan>질문순위 5,018위</InfoSpan>
+                                <InfoSpan>답변순위 1,025위</InfoSpan>
+                              </InfoP>
                           </InfoDivLocate>
                       </InfoDiv>
+                      <ModifyDiv>정보 수정</ModifyDiv>
                   </NavProfileDivLogin>
               </NavProfileDiv>
+              <SlideUl>
+
+              </SlideUl>
+              
           </NavDiv>
       </AlNaviNav>
   );
