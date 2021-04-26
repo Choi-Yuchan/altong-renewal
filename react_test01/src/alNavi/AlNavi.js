@@ -1,6 +1,51 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import axios from 'axios';
+import NaviItem from './naviItem/NaviItem';
+
+
+function Contents(props) {
+    const [open, setOpen] = useState(0);
+  
+    return (
+        <AlNaviNav>
+            <NavDiv>
+                <Navh1>
+                    <Navh1Div>
+                        <Navh1Divi1></Navh1Divi1>
+                        <Navh1Divi2></Navh1Divi2>
+                    </Navh1Div>
+                </Navh1>
+                <NavProfileDiv>
+                    <NavProfileDivLogin>
+                        <LoginFigure>
+                            <LoginFigureDiv>
+                                <LoginFigureDivImg></LoginFigureDivImg>
+                            </LoginFigureDiv>
+                            <LoginFigcaption>나비천사</LoginFigcaption>
+                        </LoginFigure>
+                        <InfoDiv>
+                            <InfoDivLocate>
+                                <InfoH2>커피낙타</InfoH2>
+                                <InfoP>
+                                  <InfoSpan>질문순위 5,018위</InfoSpan>
+                                  <InfoSpan>답변순위 1,025위</InfoSpan>
+                                </InfoP>
+                            </InfoDivLocate>
+                        </InfoDiv>
+                        <ModifyDiv>정보 수정</ModifyDiv>
+                    </NavProfileDivLogin>
+                </NavProfileDiv>
+                <SlideUl>
+                    <NaviItem></NaviItem>
+                </SlideUl>
+  
+            </NavDiv>
+        </AlNaviNav>
+    );
+  }
+  
+  export default Contents;
 
 const AlNaviNav = styled.nav`
     height: 100%;
@@ -152,48 +197,6 @@ const SlideUl = styled.ul`
     margin-right: 10px;
 `;
 
-function Contents(props) {
-  const [open, setOpen] = useState(0);
-
-  return (
-      <AlNaviNav>
-          <NavDiv>
-              <Navh1>
-                  <Navh1Div>
-                      <Navh1Divi1></Navh1Divi1>
-                      <Navh1Divi2></Navh1Divi2>
-                  </Navh1Div>
-              </Navh1>
-              <NavProfileDiv>
-                  <NavProfileDivLogin>
-                      <LoginFigure>
-                          <LoginFigureDiv>
-                              <LoginFigureDivImg></LoginFigureDivImg>
-                          </LoginFigureDiv>
-                          <LoginFigcaption>나비천사</LoginFigcaption>
-                      </LoginFigure>
-                      <InfoDiv>
-                          <InfoDivLocate>
-                              <InfoH2>커피낙타</InfoH2>
-                              <InfoP>
-                                <InfoSpan>질문순위 5,018위</InfoSpan>
-                                <InfoSpan>답변순위 1,025위</InfoSpan>
-                              </InfoP>
-                          </InfoDivLocate>
-                      </InfoDiv>
-                      <ModifyDiv>정보 수정</ModifyDiv>
-                  </NavProfileDivLogin>
-              </NavProfileDiv>
-              <SlideUl>
-
-              </SlideUl>
-              
-          </NavDiv>
-      </AlNaviNav>
-  );
-}
-
-export default Contents;
 
 
 
