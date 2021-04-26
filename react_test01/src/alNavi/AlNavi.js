@@ -3,11 +3,23 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NaviItem from './naviItem/NaviItem';
 
+const MySpaceItems = { ko : [
+    { key: 0, val: "활동", href: "/member/myInfo" },
+    { key: 1, val: "알뱅크", href: "/member/bank/index" },
+    { key: 2, val: "출금신청", href: "/alpay/user/sub/exchange" },
+    { key: 3, val: "관심분야", href: "/member/interest/myInterest" },
+    { key: 4, val: "찜", href: "/member/myZzim" },
+    { key: 5, val: "멘토/멘티", href: "/member/myPartner?FlagPartner=M" },
+    { key: 6, val: "친구/쪽지 차단", href: "/member/myFriend" },
+    { key: 7, val: "쪽지", href: "/message/message" },
+]
+}
+
 const NaviItems = { ko : [ 
         { key: 0, img:"/pub/css/mainico/alert.svg" , 
             href:"/member/alarm/alarm", val: "알림", count: 120, i:true },
         { key: 1, img:"/pub/css/mainico/mypage.svg" , 
-            href:"", val: "나의 공간", click: "mySpace" },
+            href:"", val: "나의 공간", click: "mySpace", mini: MySpaceItems },
         { key: 2, img:"/pub/css/mainico/nicksearch.svg" , 
             href:"", val: "닉네임 검색", click: "search" },
         { key: 3, img:"/pub/css/mainico/myRecommend.svg" , 
@@ -25,11 +37,12 @@ const NaviItems = { ko : [
     ]
 }
 
+
 const ItemLists = (lang) => {
     return NaviItems[lang].map( (navi) => {
         return <NaviItem
             key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
-            count={navi.count} i={navi.i} click={navi.click}
+            count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
         ></NaviItem>
     } ).sort(function(a, b){
         return a.key - b.key;
