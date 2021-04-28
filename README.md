@@ -14,6 +14,7 @@ cd code/git/react_test01;
 ```
 npm i -g create-react-app; npm i -g axios;
 npm i -g styled-components; npm i -g serve; npm i -g http-proxy-middleware;
+npm install;
 ```
 
 *빌드 작업입니다.*
