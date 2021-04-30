@@ -1,87 +1,112 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useSlideIn } from '../functions/useSlideIn/useSlideIn';
+import { useSlideUp } from '../functions/useSlideUp/useSlideUp';
+
+const langTopNavi = {
+    ko : {
+        alt : [
+            "알통 로고",
+            "검색 아이콘",
+            "글쓰기 아이콘",
+            "질문 보기 아이콘",
+        ],
+        placeholder : "검색어를 입력해 주세요",
+    }
+}
 
 function TopNavi(props) {
+    const altText = langTopNavi.ko.alt;
+    const search = langTopNavi.ko.placeholder;
 
+    //클릭했을 때 toggle 값 변경으로 조작
+    const [toggle, setToggle] = useState(false);
+
+    const slideInput = useSlideIn(0.5, toggle);
+    const slideUp = useSlideUp(0.3, toggle);
 
     return (
-    <CenterDivContents>
-      <TopHeader>
-          <CenterDiv>
-            <MainHeaderAhref className="HamburgerBar" onClick={(e) => {
-                props.setWhite(false);
-                props.setShowNavi(true);
-                e.stopPropagation();
-            }}>
-                <HamburgerDiv>
-                    <HamburgerDivIFirst></HamburgerDivIFirst>
-                    <HamburgerDivISecond></HamburgerDivISecond>
-                    <HamburgerDivILast></HamburgerDivILast>
-                    <HamburgerSpan></HamburgerSpan>
-                </HamburgerDiv>
-            </MainHeaderAhref>
-            <LogoH1 className="Logo">
-                <LogoAhrefA href="/">
-                    <LogoImg src="/Common/images/logo3.png"></LogoImg>
-                </LogoAhrefA>
-            </LogoH1>
-            <ColumnDiv>
-                <SearchBox>
-                    <form>
-                        <SearchBoxInput placeholder="검색어를 입력해 주세요." type="text"></SearchBoxInput>
-                        <SearchBoxSubmit type="submit"></SearchBoxSubmit>
-                        <SearchSpan>
-                            <SearchImg src="/Common/images/mainico/nicksearch.svg"></SearchImg>
-                        </SearchSpan>
-                    </form>
-                </SearchBox>
-                <ColumnBoxPC>
-                    <ColumnBoxAhref>
-                        <TopcolumnBoxImg src="/Common/images/que_icon.svg" ></TopcolumnBoxImg>
-                    </ColumnBoxAhref>
-                    <ColumnBoxAhref2>
-                        <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg"></TopcolumnBoxImg2>
-                    </ColumnBoxAhref2>
-                </ColumnBoxPC>
-            </ColumnDiv>
-
-          </CenterDiv>
+    <TopHeader>
+            <CenterDiv>
+                <HamburgerBar onClick={(e) => {
+                    props.setWhite(false);
+                    props.setShowNavi(true);
+                    e.stopPropagation();
+                }}>
+                    <HamburgerDiv>
+                        <HamburgerDivIFirst></HamburgerDivIFirst>
+                        <HamburgerDivISecond></HamburgerDivISecond>
+                        <HamburgerDivILast></HamburgerDivILast>
+                        <HamburgerSpan></HamburgerSpan>
+                    </HamburgerDiv>
+                </HamburgerBar>
+                {toggle ?                 
+                <Logo {...slideUp}>
+                    <LogoAhrefA href="/">
+                        <LogoImg src="/Common/images/logo3.png" alt={altText[0]}></LogoImg>
+                    </LogoAhrefA>
+                </Logo> : 
+                <Logo>
+                    <LogoAhrefA href="/">
+                        <LogoImg src="/Common/images/logo3.png" alt={altText[0]}></LogoImg>
+                    </LogoAhrefA>
+                </Logo>}
+                <ColumnDiv>
+                    <SearchBox>
+                        <SearchForm>
+                            {toggle ? <SearchBoxInput {...slideInput} placeholder={search} type="text"></SearchBoxInput> : null}
+                            <SearchSpan type="submit" onClick={(e) => {
+                                e.preventDefault();
+                                setToggle(!toggle);
+                                }}>
+                                <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}></SearchImg>
+                            </SearchSpan>
+                        </SearchForm>
+                    </SearchBox>
+                    <ColumnBoxPC>
+                        <ColumnBoxAhref href="/">
+                            <TopcolumnBoxImg src="/Common/images/que_icon.svg" alt={altText[2]}></TopcolumnBoxImg>
+                        </ColumnBoxAhref>
+                        <ColumnBoxAhref2 href="/">
+                            <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg" alt={altText[3]}></TopcolumnBoxImg2>
+                        </ColumnBoxAhref2>
+                    </ColumnBoxPC>
+                </ColumnDiv>
+            </CenterDiv>
       </TopHeader>
-      </CenterDivContents>
     );
   }
   
   export default TopNavi;
 
 const TopHeader = styled.header`
-    height: 100%;
-    position: relative;
-    width: 100%;
-    padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    height: 60px;
+    transition: all 0.5s;
+    background: #fff;
 `;
 
 const CenterDiv = styled.div`
     height: 100%;
-    position: relative;
-    width: 800px;
-    margin: 0 auto;
-    padding: 0;
+    max-width: 800px;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
-     
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     @media (max-width: 768px) {
     width: 100%;
 }
 `;
 
-const MainHeaderAhref = styled.a`
+const HamburgerBar = styled.a`
     display: block;
-    float: left;
     width: 60px;
     height: 60px;
     position: relative;
@@ -115,12 +140,8 @@ const HamburgerDivISecond = styled.i`
     margin-top: 9px;
 `;
 
-const HamburgerDivILast = styled.i`
-    display: block;
+const HamburgerDivILast = styled(HamburgerDivISecond)`
     width: 100%;
-    height: 2px;
-    background: #666;
-    margin-top: 9px;
 `;
 
 const HamburgerSpan = styled.span`
@@ -138,40 +159,20 @@ const HamburgerSpan = styled.span`
     font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
 
-const LogoH1 = styled.h1`
-    cursor: pointer;
+const Logo = styled.div`
     position: absolute;
-    top: 60%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s;
+    transform:translate(-50%, 0);
+    cursor: pointer;
     margin: 0;
     padding: 0;
-    padding-top: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    padding-left: 0px;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
 
 const LogoImg = styled.img`
     height: 52px;
-`;
-
-const CenterDivContents = styled.div`
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    width: 100%;
-    height: 60px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    transition: all 0.5s;
-    background: #fff;
+    vertical-align:bottom;
 `;
 
 const LogoAhrefA = styled.a`
@@ -181,36 +182,34 @@ const LogoAhrefA = styled.a`
 `;
 
 const ColumnDiv = styled.div`
-    width: 78px;
-    height: 30px;
-    position: absolute;
-    top: 50%;
-    right: 38px;
-    transform: translateY(-50%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `;
 
 const SearchBox = styled.div`
-&{
+    display:flex;
+    justify-content:center;
+    align-items:center;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    width: 50%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-}
+
 &:after{
     content: "";
     display: block;
     width: 1px;
     height: 24px;
-    position: absolute;
-    top: 3px;
-    right: 0;
+    margin: 0 5px;
     background-color: #c4c4c4;
 }
+`;
+
+const SearchForm = styled.form`
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `;
 
 const SearchBoxInput = styled.input`
@@ -218,35 +217,20 @@ const SearchBoxInput = styled.input`
     padding: 5px;
     font-size: 14px;
     width: 200px;
-    border: 0;
-    border-bottom: 1px solid #ddd;
-    outline: none;
-    position: absolute;
-    top: 50%;
-    left: -200px;
-    transform: translateY(-50%) scaleX(0);
-    transform-origin: right center;
-    transition: all 0.3s;
-`;
-
-const SearchBoxSubmit = styled.input`
     border: none;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-    z-index: -1;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     outline: none;
+    border-bottom: 1px solid #ddd;
+    transform-origin:right center;
 `;
 
-const SearchSpan = styled.span`
+const SearchSpan = styled.button`
     display: block;
     width: 30px;
     cursor: pointer;
     margin: 0;
     padding: 0;
+    background:transparent;
+    border:none;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
@@ -254,24 +238,19 @@ const SearchSpan = styled.span`
 const SearchImg = styled.img`
     display: block;
     width: 30px;
-    cursor: pointer;
 `;
 
-const ColumnBoxPC = styled.p`
+const ColumnBoxPC = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
     cursor: pointer;
-    width: 50%;
-    padding: 5px;
-    padding-top: 0;
-    position: absolute;
-    top: 0;
-    right: -3px;
-    
-    margin: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
 
 const ColumnBoxAhref = styled.a`
+    width:32px;
     text-decoration: none;
     color: #333;
     display: block;
@@ -279,30 +258,16 @@ const ColumnBoxAhref = styled.a`
 
 const TopcolumnBoxImg = styled.img`
     width: 100%;
-    margin-top: -2px;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    vertical-align: bottom;
     -webkit-tap-highlight-color: transparent;
 `;
 
-const ColumnBoxAhref2 = styled.a`
-    width: 67%;
-    position: absolute;
-    left: 100%;
-    top: 1px;
-    display: block;
-    text-decoration: none;
-    color: #333;
+const ColumnBoxAhref2 = styled(ColumnBoxAhref)`
+    width:30px;
 `;
 
-const TopcolumnBoxImg2 = styled.img`
-    width: 100%;
-    margin-top: -2px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+const TopcolumnBoxImg2 = styled(TopcolumnBoxImg)`
 `;
 
 

@@ -90,6 +90,7 @@ const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
 
     
   }
+  //select parameter는 향후 필요한 것인지 확인
   const SetEstimate = (pageSeq, select, setEtimates) => {
     axios.get("/rest/answers/"+pageSeq+"/estimate")
     .then((response) => response.data)

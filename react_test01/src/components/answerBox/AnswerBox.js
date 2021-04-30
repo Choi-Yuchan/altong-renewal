@@ -178,10 +178,11 @@ function AnswerBox(props) {
           setClicked={props.setClicked}
           pageSeq={props.jsonArr.pageSeq}
         ></Contents>
+
         <OpenDiv
           pageSeq={props.jsonArr.pageSeq}
           setReplys={setReplys}
-          className="OpenDiv" replyToggle={replyToggle}
+          className="OpenDiv" /* 클래스네임 어디에 사용되는 지 확인 필요*/ replyToggle={replyToggle}
           replyCount={replyCount(replys)}
           setReplyToggle={setReplyToggle} replys={replys}
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
