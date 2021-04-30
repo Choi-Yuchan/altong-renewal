@@ -7,9 +7,11 @@ import FormatDateAsText from '../../functions/formatDateAsText/FormatDateAsText'
 const ExtraViewer = (nick, money, time) => {
     return <>
         <AlmoneyDivUlLi2>
-        <AlmoneyDivUlLi2A>
-            <b>{nick} (<Num3Comma num={money}></Num3Comma>알)</b>
-        </AlmoneyDivUlLi2A> <FormatDateAsText date={Date.parse(time)}></FormatDateAsText></AlmoneyDivUlLi2>
+          <AlmoneyDivUlLi2A>
+              <b>{nick} (<Num3Comma num={money}></Num3Comma>알)</b>
+          </AlmoneyDivUlLi2A>
+          <FormatDateAsText date={Date.parse(time)}></FormatDateAsText>
+        </AlmoneyDivUlLi2>
     </>
 }
 
@@ -24,17 +26,20 @@ function PopExtraAl(props) {
     const showExtraList= props.showExtraList;
     
     return (
-        <AlmoneyDivUl show={showExtraList}>
-            <AlmoneyDivUlLi>증정회원</AlmoneyDivUlLi>
-            {ExtraAlList(extraList)}
-        </AlmoneyDivUl>
+      showExtraList === true &&  <AlmoneyDivUl show={showExtraList}>
+          <AlmoneyDivUlLi>증정회원</AlmoneyDivUlLi>
+          {ExtraAlList(extraList)}
+      </AlmoneyDivUl>    
       );
   }
 
 const AlmoneyDivUl = styled.ul`
-  min-width: 220px;
-  font-size: 12px;
-  padding: 10px;
+  display: ${(props) => props.show?"flex":"none"};
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-width:13.75rem;
+  font-size: 0.75rem;
+  padding: 0.625rem;
   border: 1px solid #eb639d;
   background: #fff;
   font-weight: normal;
@@ -42,20 +47,20 @@ const AlmoneyDivUl = styled.ul`
   top: 100%;
   left: 0;
   z-index: 999;
-  display: ${(props) => props.show?"display":"none"};
+  box-sizing:border-box;
 `;
 const AlmoneyDivUlLi = styled.li`
   color: #f2056e;
-  line-height: 17px;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
   list-style: none;
 `;
 const AlmoneyDivUlLi2 = styled.li`
-  line-height: 26px;
+  line-height: 1.5rem;
   list-style: none;
 `;
 const AlmoneyDivUlLi2A = styled.a`
   text-decoration: none;
   color: #333;
+  margin-right:0.3125rem;
 `;
 export default PopExtraAl;

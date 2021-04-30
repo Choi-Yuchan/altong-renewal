@@ -9,7 +9,50 @@ import Num3Comma from '../functions/num3comma/Num3Comma'
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{Date(props.date)}</Datespan> </>
+    const upDate = new Date(props.date);
+    const year = upDate.getFullYear();
+    const month = upDate.getMonth() + 1;
+    const date = upDate.getDate();
+    const hours = upDate.getHours();
+    const minutes = upDate.getMinutes();
+    const seconds = upDate.getSeconds();
+
+    const monthText = () => {
+      if (month < 10) {
+        return '0' + month;
+      } else {
+        return month;
+      }
+    }
+    const dateText = () => {
+      if (date < 10) {
+        return '0' + date;
+      } else {
+        return date;
+      }
+    }
+    const hoursText = () => {
+      if (hours < 10) {
+        return '0' + hours;
+      } else {
+        return hours;
+      }
+    }
+    const minutesText = () => {
+      if (minutes < 10) {
+        return '0' + minutes;
+      } else {
+        return minutes;
+      }
+    }
+    const secondsText = () => {
+      if (seconds < 10) {
+        return '0' + seconds;
+      } else {
+        return seconds;
+      }
+    }
+    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{year}-{monthText()}-{dateText()} {hoursText()}:{minutesText()}:{secondsText()} UTC+9</Datespan> </>
   }
   return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
@@ -110,54 +153,50 @@ function ABoxTop(props) {
 
 const MainDiv = styled.div`
   position: relative;
-  padding-left: 75px;
-  margin-bottom: 40px;
-  margin-top: 10px;
+  display:flex;
+  align-items: center;
+  margin-top:5px;
 `;
 const HeadFigure = styled.figure`
-  margin: 0;
-  overflow: visible;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  z-index: 1;
   cursor: pointer;
+  margin: 0 0.625rem;
+
+  @media (max-width:480px) {
+    width:45px;
+    margin:0 0.3125rem;
+  }
 `;
 const HeadFigureImg = styled.img`
   border-radius: 50%;
   width: 100%;
 `;
 const HeadFigureFigcaption = styled.figcaption`
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
-  font-weight: 500;
-  color: #666;
+  display:inline-block;
+  font-size: 0.6875rem;
+  font-weight:500;
+  color:#666;
   letter-spacing: -0.5px;
-  cursor: pointer;
 `;
 const WrapUl = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: inline-block;
   width: 80%;
 `;
 const Wrapli = styled.li`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  list-style:none;
+  flex-wrap: wrap;
+  font-size:1rem;
   color: #333;
+
+  @media (max-width:480px) {
+    font-size:12px;
+  }
 `;
 const WrapSpan = styled.span`
   display: inline-block;
@@ -173,14 +212,15 @@ const WrapSpan = styled.span`
   display: ${(props) => props.show ? "display" : "none" }
 `;
 const WrapStrong = styled.strong`
-  margin-left: 10px;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   font-size: 18px;
+
+  @media (max-width:480px) {
+    font-size:16px;
+  }
 `;
 const WrapThankli = styled.li`
-  margin-top: 7px;
+  display:flex;
+  align-items: center;
   font-size: 12px;
   color: #666;
   list-style: none;
@@ -188,7 +228,7 @@ const WrapThankli = styled.li`
 const WrapB = styled.b`
   color: #fd8d0d;
 `;
-const DateDiv = styled.b`
+const DateDiv = styled.span`
   display: inline-block;
   position: relative;
   cursor: pointer;
@@ -242,12 +282,13 @@ const BtnBoxI = styled.i`
   margin-bottom: 3px;
 `;
 const HeadFigureLocaleImg = styled.img`
-  border-radius: 0;
-  width: 22px;
-  display:inline-block;
-  vertical-align:middle;
+  width: 1.375rem;
   margin-right:3px;
-  margin-top:-2px;
+  margin-bottom:-3px;
+
+  @media (max-width:480px) {
+    width: 1.125rem;
+  }
 `;
 const ViewCountImg = styled.img`
   margin-bottom: -2px;
@@ -255,7 +296,7 @@ const ViewCountImg = styled.img`
 `;
 const ViewCountReplyImg = styled.img`
   margin-bottom: -4px;
-  margin-left: 2px;
+  margin-left: 5px;
   margin-right: 2px;
 `;
 

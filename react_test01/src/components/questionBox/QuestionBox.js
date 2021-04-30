@@ -166,14 +166,15 @@ const SiteDiv = styled.div`
 
   width: 100%;
   font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
   color: #333;
   position: relative;
 `;
+//font-family 삭제
 const WrapperDiv = styled.div`
   padding-top: 60px;
   flex: 1;
   margin-bottom: 20px;
+  transition: all 0.3s;
 `;
 const BlackDiv = styled.div`
   width: 100%;

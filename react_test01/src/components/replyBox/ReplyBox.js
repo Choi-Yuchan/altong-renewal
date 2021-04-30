@@ -117,26 +117,27 @@ function ReplyBox(props) {
 
     return (
       <OlBox className="ReplyBox">
-          <ListReply onClick={ () => props.setReplyToggle( !props.replyToggle )}>
-              <HrefA>
-                  <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
-              </HrefA>
-          </ListReply>
-          <EmotionList>
-              <EmotionListIconDiv className="smileIcon" onClick={()=> {
-                  SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
-              }}>
-                  <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
-                  <EmotionB >{good}</EmotionB>
-              </EmotionListIconDiv>
-              <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                  SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
-              }}>
-                  <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
-                  <EmotionB >{bad}</EmotionB>
-              </EmotionListIconDiv>
-          </EmotionList>
+          <OlBoxLeft>
+            <HrefA onClick={ () => props.setReplyToggle( !props.replyToggle )}>
+                <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
+            </HrefA>
+            <EmotionList>
+                <EmotionListIconDiv className="smileIcon" onClick={()=> {
+                    SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
+                }}>
+                    <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
+                    <EmotionB >{good}</EmotionB>
+                </EmotionListIconDiv>
+                <EmotionListIconDiv className="sadIcon" onClick={()=> {
+                    SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
+                }}>
+                    <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
+                    <EmotionB >{bad}</EmotionB>
+                </EmotionListIconDiv>
+            </EmotionList>
+          </OlBoxLeft>
           <AnswerDoList>
+            <LangBtnA>번역하기</LangBtnA>
             <ViewAnswerBtn
                 seqComponent={props.seqComponent} pageSeq={props.pageSeq}
                 seqId={props.seqId}
@@ -144,7 +145,6 @@ function ReplyBox(props) {
                 goQuestion={goQuestion}
                 setGoQuestion={setGoQuestion}
             ></ViewAnswerBtn>
-            <LangBtnA>번역하기</LangBtnA>
           </AnswerDoList>
       </OlBox>
     );
@@ -157,20 +157,22 @@ const EmotionImg = styled.img`
     display: block;
     width: 20px;
     margin: 0 auto;
+
+    @media (max-width:480px) {
+        width: 18px;
+    }
 `;
 
-const OlBox = styled.ol`
-    height: auto;
-    padding: 0 10px;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    margin: 0;
+const OlBox = styled.div`
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
-const ListReply = styled.li`
-    display: inline-block;
-    list-style: none;
-    cursor: pointer;
+const OlBoxLeft = styled.div`
+  display:flex;
+  align-items: center;
 `;
 
 const HrefA = styled.a`
@@ -179,31 +181,35 @@ const HrefA = styled.a`
     border-radius: 20px 20px 20px 0;
     font-size: 12px;
     position: relative;
-    display: inline-block;
-    text-decoration: none;
     color: #737373;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+
+    @media (max-width:480px) {
+        padding:3px 8px;
+        font-size:11px;
+    }
 `;
 
 const HrefAIcon = styled.img`
-    margin-bottom: -3px;
+    margin-bottom: -2px;
     margin-right: 4px;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
-const EmotionList = styled.li`
-    margin-left: 20px;
-    display: inline-block;
-    list-style: none;
+const EmotionList = styled.div`
+    margin-left: 10px;
+    display:flex;
 `;
 
 const EmotionListIconDiv = styled.div`
-    display: inline-block;
-    margin-right: 10px;
-    text-align: center;
-    vertical-align: middle;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    margin-left:7px;
 `;
 
 const EmotionB = styled.b`
@@ -213,53 +219,70 @@ const EmotionB = styled.b`
     font-size: 10px;
 `;
 
-const AnswerDoList = styled.li`
-    display: inline-block;
-    width: 65%;
-    text-align: right;
-    float: right;
-    list-style: none;
+const AnswerDoList = styled.div`
+    width:55%;
+    display:flex;
+    flex-direction: row-reverse;
 `;
 
 const AnswerBtnA = styled.a`
-    width: 40%;
-    padding: 3px 0;
-    text-align: center;
+    width: 50%;
+    height: 27px;
     color: #fd0031;
     font-size: 14px;
     font-weight: bold;
     border: 1px solid #fd0031;
     border-radius: 100px;
-    text-decoration: none;
     cursor: pointer;
-    display: ${(props) => props.show? "inline-block" : "none" };
+    text-decoration: none;
+    display: ${(props) => props.show? "flex" : "none" };
+    justify-content: center;
+    align-items:center;
+
+    @media (max-width:480px) {
+        font-size: 13px;
+        height:25px;
+    }
 `;
 
 const AnswerBtnAB = styled.a`
-    display: ${(props) => props.show? "inline-block" : "none" };
-    width: 40%;
-    padding: 3px 0;
-    text-align: center;
-    border: 1px solid #fd8d0d !important;
-    color: #fd8d0d !important;
+    display: ${(props) => props.show? "flex" : "none" };
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 27px;
+    border: 1px solid #fd8d0d;
+    color: #fd8d0d;
     font-size: 14px;
     font-weight: bold;
     border-radius: 100px;
     text-decoration: none;
     cursor: pointer;
+
+    @media (max-width:480px) {
+        font-size:13px;
+        height:25px;
+    }
 `;
 
 const LangBtnA = styled.a`
     color: #f30;
     border: 1px solid #f30;
     margin-left: 10px;
-    width: 40%;
-    padding: 3px 0;
+    width: 50%;
+    height: 27px;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     border-radius: 100px;
-    display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width:480px) {
+        font-size:13px;
+        height:25px;
+    }
 `;

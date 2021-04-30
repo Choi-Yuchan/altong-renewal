@@ -10,7 +10,50 @@ import Num3Comma from '../functions/num3comma/Num3Comma'
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{Date(props.date)}</Datespan> </>
+    const upDate = new Date(props.date);
+    const year = upDate.getFullYear();
+    const month = upDate.getMonth() + 1;
+    const date = upDate.getDate();
+    const hours = upDate.getHours();
+    const minutes = upDate.getMinutes();
+    const seconds = upDate.getSeconds();
+
+    const monthText = () => {
+      if (month < 10) {
+        return '0' + month;
+      } else {
+        return month;
+      }
+    }
+    const dateText = () => {
+      if (date < 10) {
+        return '0' + date;
+      } else {
+        return date;
+      }
+    }
+    const hoursText = () => {
+      if (hours < 10) {
+        return '0' + hours;
+      } else {
+        return hours;
+      }
+    }
+    const minutesText = () => {
+      if (minutes < 10) {
+        return '0' + minutes;
+      } else {
+        return minutes;
+      }
+    }
+    const secondsText = () => {
+      if (seconds < 10) {
+        return '0' + seconds;
+      } else {
+        return seconds;
+      }
+    }
+    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{year}-{monthText()}-{dateText()} {hoursText()}:{minutesText()}:{secondsText()} UTC+9</Datespan> </>
   }
   return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
@@ -59,14 +102,17 @@ function QBoxTop(props) {
       </HeadFigure>
       <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
       <WrapUl>
-        <Wrapli><HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}>
-        </HeadFigureLocaleImg>
+        <Wrapli>
+          <HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}></HeadFigureLocaleImg>
           <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
-          <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.</Wrapli>
+          <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.
+        </Wrapli>
         <WrapTitleli>{props.head.title}</WrapTitleli>
-        <WrapThankli>감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+        <WrapThankli>
+          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
           onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
-        <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma></WrapThankli>
+          <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
+        </WrapThankli>
       </WrapUl>
       <BtnBox onClick={(e) => {
         setPopToggle(!popToggle);
@@ -100,23 +146,23 @@ export default QBoxTop;
 
 const MainDiv = styled.div`
   position: relative;
-  padding-left: 130px;
-  
+  display:flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const HeadFigure = styled.figure`
-  margin: 0;
-  overflow: visible;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  z-index: 1;
   cursor: pointer;
+  margin: 0 0.625rem;
+
+  @media (max-width:480px) {
+    margin:0 0.3125rem;
+  }
 `;
 
 const HeadFigureImg = styled.img`
@@ -125,95 +171,109 @@ const HeadFigureImg = styled.img`
 `;
 
 const HeadFigureFigcaption = styled.figcaption`
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 14px;
+  display:inline-block;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: #666;
   letter-spacing: -0.5px;
-  cursor: pointer;
 `;
 
 const HeadH2 = styled.h2`
-  margin: 0;
-  display: inline-block;
-  text-align: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
   font-size: 43px;
   color: #fd0031;
-  position: absolute;
-  top: 50%;
-  left: 70px;
-  transform: translateY(-50%);
+  margin-top: -0.625rem;
+  margin-right: 0.625rem;
+
+  @media (max-width:480px) {
+    font-size:30px;
+    margin-right: 0.3125rem;
+  }
 `;
 
 const HeadSpan = styled.span`
+  display:inline-block;
   background: #ffee75;
   color: #333;
-  display: block;
   font-size: 11px;
   padding: 2px 8px;
   border-radius: 15px;
   margin-top: 3px;
+
+  @media (max-width:480px) {
+    font-size:10px;
+    padding:0.5px 4px;
+  }
 `;
 
 const WrapUl = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: inline-block;
   width: 80%;
 `;
 
 const Wrapli = styled.li`
+  display:flex;
+  flex-direction:row;
+  align-items: center;
   list-style: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  flex-wrap: wrap;
+  font-size: 1rem;
   color: #333;
+
+  @media (max-width:480px) {
+    font-size:12px;
+  }
 `;
 
 const WrapSpan = styled.span`
-  display: inline-block;
-  text-align: center;
   font-size: 10px;
   padding: 1px 5px;
   border: 1px solid #fd0031;
   color: #fd0031;
   border-radius: 10px;
-  position: relative;
-  top: -1px;
-  list-style: none;
-  display: ${(props) => props.show ? "display" : "none" }
+  display: ${(props) => props.show ? "inline-block" : "none" };
+  margin-bottom:-1px;
+
+  @media (max-width:480px) {
+    padding:0.5px 3px;
+  }
 `;
 
 const WrapStrong = styled.strong`
   color: #fc5a85;
-  display: inline-block;
   margin-right: 2px;
   margin-left: 4px;
   font-weight: bold;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-  list-style: none;
+  font-size: 1rem;
+
+  @media (max-width:480px) {
+    font-size:12px;
+  }
 `;
 
 const WrapTitleli = styled.li`
   font-size: 20px;
   font-weight: bold;
   list-style: none;
+
+  @media (max-width:480px) {
+    font-size:17px;
+  }
 `;
 
 const WrapThankli = styled.li`
-  font-size: 12px;
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
   color: #666;
   list-style: none;
+
+  @media (max-width:480px) {
+    font-size:0.6875rem;
+  }
 `;
 
 const WrapB = styled.b`
@@ -225,6 +285,7 @@ const DateDiv = styled.b`
   position: relative;
   cursor: pointer;
   margin-right: 4px;
+  font-weight:normal;
 `;
 
 const Datespan = styled.span`
@@ -266,6 +327,10 @@ const BtnBox = styled.div`
   right: 0;
   transform: translateY(-50%);
   z-index: 5;
+
+  @media (max-width:330px) {
+    left:100%;
+  }
 `;
 
 const BtnBoxI = styled.i`
@@ -278,12 +343,12 @@ const BtnBoxI = styled.i`
 `;
 
 const HeadFigureLocaleImg = styled.img`
-  border-radius: 0;
-  width: 22px;
-  display:inline-block;
-  vertical-align:middle;
+  width: 1.375rem;
   margin-right:3px;
-  margin-top:-2px;
+
+  @media (max-width:480px) {
+    width: 1.125rem;
+  }
 `;
 
 const ViewCountImg = styled.img`

@@ -25,6 +25,15 @@ function Box(props) {
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
+  const slide = () => {
+    if (replyToggle) {
+      return '300px';
+    } else {
+      return '10000px';
+    }
+  }
+
+
   const resetReplys = (seq) => {
     setReplys(replys.filter( x =>{
       return x.seq !== seq
@@ -87,11 +96,11 @@ function Box(props) {
   //hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
 
   return (
-    <MainDiv className="Box">
+    <MainDiv className="Box" slide={slide}>
         {/* atm_top_wrap */}
         <div>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
-            setShowExtraList(true);
+            setShowExtraList(!showExtraList);
             props.setWhite(false);
             e.stopPropagation();
           }}>
@@ -132,47 +141,41 @@ function Box(props) {
         
     </MainDiv>
   );
+
 }
+
+
 const MainDiv = styled.div`
   border: 1px solid #ddd;
-  padding: 15px 20px;
-  transition: all 0.3s;
-  margin-bottom: 5px;
-  border-radius: 20px;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-
-  font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  padding: 0.9375rem 1.25rem;
+  margin-bottom: 0.3125rem;
+  border-radius:  1.25rem;
+  font-size: 1rem;
   color: #333;
+  max-height:${props => props.slide};
+  overflow:hidden;
+  transition: all 5s;
+
+  @media (max-width:480px) {
+    padding: 0.9375rem 0.625rem;
+  }
+`;
+const AlmoneyDiv = styled.div`
+  display: ${ props => props.num === 0 ? "none" : "inline-flex"};
+  align-items: center;
+  cursor: pointer;
+  position: relative;
 `;
 const AnswerAlmoneyImg = styled.img`
-  width: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
+  margin:0 0.3125rem 0 0;
+  width: 1.25rem;
   cursor: pointer;
 `;
 const AlmoneySpan = styled.span`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   color: #ff255f;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
-  vertical-align: middle;
   cursor: pointer;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
-`;
-const AlmoneyDiv = styled.div`
-  display: ${ props => props.num === 0 ? "none" : "inline-block"};
-  cursor: pointer;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 `;
 
 export default Box;

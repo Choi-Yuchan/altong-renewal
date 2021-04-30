@@ -164,7 +164,7 @@ function AlNavi(props) {
                         </LoginFigure>
                         <InfoDiv>
                             <InfoDivLocate>
-                                <InfoH2>커피낙타</InfoH2>
+                                <InfoH2>알통</InfoH2>
                                 <InfoP>
                                   <InfoSpan>질문순위 5,018위</InfoSpan>
                                   <InfoSpan>답변순위 1,025위</InfoSpan>
