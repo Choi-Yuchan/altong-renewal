@@ -38,6 +38,7 @@ const Img1 = styled.img`
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
+//Img2와 3의 존재 이유 확인 필요
 const Img2 = styled.img`
     width: 35px;
     margin-left: -10px;

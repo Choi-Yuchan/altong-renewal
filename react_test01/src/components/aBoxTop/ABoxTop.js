@@ -209,8 +209,9 @@ const WrapSpan = styled.span`
   position: relative;
   top: -1px;
   list-style: none;
-  display: ${(props) => props.show ? "display" : "none" }
+  display: ${(props) => props.show ? "display" : "none" };
 `;
+
 const WrapStrong = styled.strong`
   font-size: 18px;
 

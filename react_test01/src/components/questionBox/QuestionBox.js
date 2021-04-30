@@ -71,7 +71,7 @@ function QuestionBox(props) {
     return <div></div>
   }
   return (
-    
+    // BodyClick과 WhiteClick의 props name이 혼용된 경우가 많으므로 통일해야함
     <SiteDiv
       onClickCapture={ () => 
         {
@@ -80,7 +80,7 @@ function QuestionBox(props) {
         }
       }
     >
-      {/* <GlobalFonts></GlobalFonts> */}
+      {/* <GlobalFonts></GlobalFonts> 폰트 글로벌 적용 해야함 */}
       <MainDiv>
         <TopNavi
           user={user}

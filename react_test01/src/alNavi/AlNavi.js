@@ -99,6 +99,9 @@ const NotLogLiA2 = styled.a`
 `;
 
 function AlNavi(props) {
+    //내부 텍스트 부분들 전부 data 받아서 이용하는 형식으로 수정 필요
+    //불필요한 positon 남발
+    //정보수정 -> 계정 관리, 목록에 있는 활동 -> 정보로 수정
     const [open, setOpen] = useState(0);
     useEffect(()=>{
         if(props.white === true){
@@ -113,12 +116,13 @@ function AlNavi(props) {
             e.stopPropagation();
         }}>
             <NavDiv>
-                <Navh1>
+                {/* 네비게이션 최상단 X아이콘과 색상부분 
+                X 아이콘에 기능 추가 필요*/}
+                <Navh1 /* h1으로 되어있는것 수정 필요함*/>
                     <Navh1Div>
                         <Navh1Divi1></Navh1Divi1>
                         <Navh1Divi2></Navh1Divi2>
                     </Navh1Div>
-                    
                 </Navh1>
                 <NotLogInfo>
                     <NotLogDiv>
@@ -137,7 +141,6 @@ function AlNavi(props) {
                     {NotLoginItemLists("ko")}
                 </ul>
             </NavDiv>
-
         </AlNaviNav>
     }
   
