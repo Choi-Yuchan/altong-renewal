@@ -210,25 +210,22 @@ export default AnswerBox;
 
 const MainDiv = styled.div`
   border: 1px solid #ddd;
-  padding: 15px 20px;
+  padding: 0.9375rem 1.25rem;
   transition: all 0.3s;
-  margin-bottom: 5px;
-  border-radius: 20px;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-
-  font-size: 16px;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+  margin-bottom: 0.3125rem;
+  border-radius:  1.25rem;
+  font-size: 1rem;
   color: #333;
+
+  @media (max-width:480px) {
+    padding: 0.9375rem 0.625rem;
+}
 `;
 const AlmoneyDiv = styled.div`
-  display: ${ props => props.num === 0 ? "none" : "inline-block"};
+  display: ${ props => props.num === 0 ? "none" : "inline-flex"};
+  align-items: center;
   cursor: pointer;
   position: relative;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 `;
 const AnswerAlmoneyImgB = styled.img`
   width: 20px;
@@ -251,43 +248,41 @@ const AlmoneySpan = styled.span`
 `;
 const TopH3 = styled.h3`
   position: relative;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 const TopH3Div = styled.div`
-  display: block;
-  float: right;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
 `;
 const TopChoiceP = styled.p`
-  display: inline-block;
+  display: inline-flex;
   font-size: 16px;
-  padding: 0;
-  margin: 0;
   color: #fd8d0d;
-  overflow: hidden;
-  word-break: break-all;
-  cursor: pointer;
+  align-items:center;
+
+  @media (max-width:480px) {
+    font-size:14px;
+  }
 `;
 const TopNetizenP = styled.p`
   color: #a5a5a5;
-  display: inline-block;
+  display: inline-flex;
   font-size: 16px;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  word-break: break-all;
-  cursor: pointer;
+  align-items: center;
+
+  @media (max-width:480px) {
+    font-size:14px;
+  }
 `;
 const TopImg = styled.img`
   width: 25px;
-  margin-bottom: -7px;
-  padding: 0;
+  margin-bottom:-2px;
+
+  @media (max-width:480px) {
+    width:20px;
+  }
 `;
 const PopupADdiv = styled.div`
   width: 100%;

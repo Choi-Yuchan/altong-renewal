@@ -3,64 +3,65 @@ import styled from 'styled-components';
 const MainDiv = styled.div`
   margin-bottom: 10px;
   position: relative;
+  display:flex;
+  align-items:center;
 `;
 
 const OriginDiv = styled.div`
-&{
-  border: 2px solid #ff3300;
-  color: #f30;
-  display: inline-block;
-  width: 50px;
-  line-height: 46px;
-  font-weight: 500;
-  position: relative;
-  margin-left: 0;
-  cursor: pointer;
-  height: 50px;
-  border-radius: 30px;
-  font-size: 16px;
-  text-align: center;
-  vertical-align: middle;
-  transition: all 0.3s;
-  white-space: nowrap;
-  margin: 0;
-  padding: 0;
-}
-&:after{
-  content: "";
-  display: block;
-  width: 2px;
-  height: 50%;
-  background: #aaa;
-  position: absolute;
-  top: 50%;
-  right: -18px;
-  transform: translateY(-50%);
-}
+display: flex;
+justify-content: center;
+align-items: center;
+border: 2px solid #ff3300;
+color: #f30;
+width: 50px;
+height: 50px;
+font-weight: 500;
+cursor: pointer;
+border-radius: 50%;
+font-size: 1rem;
+position:relative;
 
+@media (max-width:480px) {
+  width:40px;
+  height:40px;
+  border: 1px solid #f30;
+  font-size: 0.8125rem;
+}
 `;
 
-const LangDiv = styled.div`
-  float: left;
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  line-height: 46px;
-  cursor: pointer;
+const Line = styled.div`
+  width:2px;
+  height:25px;
+  border-radius:2px;
+  background-color:#999;
+  margin:0 12px;
+
+  @media (max-width:480px) {
+    width:1px;
+    height:20px;
+    margin:0 6px;
+  }
 `;
 
 const LangAIDiv = styled.div`
-  display: inline-block;
+  display: flex;
+  justify-content : center;
+  align-items: center;
+  width:50px;
   height: 50px;
-  border-radius: 30px;
+  border-radius: 50%;
   color: #999;
-  font-size: 16px;
-  text-align: center;
-  vertical-align: middle;
-  margin-left: 25px;
-  transition: all 0.3s;
-  white-space: nowrap;
+  font-size: 1rem;
+  font-weight:500;
   border: 2px solid #999;
+  cursor:pointer;
+
+  @media (max-width:480px) {
+    width:40px;
+    height:40px;
+    border:1px solid #999;
+    font-size:0.8125rem;
+  }
 `;
 
 
@@ -68,9 +69,8 @@ function LangTransBox() {
     return (
       <MainDiv className="LangTransBox">
         <OriginDiv>원문</OriginDiv>
-        <LangAIDiv>
-            <LangDiv>AI</LangDiv>
-        </LangAIDiv>
+        <Line></Line>
+        <LangAIDiv>AI</LangAIDiv>
       </MainDiv>
     );
   }

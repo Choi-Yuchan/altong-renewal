@@ -8,12 +8,14 @@ function QorA(props){
   const isShow = props.seqComponent;
   if(isShow === 'A'){
     return (
+      <>
       <ContentsP2 isShow={isShow} onClick={props.onClick2}>
-        <div dangerouslySetInnerHTML={{__html: props.contents}}></div>
+        <div dangerouslySetInnerHTML={{__html: props.contents}} ></div>
         <DelSpan setMessage={props.setMessage}
           setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
-        <CustomView isView={props.openAnswer}></CustomView>
       </ContentsP2>
+      <CustomView isView={props.openAnswer}></CustomView>
+      </>
     );
   }
   return (
@@ -81,22 +83,12 @@ const MainDiv = styled.div`
   margin: 20px 0 30px;
   word-break: break-all;
   font-size: 15px;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 `;
 
 const ContentsP = styled.p`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   word-break: break-all;
   font-size: 15px;
-  height:auto;
-  
-  /* transition-property: height;
-  transition-duration: 1s; */
 `;
 const ContentsP2 = styled.p`
   margin: 0;
@@ -120,12 +112,7 @@ const ContentsSpan = styled.span`
   letter-spacing: -0.5px;
   font-size: 12px;
   line-height: 20px;
-  margin-left: 2px;
   cursor: pointer;
-  margin-left: 10px;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  word-break: break-all;
 `;
 
 
@@ -146,7 +133,8 @@ const NomalP = styled.p`
   padding: 0;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-`
+`;
+
 
 function CustomView(props){
   const isView = props.isView;

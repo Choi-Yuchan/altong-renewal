@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -100,6 +100,28 @@ function ReplyList(props) {
   
 export default ReplyList;
 
+const slideDown = keyframes`
+    from {
+        height:0;
+        transform:scaleY(0);
+    }
+    to {
+        height:auto;
+        transform:scaleY(1);
+    }
+`;
+
+const slideUp = keyframes`
+    from {
+        height:auto;
+        transform:scaleY(1);
+    }
+    to {
+        height:0;
+        transform:scaleY(0);
+    }
+`;
+
 const AutoRenewDiv = styled.div`
     display: inline-block;
     width: 50%;
@@ -110,8 +132,6 @@ const AutoRenewDiv = styled.div`
 const TextArea = styled.textarea`
     flex-grow: 1;
     padding: 9px 20px;
-    margin: 0;
-    width: auto;
     transition: all 0.3s;
     resize: none;
     font-size: 14px;
@@ -119,7 +139,7 @@ const TextArea = styled.textarea`
     color: #666;
     border-radius: 5px;
     outline: none;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    height:100%;
 `;
 const ReplySubmit = styled.div`
     text-align: right;
@@ -139,7 +159,7 @@ const ReplySubmitP = styled.p`
 `;
 const ReplyButton = styled.button`
     flex-grow: 0;
-    height: 40px;
+    height: 100%;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -150,23 +170,19 @@ const ReplyButton = styled.button`
     margin-left: 3px;
     color: #737373;
     font-size: 12px;
-`;
-const ShowView = styled.div`
-    transition-property: 'max-height';
-    transition-duration: ${props => props.row ? '0.1s': '0.3s'};
-    height:auto;
-    max-height: ${props => props.row ? 0: '10000px'};
-    overflow:hidden;
 
 `;
+const ShowView = styled.div`
+    max-height: ${props => props.row ? 0:'100000px'};
+    transform-origin: center top;
+    opacity: ${props => props.row ? 0:1};
+    transition:all 0.5s;
+`;
+// const ShowView = styled.div`
+// `;
 const TextAreaDiv = styled.div`
-    transition:height 1s;
-    height: auto;
-    overflow:visible;
     height: 40px;
     margin-top: 10px;
     display: flex;
     width: 100%;
-    padding: 0;
-    box-sizing: border-box;
 `;
