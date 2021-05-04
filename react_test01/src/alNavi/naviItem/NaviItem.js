@@ -10,7 +10,7 @@ const MiniLi = styled.li`
     height: 41px;
     line-height: 41px;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     position: relative;
     transition: all 0.3s;
 `;
@@ -67,7 +67,7 @@ function NaviItem(props) {
 const NaviItemLi = styled.li`
   height: 42px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 42px;
   position: relative;
   transition: all 0.3s;
@@ -78,7 +78,7 @@ const NaviItemLiMiniLi = styled.li`
     height: ${props => props.showPlus? "42px" : "371px" };
     overflow: hidden;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: bold;
     line-height: 42px;
     position: relative;
     transition: all 0.3s;
@@ -131,10 +131,9 @@ const NaviAMini = styled.a`
 }
 
 `;
-const NaviB = styled.b`
+const NaviB = styled.div`
     background: url(${props => props.img}) no-repeat center 9px;
     background-size: 22px;
-    display: block;
     width: 42px;
     height: 100%;
     float: left;

@@ -4,7 +4,7 @@ import axios from 'axios';
 import NaviItem from './naviItem/NaviItem';
 
 const MySpaceItems = { ko : [
-    { key: 0, val: "활동", href: "/member/myInfo" },
+    { key: 0, val: "정보", href: "/member/myInfo" },
     { key: 1, val: "알뱅크", href: "/member/bank/index" },
     { key: 2, val: "출금신청", href: "/alpay/user/sub/exchange" },
     { key: 3, val: "관심분야", href: "/member/interest/myInterest" },
@@ -100,8 +100,7 @@ const NotLogLiA2 = styled.a`
 
 function AlNavi(props) {
     //내부 텍스트 부분들 전부 data 받아서 이용하는 형식으로 수정 필요
-    //불필요한 positon 남발
-    //정보수정 -> 계정 관리, 목록에 있는 활동 -> 정보로 수정
+    //불필요한 positon 남발 
     const [open, setOpen] = useState(0);
     useEffect(()=>{
         if(props.white === true){
@@ -118,12 +117,12 @@ function AlNavi(props) {
             <NavDiv>
                 {/* 네비게이션 최상단 X아이콘과 색상부분 
                 X 아이콘에 기능 추가 필요*/}
-                <Navh1 /* h1으로 되어있는것 수정 필요함*/>
-                    <Navh1Div>
-                        <Navh1Divi1></Navh1Divi1>
-                        <Navh1Divi2></Navh1Divi2>
-                    </Navh1Div>
-                </Navh1>
+                <NavTop>
+                    <CloseBtn>
+                        <CloseLeft></CloseLeft>
+                        <CloseRight></CloseRight>
+                    </CloseBtn>
+                </NavTop>
                 <NotLogInfo>
                     <NotLogDiv>
                         <h3>로그인이 필요합니다.</h3>
@@ -151,30 +150,34 @@ function AlNavi(props) {
             e.stopPropagation();
         }}>
             <NavDiv>
-                <Navh1>
-                    <Navh1Div>
-                        <Navh1Divi1></Navh1Divi1>
-                        <Navh1Divi2></Navh1Divi2>
-                    </Navh1Div>
-                </Navh1>
+                <NavTop>
+                    <CloseBtn>
+                        <CloseLeft></CloseLeft>
+                        <CloseRight></CloseRight>
+                    </CloseBtn>
+                </NavTop>
                 <NavProfileDiv>
                     <NavProfileDivLogin>
-                        <LoginFigure>
-                            <LoginFigureDiv>
-                                <LoginFigureDivImg></LoginFigureDivImg>
-                            </LoginFigureDiv>
-                            <LoginFigcaption>나비천사</LoginFigcaption>
-                        </LoginFigure>
-                        <InfoDiv>
-                            <InfoDivLocate>
-                                <InfoH2>알통1234</InfoH2>
-                                <InfoP>
-                                  <InfoSpan>질문순위 5,018위</InfoSpan>
-                                  <InfoSpan>답변순위 1,025위</InfoSpan>
-                                </InfoP>
-                            </InfoDivLocate>
-                        </InfoDiv>
-                        <ModifyDiv>정보 수정</ModifyDiv>
+                        <ManageAccount>
+                            <ModifyDiv>계정 관리</ModifyDiv>
+                        </ManageAccount>    
+                        <UserInfo>
+                            <LoginFigure>
+                                <LoginFigureDiv>
+                                    <LoginFigureDivImg></LoginFigureDivImg>
+                                </LoginFigureDiv>
+                                <LoginFigcaption>나비천사</LoginFigcaption>
+                            </LoginFigure>
+                            <InfoDiv>
+                                <InfoDivLocate>
+                                    <InfoH2>알통1234</InfoH2>
+                                    <InfoP>
+                                        <InfoSpan>질문순위 5,018위</InfoSpan>
+                                        <InfoSpan>답변순위 1,025위</InfoSpan>
+                                    </InfoP>
+                                </InfoDivLocate>
+                            </InfoDiv>
+                        </UserInfo>
                     </NavProfileDivLogin>
                 </NavProfileDiv>
                 <SlideUl>
@@ -188,6 +191,11 @@ function AlNavi(props) {
   
   export default AlNavi;
 
+const UserInfo = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  `;
 const AlNaviNav = styled.nav`
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -203,9 +211,6 @@ const NavDiv = styled.div`
     width: 370px;
     background: #fff;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 10%);
-    position: fixed;
-    top: 0;
-    z-index: 999;
     transition: all 0.5s;
 
     @media only screen and (max-width: 768px){
@@ -213,24 +218,24 @@ const NavDiv = styled.div`
     }
 }
 `;
-const Navh1 = styled.h1`
+const NavTop = styled.div`
     width: 100%;
     height: 35px;
     background: linear-gradient( 
     90deg
     , rgba(255, 255, 255, 0) -58.89%, rgb(253, 0, 49) 101.94% );
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5px;
 `;
-const Navh1Div = styled.div`
+const CloseBtn = styled.div`
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translateY(-50%);
+    position: relative;
     cursor: pointer;
 `;
-const Navh1Divi1 = styled.i`
+const CloseLeft = styled.i`
     display: block;
     width: 2px;
     height: 22px;
@@ -240,77 +245,77 @@ const Navh1Divi1 = styled.i`
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
 `;
-const Navh1Divi2 = styled.i`
-    display: block;
-    width: 2px;
-    height: 22px;
-    background: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+const CloseRight = styled(CloseLeft)`
     transform: translate(-50%, -50%) rotate(-45deg);
 `;
 const NavProfileDiv = styled.div`
     width: 100%;
     height: 150px;
-    padding: 25px 0 5px;
-    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 `;
 const NavProfileDivLogin = styled.div`
-    display: block;
     width: 100%;
     height: 100%;
 `;
+const ManageAccount = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+`;
+const ModifyDiv = styled.div`
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 5px 2px 16px;
+    border: 1px solid rgb(51, 51, 51);
+    border-radius: 20px;
+    background: url(/pub/css/mainico/modify.svg) 7px 4px no-repeat;
+    cursor: pointer;
+`;
+
 const LoginFigure = styled.figure`
     width: 30%;
     height: 100px;
-    float: left;
-    position: relative;
+    display:flex;
+    flex-flow:column wrap;
+    justify-content:center;
+    align-items:center;
 `;
 const LoginFigureDiv = styled.div`
-    width: 30%;
-    height: 100px;
-    float: left;
-    position: relative;
+    width: 60px;
+    height: 60px;
 `;
 const LoginFigureDivImg = styled.img`
     display: block;
     width: 100%;
     height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
     border-radius: 50%;
-    transform: translate(-50%, -50%);
 `;
 const LoginFigcaption = styled.figcaption`
+    width:50%;
     min-width: 45px;
-    padding: 0 5px 2px 5px;
+    padding: 3px 2px;
+    margin:0 auto;
     font-size: 10px;
     text-align: center;
     border-radius: 15px;
     border: 1px solid #fd0031;
     color: #fd0031;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    letter-spacing: -1px;
     cursor: pointer;
 `;
 const InfoDiv = styled.div`
     width: 70%;
-    float: right;
     height: 100px;
-    padding: 0 10px 10px 10px;
-    position: relative;
+    padding: 10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 `;
 const InfoDivLocate = styled.div`
     width: 90%;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     cursor: pointer;
 `;
 const InfoH2 = styled.h2`
@@ -327,19 +332,11 @@ const InfoP = styled.p`
 `;
 const InfoSpan = styled.span`
     margin-right: 10px;
+    :last-child{
+        margin-right:0;
+    }
 `;
-const ModifyDiv = styled.div`
-    display: inline-block;
-    font-size: 10px;
-    padding: 0 5px 1px 17px;
-    border: 1px solid rgb(51, 51, 51);
-    border-radius: 20px;
-    background: url(/pub/css/mainico/modify.svg) 7px 4px no-repeat;
-    position: absolute;
-    top: 7px;
-    right: 10px;
-    cursor: pointer;
-`;
+
 const SlideUl = styled.ul`
     margin-right: 10px;
 `;
