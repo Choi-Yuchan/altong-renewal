@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
 
-import ViewJson from '../../json/view-test.json'
-
 import TopNavi from './../topNavi/TopNavi'
 
 import BoxController from '../boxContainer/BoxContainer'
@@ -17,7 +15,7 @@ import PopAD from '../popup/popAD/PopAD'
 import AlNavi from '../../alNavi/AlNavi'
 
 function ShowBlackDiv(props){
-  if(props.clicked===false){
+  if(props.clicked === false){
     return <BlackDiv></BlackDiv>
   }
   return  <></>;
@@ -73,7 +71,7 @@ function QuestionBox(props) {
   return (
     // BodyClick과 WhiteClick의 props name이 혼용된 경우가 많으므로 통일해야함
     <SiteDiv
-      onClickCapture={ () => 
+      onClick={ () => 
         {
           setBodyClicked(true);
           setWhiteClick(true);
@@ -85,12 +83,12 @@ function QuestionBox(props) {
         <TopNavi
           user={user}
           setShowNavi={setShowNavi}
-          setWhite={setBodyClicked}
+          setClicked={setBodyClicked}
         ></TopNavi>
         <AlNavi
           user={user}
           show={showNavi} setShowNavi={setShowNavi}
-          white={bodyClicked} setWhite={setBodyClicked}
+          clicked={bodyClicked} setClicked={setBodyClicked}
         ></AlNavi>
 
         <WrapperDiv>

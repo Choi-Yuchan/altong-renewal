@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useRef } from 'react';
 import NaviItem from './naviItem/NaviItem';
 
 const MySpaceItems = { ko : [
@@ -21,7 +20,7 @@ const NaviItems = { ko : [
         { key: 1, img:"/pub/css/mainico/mypage.svg" , 
             href:"", val: "나의 공간", click: "mySpace", mini: MySpaceItems },
         { key: 2, img:"/pub/css/mainico/nicksearch.svg" , 
-            href:"", val: "닉네임 검색", click: "search" },
+            href:"", val: "닉네임 검색", click: "search", bar:true },
         { key: 3, img:"/pub/css/mainico/myRecommend.svg" , 
             href:"/member/myRecommend", val: "추천인/ANSWERer" },
         { key: 4, img:"/pub/css/mainico/rangking.svg" , 
@@ -43,6 +42,7 @@ const ItemLists = (lang) => {
         return <NaviItem
             key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
             count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+            bar={navi.bar}
         ></NaviItem>
     } ).sort(function(a, b){
         return a.key - b.key;
@@ -61,64 +61,55 @@ const NotLoginItemLists = (lang) => {
     });
 }
 
-const NotLogInfo = styled.div`
-    width: 100%;
-    height: 150px;
-    padding: 25px 0 5px;
-    position: relative;
-`;
-const NotLogDiv = styled.div`
-    text-align: center;
-    padding: 10px;
-    display: block;
-`;
-const NotLogLi = styled.li`
-    display: inline-block;
-    list-style: none;
-`;
-const NotLogLiA1 = styled.a`
-    display: block;
-    padding: 5px 18px;
-    border: 1px solid #fd0031;
-    border-radius: 36px;
-    color: #fd0031;
-    font-weight: bold;
-    font-size: 13px;
-    margin-top: 20px;
-    text-decoration: none;
-`;
-const NotLogLiA2 = styled.a`
-    border: 1px solid #333;
-    color: #333;
-    display: block;
-    padding: 5px 18px;
-    border-radius: 36px;
-    font-weight: bold;
-    font-size: 13px;
-    margin-top: 20px;
-`;
+const useClick = (onClick) => {
+    if (!typeof onClick !== "function") {
+      return;
+    }
+    const element = useRef();
+    useEffect(() => {
+      if (element.current) {
+        element.current.addEventListener("click", onClick);
+      }
+      return () => {
+        if (element.current) {
+          element.current.removeEventlistener("click", onClick);
+        }
+      };
+    }, []);
+    return element;
+  };
 
 function AlNavi(props) {
     //내부 텍스트 부분들 전부 data 받아서 이용하는 형식으로 수정 필요
-    //불필요한 positon 남발 
-    const [open, setOpen] = useState(0);
+
+    const clickedNavi = (e) => {
+        props.setClicked(false);
+        props.setShowNavi(true);
+        e.stopPropagation();
+    }
+
+    const closedNavi = (e) => {
+        props.setClicked(true);
+        props.setShowNavi(false);
+        e.stopPropagation();
+    }
+
+    const handleClick = useClick(clickedNavi);
+
     useEffect(()=>{
-        if(props.white === true){
+        if(props.clicked === true){
             props.setShowNavi(false);
         }
-    },[props.white]);
+    },[props.clicked]);
 
     if( props.user.seq === 0 ){
-        return <AlNaviNav show={props.show} onClick={(e) => {
-            props.setWhite(false);
-            props.setShowNavi(true);
-            e.stopPropagation();
-        }}>
+        return <AlNaviNav         
+        show={props.show} 
+        ref={handleClick} 
+        onClick={e => clickedNavi(e)}>
             <NavDiv>
-                {/* 네비게이션 최상단 X아이콘과 색상부분 
-                X 아이콘에 기능 추가 필요*/}
                 <NavTop>
-                    <CloseBtn>
+                    <CloseBtn onClick={e => closedNavi(e)}>
                         <CloseLeft></CloseLeft>
                         <CloseRight></CloseRight>
                     </CloseBtn>
@@ -144,14 +135,14 @@ function AlNavi(props) {
     }
   
     return (
-        <AlNaviNav show={props.show} onClick={(e) => {
-            props.setWhite(false);
-            props.setShowNavi(true);
-            e.stopPropagation();
-        }}>
+        <AlNaviNav 
+        show={props.show} 
+        ref={handleClick} 
+        onClick={e => clickedNavi(e)}
+        >
             <NavDiv>
                 <NavTop>
-                    <CloseBtn>
+                    <CloseBtn onClick={e => closedNavi(e)}>
                         <CloseLeft></CloseLeft>
                         <CloseRight></CloseRight>
                     </CloseBtn>
@@ -159,17 +150,17 @@ function AlNavi(props) {
                 <NavProfileDiv>
                     <NavProfileDivLogin>
                         <ManageAccount>
-                            <ModifyDiv>계정 관리</ModifyDiv>
+                            <ModifyDiv href="/member/myJoin">계정 관리</ModifyDiv>
                         </ManageAccount>    
                         <UserInfo>
                             <LoginFigure>
                                 <LoginFigureDiv>
-                                    <LoginFigureDivImg></LoginFigureDivImg>
+                                    <LoginFigureImg src="/Uploadfile/Profile/image.png"></LoginFigureImg>
                                 </LoginFigureDiv>
                                 <LoginFigcaption>나비천사</LoginFigcaption>
                             </LoginFigure>
                             <InfoDiv>
-                                <InfoDivLocate>
+                                <InfoDivLocate href="/member/myInfo">
                                     <InfoH2>알통1234</InfoH2>
                                     <InfoP>
                                         <InfoSpan>질문순위 5,018위</InfoSpan>
@@ -183,13 +174,47 @@ function AlNavi(props) {
                 <SlideUl>
                     {ItemLists("ko")}
                 </SlideUl>
-  
             </NavDiv>
         </AlNaviNav>
     );
   }
   
-  export default AlNavi;
+const NotLogInfo = styled.div`
+  width: 100%;
+  height: 150px;
+  padding: 25px 0 5px;
+  position: relative;
+`;
+const NotLogDiv = styled.div`
+  text-align: center;
+  padding: 10px;
+  display: block;
+`;
+const NotLogLi = styled.li`
+  display: inline-block;
+  list-style: none;
+`;
+const NotLogLiA1 = styled.a`
+  display: block;
+  padding: 5px 18px;
+  border: 1px solid #fd0031;
+  border-radius: 36px;
+  color: #fd0031;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 20px;
+  text-decoration: none;
+`;
+const NotLogLiA2 = styled.a`
+  border: 1px solid #333;
+  color: #333;
+  display: block;
+  padding: 5px 18px;
+  border-radius: 36px;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 20px;
+`;
 
 const UserInfo = styled.div`
     display:flex;
@@ -203,7 +228,9 @@ const AlNaviNav = styled.nav`
     top: 0;
     left: 0;
     z-index: 99;
-    display: ${props => props.show ? "block" : "none"};
+    transform:${props => props.show ? 'translateX(0)' : 'translateX(-100%)'};
+    transform-origin:left;
+    transition : transform 0.5s ease-in-out; 
 `;
 const NavDiv = styled.div`
 &{
@@ -266,8 +293,10 @@ const ManageAccount = styled.div`
     justify-content: flex-end;
     align-items: center;
 `;
-const ModifyDiv = styled.div`
+const ModifyDiv = styled.a`
     display: inline-block;
+    text-decoration:none;
+    color:#333;
     font-size: 10px;
     padding: 1px 5px 2px 16px;
     border: 1px solid rgb(51, 51, 51);
@@ -288,7 +317,7 @@ const LoginFigureDiv = styled.div`
     width: 60px;
     height: 60px;
 `;
-const LoginFigureDivImg = styled.img`
+const LoginFigureImg = styled.img`
     display: block;
     width: 100%;
     height: 100%;
@@ -297,8 +326,8 @@ const LoginFigureDivImg = styled.img`
 const LoginFigcaption = styled.figcaption`
     width:50%;
     min-width: 45px;
-    padding: 3px 2px;
-    margin:0 auto;
+    padding: 2px;
+    margin:5px auto 0;
     font-size: 10px;
     text-align: center;
     border-radius: 15px;
@@ -314,9 +343,12 @@ const InfoDiv = styled.div`
     justify-content:center;
     align-items:center;
 `;
-const InfoDivLocate = styled.div`
+const InfoDivLocate = styled.a`
+    display:block;
     width: 90%;
     cursor: pointer;
+    text-decoration:none;
+    color:#333;
 `;
 const InfoH2 = styled.h2`
     margin-bottom: 8px;
@@ -341,8 +373,4 @@ const SlideUl = styled.ul`
     margin-right: 10px;
 `;
 
-
-
-
-
-
+export default AlNavi;

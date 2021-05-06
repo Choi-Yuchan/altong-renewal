@@ -30,7 +30,7 @@ function TopNavi(props) {
     <TopHeader>
             <CenterDiv>
                 <HamburgerBar onClick={(e) => {
-                    props.setWhite(false);
+                    props.setClicked(false);
                     props.setShowNavi(true);
                     e.stopPropagation();
                 }}>
