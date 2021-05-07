@@ -32,7 +32,7 @@ const NaviItems = { ko : [
         { key: 7, img:"/pub/css/mainico/headphones_33.svg" , 
             href:"/default/cs/customerService", val: "고객센터" },
         { key: 8, img:"/pub/css/mainico/keypress.svg" , 
-            href:"", val: "Keysound off", click:"press" }
+            href:"", val: "Keysound Off", valon: "Keysound On", click:"press"}
     ]
 }
 
@@ -42,7 +42,7 @@ const ItemLists = (lang) => {
         return <NaviItem
             key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
             count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-            bar={navi.bar}
+            bar={navi.bar} valon={navi.valon}
         ></NaviItem>
     } ).sort(function(a, b){
         return a.key - b.key;
@@ -174,11 +174,37 @@ function AlNavi(props) {
                 <SlideUl>
                     {ItemLists("ko")}
                 </SlideUl>
+                <AlNaviBot>
+                    <BottomBtn href="/default/logOut">
+                        <LogoutIco src="/pub/css/mainico/logout.svg" alt="로그아웃 아이콘"></LogoutIco>
+                        로그아웃
+                    </BottomBtn>
+                    {/* 회원탈퇴 기능 추가 예정  */}
+                    <BottomBtn href="/">회원탈퇴</BottomBtn>
+                </AlNaviBot>
             </NavDiv>
         </AlNaviNav>
     );
   }
-  
+const LogoutIco = styled.img`
+    margin-right: 5px;
+`;
+
+const BottomBtn = styled.a`
+    cursor:pointer;
+    font-size: 13px;
+    padding: 0 10px;
+    :last-child{
+        color:#aaa;
+        border-left: 2px solid #eaeaea;
+    }
+`;
+const AlNaviBot = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;    
+`;
 const NotLogInfo = styled.div`
   width: 100%;
   height: 150px;
@@ -231,10 +257,17 @@ const AlNaviNav = styled.nav`
     transform:${props => props.show ? 'translateX(0)' : 'translateX(-100%)'};
     transform-origin:left;
     transition : transform 0.5s ease-in-out; 
+    overflow-y:scroll;
+    /* Hide scrollbar for Chrome,Safari and Opera */
+    ::-webkit-scrollbar{
+        display:none;
+    }
+    -ms-overflow-style: none; // IE and Edge
+    scrollbar-width: none; // Firefox
 `;
 const NavDiv = styled.div`
 &{
-    height: 100%;
+    min-height: 100vh;
     width: 370px;
     background: #fff;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 10%);

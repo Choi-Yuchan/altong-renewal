@@ -1,14 +1,38 @@
 import styled from 'styled-components';
-import React, {useState} from 'react';
-
+import React, {useState, useRef, useEffect } from 'react';
 const NaviAClick = (e, href) => {
     if( href === "" ){
         e.preventDefault();
     }
 }
+const useSlideDown = (duration = 1, toggle) => {
+    const element = useRef();
+    useEffect(() => {
+      if (element.current) {
+        const { current } = element;
+        current.style.transition = `transform ${duration}s ease-in-out 0s`;
+        current.style.transform = "scaleY(1)";
+      } 
+    }, [toggle]);
+    
+    if (typeof duration !== "number" ) {
+      return;
+    }
+    return { ref: element, style: { transform: "scaleY(0)" } };
+  };
+
+const eventHandler = e => {
+    e.preventDefault();
+    e.stopPropagation();
+}
 
 function NaviItem(props) {
     const [showPlus, setShowPlus] = useState("0deg");
+    const [toggle, setToggle] = useState(false);
+    const showSearch = useSlideDown(0.5, toggle);
+    const [keyToggle, setKeyToggle] = useState(false);
+
+
     if(props.mini != null){
         return (
             <NaviItemLiMiniLi showPlus={showPlus==="0deg"} onClick={() =>{
@@ -34,16 +58,41 @@ function NaviItem(props) {
     }
     if(props.bar){
         return(
-        <SearchName>
+        <SearchName onClick={() => {setToggle(!toggle)}}>
             <NaviSearch>
                 <NaviS img={props.img}></NaviS>
                 <span>{props.val}</span>
             </NaviSearch>
-            <SearchForm>
-                <SearchInput placeholder="닉네임을 입력해주세요"></SearchInput>
+            {toggle ? 
+            <SearchForm action {...showSearch}>
+                <SearchInput type="search" placeholder="닉네임을 입력해주세요" onClick={eventHandler}>
+                </SearchInput>
+                <SearchBtn type="submit" onClick={eventHandler}>
+                    <SearchIco src="/Common/images/icon_search.png" alt="검색 아이콘"></SearchIco>
+                </SearchBtn>
             </SearchForm>
+            : null}
         </SearchName>
         );
+    }
+    if(props.valon){
+        return(
+            // Key sound On/Off 기능 추가 예정
+            <NaviItemLi>
+                <NaviA onClick = { () => {setKeyToggle(!keyToggle)}}>
+                    <IconBox>
+                        <NaviKey img={props.img}></NaviKey>
+                        {keyToggle ? 
+                        <KeySoundOn></KeySoundOn>
+                        : <KeySoundOff></KeySoundOff>}
+                    </IconBox>
+                    {keyToggle ? 
+                    <span>{props.valon}</span> 
+                    : <span>{props.val}</span>
+                    }
+                </NaviA>
+            </NaviItemLi>
+        )
     }
     return (
         <NaviItemLi>
@@ -58,14 +107,86 @@ function NaviItem(props) {
     );
   }
   
-  export default NaviItem;
+export default NaviItem;
+
+const IconBox = styled.div`
+    display:inline-flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+`;
+const KeySoundOn = styled.i`
+    display: block;
+    position:relative;
+    width: 14px;
+    height: 8px;
+    border: 1px solid #444;
+    border-radius:6px;
+
+    :after{
+        content: "";
+        display:block;
+        width: 4px;
+        height: 4px;
+        background: #444;
+        border-radius: 4px;
+        position:absolute;
+        top: 1px;
+        left: 7px;
+    }
+`;
+
+const KeySoundOff = styled(KeySoundOn)`
+    ::after{
+        left: 1px;
+    }
+`;
+const NaviItemLi = styled.li`
+    height: 42px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 42px;
+    position: relative;
+    transition: all 0.3s;
+    list-style: none;
+    cursor:pointer;
+`;
+const NaviA = styled.a`
+    display: block;
+    height: 100%;
+    border-top: 1px solid #efefef;
+    padding-left: 10px;
+    position: relative;
+    text-decoration: none;
+    color: #333;
+    :last-child{
+        border-bottom: 1px solid #efefef;
+    }
+`;
+const SearchIco = styled.img`
+    width:100%;
+`;
+const SearchBtn = styled.button`
+    width:28px;
+    cursor: pointer;
+    background:transparent;
+    border:none;
+    position:absolute;
+    top:15%;
+    right:10%;
+    transform:translate(-10%, 0);
+`;
 
 const SearchForm = styled.form`
+    position:relative;
     text-align:center;
+    transform-origin:top;
+    margin-bottom:10px;
 `;
+
 const SearchInput = styled.input`
     width: 85%;
-    padding:10px;
+    padding:10px 15px;
     font-size:12px;
     border: 2px solid #fd0031;
     border-radius: 39px;
@@ -91,36 +212,16 @@ const MiniLiA = styled.a`
   position: relative;
   text-decoration: none;
 `;
-const NaviItemLi = styled.li`
-  height: 42px;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 42px;
-  position: relative;
-  transition: all 0.3s;
-  list-style: none;
-  cursor:pointer;
-`;
 
 const NaviItemLiMiniLi = styled(NaviItemLi)`
     height: ${props => props.showPlus? "42px" : "371px" };
     overflow: hidden;
-`;
-const NaviA = styled.a`
-    display: block;
-    height: 100%;
-    border-top: 1px solid #efefef;
-    padding-left: 10px;
-    position: relative;
-    text-decoration: none;
-    color: #333;
 `;
 const SearchName = styled(NaviItemLi)`
     height:100%;
 `;
 
 const NaviSearch = styled(NaviA)`
-
 `;
 const NaviAMini = styled.a`
 &{
@@ -164,6 +265,11 @@ const NaviB = styled.div`
     height: 100%;
     float: left;
     margin-right: 10px;
+`;
+const NaviKey = styled(NaviB)`
+    height: 26px;
+    float:none;
+    margin-right:0;
 `;
 const NaviS = styled(NaviB)`
     height: 42px;
