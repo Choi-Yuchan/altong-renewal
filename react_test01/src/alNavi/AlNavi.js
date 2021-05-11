@@ -3,68 +3,66 @@ import React, { useEffect, useRef } from 'react';
 import NaviItem from './naviItem/NaviItem';
 
 const MySpaceItems = { ko : [
-    { key: 0, val: "정보", href: "/member/myInfo" },
-    { key: 1, val: "알뱅크", href: "/member/bank/index" },
-    { key: 2, val: "출금신청", href: "/alpay/user/sub/exchange" },
-    { key: 3, val: "관심분야", href: "/member/interest/myInterest" },
-    { key: 4, val: "찜", href: "/member/myZzim" },
-    { key: 5, val: "멘토/멘티", href: "/member/myPartner?FlagPartner=M" },
-    { key: 6, val: "친구/쪽지 차단", href: "/member/myFriend" },
-    { key: 7, val: "쪽지", href: "/message/message" },
-]
+    { id: 0, val: "정보", href: "/member/myInfo" },
+    { id: 1, val: "알뱅크", href: "/member/bank/index" },
+    { id: 2, val: "출금신청", href: "/alpay/user/sub/exchange" },
+    { id: 3, val: "관심분야", href: "/member/interest/myInterest" },
+    { id: 4, val: "찜", href: "/member/myZzim" },
+    { id: 5, val: "멘토/멘티", href: "/member/myPartner?FlagPartner=M" },
+    { id: 6, val: "친구/쪽지 차단", href: "/member/myFriend" },
+    { id: 7, val: "쪽지", href: "/message/message" },
+    ]
 }
 
 const NaviItems = { ko : [ 
-        { key: 0, img:"/pub/css/mainico/alert.svg" , 
+        { id: 0, img:"/pub/css/mainico/alert.svg" , 
             href:"/member/alarm/alarm", val: "알림", count: 120, i:true },
-        { key: 1, img:"/pub/css/mainico/mypage.svg" , 
+        { id: 1, img:"/pub/css/mainico/mypage.svg" , 
             href:"", val: "나의 공간", click: "mySpace", mini: MySpaceItems },
-        { key: 2, img:"/pub/css/mainico/nicksearch.svg" , 
+        { id: 2, img:"/pub/css/mainico/nicksearch.svg" , 
             href:"", val: "닉네임 검색", click: "search", bar:true },
-        { key: 3, img:"/pub/css/mainico/myRecommend.svg" , 
+        { id: 3, img:"/pub/css/mainico/myRecommend.svg" , 
             href:"/member/myRecommend", val: "추천인/ANSWERer" },
-        { key: 4, img:"/pub/css/mainico/rangking.svg" , 
+        { id: 4, img:"/pub/css/mainico/rangking.svg" , 
             href:"/question/rankQuestion", val: "랭킹" },
-        { key: 5, img:"/pub/css/mainico/event.svg" , 
+        { id: 5, img:"/pub/css/mainico/event.svg" , 
             href:"/question/eventList", val: "이벤트" },
-        { key: 6, img:"/pub/css/mainico/userGuide.svg" , 
+        { id: 6, img:"/pub/css/mainico/userGuide.svg" , 
             href:"/default/userGuide", val: "이용안내" },
-        { key: 7, img:"/pub/css/mainico/headphones_33.svg" , 
+        { id: 7, img:"/pub/css/mainico/headphones_33.svg" , 
             href:"/default/cs/customerService", val: "고객센터" },
-        { key: 8, img:"/pub/css/mainico/keypress.svg" , 
-            href:"", val: "Keysound Off", valon: "Keysound On", click:"press"}
+        { id: 8, img:"/pub/css/mainico/keypress.svg" , 
+            href:"", val: "Keysound Off", sound: "Keysound On", click:"press"}
     ]
 }
 
 
 const ItemLists = (lang) => {
-    return NaviItems[lang].map( (navi) => {
-        return <NaviItem
-            key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
+    return NaviItems[lang].map((navi) => 
+            <NaviItem
+            key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
             count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-            bar={navi.bar} valon={navi.valon}
-        ></NaviItem>
-    } ).sort(function(a, b){
-        return a.key - b.key;
-    } );
+            bar={navi.bar} sound={navi.sound}
+            />
+        ).sort(function(a, b){
+            return a.key - b.key;
+        });
 }
+
 const NotLoginItemLists = (lang) => {
-    return NaviItems[lang].map( (navi) => {
-        return <NaviItem
-            key={navi.key} img={navi.img} href={navi.href} val={navi.val} 
+    return NaviItems[lang].map((navi) => 
+        <NaviItem
+            key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
             count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-        ></NaviItem>
-    } ).sort(function(a, b){
+        />
+    ).sort(function(a, b){
         return a.key - b.key;
-    } ).filter((val) => {
+    }).filter((val) => {
         return val.key > 3
     });
 }
 
 const useClick = (onClick) => {
-    if (!typeof onClick !== "function") {
-      return;
-    }
     const element = useRef();
     useEffect(() => {
       if (element.current) {
@@ -76,6 +74,9 @@ const useClick = (onClick) => {
         }
       };
     }, []);
+    if (!typeof onClick !== "function") {
+        return;
+      }
     return element;
   };
 
@@ -94,7 +95,23 @@ function AlNavi(props) {
         e.stopPropagation();
     }
 
+    const widMessage = `
+    회원탈퇴는 02)330-3000으로 전화를 통해 신청을 부탁드립니다. 
+    참고로 회원탈퇴는 매우 신중히 결정하시기를 권해드립니다. 
+    탈퇴 시 회원님의 보유 알은 소멸되고 향후 계속 수익이 발생할
+    경우 이 수익 역시 (주)알통에 귀속됩니다.
+    만약 이후 재가입을 원하실 경우 최소 6개월 경과 후에야 가능
+    하므로 탈퇴 전에 신중을 거듭하여 신청해 주십시오.
+    (재가입 관련 정책은 추후 변경될 수 있습니다.)`
+
+    const withdraw = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        confirm(String(widMessage));
+    }
+
     const handleClick = useClick(clickedNavi);
+
 
     useEffect(()=>{
         if(props.clicked === true){
@@ -161,7 +178,7 @@ function AlNavi(props) {
                             </LoginFigure>
                             <InfoDiv>
                                 <InfoDivLocate href="/member/myInfo">
-                                    <InfoH2>알통1234</InfoH2>
+                                    <InfoH2>UserID</InfoH2>
                                     <InfoP>
                                         <InfoSpan>질문순위 5,018위</InfoSpan>
                                         <InfoSpan>답변순위 1,025위</InfoSpan>
@@ -171,16 +188,15 @@ function AlNavi(props) {
                         </UserInfo>
                     </NavProfileDivLogin>
                 </NavProfileDiv>
-                <SlideUl>
+                <ul>
                     {ItemLists("ko")}
-                </SlideUl>
+                </ul>
                 <AlNaviBot>
                     <BottomBtn href="/default/logOut">
                         <LogoutIco src="/pub/css/mainico/logout.svg" alt="로그아웃 아이콘"></LogoutIco>
                         로그아웃
                     </BottomBtn>
-                    {/* 회원탈퇴 기능 추가 예정  */}
-                    <BottomBtn href="/">회원탈퇴</BottomBtn>
+                    <BottomBtn href="#none" onClick={withdraw}>회원탈퇴</BottomBtn>
                 </AlNaviBot>
             </NavDiv>
         </AlNaviNav>
@@ -191,6 +207,8 @@ const LogoutIco = styled.img`
 `;
 
 const BottomBtn = styled.a`
+    color:#333;
+    text-decoration:none;
     cursor:pointer;
     font-size: 13px;
     padding: 0 10px;
@@ -232,6 +250,7 @@ const NotLogLiA1 = styled.a`
   text-decoration: none;
 `;
 const NotLogLiA2 = styled.a`
+text-decoration:none;
   border: 1px solid #333;
   color: #333;
   display: block;
@@ -400,10 +419,6 @@ const InfoSpan = styled.span`
     :last-child{
         margin-right:0;
     }
-`;
-
-const SlideUl = styled.ul`
-    margin-right: 10px;
 `;
 
 export default AlNavi;
