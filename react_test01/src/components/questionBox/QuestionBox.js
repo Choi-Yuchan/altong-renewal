@@ -3,16 +3,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
 
-import TopNavi from './../topNavi/TopNavi'
-
+import TopNavi from '../../topNavi/TopNavi'
+import AlNavi from '../../alNavi/AlNavi'
 import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD'
 
-
-import AlNavi from '../../alNavi/AlNavi'
 
 function ShowBlackDiv(props){
   if(props.clicked === false){

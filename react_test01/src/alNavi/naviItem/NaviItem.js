@@ -1,25 +1,17 @@
 import styled from 'styled-components';
-import React, {useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
+
+const langNaviItem = {
+    ko:{
+        placeholder: "닉네임을 입력해주세요",
+        alt: "검색 아이콘",
+    }
+}
 const NaviAClick = (e, href) => {
     if( href === "" ){
         e.preventDefault();
     }
 }
-// const useSlideDown = (duration = 1, toggle) => {
-//     const element = useRef();
-//     useEffect(() => {
-//       if (element.current) {
-//         const { current } = element;
-//         current.style.transition = `transform ${duration}s ease-in-out 0s`;
-//         current.style.transform = "scaleY(1)";
-//       } 
-//     }, [toggle]);
-    
-//     if (typeof duration !== "number" ) {
-//       return;
-//     }
-//     return { ref: element, style: { transform: "scaleY(0)" } };
-//   };
 
 const eventHandler = e => {
     e.preventDefault();
@@ -27,9 +19,11 @@ const eventHandler = e => {
 }
 
 function NaviItem(props) {
+    const placeholder = langNaviItem.ko.placeholder;
+    const altText = langNaviItem.ko.alt;
+
     const [showPlus, setShowPlus] = useState("0deg");
     const [toggle, setToggle] = useState(false);
-    // const showSearch = useSlideDown(0.3, toggle);
     const [keyToggle, setKeyToggle] = useState(false);
 
     if(props.mini != null){
@@ -57,20 +51,17 @@ function NaviItem(props) {
     }
     if(props.bar){
         return(
-        <SearchName onClick={() => {setToggle(!toggle)}}>
+        <SearchName showInput={toggle} onClick={() => {setToggle(!toggle)}}>
             <NaviSearch>
                 <NaviS img={props.img}></NaviS>
                 <span>{props.val}</span>
             </NaviSearch>
-            {/* {toggle ?  */}
             <SearchForm showInput={toggle} onClick={()=>{setToggle(!toggle)}}>
-                <SearchInput type="search" placeholder="닉네임을 입력해주세요" onClick={eventHandler}>
-                </SearchInput>
+                <SearchInput type="search" placeholder={placeholder} onClick={eventHandler}/>
                 <SearchBtn type="submit" onClick={eventHandler}>
-                    <SearchIco src="/Common/images/icon_search.png" alt="검색 아이콘"></SearchIco>
+                    <SearchIco src="/Common/images/icon_search.png" alt={altText}></SearchIco>
                 </SearchBtn>
             </SearchForm>
-            {/* : null} */}
         </SearchName>
         );
     }
@@ -148,6 +139,14 @@ const NaviAlramI = styled.i`
     border-radius: 20px;
     margin-left: 10px;
 `;
+const SearchName = styled(NaviItemLi)`
+    height:100%;
+`;
+const NaviSearch = styled(NaviA)`
+`;
+const NaviS = styled(NaviB)`
+    height: 42px;
+`;
 const SearchIco = styled.img`
     width:100%;
 `;
@@ -163,12 +162,12 @@ const SearchBtn = styled.button`
 `;
 
 const SearchForm = styled.form`
+    height:${props => props.showInput === false ? "0" : "52px"};
     position:relative;
     text-align:center;
     transform:${props => props.showInput === false ? "scaleY(0)" : "scaleY(1)"};
     transform-origin:top;
     transition: all 0.3s ease-in-out;
-    margin-bottom:10px;
 `;
 
 const SearchInput = styled.input`
@@ -238,19 +237,10 @@ const NaviAMini = styled.a`
 }
 `;
 
-const SearchName = styled(NaviItemLi)`
-    height:100%;
-    overflow:hidden;
-`;
-const NaviSearch = styled(NaviA)`
-`;
 const NaviKey = styled(NaviB)`
     height: 26px;
     float:none;
     margin-right:0;
-`;
-const NaviS = styled(NaviB)`
-    height: 42px;
 `;
 
 const IconBox = styled.div`

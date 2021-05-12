@@ -36,6 +36,17 @@ const NaviItems = { ko : [
     ]
 }
 
+const langAlNavi = { 
+    ko : {
+        signout : ["로그인이 필요합니다.", "로그인", "회원가입"],
+        signin : ["계정 관리", "로그아웃", "회원탈퇴"],
+        user : [
+            { id : "USER_ID", tier:"열혈천사", q_rank: "질문순위 4,078위", a_rank: "답변순위 1,024위"  }
+        ],
+        alt : ["프로필","로그아웃 아이콘"],
+        confirm_p:"회원탈퇴는 02)330-3000으로 전화를 통해 신청을 부탁드립니다.\n참고로 회원탈퇴는 매우 신중히 결정하시기를 권해드립니다.\n탈퇴 시 회원님의 보유 알은 소멸되고 향후 계속 수익이 발생할\n경우 이 수익 역시 (주)알통에 귀속됩니다.\n만약 이후 재가입을 원하실 경우 최소 6개월 경과 후에야 가능\n하므로 탈퇴 전에 신중을 거듭하여 신청해 주십시오.\n(재가입 관련 정책은 추후 변경될 수 있습니다.)", 
+    }
+}
 
 const ItemLists = (lang) => {
     return NaviItems[lang].map((navi) => 
@@ -81,7 +92,11 @@ const useClick = (onClick) => {
   };
 
 function AlNavi(props) {
-    //내부 텍스트 부분들 전부 data 받아서 이용하는 형식으로 수정 필요
+    const signOutTxt = langAlNavi.ko.signout;
+    const signInTxt = langAlNavi.ko.signin;
+    const userInfo = langAlNavi.ko.user;
+    const altText = langAlNavi.ko.alt;
+    const widMessage = langAlNavi.ko.confirm_p;
 
     const clickedNavi = (e) => {
         props.setClicked(false);
@@ -95,23 +110,16 @@ function AlNavi(props) {
         e.stopPropagation();
     }
 
-    const widMessage = `
-    회원탈퇴는 02)330-3000으로 전화를 통해 신청을 부탁드립니다. 
-    참고로 회원탈퇴는 매우 신중히 결정하시기를 권해드립니다. 
-    탈퇴 시 회원님의 보유 알은 소멸되고 향후 계속 수익이 발생할
-    경우 이 수익 역시 (주)알통에 귀속됩니다.
-    만약 이후 재가입을 원하실 경우 최소 6개월 경과 후에야 가능
-    하므로 탈퇴 전에 신중을 거듭하여 신청해 주십시오.
-    (재가입 관련 정책은 추후 변경될 수 있습니다.)`
-
     const withdraw = e => {
         e.preventDefault();
         e.stopPropagation();
-        confirm(String(widMessage));
+        const leave = confirm(String(widMessage));
+        if(leave === true){
+            return location.assign('/default/cs/customerService');
+        }
     }
 
     const handleClick = useClick(clickedNavi);
-
 
     useEffect(()=>{
         if(props.clicked === true){
@@ -133,13 +141,13 @@ function AlNavi(props) {
                 </NavTop>
                 <NotLogInfo>
                     <NotLogDiv>
-                        <h3>로그인이 필요합니다.</h3>
+                        <h3>{signOutTxt[0]}</h3>
                         <ul>
                             <NotLogLi>
-                                <NotLogLiA1 href="/default/login">로그인</NotLogLiA1>
+                                <NotLogLiA1 href="/default/login">{signOutTxt[1]}</NotLogLiA1>
                             </NotLogLi>
                             <NotLogLi>
-                                <NotLogLiA2 href="/default/joinRule">회원가입</NotLogLiA2>
+                                <NotLogLiA2 href="/default/joinRule">{signOutTxt[2]}</NotLogLiA2>
                             </NotLogLi>
                         </ul>
                     </NotLogDiv>
@@ -160,28 +168,28 @@ function AlNavi(props) {
             <NavDiv>
                 <NavTop>
                     <CloseBtn onClick={e => closedNavi(e)}>
-                        <CloseLeft></CloseLeft>
-                        <CloseRight></CloseRight>
+                        <CloseLeft/>
+                        <CloseRight/>
                     </CloseBtn>
                 </NavTop>
                 <NavProfileDiv>
                     <NavProfileDivLogin>
                         <ManageAccount>
-                            <ModifyDiv href="/member/myJoin">계정 관리</ModifyDiv>
+                            <ModifyDiv href="/member/myJoin">{signInTxt[0]}</ModifyDiv>
                         </ManageAccount>    
                         <UserInfo>
                             <LoginFigure>
                                 <LoginFigureDiv>
-                                    <LoginFigureImg src="/Uploadfile/Profile/image.png"></LoginFigureImg>
+                                    <LoginFigureImg src="/Uploadfile/Profile/image.png" alt={altText[0]}/>
                                 </LoginFigureDiv>
-                                <LoginFigcaption>나비천사</LoginFigcaption>
+                                <LoginFigcaption>{userInfo[0].tier}</LoginFigcaption>
                             </LoginFigure>
                             <InfoDiv>
                                 <InfoDivLocate href="/member/myInfo">
-                                    <InfoH2>UserID</InfoH2>
+                                    <InfoH2>{userInfo[0].id}</InfoH2>
                                     <InfoP>
-                                        <InfoSpan>질문순위 5,018위</InfoSpan>
-                                        <InfoSpan>답변순위 1,025위</InfoSpan>
+                                        <InfoSpan>{userInfo[0].q_rank}</InfoSpan>
+                                        <InfoSpan>{userInfo[0].a_rank}</InfoSpan>
                                     </InfoP>
                                 </InfoDivLocate>
                             </InfoDiv>
@@ -193,79 +201,18 @@ function AlNavi(props) {
                 </ul>
                 <AlNaviBot>
                     <BottomBtn href="/default/logOut">
-                        <LogoutIco src="/pub/css/mainico/logout.svg" alt="로그아웃 아이콘"></LogoutIco>
-                        로그아웃
+                        <LogoutIco src="/pub/css/mainico/logout.svg" alt={altText[1]}/>
+                        {signInTxt[1]}
                     </BottomBtn>
-                    <BottomBtn href="#none" onClick={withdraw}>회원탈퇴</BottomBtn>
+                    <BottomBtn href="#none" onClick={withdraw}>{signInTxt[2]}</BottomBtn>
                 </AlNaviBot>
             </NavDiv>
         </AlNaviNav>
     );
   }
-const LogoutIco = styled.img`
-    margin-right: 5px;
-`;
 
-const BottomBtn = styled.a`
-    color:#333;
-    text-decoration:none;
-    cursor:pointer;
-    font-size: 13px;
-    padding: 0 10px;
-    :last-child{
-        color:#aaa;
-        border-left: 2px solid #eaeaea;
-    }
-`;
-const AlNaviBot = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:10px;    
-`;
-const NotLogInfo = styled.div`
-  width: 100%;
-  height: 150px;
-  padding: 25px 0 5px;
-  position: relative;
-`;
-const NotLogDiv = styled.div`
-  text-align: center;
-  padding: 10px;
-  display: block;
-`;
-const NotLogLi = styled.li`
-  display: inline-block;
-  list-style: none;
-`;
-const NotLogLiA1 = styled.a`
-  display: block;
-  padding: 5px 18px;
-  border: 1px solid #fd0031;
-  border-radius: 36px;
-  color: #fd0031;
-  font-weight: bold;
-  font-size: 13px;
-  margin-top: 20px;
-  text-decoration: none;
-`;
-const NotLogLiA2 = styled.a`
-text-decoration:none;
-  border: 1px solid #333;
-  color: #333;
-  display: block;
-  padding: 5px 18px;
-  border-radius: 36px;
-  font-weight: bold;
-  font-size: 13px;
-  margin-top: 20px;
-`;
+export default AlNavi;
 
-const UserInfo = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-  `;
 const AlNaviNav = styled.nav`
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -327,6 +274,50 @@ const CloseLeft = styled.i`
 const CloseRight = styled(CloseLeft)`
     transform: translate(-50%, -50%) rotate(-45deg);
 `;
+const NotLogInfo = styled.div`
+  width: 100%;
+  height: 150px;
+  padding: 25px 0 5px;
+  position: relative;
+`;
+const NotLogDiv = styled.div`
+  text-align: center;
+  padding: 10px;
+  display: block;
+`;
+const NotLogLi = styled.li`
+  display: inline-block;
+  list-style: none;
+`;
+const NotLogLiA1 = styled.a`
+  display: block;
+  padding: 5px 18px;
+  border: 1px solid #fd0031;
+  border-radius: 36px;
+  color: #fd0031;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 20px;
+  text-decoration: none;
+`;
+const NotLogLiA2 = styled.a`
+text-decoration:none;
+  border: 1px solid #333;
+  color: #333;
+  display: block;
+  padding: 5px 18px;
+  border-radius: 36px;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 20px;
+`;
+
+const UserInfo = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  `;
+
 const NavProfileDiv = styled.div`
     width: 100%;
     height: 150px;
@@ -420,5 +411,24 @@ const InfoSpan = styled.span`
         margin-right:0;
     }
 `;
+const LogoutIco = styled.img`
+    margin-right: 5px;
+`;
 
-export default AlNavi;
+const BottomBtn = styled.a`
+    color:#333;
+    text-decoration:none;
+    cursor:pointer;
+    font-size: 13px;
+    padding: 0 10px;
+    :last-child{
+        color:#aaa;
+        border-left: 2px solid #eaeaea;
+    }
+`;
+const AlNaviBot = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;    
+`;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import { useState } from 'react';
-import { useSlideIn } from '../functions/useSlideIn/useSlideIn';
-import { useSlideUp } from '../functions/useSlideUp/useSlideUp';
+import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
+import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
 
 const langTopNavi = {
     ko : {
