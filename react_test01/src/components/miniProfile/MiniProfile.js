@@ -60,8 +60,9 @@ function MiniProfile(props) {
             <MainTable>
                 <tbody>
                 <tr>
-                    <th>
-                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}</th>
+                    <MiniTh>
+                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}
+                    </MiniTh>
                     <th rowSpan="2" 
                         onClick={(e) => {
                             AddFriend(e);
@@ -118,7 +119,8 @@ export default MiniProfile;
 
 const MainDiv = styled.div`
 &{
-    width: 400px;
+    width:100%;
+    max-width: 400px;
     background: #fff;
     position: absolute;
     top: 110%;
@@ -159,6 +161,10 @@ const MainTableImgLast = styled.img`
     display: block;
     margin: auto;
     cursor: pointer;
+`;
+const MiniTh = styled.th`
+    display:flex;
+    align-items:center;
 `;
 const MoneyInfoTd = styled.td`
     font-size: 12px;
@@ -201,7 +207,7 @@ const MiniProfileGo = styled.a`
     background: transparent;
     transition: all 0.3s;
     padding: 5px 0;
-    margin: 15px 0 10px;
+    margin: 15px 0 0;
     text-decoration: none;
     color: #333;
 `;

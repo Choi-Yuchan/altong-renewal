@@ -140,13 +140,11 @@ function PopAlmoney(props) {
                             e.stopPropagation();
                         }}
                     >취소</Popli4Button>
-                </Popli4>
-                <Popli5>
                     <Popli5Button onClick={(e) =>{
                         giveAlmoney(props, extraAlmoney,
                             setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e, setHunAlram);
                     }}>확인</Popli5Button>
-                </Popli5>
+                </Popli4>
             </PopUl>
         </PopAlDiv>
     );
@@ -158,7 +156,6 @@ const PopAlDiv = styled.div`
     display: ${(props) => props.showAlmoney?"block":"none"};
     padding: 10px;
     max-width: 320px;
-    text-align: center;
     letter-spacing: -1px;
     background: #fff;
     position: fixed;
@@ -174,8 +171,6 @@ const PopUl = styled.ul`
     width: 100%;
     height: 100%;
     text-align: center;
-    margin:0;
-    padding:0;
 `;
 const Popli = styled.li`
     list-style: none;
@@ -184,9 +179,6 @@ const PopP = styled.p`
     margin-top: 10px;
     font-weight: 500;
     font-size: 14px;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 const PopSpan = styled.span`
     font-weight: bold;
@@ -214,42 +206,33 @@ const PopH3Input = styled.input`
     outline: none;
 `;
 const Popli4 = styled.li`
-    display: inline-block;
-    width: 50%;
-    margin-left: -2px;
+    display: flex;
+    width: 100%;
     list-style: none;
+    justify-content:center;
+    margin-top:10px;
+    margin-bottom:5px;
+    height:25px;
 `;
 const Popli4Button = styled.button`
     margin-right: 15px;
     border: 1px solid #333;
     color: #666;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 43%;
+    width: 45%;
     background: #fff;
     font-size: 14px;
     font-weight: bold;
     border-radius: 20px;
-    line-height: 25px;
     outline: none;
     cursor: pointer;
 `;
-const Popli5 = styled.li`
-    display: inline-block;
-    width: 50%;
-    margin-left: -2px;
-    list-style: none;
-`;
 const Popli5Button = styled.button`
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 43%;
+    width: 45%;
     border: 1px solid #fd0031;
     background: #fff;
     font-size: 14px;
     font-weight: bold;
     border-radius: 20px;
-    line-height: 25px;
     color: #fd0031;
     outline: none;
     cursor: pointer;

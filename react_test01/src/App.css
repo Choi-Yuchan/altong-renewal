@@ -4,3 +4,26 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
+.wow-enter {
+  opacity: 0;
+}
+.wow-enter-active {
+  opacity: 1;
+  transition: all 0.5s;
+}
+.wow-exit {
+  opacity: 1;
+}
+.wow-exit-active {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.slide-enter {
+  height: 0;
+}
+.slide-enter-active {
+  height: auto;
+  transition: all 500ms;
+}

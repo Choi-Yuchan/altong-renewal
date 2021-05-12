@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const MainDiv = styled.div`
@@ -11,8 +12,8 @@ const OriginDiv = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-border: 2px solid #ff3300;
-color: #f30;
+border: 2px solid ${props=>props.check === '' ? '#f30': '#999'};
+color: ${props=>props.check === '' ? '#f30': '#999'};
 width: 50px;
 height: 50px;
 font-weight: 500;
@@ -50,10 +51,10 @@ const LangAIDiv = styled.div`
   width:50px;
   height: 50px;
   border-radius: 50%;
-  color: #999;
+  color: ${props=> props.check === 'check' ? '#f30': '#999'};
   font-size: 1rem;
   font-weight:500;
-  border: 2px solid #999;
+  border: 2px solid ${props=> props.check === 'check' ? '#f30': '#999'};
   cursor:pointer;
 
   @media (max-width:480px) {
@@ -66,11 +67,14 @@ const LangAIDiv = styled.div`
 
 
 function LangTransBox() {
+
+  const [check, setCheck] = useState('');
+
     return (
       <MainDiv className="LangTransBox">
-        <OriginDiv>원문</OriginDiv>
+        <OriginDiv check={check} onClick={()=>{setCheck('')}}>원문</OriginDiv>
         <Line></Line>
-        <LangAIDiv>AI</LangAIDiv>
+        <LangAIDiv check={check} onClick={()=>{setCheck('check')}}>AI</LangAIDiv>
       </MainDiv>
     );
   }

@@ -31,58 +31,40 @@ function AUnBoxBottom(props) {
 export default AUnBoxBottom;
 
 const Img1 = styled.img`
-    margin-left: ${props => props.take > 0? "-10px" : "0px" };
+    margin-left: ${props => props.take > 0? "-5px" : "0px" };
     width: 35px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    margin-top:-5px;
 `;
 //Img2와 3의 존재 이유 확인 필요
 const Img2 = styled.img`
     width: 35px;
-    margin-left: -10px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    margin-left: -5px;
 `;
 const Img3 = styled.img`
     width: 35px;
-    margin-left: -10px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    margin-left: -5px;
 `;
 
 const MainOl = styled.ol`
     position: relative;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const AlScoreDiv = styled.div`
 &{
-    margin: 0;
-    padding: 0;
-    display: inline-block;
     position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    display:flex;
+    align-items:center;
 }
 &:before{
     content: "";
     display: block;
-    width: 145%;
-    height: 5px;
-    background: #ccc;
+    width: 110%;
+    height: 6px;
+    background: #ddd;
     border-radius: 5px;
     position: absolute;
     top: 50%;
-    left: 65%;
+    left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
 }
@@ -92,10 +74,6 @@ const AlScoreLi = styled.li`
     display: inline-block;
     cursor: pointer;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 
@@ -104,15 +82,6 @@ const AlScoreSpan = styled.span`
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
-    width: 50px;
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    transform: translateY(-50%);
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const AlScoreLastLi = styled.li`
@@ -124,10 +93,6 @@ const AlScoreLastLi = styled.li`
     display: inline-block;
     cursor: pointer;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 &:after{
     content: "";
@@ -147,7 +112,4 @@ const AlScoreStrong = styled.strong`
     margin: 0 3px;
     font-size: 15px;
     color: #fd0031;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;

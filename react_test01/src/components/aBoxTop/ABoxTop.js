@@ -136,6 +136,7 @@ function ABoxTop(props) {
           pageSeq={props.pageSeq}
           seqComponent={props.seqComponent} popToggle={popToggle}
           title={props.head.nick+" 님의 답변입니다."}
+          setShare={props.setShare}
         ></QuestionPopup>
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
@@ -199,17 +200,16 @@ const Wrapli = styled.li`
   }
 `;
 const WrapSpan = styled.span`
-  display: inline-block;
-  text-align: center;
+  display: ${(props) => props.show ? "inline-flex" : "none" };
+  justify-content:center;
+  align-items:center;
   font-size: 10px;
-  padding: 1px 5px;
+  padding: 0.5px 5px;
   border: 1px solid #fd0031;
   color: #fd0031;
   border-radius: 10px;
-  position: relative;
-  top: -1px;
-  list-style: none;
-  display: ${(props) => props.show ? "display" : "none" };
+  margin-bottom:-1px;
+  margin-right:2px;
 `;
 
 const WrapStrong = styled.strong`

@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
+import {CSSTransition} from 'react-transition-group';
+import '../../App.css';
 
 
 const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
@@ -51,6 +53,7 @@ function ShowList(props){
     
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     const seq = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
+    const [replyClick, setReplyClick] = useState(false);
     
 
     return (
@@ -61,17 +64,18 @@ function ShowList(props){
             { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
             maxLength="400" onChange={(e) => {
                 setText(e.target.value);
-            } } value={text} ></TextArea>
-            <ReplyButton onClick={() => {
-                SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys);
-            } }>등록</ReplyButton>
+            } } value={text} onClick={()=>{setReplyClick(true)}}></TextArea>
+                <ReplyButton width={replyClick} onClick={() => {
+                    SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys);
+                    } }>등록</ReplyButton>
+                
+            
             </TextAreaDiv>
             <AutoRenewDiv>
             </AutoRenewDiv>
             <ReplySubmit>
                 <ReplySubmitP>
                     <span>{text.length}</span>/400</ReplySubmitP>
-                
             </ReplySubmit>
         </div>
         <ReplyContainer
@@ -140,6 +144,12 @@ const TextArea = styled.textarea`
     border-radius: 5px;
     outline: none;
     height:100%;
+    font-family: "Noto Sans CJK KR", sans-serif;
+
+    @media (max-width:480px) {
+        font-size:12px;
+        padding:5px 7px;
+    }
 `;
 const ReplySubmit = styled.div`
     text-align: right;
@@ -147,7 +157,7 @@ const ReplySubmit = styled.div`
     display: inline-block;
     width: 50%;
     font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    font-family: "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
     color: #333;
 `;
 const ReplySubmitP = styled.p`
@@ -158,7 +168,9 @@ const ReplySubmitP = styled.p`
     margin-bottom: 0;
 `;
 const ReplyButton = styled.button`
-    flex-grow: 0;
+    max-width:${props => props.width ? '200px':0};
+    opacity:${props => props.width ? 1:0};
+    margin-right:${props=> props.width ? 0:'-20px'};
     height: 100%;
     background: #fff;
     border: 1px solid #ccc;
@@ -170,19 +182,30 @@ const ReplyButton = styled.button`
     margin-left: 3px;
     color: #737373;
     font-size: 12px;
-
-`;
-const ShowView = styled.div`
-    max-height: ${props => props.row ? 0:'100000px'};
-    transform-origin: center top;
-    opacity: ${props => props.row ? 0:1};
-    transition:all 0.5s;
+    overflow:hidden;
+    font-family:"Noto Sans CJK KR", sans-serif;
+    transition:all 0.5s linear;
 `;
 // const ShowView = styled.div`
+//     max-height: ${props => props.row ? 0:'100000px'};
+//     transform-origin: center top;
+//     opacity: ${props => props.row ? 0:1};
+//     transition:all 0.5s;
 // `;
+const ShowView = styled.div`
+    overflow:hidden;
+    max-height: ${props => props.row ? 0 : '5000px'};
+    transform-origin: center top;
+    transition:all ${props => props.row ? '0s':'3s'} linear;
+    height:auto;
+`;
 const TextAreaDiv = styled.div`
     height: 40px;
     margin-top: 10px;
     display: flex;
     width: 100%;
+
+    @media (max-width:480px) {
+        height:30px;
+    }
 `;

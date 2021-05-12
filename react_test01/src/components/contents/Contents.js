@@ -84,6 +84,7 @@ const MainDiv = styled.div`
   word-break: break-all;
   font-size: 15px;
   cursor: pointer;
+  transition:all 0.3s;
 `;
 
 const ContentsP = styled.p`
@@ -91,16 +92,11 @@ const ContentsP = styled.p`
   font-size: 15px;
 `;
 const ContentsP2 = styled.p`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   word-break: break-all;
   font-size: 15px;
-  height:auto;
+  transtion:all 0.3s;
   
   max-height: ${props => props.row ? 0: '10000px'};
-  transition-duration: 1s;
 `;
 
 const ContentsSpan = styled.span`
@@ -119,9 +115,7 @@ const ContentsSpan = styled.span`
 const LangImg = styled.img`
   display: block;
   width: 30px;
-  margin-left: 15px;
   float: right;
-  margin-top: 15px;
 `;
 
 const LangImgNone = styled(LangImg)`
@@ -138,11 +132,21 @@ const NomalP = styled.p`
 
 function CustomView(props){
   const isView = props.isView;
+  const [imgChange, setImgChange] = useState(true);
+  const trans = () => {
+    if (imgChange) {
+      return '/Common/images/language.svg';
+    } else {
+      return '/Common/images/language_on.svg';
+    }
+  }
+  
+  
   if (isView === "open"){
     return <LangImgNone src={process.env.PUBLIC_URL + 
       '/test_source/language.svg'}></LangImgNone>
   }
-  return <LangImg src="/Common/images/language.svg"></LangImg>
+  return <LangImg onClick={()=>{setImgChange(!imgChange)}} src={trans()}></LangImg>
 }
 
 function DelSpan(props){

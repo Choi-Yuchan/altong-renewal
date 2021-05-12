@@ -25,14 +25,6 @@ function Box(props) {
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
-  const slide = () => {
-    if (replyToggle) {
-      return '300px';
-    } else {
-      return '10000px';
-    }
-  }
-
 
   const resetReplys = (seq) => {
     setReplys(replys.filter( x =>{
@@ -96,12 +88,12 @@ function Box(props) {
   //hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
 
   return (
-    <MainDiv className="Box" slide={slide}>
+    <MainDiv className="Box" >
         {/* atm_top_wrap */}
         <div>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
             setShowExtraList(!showExtraList);
-            props.setWhite(false);
+            props.setWhite(!props.white);
             e.stopPropagation();
           }}>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
@@ -121,6 +113,7 @@ function Box(props) {
           mini={props.jsonArr.mini}
           seqId={props.jsonArr.seqId}
           USER={props.USER}
+          setShare={props.setShare}
         ></QBoxTop>
 
         <Contents seqComponent={props.jsonArr.seqComponent}
@@ -152,9 +145,7 @@ const MainDiv = styled.div`
   border-radius:  1.25rem;
   font-size: 1rem;
   color: #333;
-  max-height:${props => props.slide};
-  overflow:hidden;
-  transition: all 5s;
+  transition: all 0.3s;
 
   @media (max-width:480px) {
     padding: 0.9375rem 0.625rem;

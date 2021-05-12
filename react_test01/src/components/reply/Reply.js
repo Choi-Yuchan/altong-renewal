@@ -12,7 +12,7 @@ function ShowView(props){
     if(props.timeToggle === false){
         return <FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText>
     }
-    return <><FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText><ReplyLocaleSpan>{props.timedate}</ReplyLocaleSpan></>
+    return <><FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText><ReplyLocaleSpan>{props.timedate} UTC+9</ReplyLocaleSpan></>
 }
 function AldolViewImg(props){
     return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
@@ -53,8 +53,10 @@ const DelViewer = (user, seqId, seqComponent, replySeq, setReplys) => {
         return <> · <DelI onClick={(e)=>{
             DelReply(e, seqComponent, replySeq, setReplys );
         }}>삭제</DelI></>
+    } else if (user !== 10003513) {
+        return <> · <ReportImg>신고</ReportImg></>
     }
-    return <></>
+    
 }
 
 function Reply(props) {
@@ -68,6 +70,15 @@ function Reply(props) {
     const seq = props.seq;
     // 댓글 id 값
     const replySeq = props.reply.seq
+
+    const [imgChange, setImgChange] = useState(true);
+    const trans = () => {
+      if (imgChange) {
+        return '/Common/images/language.svg';
+      } else {
+        return '/Common/images/language_on.svg';
+      }
+    }  
 
     useEffect(() => {
         if(props.white === true){
@@ -96,21 +107,33 @@ function Reply(props) {
                         </AldolViewContents>
                   </tr>
                   <tr>
-                      <ReplyBotton></ReplyBotton>
+                      <ReplyBottonDiv></ReplyBottonDiv>
                       <ReplyBotton>
-                      <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
-                      
-                      <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
-                            props.setWhite(false);
-                            setTimeToggle(!timeToggle);
-                            e.stopPropagation();
-                        }
-                        } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
-                            DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys )
-                        }
-                        <ReplyLangBtnBallDiv>
-                            <ReplyLangBtnBallImg src="/Common/images/language.svg"></ReplyLangBtnBallImg>
-                        </ReplyLangBtnBallDiv>
+                        <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                        
+                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
+                                props.setWhite(false);
+                                setTimeToggle(!timeToggle);
+                                e.stopPropagation();
+                            }
+                            } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
+                                DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys )
+                            }
+                        {/*댓글의 훈훈알, 좋아요, 싫어요 */}
+                        {/*
+                        <ReplyHunHun>
+                            <ReplyHunImg src="/pub/answer/answerList/images/answer_almoney.svg"></ReplyHunImg>
+                            <ReplyHunSpan>3,000</ReplyHunSpan>
+                        </ReplyHunHun>
+                        <ReplyGoodIcon>
+                            <SmileIconImg src="/Common/images/smile.svg"></SmileIconImg>
+                            5
+                        </ReplyGoodIcon>
+                        <ReplyBadIcon>
+                            <BadIconImg src="/Common/images/sad.svg"></BadIconImg>
+                            0
+                        </ReplyBadIcon> */}
+                        <ReplyLangBtnBallImg onClick={()=>{setImgChange(!imgChange)}} src={trans()}></ReplyLangBtnBallImg>
                       </ReplyBotton>
                   </tr>
               </tbody>
@@ -120,6 +143,39 @@ function Reply(props) {
 }
 
 export default Reply;
+
+const ReplyHunHun = styled.div`
+    display:inline-flex;
+    align-items:center;
+    margin-left:10px;
+    cursor:pointer;
+`;
+const ReplyHunImg = styled.img`
+    width:13px;
+`;
+const ReplyHunSpan = styled.span`
+    font-weight:normal;
+    margin-left:2px;
+    color:#fd0031;
+`;
+const ReplyGoodIcon = styled.div`
+    display:inline-flex;
+    font-weight:normal;
+    margin-left:10px;
+`;
+const SmileIconImg = styled.img`
+    width:13px;
+    margin-right:2px;
+`;
+const ReplyBadIcon = styled.div`
+    display:inline-flex;
+    font-weight:normal;
+    margin-left:10px;
+`;
+const BadIconImg = styled.img`
+    width:13px;
+    margin-right:2px;
+`;
 
 const DelI = styled.i`
     font-style: normal;
@@ -134,19 +190,17 @@ const MainContents = styled.div`
 `;
 
 const ReplyContents = styled.th`
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
     font-size: 14px;
-    font-weight: 300;
+    font-weight: normal;
     background: #f1f1f1;
     padding: 10px;
     border-radius: 15px 15px 15px 0;
     word-break: break-all;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    margin: 0;
+    width:100%;
 `;
 const AldolReplyContents = styled.th`
+    width:100%;
     font-style: italic;
     background: #fff;
     color: #666;
@@ -156,32 +210,30 @@ const AldolReplyContents = styled.th`
     padding: 10px;
     border-radius: 15px 15px 15px 0;
     word-break: break-all;
-    margin: 0;
 `;
-
+const ReplyBottonDiv = styled.td`
+`;
 const ReplyBotton = styled.td`
     font-size: 12px;
-    padding-left: 10px;
     font-weight: bold;
     color: #999;
+    display:flex;
+    align-items:center;
+    flex-wrap: wrap;
+    position:relative;
 `;
 
 const ReplyAhref = styled.a`
     color: #999;
+    cursor:pointer;
 `;
 
-const Btag = styled.b`
-    display: inline-block;
-    font-weight: 300;
+const Btag = styled.span`
     position: relative;
     cursor: pointer;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    text-align: justify;
     font-size: 12px;
     color: #999;
+    font-weight:normal;
 `;
 
 const Table = styled.table`
@@ -193,19 +245,17 @@ const Table = styled.table`
 const ReplyImg = styled.img`
     display: block;
     border-radius: 50%;
-    width: 100%;
+    width: 36px;
+    height:36px;
 `;
 
 const ReplyAhrefA = styled.a`
-    overflow: visible;
-    border-radius: 0;
     position: relative;
     display: block;
     width: 36px;
     height: 36px;
     text-decoration: none;
-    color: #333;
-    
+    cursor:pointer;
 `;
 
 const ReplyLocaleImg = styled.img`
@@ -217,19 +267,19 @@ const ReplyLocaleImg = styled.img`
 `;
 
 const ReplyLocaleTh = styled.th`
-    width: 60px;
     text-align: center;
-    padding-left: 12px;
     font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
     position: relative;
+    padding-right:10px;
 `;
 
 const ReplyLocaleSpan = styled.span`
 & {
-    display: block;
-    width: 175px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: 185px;
     position: absolute;
     top: 140%;
     left: 50%;
@@ -253,29 +303,18 @@ const ReplyLocaleSpan = styled.span`
 }
 `;
 
-const ReplyLangBtnBallDiv = styled.div`
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    margin-left: 20px;
-    cursor: pointer;
-    position: relative;
-`;
-
 const ReplyLangBtnBallImg = styled.img`
-    margin-left: 15px;
-    float: right;
-    margin-top: 5px;
-    margin-bottom: -2px;
-    margin-right: 2px;
+    cursor:pointer;
     width: 18px;
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+    margin-left:15px;
 `;
 const ReplyLocalDiv = styled.div`
     text-align: center;
     font-size: 10px;
     color: #666;
+`;
+
+const ReportImg = styled.span`
+    font-weight:normal;
 `;

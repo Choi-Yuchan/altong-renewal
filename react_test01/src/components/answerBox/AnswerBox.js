@@ -63,12 +63,13 @@ const ChoiceNetizenView = (props) => {
 function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [openAnswer, setOpenAnswer] = useState('close');
-  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,93)+'...');
+  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,45)+'...');
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [myestiNo, setMyestiNo] = useState(0);
   const [replys, setReplys] = useState(props.jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
+
 
   useEffect(()=>{
     
@@ -137,14 +138,14 @@ function AnswerBox(props) {
     }
   }
   , [props.white]);
-
+  
   return (
-    <MainDiv className="Box">
+    <MainDiv className="Box" onClick={ () => {  }} >
         {/* atm_top_wrap */}
-        <TopH3>
-          <AlmoneyDiv num={extraAlmoney}onClick={(e) => {
-            setShowExtraList(true);
-            props.setWhite(false);
+        <TopH3 num={extraAlmoney}>
+          <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
+            setShowExtraList(!showExtraList);
+            props.setWhite(!props.white);
             e.stopPropagation();
           }}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
@@ -168,6 +169,7 @@ function AnswerBox(props) {
           openAnswer={openAnswer}
           seqId={props.jsonArr.seqId}
           USER={props.USER}
+          setShare={props.setShare}
           ></ABoxTop>
         <Contents
           setInfoAD={props.setInfoAD}
@@ -235,21 +237,17 @@ const AnswerAlmoneyImgB = styled.img`
   cursor: pointer;
 `;
 const AlmoneySpan = styled.span`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
   color: #ff255f;
   font-size: 12px;
   font-weight: bold;
   vertical-align: middle;
   cursor: pointer;
-  font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
 `;
 const TopH3 = styled.h3`
   position: relative;
   display:flex;
-  justify-content: space-between;
+  flex-direction:${props => props.num === 0 ? 'row-reverse':'row'};
+  justify-content: ${props => props.num === 0 ? 'flex-start':'space-between'};
   align-items: center;
 `;
 const TopH3Div = styled.div`

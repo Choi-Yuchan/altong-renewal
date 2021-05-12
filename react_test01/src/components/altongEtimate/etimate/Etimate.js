@@ -4,8 +4,8 @@ import axios from 'axios';
 const MainLi = styled.li`
 &{
     display: inline-block;
-    width: 45px;
-    margin: 0 20px;
+    width:16.66666666%;
+    max-width: 45px;
     position: relative;
     list-style: none;
 }
@@ -23,16 +23,13 @@ const MainLi = styled.li`
     transform: translateX(-50%);
 }
 `;
-const EtimateA = styled.a`
+const EtimateA = styled.div`
     cursor: pointer;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
     width: 100%;
-    text-decoration: none;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 const EtimateImg = styled.img`
     display: block;
@@ -40,15 +37,9 @@ const EtimateImg = styled.img`
     margin-bottom: 3px;
 `;
 const EtimateSpan = styled.span`
-    display: block;
-    width: 100%;
     font-size: 12px;
     color: #9d9d9d;
     letter-spacing: -1px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const EtimateEm = styled.em`

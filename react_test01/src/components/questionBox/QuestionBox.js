@@ -11,7 +11,10 @@ import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
-import PopAD from '../popup/popAD/PopAD'
+import PopAD from '../popup/popAD/PopAD';
+import PopShare from '../popup/popShare/PopShare';
+import {CSSTransition} from 'react-transition-group';
+import '../../App.css';
 
 
 import AlNavi from '../../alNavi/AlNavi'
@@ -35,6 +38,7 @@ function QuestionBox(props) {
   const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
   const [hunAlram,setHunAlram] = useState(false);
   const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
+  const [share, setShare] = useState(false);
 
   const [showNavi, setShowNavi] = useState(false);
 
@@ -73,7 +77,7 @@ function QuestionBox(props) {
   return (
     // BodyClick과 WhiteClick의 props name이 혼용된 경우가 많으므로 통일해야함
     <SiteDiv
-      onClickCapture={ () => 
+      onClick={ () => 
         {
           setBodyClicked(true);
           setWhiteClick(true);
@@ -103,6 +107,7 @@ function QuestionBox(props) {
             SSRJSON={SSRJSON} USER={user} SESS={SESS}
             infoAD={infoAD} setInfoAD={setInfoAD}
             hunAlram={hunAlram} setHunAlram={setHunAlram}
+            setShare={setShare}
           ></BoxController>
         </WrapperDiv>
       </MainDiv>
@@ -126,11 +131,18 @@ function QuestionBox(props) {
         setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
 
+      <PopShare
+        clicked={bodyClicked} setClicked={setBodyClicked}
+        share={share} setShare={setShare}
+      ></PopShare>
+
+      {/* <CSSTransition in={infoAD.show} classNames="wow" timeout={500} mountOnEnter={true} unmountOnExit={true}></CSSTransition> */}
       <PopAD
         infoAD={infoAD} setInfoAD={setInfoAD} 
         clicked={bodyClicked} setClicked={setBodyClicked}
       ></PopAD>
       
+      {/* <CSSTransition in={infoAD.show} classNames="wow" timeout={1000} mountOnEnter={true} unmountOnExit={true}></CSSTransition> */}
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );
@@ -183,5 +195,5 @@ const BlackDiv = styled.div`
   top: 0;
   left: 0;
   z-index: 9;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.7);
 `;

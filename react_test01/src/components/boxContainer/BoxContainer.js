@@ -12,6 +12,7 @@ function BoxController(props) {
             setShowSiren={props.setShowSiren}
             setShowMessage={props.setShowMessage}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
+            setShare={props.setShare}
         >
         </Box>: 
         jaar.seqComponent === "A" ?
@@ -24,6 +25,7 @@ function BoxController(props) {
             setShowMessage={props.setShowMessage}
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
+            setShare={props.setShare}
         >
         </AnswerBox> : ""
     );
@@ -41,6 +43,7 @@ function BoxContainer(props) {
             clicked={props.clicked} setClicked={props.setClicked}
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
+            setShare={props.setShare}
         ></BoxController>
   );
 }

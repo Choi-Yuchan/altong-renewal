@@ -129,6 +129,7 @@ function QBoxTop(props) {
           pageSeq={props.pageSeq}
           seqComponent={props.seqComponent} popToggle={popToggle}
           title={props.head.title}
+          setShare={props.setShare}
         ></QuestionPopup>
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
@@ -297,12 +298,13 @@ const Datespan = styled.span`
   transform: translateX(-50%);
   background: #666;
   color: #fff;
-  text-align: center;
   border: 0;
   font-size: 12px;
-  letter-spacing: 0;
   padding: 1px 5px;
   border-radius: 10px;
+  display:flex;
+  justify-content:center;
+  align-items: flex-start;
 }
 &:after{
   content: "";

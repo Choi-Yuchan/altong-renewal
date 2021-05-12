@@ -48,7 +48,7 @@ function QuestionPopup(props) {
                 <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
-            <MainLi2>
+            <MainLi2 onClick={() => { props.setShare(true); props.setClicked(false)}}>
                 <Popup text="공유" imgurl="/pub/answer/answerList/images/atm_more_2.png" >
                 </Popup>
             </MainLi2>
@@ -87,35 +87,27 @@ const MainUl = styled.ul`
     background: #fff;
     width: 110px;
     border: 1px solid #ccc;
-    padding: 5px;
-    padding-bottom: 0;
+    padding: 5px 10px 0 10px;
     border-radius: 10px 0 10px 10px;
     box-shadow: 2px 2px 2px #ddd;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    margin: 0;
     display: ${props => props.popToggle ? "block" : "none"};
 `;
 const MainLi = styled.li`
     height: 35px;
     width: 100%;
-    font-weight: 300;
     font-size: 14px;
-    padding-top: 5px;
     border-bottom: 1px solid #ddd;
     list-style: none;
     cursor: pointer;
-    display: ${(props) => props.show? "block" : "none" }
+    display: ${(props) => props.show? "flex" : "none" };
+    align-items:center;
 `;
 const MainLi2 = styled.li`
     font-size: 14px;
-    font-weight: normal;
     height: 35px;
     width: 100%;
-    padding-top: 5px;
     border-bottom: 1px solid #ddd;
     list-style: none;
-    margin: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    display:flex;
+    align-items:center;
 `;
