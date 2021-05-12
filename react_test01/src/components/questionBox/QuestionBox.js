@@ -3,10 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
 
-import ViewJson from '../../json/view-test.json'
-
-import TopNavi from './../topNavi/TopNavi'
-
+import TopNavi from '../../topNavi/TopNavi'
+import AlNavi from '../../alNavi/AlNavi'
 import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
@@ -17,10 +15,8 @@ import {CSSTransition} from 'react-transition-group';
 import '../../App.css';
 
 
-import AlNavi from '../../alNavi/AlNavi'
-
 function ShowBlackDiv(props){
-  if(props.clicked===false){
+  if(props.clicked === false){
     return <BlackDiv></BlackDiv>
   }
   return  <></>;
@@ -89,12 +85,12 @@ function QuestionBox(props) {
         <TopNavi
           user={user}
           setShowNavi={setShowNavi}
-          setWhite={setBodyClicked}
+          setClicked={setBodyClicked}
         ></TopNavi>
         <AlNavi
           user={user}
           show={showNavi} setShowNavi={setShowNavi}
-          white={bodyClicked} setWhite={setBodyClicked}
+          clicked={bodyClicked} setClicked={setBodyClicked}
         ></AlNavi>
 
         <WrapperDiv>
