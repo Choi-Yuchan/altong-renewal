@@ -115,9 +115,9 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
     const withdraw = e => {
         e.preventDefault();
         e.stopPropagation();
-        const leave = confirm(String(widMessage));
+        const leave = window.confirm(String(widMessage));
         if(leave === true){
-            return location.assign('/default/cs/customerService');
+            return window.location.assign('/default/cs/customerService');
         }
     }
 
