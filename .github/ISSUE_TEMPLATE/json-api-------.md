@@ -1,30 +1,26 @@
 ---
 name: Json API 요청 보고서
 about: Back end 에 해당 기능의 API 가 없어 작성을 의뢰합니다.
-title: "[Json]"
-labels: feature, json request
+title: "[Json] "
+labels: back-end, feature, json request
 assignees: ''
 
 ---
 
 **[ URI format ]**
- - /rest/users/{user}
+ - GET /rest/users 기존 포맷 수정
 
 **[ Parameter ]**
- - "nick" : "알통" // string
- - "seq" : 100 // num
+ - 없음
 
 **[ return ]**
- - "id" : 1234 // num
- - "test" : 
 ```json
-[
-  {
-    "ko" : { 
-      "value" : "한국" 
-    }
-  }
-]
+{
+  "seq" : 10035487,
+  "nick" : "도핑커피",
+  "lv" : 2,
+  +img_:_프로필_사진_url(_String_)
+}
 ```
 
 **[ 추가 설명 ]**
