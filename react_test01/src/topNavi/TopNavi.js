@@ -16,7 +16,7 @@ const langTopNavi = {
     }
 }
 
-function TopNavi(props) {
+function TopNavi({setShowNavi, setClicked}) {
     const altText = langTopNavi.ko.alt;
     const search = langTopNavi.ko.placeholder;
 
@@ -30,8 +30,8 @@ function TopNavi(props) {
     <TopHeader>
             <CenterDiv>
                 <HamburgerBar onClick={(e) => {
-                    props.setClicked(false);
-                    props.setShowNavi(true);
+                    setClicked(false);
+                    setShowNavi(true);
                     e.stopPropagation();
                 }}>
                     <HamburgerDiv>
@@ -81,12 +81,17 @@ function TopNavi(props) {
   export default TopNavi;
 
 const TopHeader = styled.header`
+    position: fixed;
+    left:50%;
+    transform:translateX(-50%);
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    width: 100%;
+    max-width: 800px;
+    width:100%;
     height: 60px;
     transition: all 0.5s;
     background: #fff;
+    z-index:9;
 `;
 
 const CenterDiv = styled.div`
@@ -100,9 +105,6 @@ const CenterDiv = styled.div`
     display:flex;
     justify-content:space-between;
     align-items:center;
-    @media (max-width: 768px) {
-    width: 100%;
-}
 `;
 
 const HamburgerBar = styled.a`
@@ -171,8 +173,11 @@ const Logo = styled.div`
 `;
 
 const LogoImg = styled.img`
-    height: 52px;
+    height: 45px;
     vertical-align:bottom;
+    @media (min-width: 480px){
+        height: 52px;
+    }
 `;
 
 const LogoAhrefA = styled.a`
@@ -216,11 +221,20 @@ const SearchBoxInput = styled.input`
     display: block;
     padding: 5px;
     font-size: 14px;
-    width: 200px;
+    width: 130px;
     border: none;
     outline: none;
     border-bottom: 1px solid #ddd;
     transform-origin:right center;
+    ::placeholder{
+        font-size: 11px;
+    }
+    @media (min-width: 475px){
+        width: 200px;
+        &::placeholder{
+            font-size: 14px;
+        }
+    }
 `;
 
 const SearchSpan = styled.button`
@@ -246,6 +260,7 @@ const ColumnBoxPC = styled.div`
     align-items:center;
     cursor: pointer;
     box-sizing: border-box;
+    margin-right: 10px;
     -webkit-tap-highlight-color: transparent;
 `;
 

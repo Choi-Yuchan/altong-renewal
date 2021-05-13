@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
-import {CSSTransition} from 'react-transition-group';
 import '../../App.css';
 
 
