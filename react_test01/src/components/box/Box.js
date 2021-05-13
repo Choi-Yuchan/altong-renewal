@@ -6,6 +6,7 @@ import axios from 'axios';
 import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
+import LangTransCount from '../langTransBox/LangTransCount'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
@@ -24,7 +25,6 @@ function Box(props) {
   const [replys, setReplys] = useState(props.jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
-  const [check, setCheck] = useState('');
 
 
   const resetReplys = (seq) => {
@@ -119,8 +119,7 @@ function Box(props) {
 
         <Contents seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}></Contents>
-        <LangTransCount></LangTransCount>
-        <LangTransBox check={check} setCheck={setCheck}></LangTransBox>
+        <LangTransBox></LangTransBox>
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
@@ -138,48 +137,6 @@ function Box(props) {
   );
 
 }
-
-function LangTransCount() {
-  return (
-    <TransCountDiv>
-      <TransCountP>이 번역에 대한 당신의 평가는?</TransCountP>
-      <TransCountIconBox>
-        <TransCountIcon src="/Common/images/smile.svg"></TransCountIcon>
-        <TransCountNumber>0</TransCountNumber>
-      </TransCountIconBox>
-      <TransCountIconBox>
-        <TransCountIcon src="/Common/images/sad.svg"></TransCountIcon>
-        <TransCountNumber>0</TransCountNumber>
-      </TransCountIconBox>
-    </TransCountDiv>
-  );
-}
-
-const TransCountDiv = styled.div`
-  display:flex;
-  align-items:center;
-`;
-const TransCountP = styled.em`
-  color:#f30;
-  margin-right:15px;
-`;
-const TransCountIconBox = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  margin-right:5px;
-`;
-const TransCountIcon = styled.img`
-  width:20px;
-`;
-const TransCountNumber = styled.span`
-  font-size:10px;
-  color:#999;
-`;
-
-
-
 
 
 const MainDiv = styled.div`

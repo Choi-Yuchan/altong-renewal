@@ -67,13 +67,13 @@ const LangAIDiv = styled.div`
 
 
 function LangTransBox(props) {
-
+  const [check, setCheck] = useState('');
 
     return (
       <MainDiv className="LangTransBox">
-        <OriginDiv check={props.check} onClick={()=>{props.setCheck('')}}>원문</OriginDiv>
+        <OriginDiv check={check} onClick={()=>{setCheck('')}}>원문</OriginDiv>
         <Line></Line>
-        <LangAIDiv check={props.check} onClick={()=>{props.setCheck('check')}}>AI</LangAIDiv>
+        <LangAIDiv check={check} onClick={()=>{setCheck('check')}}>AI</LangAIDiv>
       </MainDiv>
     );
   }
