@@ -163,18 +163,13 @@ const SiteDiv = styled.div`
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-
-  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
   font-size: 16px;
   color: #333;
   position: relative;
 `;
-//font-family 삭제
+
 const WrapperDiv = styled.div`
   padding-top: 60px;
   flex: 1;
