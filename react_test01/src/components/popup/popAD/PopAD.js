@@ -25,13 +25,14 @@ function PopAD(props) {
   }
 
 const PopDiv = styled.div`
-    z-index: 999;
+    z-index: ${props => props.show ? "999":"-1"};
     width: 85%;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: ${(props) => props.show?"display":"none"};
+    opacity: ${(props) => props.show?"1":"0"};
+    transition:all 0.5s;
 `;
 const PopDivImg = styled.img`
     display: block;
@@ -41,13 +42,14 @@ const PopDivImg = styled.img`
     margin: auto;
 `;
 const PopDivP = styled.p`
-    display: ${(props) => props.show?"display":"none"};
+    opacity: ${(props) => props.show?"1":"0"};
     overflow: hidden;
     padding: 0 10px;
     margin: 10px 0 20px;
     word-break: break-all;
     font-size: 15px;
     cursor: pointer !important;
+    transtion:all 0.5s;
 `;
 const PopDivPA = styled.a`
     display: block;

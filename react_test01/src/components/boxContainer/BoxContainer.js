@@ -1,9 +1,10 @@
 import Box from './../box/Box'
 import AnswerBox from './../answerBox/AnswerBox'
+import { useState } from 'react';
 
 function BoxController(props) {
     const Boxs = props.SSRJSON.map
-    ( (jaar) => jaar.seqComponent === "Q"?
+    ( (jaar, index) => jaar.seqComponent === "Q"?
         <Box
             key={jaar.id} jsonArr={jaar} USER={props.USER}
             white={props.white} setWhite={props.setWhite}
@@ -13,6 +14,8 @@ function BoxController(props) {
             setShowMessage={props.setShowMessage}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             setShare={props.setShare}
+            selected={index}
+            highlight = {props.highlight} setHighlight = {props.setHighlight}
         >
         </Box>: 
         jaar.seqComponent === "A" ?
@@ -26,6 +29,8 @@ function BoxController(props) {
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             setShare={props.setShare}
+            selected={index}
+            highlight = {props.highlight} setHighlight = {props.setHighlight}
         >
         </AnswerBox> : ""
     );
@@ -33,6 +38,8 @@ function BoxController(props) {
 }
 
 function BoxContainer(props) {
+    const [ highlight , setHighlight ] = useState(-1);
+
   return (
         <BoxController
             SSRJSON={props.SSRJSON} USER={props.USER}
@@ -44,6 +51,7 @@ function BoxContainer(props) {
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             setShare={props.setShare}
+            highlight = {highlight} setHighlight = {setHighlight}
         ></BoxController>
   );
 }

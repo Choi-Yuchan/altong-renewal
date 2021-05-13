@@ -11,7 +11,6 @@ import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import PopShare from '../popup/popShare/PopShare';
-import {CSSTransition} from 'react-transition-group';
 import '../../App.css';
 
 
@@ -132,13 +131,11 @@ function QuestionBox(props) {
         share={share} setShare={setShare}
       ></PopShare>
 
-      {/* <CSSTransition in={infoAD.show} classNames="wow" timeout={500} mountOnEnter={true} unmountOnExit={true}></CSSTransition> */}
       <PopAD
         infoAD={infoAD} setInfoAD={setInfoAD} 
         clicked={bodyClicked} setClicked={setBodyClicked}
       ></PopAD>
       
-      {/* <CSSTransition in={infoAD.show} classNames="wow" timeout={1000} mountOnEnter={true} unmountOnExit={true}></CSSTransition> */}
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
   );

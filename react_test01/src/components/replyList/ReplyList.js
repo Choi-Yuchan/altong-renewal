@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
-import {CSSTransition} from 'react-transition-group';
 import '../../App.css';
 
 
@@ -130,7 +129,6 @@ const AutoRenewDiv = styled.div`
     display: inline-block;
     width: 50%;
     font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
     color: #333;
 `;
 const TextArea = styled.textarea`
@@ -144,7 +142,7 @@ const TextArea = styled.textarea`
     border-radius: 5px;
     outline: none;
     height:100%;
-    font-family: "Noto Sans CJK KR", sans-serif;
+    font-family: "Noto Sans SC", "Noto Sans JP", "Noto Sans KR" ;
 
     @media (max-width:480px) {
         font-size:12px;
@@ -157,7 +155,6 @@ const ReplySubmit = styled.div`
     display: inline-block;
     width: 50%;
     font-size: 16px;
-    font-family: "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif;
     color: #333;
 `;
 const ReplySubmitP = styled.p`
@@ -183,7 +180,7 @@ const ReplyButton = styled.button`
     color: #737373;
     font-size: 12px;
     overflow:hidden;
-    font-family:"Noto Sans CJK KR", sans-serif;
+    font-family:"Noto Sans SC", "Noto Sans JP", "Noto Sans KR" ;
     transition:all 0.5s linear;
 `;
 // const ShowView = styled.div`
