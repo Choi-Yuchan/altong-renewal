@@ -2,7 +2,7 @@
 name: Json API 요청 보고서
 about: Back end 에 해당 기능의 API 가 없어 작성을 의뢰합니다.
 title: "[Json]"
-labels: feature
+labels: feature, json request
 assignees: ''
 
 ---
