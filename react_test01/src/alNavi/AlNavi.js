@@ -137,8 +137,8 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
             <NavDiv>
                 <NavTop>
                     <CloseBtn onClick={e => closedNavi(e)}>
-                        <CloseLeft></CloseLeft>
-                        <CloseRight></CloseRight>
+                        <CloseLeft/>
+                        <CloseRight/>
                     </CloseBtn>
                 </NavTop>
                 <NotLogInfo>

@@ -25,6 +25,25 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
     const [showPlus, setShowPlus] = useState("0deg");
     const [toggle, setToggle] = useState(false);
     const [keyToggle, setKeyToggle] = useState(false);
+    const [searchID, setSearchID] = useState("");
+    const [disabled, setDisabled] = useState(false);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSearchID(value);
+    };
+
+    const handleSubmit = async (e) => {
+        setDisabled(true);
+        e.preventDefault();
+        await new Promise((r) => setTimeout(r, 1000));
+        //Backend에서 user page에 대한 정보를 받아와서 href에 넣어주면 됨.
+        if(searchID){
+            location.href="/";
+        }
+
+        setDisabled(false);
+    };
 
     if(mini != null){
         return (
@@ -51,15 +70,14 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
     }
     if(bar){
         return(
-            //검색 하면 유저 정보 불러오는 기능 추가 예정
         <SearchName showInput={toggle} onClick={() => {setToggle(!toggle)}}>
             <NaviSearch>
                 <NaviS img={img}></NaviS>
                 <span>{val}</span>
             </NaviSearch>
-            <SearchForm showInput={toggle} onClick={()=>{setToggle(!toggle)}}>
-                <SearchInput type="text" placeholder={placeholder} onClick={eventHandler}/>
-                <SearchBtn type="submit" onClick={eventHandler}>
+            <SearchForm showInput={toggle} onClick={()=>{setToggle(!toggle)}} onSubmit={handleSubmit}>
+                <SearchInput type="text" placeholder={placeholder} onClick={eventHandler} value={searchID} onChange={handleChange}/>
+                <SearchBtn type="submit" disabled={disabled}>
                     <SearchIco src="/Common/images/icon_search.png" alt={altText}></SearchIco>
                 </SearchBtn>
             </SearchForm>
@@ -70,7 +88,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
         return(
             // Key sound On/Off 기능 추가 예정
             <NaviItemLi>
-                <NaviA onClick = { () => {setKeyToggle(!keyToggle)}}>
+                <NaviA onClick = {() => {setKeyToggle(!keyToggle)}}>
                     <IconBox>
                         <NaviKey img={img}></NaviKey>
                         {keyToggle ? 
