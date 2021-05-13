@@ -65,6 +65,7 @@ const NotLoginItemLists = (lang) => {
         <NaviItem
             key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
             count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+            sound={navi.sound}
         />
     ).sort(function(a, b){
         return a.key - b.key;
@@ -91,7 +92,7 @@ const useClick = (onClick) => {
     return element;
   };
 
-function AlNavi(props) {
+function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
     const signOutTxt = langAlNavi.ko.signout;
     const signInTxt = langAlNavi.ko.signin;
     const userInfo = langAlNavi.ko.user;
@@ -99,37 +100,38 @@ function AlNavi(props) {
     const widMessage = langAlNavi.ko.confirm_p;
 
     const clickedNavi = (e) => {
-        props.setClicked(false);
-        props.setShowNavi(true);
+        setClicked(false);
+        setShowNavi(true);
         e.stopPropagation();
     }
 
     const closedNavi = (e) => {
-        props.setClicked(true);
-        props.setShowNavi(false);
+        setClicked(true);
+        setShowNavi(false);
         e.stopPropagation();
     }
 
+    //회원탈퇴 기능
     const withdraw = e => {
         e.preventDefault();
         e.stopPropagation();
-        const leave = confirm(String(widMessage));
+        const leave = window.confirm(String(widMessage));
         if(leave === true){
-            return location.assign('/default/cs/customerService');
+            return window.location.assign('/default/cs/customerService');
         }
     }
 
     const handleClick = useClick(clickedNavi);
 
     useEffect(()=>{
-        if(props.clicked === true){
-            props.setShowNavi(false);
+        if(clicked === true){
+            setShowNavi(false);
         }
-    },[props.clicked]);
+    },[clicked]);
 
-    if( props.user.seq === 0 ){
+    if( user.seq === 0 ){
         return <AlNaviNav         
-        show={props.show} 
+        show={show} 
         ref={handleClick} 
         onClick={e => clickedNavi(e)}>
             <NavDiv>
@@ -161,7 +163,7 @@ function AlNavi(props) {
   
     return (
         <AlNaviNav 
-        show={props.show} 
+        show={show} 
         ref={handleClick} 
         onClick={e => clickedNavi(e)}
         >
@@ -214,6 +216,7 @@ function AlNavi(props) {
 export default AlNavi;
 
 const AlNaviNav = styled.nav`
+    width: 85%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     position: fixed;
@@ -230,19 +233,21 @@ const AlNaviNav = styled.nav`
     }
     -ms-overflow-style: none; // IE and Edge
     scrollbar-width: none; // Firefox
+
+    @media (min-width:480px){
+        width: 70%;
+    }
+    @media(min-width: 768px){
+        width: 40%;
+        max-width: 400px;
+    }
 `;
 const NavDiv = styled.div`
-&{
     min-height: 100vh;
-    width: 370px;
+    width: 100%;
     background: #fff;
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 10%);
     transition: all 0.5s;
-
-    @media only screen and (max-width: 768px){
-        width: 320px;
-    }
-}
 `;
 const NavTop = styled.div`
     width: 100%;
@@ -288,6 +293,9 @@ const NotLogDiv = styled.div`
 const NotLogLi = styled.li`
   display: inline-block;
   list-style: none;
+  :last-child{
+      margin-left: 10px;
+  }
 `;
 const NotLogLiA1 = styled.a`
   display: block;
@@ -396,19 +404,22 @@ const InfoDivLocate = styled.a`
 const InfoH2 = styled.h2`
     margin-bottom: 8px;
     width: 100%;
-    font-size: 18px;
+    font-size: 16px;
 
-    @media only screen and (max-width: 768px){
-        font-size: 16px;
+    @media (min-width: 768px){
+        font-size: 18px;
     }
 `;
 const InfoP = styled.p`
     font-size: 12px;
 `;
-const InfoSpan = styled.span`
-    margin-right: 10px;
-    :last-child{
-        margin-right:0;
+const InfoSpan = styled.div`
+    @media (min-width: 600px){
+        display: inline-block;
+        margin-right: 10px;
+        :last-child{
+            margin-right: 0;
+        }
     }
 `;
 const LogoutIco = styled.img`

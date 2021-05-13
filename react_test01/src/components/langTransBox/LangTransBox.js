@@ -66,8 +66,7 @@ const LangAIDiv = styled.div`
 `;
 
 
-function LangTransBox() {
-
+function LangTransBox(props) {
   const [check, setCheck] = useState('');
 
     return (

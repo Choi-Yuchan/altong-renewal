@@ -70,6 +70,8 @@ function AnswerBox(props) {
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
+  const [ borderColor, setBorderColor ] = useState(false);
+
 
   useEffect(()=>{
     
@@ -138,9 +140,21 @@ function AnswerBox(props) {
     }
   }
   , [props.white]);
+
+  useEffect(()=>{
+    if( props.highlight === props.selected ){
+      setBorderColor(true);
+    }else{
+      setBorderColor(false);
+    }
+  }, [props.highlight])
   
   return (
-    <MainDiv className="Box" onClick={ () => {  }} >
+    <MainDiv borderColor={borderColor} className="Box" onClick={
+      () => {
+        props.setHighlight(props.selected);
+      }
+    } >
         {/* atm_top_wrap */}
         <TopH3 num={extraAlmoney}>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
@@ -211,7 +225,7 @@ function AnswerBox(props) {
 export default AnswerBox;
 
 const MainDiv = styled.div`
-  border: 1px solid #ddd;
+  border: 1px solid ${props => props.borderColor ? '#fd0031' : '#ddd'};
   padding: 0.9375rem 1.25rem;
   transition: all 0.3s;
   margin-bottom: 0.3125rem;

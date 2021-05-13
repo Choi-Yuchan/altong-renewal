@@ -96,7 +96,6 @@ const ContentsP2 = styled.p`
   font-size: 15px;
   transtion:all 0.3s;
   
-  max-height: ${props => props.row ? 0: '10000px'};
 `;
 
 const ContentsSpan = styled.span`

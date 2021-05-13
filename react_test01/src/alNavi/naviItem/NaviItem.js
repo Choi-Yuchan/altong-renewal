@@ -17,8 +17,8 @@ const eventHandler = e => {
     e.preventDefault();
     e.stopPropagation();
 }
-
-function NaviItem(props) {
+//click, key properties는 필요할 때 받아오도록 입력해야함.
+function NaviItem({img, href, val, count, i, mini, bar, sound}) {
     const placeholder = langNaviItem.ko.placeholder;
     const altText = langNaviItem.ko.alt;
 
@@ -26,20 +26,20 @@ function NaviItem(props) {
     const [toggle, setToggle] = useState(false);
     const [keyToggle, setKeyToggle] = useState(false);
 
-    if(props.mini != null){
+    if(mini != null){
         return (
             <NaviItemLiMiniLi showPlus={showPlus === "0deg"} onClick={() =>{
             setShowPlus(showPlus == "0deg" ? "90deg" : "0deg" );
              }}>
-                <NaviAMini showPlus={showPlus} href={props.href} onClick={(e)=>{
-                    NaviAClick(e, props.href);
+                <NaviAMini showPlus={showPlus} href={href} onClick={(e)=>{
+                    NaviAClick(e, href);
                 }}>
-                    <NaviB img={props.img}></NaviB>
-                    <span>{props.val}</span>
-                    <NaviAlramI show={props.i===true}>{props.i===true?props.count:""}</NaviAlramI>
+                    <NaviB img={img}></NaviB>
+                    <span>{val}</span>
+                    <NaviAlramI show={i===true}>{i===true?count:""}</NaviAlramI>
                 </NaviAMini>
                 <ul>
-                    {props.mini["ko"].map((list)=>{
+                    {mini["ko"].map((list)=>{
                     return (
                     <MiniLi key={list.id}>
                         <MiniLiA href={list.href}>· {list.val}</MiniLiA>
@@ -49,15 +49,16 @@ function NaviItem(props) {
             </NaviItemLiMiniLi>
         );
     }
-    if(props.bar){
+    if(bar){
         return(
+            //검색 하면 유저 정보 불러오는 기능 추가 예정
         <SearchName showInput={toggle} onClick={() => {setToggle(!toggle)}}>
             <NaviSearch>
-                <NaviS img={props.img}></NaviS>
-                <span>{props.val}</span>
+                <NaviS img={img}></NaviS>
+                <span>{val}</span>
             </NaviSearch>
             <SearchForm showInput={toggle} onClick={()=>{setToggle(!toggle)}}>
-                <SearchInput type="search" placeholder={placeholder} onClick={eventHandler}/>
+                <SearchInput type="text" placeholder={placeholder} onClick={eventHandler}/>
                 <SearchBtn type="submit" onClick={eventHandler}>
                     <SearchIco src="/Common/images/icon_search.png" alt={altText}></SearchIco>
                 </SearchBtn>
@@ -65,20 +66,20 @@ function NaviItem(props) {
         </SearchName>
         );
     }
-    if(props.sound){
+    if(sound){
         return(
             // Key sound On/Off 기능 추가 예정
             <NaviItemLi>
                 <NaviA onClick = { () => {setKeyToggle(!keyToggle)}}>
                     <IconBox>
-                        <NaviKey img={props.img}></NaviKey>
+                        <NaviKey img={img}></NaviKey>
                         {keyToggle ? 
                         <KeySoundOn></KeySoundOn>
                         : <KeySoundOff></KeySoundOff>}
                     </IconBox>
                     {keyToggle ? 
-                    <span>{props.sound}</span> 
-                    : <span>{props.val}</span>
+                    <span>{sound}</span> 
+                    : <span>{val}</span>
                     }
                 </NaviA>
             </NaviItemLi>
@@ -86,12 +87,12 @@ function NaviItem(props) {
     }
     return (
         <NaviItemLi>
-            <NaviA href={props.href} onClick={(e)=>{
-                NaviAClick(e, props.href);
+            <NaviA href={href} onClick={(e)=>{
+                NaviAClick(e, href);
             }}>
-                <NaviB img={props.img}></NaviB>
-                <span>{props.val}</span>
-                <NaviAlramI show={props.i===true}>{props.i===true?props.count:""}</NaviAlramI>
+                <NaviB img={img}></NaviB>
+                <span>{val}</span>
+                <NaviAlramI show={i===true}>{i===true?count:""}</NaviAlramI>
             </NaviA>
         </NaviItemLi>
     );
