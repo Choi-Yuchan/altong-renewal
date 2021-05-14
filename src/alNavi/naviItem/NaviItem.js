@@ -39,7 +39,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
         await new Promise((r) => setTimeout(r, 1000));
         //Backend에서 user page에 대한 정보를 받아와서 href에 넣어주면 됨.
         if(searchID){
-            location.href="/";
+            window.location.href="/";
         }
 
         setDisabled(false);
