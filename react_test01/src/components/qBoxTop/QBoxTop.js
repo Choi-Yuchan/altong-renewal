@@ -86,6 +86,7 @@ function QBoxTop(props) {
     if(props.white === true){
       setShowMini(false);
       setPopToggle(false);
+      setTimeToggle(true);
     }
   }, [props.white]);
 
@@ -109,8 +110,8 @@ function QBoxTop(props) {
         </Wrapli>
         <WrapTitleli>{props.head.title}</WrapTitleli>
         <WrapThankli>
-          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
-          onClick={() => {setTimeToggle(!timeToggle);}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
+          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true); }}
+          onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
           <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
         </WrapThankli>
       </WrapUl>
