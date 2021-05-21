@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
