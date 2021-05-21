@@ -6,7 +6,9 @@ import axios from 'axios';
 
 // 찜
 function ZzimAxios(pageSeq){
-    axios.put("/rest/questions/"+pageSeq+"/Zzim")
+    const URL_ZZIM = "/rest/questions/"+pageSeq+"/Zzim"
+
+    axios.put(URL_ZZIM)
     .then((response) => response.data)
     .then( (data) => {
         alert(data.message);
@@ -17,8 +19,9 @@ function ZzimAxios(pageSeq){
 }
 // 꼭대기
 function moveTopAxios(pageSeq){
+    const URL_MOVE_TOP = "/restApi/questions/"+pageSeq+"/movetop" 
     if ( window.confirm("이 질문을 목록 최상단으로 보내시겠습니까?\n회원님의 잔액에서 10000 알이 차감됩니다.\n(24시간 후 원래 위치로 되돌아갑니다)")){
-        axios.put("/restApi/questions/"+pageSeq+"/movetop")
+        axios.put(URL_MOVE_TOP)
         .then((response) => response.data)
         .then( (data) => {
             alert(data.msg);

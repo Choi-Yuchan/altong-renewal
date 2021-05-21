@@ -7,8 +7,12 @@ import Num3Comma from '../../functions/num3comma/Num3Comma'
 
 function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram) {
         
-    axios.put(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney":
-        "/rest/answers/"+props.page+"/almoney",{
+    //URL LIST
+    const URL_QUE_AL = "/rest/questions/"+props.page+"/almoney";
+    const URL_ANS_AL = "/rest/answers/"+props.page+"/almoney";
+
+    axios.put(props.seq==='Q'? URL_QUE_AL : 
+        URL_ANS_AL ,{
             "extraAlmoney":parseInt(extraAlmoney)
         })
     .then((response) => response.data)
@@ -79,6 +83,10 @@ function PopAlmoney(props) {
 
     const setHunAlram = props.setHunAlram;
 
+    //URL LIST
+    const URL_QUE_EXTRA = "/rest/questions/"+props.page+"/almoney/extra";
+    const URL_ANS_EXTRA = "/rest/answers/"+props.page+"/almoney/extra";
+
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
     }
@@ -95,10 +103,8 @@ function PopAlmoney(props) {
     useEffect(() => {
     if(props.showAlmoney === true){
         // 증정 가능한 훈훈알 반환
-        console.log(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney/extra":
-        "/rest/answers/"+props.page+"/almoney/extra");
-        axios.post(props.seq==='Q'?"/rest/questions/"+props.page+"/almoney/extra":
-        "/rest/answers/"+props.page+"/almoney/extra")
+        console.log(props.seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA);
+        axios.post(props.seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA)
             .then((response) => response.data)
             .then((data) => {
                 if(data.code === "rowlv"){

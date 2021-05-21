@@ -29,10 +29,12 @@ function AldolViewContents(props){
 }
 
 const DelReply = (e, seqComponent, replySeq, setReplys) => {
-    console.log(seqComponent==='Q'?"/restApi/answers/"+replySeq+"/Q/reply-del":
-    "/restApi/answers/"+replySeq+"/A/reply-del")
-    axios.delete(seqComponent==='Q'?"/restApi/answers/"+replySeq+"/Q/reply-del":
-    "/restApi/answers/"+replySeq+"/A/reply-del")
+    const URL_QUE_REPLY = "/restApi/answers/"+replySeq+"/Q/reply-del"
+    const URL_ANS_REPLY = "/restApi/answers/"+replySeq+"/A/reply-del"
+
+    console.log(seqComponent==='Q'? URL_QUE_REPLY : URL_ANS_REPLY);
+
+    axios.delete(seqComponent==='Q'? URL_QUE_REPLY : URL_ANS_REPLY)
     .then((response) => response.data)
     .then((data) => {
         setReplys(replySeq);

@@ -12,10 +12,13 @@ function MiniProfile(props) {
     const USER= props.USER;
     // const uid = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
     
+    //url list
+    const URL_ADD_FRI = "/restApi/users/"+ props.id + "/F/partner-save";
+    const URL_ADD_MEN = "/restApi/users/"+ props.id + "/M/partner-save";
 
     // 친구 추가
     const AddFriend = (e) => {
-        axios.put("/restApi/users/"+ props.id + "/F/partner-save")
+        axios.put(URL_ADD_FRI)
         .then( (response) => response.data )
         .then( (data) => {
                 alert(data.msg);
@@ -33,7 +36,7 @@ function MiniProfile(props) {
     }
     // 멘토 추가
     const AddMento = (e) => {
-        axios.put("/restApi/users/"+ props.id + "/M/partner-save")
+        axios.put(URL_ADD_MEN)
         .then( (response) => response.data )
         .then( (data) => {
                 alert(data.msg);

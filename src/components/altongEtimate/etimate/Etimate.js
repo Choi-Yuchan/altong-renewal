@@ -52,53 +52,53 @@ const EtimateEm = styled.em`
     -webkit-tap-highlight-color: transparent;
 `;
 
-const langEsti = (img) => {
-    const arr = ['알통', '감사', '수고', '불만', '분노', '재미'];
-    return arr[img]
-}
-
-const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
-    if(check>0){
-        alert("이미 평가를 완료하였습니다.");
-        return;
-    }
-    axios.put("/rest/answers/"+pageSeq+"/estimate",{
-        esti: select
-    })
-    .then((response) => response.data)
-    .then( (data) => {
-        console.log(data);
-        if(data.returnCode === "0"){
-            SetEstimate(pageSeq, select, setEtimates);
-            setMyestiNo(select);
-        }else{
-            console.log(data);
-        }
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-
-    
-  }
-  //select parameter는 향후 필요한 것인지 확인
-  const SetEstimate = (pageSeq, select, setEtimates) => {
-    axios.get("/rest/answers/"+pageSeq+"/estimate")
-    .then((response) => response.data)
-    .then( (data) => {
-        setEtimates(data);
-    })
-    .catch(function (error) {
-        console.log(error)
-    });
-  }
-
-
-
 function Etimate(props) {
     const setEtimates = props.setEtimates;
     const check = props.check;
+    const pageSeq = props.pageSeq;
+    
+    //url list
+    const URL_ESTIMATE = "/rest/answers/"+pageSeq+"/estimate";
 
+    const langEsti = (img) => {
+        const arr = ['알통', '감사', '수고', '불만', '분노', '재미'];
+        return arr[img]
+    }
+    
+    const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
+        if(check>0){
+            alert("이미 평가를 완료하였습니다.");
+            return;
+        }
+        axios.put(URL_ESTIMATE,{
+            esti: select
+        })
+        .then((response) => response.data)
+        .then( (data) => {
+            console.log(data);
+            if(data.returnCode === "0"){
+                SetEstimate(pageSeq, select, setEtimates);
+                setMyestiNo(select);
+            }else{
+                console.log(data);
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+        //select parameter는 향후 필요한 것인지 확인
+    const SetEstimate = (pageSeq, select, setEtimates) => {
+        axios.get(URL_ESTIMATE)
+        .then((response) => response.data)
+        .then( (data) => {
+            setEtimates(data);
+        })
+        .catch(function (error) {
+            console.log(error)
+        });
+    }
+      
     return (
         <MainLi check={check===props.img} onClick={()=>{
             GetEstimate(props.pageSeq, props.img, setEtimates, props.setMyestiNo, check);

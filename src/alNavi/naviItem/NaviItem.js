@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const langNaviItem = {
     ko:{
@@ -44,6 +45,25 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
 
         setDisabled(false);
     };
+
+    // async
+    const URL_NAVI_TEXT = '';
+    const [naviText, setNaviText] = useState(null);
+
+    useEffect(() => {
+        const fetchText = async () => {
+            try{
+                setNaviText(null);
+
+                const response = await axios.get(URL_NAVI_TEXT);
+                setNaviText(response.data);
+            } catch(err) {
+                console.log(err);
+            }
+        };
+
+        fetchText();
+    },[])
 
     if(mini != null){
         return (

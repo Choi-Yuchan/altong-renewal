@@ -38,8 +38,13 @@ function QuestionBox(props) {
   const [showNavi, setShowNavi] = useState(false);
 
   const [SESS] = useState(cookies.SESS);
+
+  //URL LIST
+  const URL_QUESTION = "/rest/questions/"+props.match.params.questions;
+  const URL_USER = "/rest/user";
+  
   useEffect(()=>{
-    axios.get("/rest/questions/"+props.match.params.questions)
+    axios.get(URL_QUESTION)
     .then((response) => response.data)
     .then((data) => {
       if(data.code=="error"){
@@ -56,7 +61,7 @@ function QuestionBox(props) {
   , []);
 
   useEffect(()=>{
-    axios.get("/rest/user")
+    axios.get(URL_USER)
     .then((response) => response.data)
     .then((data) => {
         setUser(data);

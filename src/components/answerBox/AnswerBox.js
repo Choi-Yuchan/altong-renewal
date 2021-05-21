@@ -71,12 +71,15 @@ function AnswerBox(props) {
   const [extras, setExtras] = useState([]);
 
   const [ borderColor, setBorderColor ] = useState(false);
-
+  //url list
+  const URL_EXTRA = "/rest/answers/"+props.jsonArr.pageSeq+"/almoney";
+  const URL_ESTIMATE = "/restApi/answers/"+props.jsonArr.pageSeq+"/estimate";
+  const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users"
 
   useEffect(()=>{
     
-    if(props.jsonArr.pageSeq===undefined){}else{
-      axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+    if(props.jsonArr.pageSeq === undefined){}else{
+      axios.get(URL_EXTRA)
       .then((response) => response.data)
       .then( (data) => {
         setExtraAlmoney(data.ExtraAlmoney);
@@ -86,7 +89,7 @@ function AnswerBox(props) {
       });
 
       // estimate 몇번째에 체크했는지
-      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/estimate")
+      axios.get(URL_ESTIMATE)
       .then((response) => response.data)
       .then( (data) => {
         if( data.code === "success" ) {
@@ -98,7 +101,7 @@ function AnswerBox(props) {
       });
       
       // 상단 좌측 훈훈알 리스트
-      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users")
+      axios.get(URL_EXTRA_USERS)
       .then((response) => response.data)
       .then( (data) => {
         if("success" === data.code) setExtras(data.ExtraAlmoneyList);
@@ -112,7 +115,7 @@ function AnswerBox(props) {
   // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
   useEffect(()=>{
     if(props.hunAlram === true){
-        axios.get("/rest/answers/"+props.jsonArr.pageSeq+"/almoney")
+        axios.get(URL_EXTRA)
         .then((response) => response.data)
         .then( (data) => {
           setExtraAlmoney(data.ExtraAlmoney);
@@ -121,7 +124,7 @@ function AnswerBox(props) {
           console.log(error)
         });
 
-        axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users")
+        axios.get(URL_EXTRA_USERS)
         .then((response) => response.data)
         .then( (data) => {
           if("success" === data.code) setExtras(data.ExtraAlmoneyList);

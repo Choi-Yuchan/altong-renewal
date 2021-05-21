@@ -6,7 +6,6 @@ import axios from 'axios';
 import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
-import LangTransCount from '../langTransBox/LangTransCount'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
@@ -40,9 +39,13 @@ function Box(props) {
   }
   , [props.white]);
 
+  //url list
+  const URL_ALMONEY = "/rest/questions/"+props.jsonArr.pageSeq+"/almoney";
+  const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users";
+
   useEffect(()=>{
     if(props.jsonArr.pageSeq===undefined){}else{
-      axios.get("/rest/questions/"+props.jsonArr.pageSeq+"/almoney")
+      axios.get(URL_ALMONEY)
       .then((response) => response.data)
       .then( (data) => {
         setExtraAlmoney(data.ExtraAlmoney);
@@ -51,7 +54,7 @@ function Box(props) {
         console.log(error)
       });
 
-      axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users")
+      axios.get(URL_EXTRA_USERS)
       .then((response) => response.data)
       .then( (data) => {
         if("success" === data.code) setExtras(data.ExtraAlmoneyList);
@@ -64,7 +67,7 @@ function Box(props) {
   , []);
   useEffect(()=>{
     if(props.hunAlram === true){
-        axios.get("/rest/questions/"+props.jsonArr.pageSeq+"/almoney")
+        axios.get(URL_ALMONEY)
         .then((response) => response.data)
         .then( (data) => {
           setExtraAlmoney(data.ExtraAlmoney);
@@ -73,7 +76,7 @@ function Box(props) {
           console.log(error)
         });
         
-        axios.get("/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users")
+        axios.get(URL_EXTRA_USERS)
         .then((response) => response.data)
         .then( (data) => {
           if("success" === data.code) setExtras(data.ExtraAlmoneyList);
@@ -85,8 +88,7 @@ function Box(props) {
     }
   }
   , [props.hunAlram]);
-  
-  //hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
+
 
   return (
     <MainDiv className="Box" >

@@ -20,9 +20,6 @@ function QorA(props){
   }
   return (
     <>
-      {/* <ContentsP>
-        {props.contents}
-      </ContentsP> */}
       <ContentsP dangerouslySetInnerHTML={{__html: props.contents}}>
       </ContentsP>
     </>
@@ -32,6 +29,10 @@ function QorA(props){
 function Contents(props) {
   const [open, setOpen] = useState('열고~ㅇ');
   const [ads, setAds] = useState(0);
+  
+  //url list
+  const URL_AD = "/restApi/ads";
+  const URL_SHOWN_AD = "/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view";
 
   return (
       <MainDiv className="Contents">
@@ -40,7 +41,7 @@ function Contents(props) {
             props.setMessage(props.allMessage);
             // 광고 받아옴
             if(open === '열고~ㅇ'){
-              axios.get("/restApi/ads")
+              axios.get(URL_AD)
               .then((response) => response.data)
               .then( (data) => {
                 setAds(data.adSeq);
@@ -54,7 +55,7 @@ function Contents(props) {
               });
               
               // 광고 봄 처리
-              axios.put("/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view")
+              axios.put(URL_SHOWN_AD)
               .then((response) => response.data)
               .then( (data) => {
               })
@@ -94,8 +95,7 @@ const ContentsP = styled.p`
 const ContentsP2 = styled.p`
   word-break: break-all;
   font-size: 15px;
-  transtion:all 0.3s;
-  
+  transition: all 0.3s;
 `;
 
 const ContentsSpan = styled.span`

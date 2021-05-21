@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import NaviItem from './naviItem/NaviItem';
+import axios from 'axios';
 
 const MySpaceItems = { ko : [
     { id: 0, val: "정보", href: "/member/myInfo" },
@@ -48,32 +49,6 @@ const langAlNavi = {
     }
 }
 
-const ItemLists = (lang) => {
-    return NaviItems[lang].map((navi) => 
-            <NaviItem
-            key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
-            count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-            bar={navi.bar} sound={navi.sound}
-            />
-        ).sort(function(a, b){
-            return a.key - b.key;
-        });
-}
-
-const NotLoginItemLists = (lang) => {
-    return NaviItems[lang].map((navi) => 
-        <NaviItem
-            key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
-            count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-            sound={navi.sound}
-        />
-    ).sort(function(a, b){
-        return a.key - b.key;
-    }).filter((val) => {
-        return val.key > 3
-    });
-}
-
 const useClick = (onClick) => {
     const element = useRef();
     useEffect(() => {
@@ -99,6 +74,61 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
     const altText = langAlNavi.ko.alt;
     const widMessage = langAlNavi.ko.confirm_p;
 
+    //it is valued axios and control data
+    const URL_NAVI = '';
+    const URL_NAVI_ITEM = '';
+    const URL_MY_SPACE = '';
+
+    const [listText, setListText] = useState(null);
+    const [naviList,setNaviList] = useState(null);
+    const [mySpace, setMySpace] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(()=>{
+        const getList = async () => {
+            try{
+                setError(null);
+                setListText(null);
+
+                const navitext = await axios.get(URL_NAVI);
+                setListText(navitext.data);
+            } catch(err){
+                setError(err.message);
+            }    
+        };
+        
+        const getNaviList = async () => {
+            try{
+                setError(null);
+                setNaviList(null);
+
+                const naviitem = await axios.get(URL_NAVI_ITEM);
+                setNaviList(naviitem.data); 
+            } catch(err){
+                setError(err.message);
+            }
+        }
+
+        const getMySpace = async () => {
+            try{
+                setError(null);
+                setMySpace(null);
+
+                const myspacelist = await axios.get(URL_MY_SPACE);
+                setMySpace(myspacelist.data);
+            } catch(err){
+                setError(err.message);
+            }
+        }
+
+        if(error) return console.log(error);
+        
+        getList();
+        getNaviList();
+        getMySpace();
+    },[]);
+
+    //click event handle
     const clickedNavi = (e) => {
         setClicked(false);
         setShowNavi(true);
@@ -128,6 +158,32 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
             setShowNavi(false);
         }
     },[clicked]);
+
+    const NotLoginItemLists = (lang) => {
+        return NaviItems[lang].map((navi) => 
+            <NaviItem
+                key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
+                count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+                sound={navi.sound}
+            />
+        ).sort(function(a, b){
+            return a.key - b.key;
+        }).filter((val) => {
+            return val.key > 3
+        });
+    }
+
+    const ItemLists = (lang) => {
+        return NaviItems[lang].map((navi) => 
+                <NaviItem
+                key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
+                count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+                bar={navi.bar} sound={navi.sound}
+                />
+            ).sort(function(a, b){
+                return a.key - b.key;
+            });
+    }
 
     if( user.seq === 0 ){
         return <AlNaviNav         

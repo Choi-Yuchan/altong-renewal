@@ -9,12 +9,15 @@ function PopSilen(props) {
     const USER= props.USER;
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
 
+    //URL LIST
+    const URL_SIREN = "/restApi/questions/" + props.page + "/siren"
+
     const handleChange = (e) => {
         setReson(e.target.value);
     }
 
     const runSilen = (e, setReson, setClicked) => {
-        axios.put("/restApi/questions/" + props.page + "/siren",{
+        axios.put(URL_SIREN,{
             "ACT":"CheckSiren", "H_Type":props.seq , "H_Reason": radioN, "H_Reason_txt": reson
         })
         .then( (response) => response.data )

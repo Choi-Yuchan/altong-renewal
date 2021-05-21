@@ -8,13 +8,15 @@ function ViewAnswerBtn(props){
     const seqId = props.seqId;
     const setGoQuestion = props.setGoQuestion;
 
+    const URL_ANS_CHOICE = "/restApi/answers/"+page+"/"+seqId+"/answer-choice"
+    
     if(props.seqComponent === 'A'){
 
 
         return <AnswerBtnAB show={props.goQuestion}
             onClick={(e)=>{
-                console.log("/restApi/answers/"+page+"/"+seqId+"/answer-choice");
-                axios.put("/restApi/answers/"+page+"/"+seqId+"/answer-choice")
+                console.log(URL_ANS_CHOICE);
+                axios.put(URL_ANS_CHOICE)
                 .then((response) => response.data)
                 .then( (data) => {
                     setGoQuestion(false);
@@ -31,43 +33,48 @@ function ViewAnswerBtn(props){
         >답변하기</AnswerBtnA>
 }
 
-const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
-    axios.put(seqComponent==='Q' ? "/rest/questions/" +
-    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
-        estiSeq:"G"
-    })
-    .then((response) => response.data)
-    .then((data) => {
-        if(data.code == "success"){
-            setGood(data.good);
-            setBad(data.bad);
-        }
-    });
-}
-const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
-    axios.put(seqComponent==='Q' ? "/rest/questions/" +
-    pageSeq + "/vote" : "/rest/answers/" + pageSeq + "/vote",{
-        estiSeq:"B"
-    })
-    .then((response) => response.data)
-    .then((data) => {
-        if(data.code == "success"){
-            setGood(data.good);
-            setBad(data.bad);
-        }
-    });
-}
-
 
 function ReplyBox(props) {
 
     const [goAnswer,setGoAnswer] = useState(false);
     const [goQuestion,setGoQuestion] = useState(false);
 
+
+    //URL_LIST
+    const URL_QUE_VOTE = "/rest/questions/" + props.pageSeq + "/vote";
+    const URL_ANS_VOTE = "/rest/answers/" + props.pageSeq + "/vote";
+    const URL_ANS_CHECK = "/restApi/answers/" + props.pageSeq + "/answered-check";
+    const URL_CHO_CHECK = "/restApi/answers/" + props.pageSeq + "/choiced-check";
+
+    const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
+        axios.put(seqComponent==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
+            estiSeq:"G"
+        })
+        .then((response) => response.data)
+        .then((data) => {
+            if(data.code == "success"){
+                setGood(data.good);
+                setBad(data.bad);
+            }
+        });
+    }
+    const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
+        axios.put(seqComponent==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
+            estiSeq:"B"
+        })
+        .then((response) => response.data)
+        .then((data) => {
+            if(data.code == "success"){
+                setGood(data.good);
+                setBad(data.bad);
+            }
+        });
+    }
+
     useEffect(()=>{
         if(props.pageSeq === undefined ){}
         else if(props.seqComponent==="Q"){
-            axios.get("/restApi/answers/" + props.pageSeq + "/answered-check")
+            axios.get(URL_ANS_CHECK)
             .then((response) => response.data)
             .then( (data) => {
                 console.log(data);
@@ -80,7 +87,7 @@ function ReplyBox(props) {
                 console.log(error);
             })
         }else if(props.seqComponent==="A"){
-            axios.get("/restApi/answers/" + props.pageSeq + "/choiced-check")
+            axios.get(URL_CHO_CHECK)
             .then((response) => response.data)
             .then( (data) => {
                 console.log(data);
@@ -98,7 +105,7 @@ function ReplyBox(props) {
 
     useEffect(()=>{
         if(props.pageSeq === undefined){}else{
-            const voteUrl= props.seqComponent==="Q"?"/rest/questions/"+props.pageSeq+"/vote":"/rest/answers/"+props.pageSeq+"/vote";
+            const voteUrl= props.seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
             axios.get(voteUrl)
             .then((response) => response.data)
             .then( (data) => {

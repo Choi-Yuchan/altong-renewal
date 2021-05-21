@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
+import { useEffect } from 'react';
 
 const langTopNavi = {
     ko : {
@@ -19,6 +20,32 @@ const langTopNavi = {
 function TopNavi({setShowNavi, setClicked}) {
     const altText = langTopNavi.ko.alt;
     const search = langTopNavi.ko.placeholder;
+    //URL_LIST
+    const URL_TOP_DATA = ''
+
+    const [error, setError] = useState(null);
+    const [topAlt, setTopAlt] = useState(null);
+    const [placeholder, setPlaceholder] = useState(null);
+
+    useEffect (() => {
+        const getTopNavi = async () => {
+            try{
+                setError(null);
+                setTopAlt(null);
+                setPlaceholder(null);
+
+                const topNaviData = await axios.get(URL_TOP_DATA);
+                setTopAlt(topNaviData.data.alt);
+                setPlaceholder(topNaviData.data.placeholder);
+            } catch(err) {
+                setError(err.message);
+            }
+        }
+
+        if(err) return console.log(err);
+
+        getTopNavi();
+    },[]);
 
     //클릭했을 때 toggle 값 변경으로 조작
     const [toggle, setToggle] = useState(false);

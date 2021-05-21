@@ -6,6 +6,8 @@ function PopMessage(props) {
     const [ message , setMessage ] = useState("");
     const [ messageState, setMessageState] = useState("보내기");
 
+    //URL LIST
+    const URL_MESSAGE = "/restApi/messages/" + props.user + "/send";
 
     const handleChange = (e) => {
         setMessage(e.target.value);
@@ -13,7 +15,7 @@ function PopMessage(props) {
 
     const sendMessage = (e) => {
         setMessageState("보내는 중~");
-        axios.put("/restApi/messages/" + props.user + "/send",{
+        axios.put(URL_MESSAGE,{
             "Contents":message
         })
         .then( (response) => response.data )

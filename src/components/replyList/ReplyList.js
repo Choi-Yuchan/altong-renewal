@@ -6,12 +6,15 @@ import '../../App.css';
 
 
 const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
-    console.log(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":"/rest/answers/"+pageSeq+"/reply");
+    //URL LIST
+    const URL_QUE_REPLY = "/rest/questions/"+pageSeq+"/reply";
+    const URL_ANS_REPLY = "/rest/answers/"+pageSeq+"/reply";
+
+    console.log(QorA==='Q'? URL_QUE_REPLY: URL_ANS_REPLY);
     
     const textV = text;
     setText("");
-    axios.put(QorA==='Q'?"/rest/questions/"+pageSeq+"/reply":
-        "/rest/answers/"+pageSeq+"/reply",{
+    axios.put(QorA==='Q'? URL_QUE_REPLY : URL_ANS_REPLY,{
             "text":textV
         })
     .then((response) => response.data)
