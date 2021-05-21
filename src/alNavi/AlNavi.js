@@ -75,13 +75,15 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
     const widMessage = langAlNavi.ko.confirm_p;
 
     //it is valued axios and control data
-    const URL_NAVI = '';
-    const URL_NAVI_ITEM = '';
-    const URL_MY_SPACE = '';
+    const URL_NAVI = ''; // 네비게이션 기본 정보
+    const URL_NAVI_ITEM = ''; // 네비게이션 리스트 하위 컴포넌트로 전달해줄 data
+    const URL_MY_SPACE = ''; // 나의 공간 리스트
+    const URL_COUNT_ALARM = "api/user/alarm/count"; // 
 
     const [listText, setListText] = useState(null);
     const [naviList,setNaviList] = useState(null);
     const [mySpace, setMySpace] = useState(null);
+    const [countAlarm, setCountAlarm] = useState(0); // 해당 url에서 count 정보를 받아서 넘겨줄 예정
     const [error, setError] = useState(null);
 
     useEffect(()=>{
@@ -120,12 +122,23 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
                 setError(err.message);
             }
         }
+        //알람 횟수 data fetching
+        const getAlarmNum = async () => {
+            try{
+                setError(null);
 
+                const alarmNumber = await axios.get(URL_COUNT_ALARM);
+                setCountAlarm(alarmNumber);
+            } catch(err){
+                setError(err.message);
+            }
+        }
         if(error) return console.log(error);
         
         getList();
         getNaviList();
         getMySpace();
+        getAlarmNum();
     },[]);
 
     //click event handle
