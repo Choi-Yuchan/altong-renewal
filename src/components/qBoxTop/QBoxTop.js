@@ -97,22 +97,22 @@ function QBoxTop(props) {
         props.setClicked(false);
         e.stopPropagation();
       }}>
-        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}></HeadFigureImg>
+        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}/>
         
         <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
       </HeadFigure>
-      <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}></Num3Comma></HeadSpan></HeadH2>
+      <HeadH2>{props.seqComponent}.<HeadSpan className="yellow" ><Num3Comma num={props.head.thankAlmoney}/></HeadSpan></HeadH2>
       <WrapUl>
         <Wrapli>
-          <HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}></HeadFigureLocaleImg>
+          <HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}/>
           <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
           <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.
         </Wrapli>
         <WrapTitleli>{props.head.title}</WrapTitleli>
         <WrapThankli>
           감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true); }}
-          onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}><TimeToggler date={props.head.date} timeToggle={timeToggle}></TimeToggler></DateDiv>
-          <ViewCountImg src="/Common/images/icon_view.svg"></ViewCountImg><Num3Comma num={props.head.readCount}></Num3Comma>
+          onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}><TimeToggler date={props.head.date} timeToggle={timeToggle}/></DateDiv>
+          <ViewCountImg src="/Common/images/icon_view.svg"/><Num3Comma num={props.head.readCount}/>
         </WrapThankli>
       </WrapUl>
       <BtnBox onClick={(e) => {
@@ -120,9 +120,9 @@ function QBoxTop(props) {
         props.setWhite(false);
         e.stopPropagation();
         }}>
-        <BtnBoxI></BtnBoxI>
-        <BtnBoxI></BtnBoxI>
-        <BtnBoxI></BtnBoxI>
+        <BtnBoxI/>
+        <BtnBoxI/>
+        <BtnBoxI/>
         <QuestionPopup
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
@@ -131,7 +131,7 @@ function QBoxTop(props) {
           seqComponent={props.seqComponent} popToggle={popToggle}
           title={props.head.title}
           setShare={props.setShare}
-        ></QuestionPopup>
+        />
       </BtnBox>
       <MiniProfile setClicked={props.setClicked} showMini={showMini}
         mini={props.mini} clicked={props.clicked} 
@@ -139,7 +139,7 @@ function QBoxTop(props) {
         setShowMini={setShowMini}
         USER={props.USER}
         setShowMessage={props.setShowMessage}
-      ></MiniProfile>
+      />
     </MainDiv>
   );
 }
@@ -221,25 +221,25 @@ const Wrapli = styled.li`
   align-items: center;
   list-style: none;
   flex-wrap: wrap;
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #333;
 
-  @media (max-width:480px) {
-    font-size:12px;
+  @media (min-width:480px) {
+    font-size:1rem;
   }
 `;
 
 const WrapSpan = styled.span`
   font-size: 10px;
-  padding: 1px 5px;
+  padding: 0.5px 3px;
   border: 1px solid #fd0031;
   color: #fd0031;
   border-radius: 10px;
   display: ${(props) => props.show ? "inline-block" : "none" };
   margin-bottom:-1px;
 
-  @media (max-width:480px) {
-    padding:0.5px 3px;
+  @media (min-width:480px) {
+    padding:1px 5px;
   }
 `;
 
@@ -248,20 +248,20 @@ const WrapStrong = styled.strong`
   margin-right: 2px;
   margin-left: 4px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.75rem;
 
-  @media (max-width:480px) {
-    font-size:12px;
+  @media (min-width:480px) {
+    font-size:1rem;
   }
 `;
 
 const WrapTitleli = styled.li`
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
   list-style: none;
 
-  @media (max-width:480px) {
-    font-size:17px;
+  @media (min-width:480px) {
+    font-size:20px;
   }
 `;
 
@@ -269,12 +269,12 @@ const WrapThankli = styled.li`
   display:flex;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #666;
   list-style: none;
 
-  @media (max-width:480px) {
-    font-size:0.6875rem;
+  @media (min-width:480px) {
+    font-size:0.75rem;
   }
 `;
 
@@ -346,11 +346,11 @@ const BtnBoxI = styled.i`
 `;
 
 const HeadFigureLocaleImg = styled.img`
-  width: 1.375rem;
+  width: 1.125rem;
   margin-right:3px;
 
-  @media (max-width:480px) {
-    width: 1.125rem;
+  @media (min-width:480px) {
+    width: 1.375rem;
   }
 `;
 

@@ -47,9 +47,6 @@ function OpenDiv(props){
   return <AUnBoxBottom etimate={props.etimate} count={props.contentsCount}></AUnBoxBottom>
 }
 
-// choice:true,
-// netizen:true,
-
 const ChoiceView = (props) => {
   if(props.choice) return <TopChoiceP><TopImg src={'/Common/images/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
   return '';
@@ -58,7 +55,6 @@ const ChoiceNetizenView = (props) => {
   if(props.netizen) return <TopNetizenP><TopImg src={'/Common/images/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
   return '';
 }
-// white={props.white} setWhite={props.setWhite}
 
 function AnswerBox(props) {
   const [replyToggle, setReplyToggle] = useState(true);
@@ -158,7 +154,6 @@ function AnswerBox(props) {
         props.setHighlight(props.selected);
       }
     } >
-        {/* atm_top_wrap */}
         <TopH3 num={extraAlmoney}>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
             setShowExtraList(!showExtraList);
@@ -201,7 +196,7 @@ function AnswerBox(props) {
         <OpenDiv
           pageSeq={props.jsonArr.pageSeq}
           setReplys={setReplys}
-          className="OpenDiv" /* 클래스네임 어디에 사용되는 지 확인 필요*/ replyToggle={replyToggle}
+          replyToggle={replyToggle}
           replyCount={replyCount(replys)}
           setReplyToggle={setReplyToggle} replys={replys}
           openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}

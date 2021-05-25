@@ -35,15 +35,6 @@ const Img1 = styled.img`
     width: 35px;
     margin-top:-5px;
 `;
-//Img2와 3의 존재 이유 확인 필요
-const Img2 = styled.img`
-    width: 35px;
-    margin-left: -5px;
-`;
-const Img3 = styled.img`
-    width: 35px;
-    margin-left: -5px;
-`;
 
 const MainOl = styled.ol`
     position: relative;
@@ -75,8 +66,6 @@ const AlScoreLi = styled.li`
     cursor: pointer;
     list-style: none;
 `;
-
-
 
 const AlScoreSpan = styled.span`
     display: inline-block;

@@ -54,7 +54,7 @@ function MiniProfile(props) {
     }
 
     return (
-        <MainDiv showMini={props.showMini} className="MiniProfile"
+        <MainDiv showMini={props.showMini}
         onClick={(e)=>{
             props.setClicked(false);
             props.setShowMini(true);
@@ -146,9 +146,7 @@ const MainDiv = styled.div`
     transform: rotate(45deg);
 }
 `;
-const MainDivNone = styled.div`
-    display:none;
-`;
+
 const MainTable = styled.table`
     width: 100%;
     text-align: justify;
