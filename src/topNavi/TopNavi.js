@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
 import { useEffect } from 'react';
+import axios from 'axios';
+
 
 const langTopNavi = {
     ko : {
@@ -41,8 +43,6 @@ function TopNavi({setShowNavi, setClicked}) {
                 setError(err.message);
             }
         }
-
-        if(err) return console.log(err);
 
         getTopNavi();
     },[]);
