@@ -42,7 +42,7 @@ const langAlNavi = {
         signout : ["로그인이 필요합니다.", "로그인", "회원가입"],
         signin : ["계정 관리", "로그아웃", "회원탈퇴"],
         user : [
-            { id : "USER_ID", tier:"열혈천사", q_rank: "질문순위 4,078위", a_rank: "답변순위 1,024위"  }
+            { id : "USER_ID", tier:"열혈천사", q_rank: "질문순위 4,078위", a_rank: "답변순위 1,024위", img:"/pub/css/profile/img_thum_base0.jpg"  }
         ],
         alt : ["프로필","로그아웃 아이콘"],
         confirm_p:"회원탈퇴는 02)330-3000으로 전화를 통해 신청을 부탁드립니다.\n참고로 회원탈퇴는 매우 신중히 결정하시기를 권해드립니다.\n탈퇴 시 회원님의 보유 알은 소멸되고 향후 계속 수익이 발생할\n경우 이 수익 역시 (주)알통에 귀속됩니다.\n만약 이후 재가입을 원하실 경우 최소 6개월 경과 후에야 가능\n하므로 탈퇴 전에 신중을 거듭하여 신청해 주십시오.\n(재가입 관련 정책은 추후 변경될 수 있습니다.)", 
@@ -251,7 +251,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
                         <UserInfo>
                             <LoginFigure>
                                 <LoginFigureDiv>
-                                    <LoginFigureImg src="/Uploadfile/Profile/image.png" alt={altText[0]}/>
+                                    <LoginFigureImg src={userInfo[0].img} alt={altText[0]}/>
                                 </LoginFigureDiv>
                                 <LoginFigcaption>{userInfo[0].tier}</LoginFigcaption>
                             </LoginFigure>
