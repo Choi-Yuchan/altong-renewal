@@ -75,7 +75,6 @@ function QuestionBox(props) {
     return <div></div>
   }
   return (
-    // BodyClick과 WhiteClick의 props name이 혼용된 경우가 많으므로 통일해야함
     <SiteDiv
       onClick={ () => 
         {

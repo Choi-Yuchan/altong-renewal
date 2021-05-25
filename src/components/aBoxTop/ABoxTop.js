@@ -213,10 +213,10 @@ const WrapSpan = styled.span`
 `;
 
 const WrapStrong = styled.strong`
-  font-size: 18px;
+  font-size: 16px;
 
-  @media (max-width:480px) {
-    font-size:16px;
+  @media (min-width:480px) {
+    font-size:18px;
   }
 `;
 const WrapThankli = styled.li`
@@ -283,12 +283,12 @@ const BtnBoxI = styled.i`
   margin-bottom: 3px;
 `;
 const HeadFigureLocaleImg = styled.img`
-  width: 1.375rem;
+  width: 1.125rem;
   margin-right:3px;
   margin-bottom:-3px;
 
-  @media (max-width:480px) {
-    width: 1.125rem;
+  @media (min-width:480px) {
+    width: 1.375rem;
   }
 `;
 const ViewCountImg = styled.img`

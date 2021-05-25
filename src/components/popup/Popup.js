@@ -6,24 +6,18 @@ const MainAhref = styled.a`
     display:flex;
     align-items:center;
 `;
-const MainSpan = styled.span`
-    background-image: url(${ props => props.imgurl});
+const IconImg = styled.img`
     width: 20px;
     height: 20px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     margin-right: 8px;
 `;
 
 
-
-// atm_top_wrap
-function Popup(props) {
+function Popup({text, imgurl}) {
     return (
         <MainAhref >
-            <MainSpan imgurl={props.imgurl}></MainSpan>
-            {props.text}
+            <IconImg src={imgurl} alt={text}></IconImg>
+            {text}
         </MainAhref>
     );
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Etimate from './etimate/Etimate'
 
 function EstiArr(props){
@@ -27,7 +27,6 @@ function AltongEtimate(props) {
   return (
     <MainUl>
         <EstiArr pageSeq={pageSeq} etimate={props.etimate} myestiNo={myestiNo} setMyestiNo={props.setMyestiNo}></EstiArr>
-
     </MainUl>
   );
 }
@@ -35,18 +34,15 @@ function AltongEtimate(props) {
 export default AltongEtimate;
 
 const MainUl = styled.ul`
-& {
-    width: 100%;
-    background: #f7f7f7;
-    border-radius: 15px;
-    border: 1px solid #f5f5f5;
-    padding: 5px 0;
-    margin-bottom: 10px;
-    display:flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
+  width: 100%;
+  background: #f7f7f7;
+  border-radius: 15px;
+  border: 1px solid #f5f5f5;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  display:flex;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 

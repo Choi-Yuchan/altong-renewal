@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Popup from '../popup/Popup'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import axios from 'axios';
 
