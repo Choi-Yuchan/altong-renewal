@@ -17,7 +17,6 @@ const replyCount = (replys) => {
   return replys.length
 }
 
-// white={props.white} setWhite={props.setWhite}
 function Box(props) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [extraAlmoney, setExtraAlmoney] = useState(0);
@@ -91,18 +90,16 @@ function Box(props) {
 
 
   return (
-    <MainDiv className="Box" >
-        {/* atm_top_wrap */}
+    <MainDiv>
         <div>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
             setShowExtraList(!showExtraList);
             props.setWhite(!props.white);
             e.stopPropagation();
           }}>
-            <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg">
-            </AnswerAlmoneyImg>
-            <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
-            <PopExtraAl showExtraList={showExtraList} extraList={extras} ></PopExtraAl>
+            <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg"/>
+            <AlmoneySpan><Num3Comma num={extraAlmoney}/></AlmoneySpan>
+            <PopExtraAl showExtraList={showExtraList} extraList={extras}/>
           </AlmoneyDiv>
         </div>
         <QBoxTop
@@ -117,24 +114,25 @@ function Box(props) {
           seqId={props.jsonArr.seqId}
           USER={props.USER}
           setShare={props.setShare}
-        ></QBoxTop>
-
-        <Contents seqComponent={props.jsonArr.seqComponent}
-          contents={props.jsonArr.contents}></Contents>
-        <LangTransBox></LangTransBox>
+        />
+        <Contents 
+          seqComponent={props.jsonArr.seqComponent}
+          contents={props.jsonArr.contents}
+        />
+        <LangTransBox/>
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
-          replyCount={replyCount(replys)} good={props.jsonArr.good}
-          bad={props.jsonArr.bad} ></ReplyBox>
-        <ReplyList USER={props.USER} replyToggle={replyToggle}
+          replyCount={replyCount(replys)} 
+          good={props.jsonArr.good} bad={props.jsonArr.bad} 
+        />
+        <ReplyList 
+          USER={props.USER} replyToggle={replyToggle}
           white={props.white} setWhite={props.setWhite}
           pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
-          setReplys={setReplys}
-          replys={replys}
+          setReplys={setReplys} replys={replys}
           resetReplys={resetReplys}
-          ></ReplyList>
-        
+        />
     </MainDiv>
   );
 

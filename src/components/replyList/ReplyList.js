@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -46,7 +46,7 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
         console.log(error);
     });
 }
-// {props.pageSeq} seqComponent={props.seqComponent}
+
 function ShowList(props){
     const [text, setText] = useState("");
     const USER= props.USER;
@@ -106,28 +106,6 @@ function ReplyList(props) {
   
 export default ReplyList;
 
-const slideDown = keyframes`
-    from {
-        height:0;
-        transform:scaleY(0);
-    }
-    to {
-        height:auto;
-        transform:scaleY(1);
-    }
-`;
-
-const slideUp = keyframes`
-    from {
-        height:auto;
-        transform:scaleY(1);
-    }
-    to {
-        height:0;
-        transform:scaleY(0);
-    }
-`;
-
 const AutoRenewDiv = styled.div`
     display: inline-block;
     width: 50%;
@@ -186,12 +164,7 @@ const ReplyButton = styled.button`
     font-family:"Noto Sans SC", "Noto Sans JP", "Noto Sans KR" ;
     transition:all 0.5s linear;
 `;
-// const ShowView = styled.div`
-//     max-height: ${props => props.row ? 0:'100000px'};
-//     transform-origin: center top;
-//     opacity: ${props => props.row ? 0:1};
-//     transition:all 0.5s;
-// `;
+
 const ShowView = styled.div`
     overflow:hidden;
     max-height: ${props => props.row ? 0 : '5000px'};

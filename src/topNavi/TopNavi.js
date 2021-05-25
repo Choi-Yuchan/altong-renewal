@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
-import { useEffect } from 'react';
-import axios from 'axios';
 
 
 const langTopNavi = {
@@ -39,10 +37,12 @@ function TopNavi({setShowNavi, setClicked}) {
                 const topNaviData = await axios.get(URL_TOP_DATA);
                 setTopAlt(topNaviData.data.alt);
                 setPlaceholder(topNaviData.data.placeholder);
-            } catch(err) {
-                setError(err.message);
+            } catch(error) {
+                setError(error.message);
             }
         }
+
+        if(error) return console.log(error);
 
         getTopNavi();
     },[]);
@@ -311,8 +311,3 @@ const ColumnBoxAhref2 = styled(ColumnBoxAhref)`
 
 const TopcolumnBoxImg2 = styled(TopcolumnBoxImg)`
 `;
-
-
-
-
-

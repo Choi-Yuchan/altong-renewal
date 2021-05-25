@@ -28,7 +28,7 @@ function AldolViewContents(props){
     return <ReplyContents>{props.content}</ReplyContents>
 }
 
-const DelReply = (e, seqComponent, replySeq, setReplys) => {
+const DelReply = ( seqComponent, replySeq, setReplys) => {
     const URL_QUE_REPLY = "/restApi/answers/"+replySeq+"/Q/reply-del"
     const URL_ANS_REPLY = "/restApi/answers/"+replySeq+"/A/reply-del"
 
