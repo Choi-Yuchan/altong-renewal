@@ -25,7 +25,7 @@ position:relative;
 @media (max-width:480px) {
   width:40px;
   height:40px;
-  border: 1px solid #f30;
+  border: 1px solid ${props=>props.check === false ? '#f30': '#999'};
   font-size: 0.8125rem;
 }
 `;
@@ -60,7 +60,7 @@ const LangAIDiv = styled.div`
   @media (max-width:480px) {
     width:40px;
     height:40px;
-    border:1px solid #999;
+    border:1px solid ${props=> props.check === true ? '#f30': '#999'};
     font-size:0.8125rem;
   }
 `;

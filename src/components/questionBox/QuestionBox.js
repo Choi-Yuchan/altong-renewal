@@ -12,6 +12,7 @@ import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import PopShare from '../popup/popShare/PopShare';
 import '../../App.css';
+import SEO from '../../SEO'
 
 
 function ShowBlackDiv(props){
@@ -74,7 +75,27 @@ function QuestionBox(props) {
   if(jsonList === ""){
     return <div></div>
   }
+
+  const seo = {
+    title: '알통 :: 지식공유 플랫폼',
+    theme: '#fff',
+    description: '알통은 인터넷 상의 모든 지식·정보에 가치를 부여, 그 가치를 기여자들과 공유하는 수익형 지식공유 플랫폼입니다.',
+    keywords: '알통, Altong, 지식, 수익, 가치, 경제, 공유, 플랫폼',
+
+    ogUrl: 'http://www.altong.com/default/main',
+    ogImgWidth: '200',
+    ogImgHeight: '500',
+    ogAppId: '2128664037179612',
+    ogImg: '/Common/images/share_sns/k_feedimg.jpg',
+    ogImgSecureUrl: '/Common/images/share_sns/k_feedimg.jpg',
+
+    twitterCard: 'summary',
+    twitterDescrip: '알통 수익형 지식 경제 공유 플랫폼'
+  }
+
   return (
+    <>
+    <SEO seo={seo} />
     <SiteDiv
       onClick={ () => 
         {
@@ -142,6 +163,7 @@ function QuestionBox(props) {
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>
+    </>
   );
 }
 
