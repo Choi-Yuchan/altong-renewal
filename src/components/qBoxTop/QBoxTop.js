@@ -90,6 +90,7 @@ function QBoxTop(props) {
     }
   }, [props.white]);
 
+  // console.log({...props.head, title:"rollette test question222"});
   return (
     <MainDiv className="QBoxTop">
       <HeadFigure onClick={(e) => {

@@ -12,6 +12,7 @@ import AltongEtimate from '../altongEtimate/AltongEtimate';
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
 
 import Num3Comma from '../functions/num3comma/Num3Comma'
+import LangTransCount from '../langTransBox/LangTransCount';
 
 const replyCount = (replys) => {
   if(replys==null) return 0
@@ -22,11 +23,12 @@ function OpenDiv(props){
   if(props.openAnswer === 'open'){
     return (
       <>
+      { props.aiPlus === true && <LangTransCount />}
       <AltongEtimate
         etimate={props.etimate} pageSeq={props.pageSeq}
         myestiNo={props.myestiNo} setMyestiNo={props.setMyestiNo}
       ></AltongEtimate>
-      <LangTransBox></LangTransBox>
+      <LangTransBox aiPlus={props.aiPlus} setAiPlus={props.setAiPlus} jsonArr={props.jsonArr}></LangTransBox>
       <ReplyBox
         pageSeq={props.pageSeq}
         replyToggle={props.replyToggle} replyCount={props.replyCount}
@@ -147,6 +149,9 @@ function AnswerBox(props) {
       setBorderColor(false);
     }
   }, [props.highlight])
+
+  //번역버튼 클릭에 대한 AI를 만들었다.
+  const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
   
   return (
     <MainDiv borderColor={borderColor} className="Box" onClick={
@@ -208,6 +213,9 @@ function AnswerBox(props) {
           setMyestiNo={setMyestiNo}
 
           contentsCount={props.jsonArr.contents.length}
+
+          jsonArr={ aiPlus }
+          aiPlus={aiPlus.AI} setAiPlus={setAiPlus}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>

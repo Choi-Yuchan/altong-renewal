@@ -12,8 +12,8 @@ const OriginDiv = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-border: 2px solid ${props=>props.check === '' ? '#f30': '#999'};
-color: ${props=>props.check === '' ? '#f30': '#999'};
+border: 2px solid ${props=>props.check === false ? '#f30': '#999'};
+color: ${props=>props.check === false ? '#f30': '#999'};
 width: 50px;
 height: 50px;
 font-weight: 500;
@@ -51,10 +51,10 @@ const LangAIDiv = styled.div`
   width:50px;
   height: 50px;
   border-radius: 50%;
-  color: ${props=> props.check === 'check' ? '#f30': '#999'};
+  color: ${props=> props.check === true ? '#f30': '#999'};
   font-size: 1rem;
   font-weight:500;
-  border: 2px solid ${props=> props.check === 'check' ? '#f30': '#999'};
+  border: 2px solid ${props=> props.check === true ? '#f30': '#999'};
   cursor:pointer;
 
   @media (max-width:480px) {
@@ -66,14 +66,13 @@ const LangAIDiv = styled.div`
 `;
 
 
-function LangTransBox() {
-  const [check, setCheck] = useState('');
+function LangTransBox(props) {
 
     return (
       <MainDiv className="LangTransBox">
-        <OriginDiv check={check} onClick={()=>{setCheck('')}}>원문</OriginDiv>
+        <OriginDiv check={props.aiPlus} onClick={()=>{props.setAiPlus({...props.aiPlus, AI:false})}}>원문</OriginDiv>
         <Line></Line>
-        <LangAIDiv check={check} onClick={()=>{setCheck('check')}}>AI</LangAIDiv>
+        <LangAIDiv check={props.aiPlus} onClick={()=>{ props.setAiPlus({...props.aiPlus, AI:true})}}>AI</LangAIDiv>
       </MainDiv>
     );
   }

@@ -21,6 +21,7 @@ function LangTransCount() {
   const TransCountDiv = styled.div`
     display:flex;
     align-items:center;
+    margin-bottom:10px;
   `;
   const TransCountP = styled.em`
     color:#f30;

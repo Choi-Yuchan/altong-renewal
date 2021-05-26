@@ -11,6 +11,7 @@ import ReplyList from '../replyList/ReplyList'
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
 
 import Num3Comma from '../functions/num3comma/Num3Comma'
+import LangTransCount from '../langTransBox/LangTransCount'
 
 //jsonArr
 const replyCount = (replys) => {
@@ -88,6 +89,12 @@ function Box(props) {
   }
   , [props.hunAlram]);
 
+  // const setHead = {...props.jsonArr.head};
+  // console.log(setHead);
+
+  //번역버튼 클릭에 대한 AI를 만들었다.
+  const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
+  
 
   return (
     <MainDiv>
@@ -105,13 +112,13 @@ function Box(props) {
         <QBoxTop
           clicked={props.clicked} setClicked={props.setClicked}
           white={props.white} setWhite={props.setWhite}
-          head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
-          pageSeq={props.jsonArr.pageSeq}
+          head={aiPlus.head} seqComponent={aiPlus.seqComponent}
+          pageSeq={aiPlus.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
           setShowMessage={props.setShowMessage}
-          mini={props.jsonArr.mini}
-          seqId={props.jsonArr.seqId}
+          mini={aiPlus.mini}
+          seqId={aiPlus.seqId}
           USER={props.USER}
           setShare={props.setShare}
         />
@@ -119,7 +126,8 @@ function Box(props) {
           seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}
         />
-        <LangTransBox/>
+        { aiPlus.AI === true && <LangTransCount />}
+        <LangTransBox aiPlus={aiPlus.AI} setAiPlus={setAiPlus} jsonArr={props.jsonArr} />
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
