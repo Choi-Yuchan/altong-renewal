@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
+import { unstable_concurrentAct } from 'react-dom/test-utils';
 
 const langNaviItem = {
     ko:{
@@ -18,14 +19,16 @@ const eventHandler = e => {
     e.preventDefault();
     e.stopPropagation();
 }
+
 //click, key properties는 필요할 때 받아오도록 입력해야함.
-function NaviItem({img, href, val, count, i, mini, bar, sound}) {
+function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKeyToggle}) {
     const placeholder = langNaviItem.ko.placeholder;
     const altText = langNaviItem.ko.alt;
+    // url list
+    const URL_NAVI_TEXT = '';
 
     const [showPlus, setShowPlus] = useState("0deg");
     const [toggle, setToggle] = useState(false);
-    const [keyToggle, setKeyToggle] = useState(false);
     const [searchID, setSearchID] = useState("");
     const [disabled, setDisabled] = useState(false);
 
@@ -46,8 +49,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
         setDisabled(false);
     };
 
-    // async
-    const URL_NAVI_TEXT = '';
+
     const [naviText, setNaviText] = useState(null);
 
     useEffect(() => {
@@ -57,8 +59,8 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
 
                 const response = await axios.get(URL_NAVI_TEXT);
                 setNaviText(response.data);
-            } catch(err) {
-                console.log(err);
+            } catch(error) {
+                // console.log(error);
             }
         };
 
@@ -108,7 +110,9 @@ function NaviItem({img, href, val, count, i, mini, bar, sound}) {
         return(
             // Key sound On/Off 기능 추가 예정
             <NaviItemLi>
-                <NaviA onClick = {() => {setKeyToggle(!keyToggle)}}>
+                <NaviA onClick = {() => {
+                    setKeyToggle(!keyToggle);
+                    }}>
                     <IconBox>
                         <NaviKey img={img}></NaviKey>
                         {keyToggle ? 

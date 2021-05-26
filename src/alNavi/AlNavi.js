@@ -67,7 +67,7 @@ const useClick = (onClick) => {
     return element;
   };
 
-function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
+function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKeyToggle}) {
     const signOutTxt = langAlNavi.ko.signout;
     const signInTxt = langAlNavi.ko.signin;
     const userInfo = langAlNavi.ko.user;
@@ -177,7 +177,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
             <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
                 count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-                sound={navi.sound}
+                sound={navi.sound} keyToggle={keyToggle} setKeyToggle={setKeyToggle}
             />
         ).sort(function(a, b){
             return a.key - b.key;
@@ -191,7 +191,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked}) {
                 <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
                 count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
-                bar={navi.bar} sound={navi.sound}
+                bar={navi.bar} sound={navi.sound} keyToggle={keyToggle} setKeyToggle={setKeyToggle}
                 />
             ).sort(function(a, b){
                 return a.key - b.key;

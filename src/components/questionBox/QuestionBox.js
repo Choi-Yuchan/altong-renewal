@@ -12,8 +12,8 @@ import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import PopShare from '../popup/popShare/PopShare';
 import '../../App.css';
+import useSound from '../functions/useSound/useSound';
 import SEO from '../../SEO'
-
 
 function ShowBlackDiv(props){
   if(props.clicked === false){
@@ -21,8 +21,13 @@ function ShowBlackDiv(props){
   }
   return  <></>;
 }
-
+  
 function QuestionBox(props) {
+  //URL LIST
+  const URL_QUESTION = "/rest/questions/"+props.match.params.questions;
+  const URL_USER = "/rest/user";
+  const URL_SOUND = "/Common/ks/audio5.mp3";
+
   const [bodyClicked, setBodyClicked] = useState(true);
   const [whiteClick, setWhiteClick] = useState(true);
   const [jsonList, setJsonList] = useState("");
@@ -35,15 +40,13 @@ function QuestionBox(props) {
   const [hunAlram,setHunAlram] = useState(false);
   const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
   const [share, setShare] = useState(false);
-
   const [showNavi, setShowNavi] = useState(false);
-
   const [SESS] = useState(cookies.SESS);
-
-  //URL LIST
-  const URL_QUESTION = "/rest/questions/"+props.match.params.questions;
-  const URL_USER = "/rest/user";
+  const [keyToggle, setKeyToggle] = useState(false);
   
+  //keysound control
+  const handleSound = useSound(URL_SOUND, keyToggle);
+
   useEffect(()=>{
     axios.get(URL_QUESTION)
     .then((response) => response.data)
@@ -104,17 +107,18 @@ function QuestionBox(props) {
         }
       }
     >
-      {/* <GlobalFonts></GlobalFonts> 폰트 글로벌 적용 해야함 */}
-      <MainDiv>
+      <MainDiv
+      {...handleSound}>
         <TopNavi
           user={user}
           setShowNavi={setShowNavi}
           setClicked={setBodyClicked}
         ></TopNavi>
         <AlNavi
-          user={user}
+          user={user} 
           show={showNavi} setShowNavi={setShowNavi}
           clicked={bodyClicked} setClicked={setBodyClicked}
+          keyToggle={keyToggle} setKeyToggle={setKeyToggle}
         ></AlNavi>
 
         <WrapperDiv>
