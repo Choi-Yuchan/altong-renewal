@@ -479,7 +479,7 @@ const InfoH2 = styled.h2`
         font-size: 18px;
     }
 `;
-const InfoP = styled.p`
+const InfoP = styled.div`
     font-size: 12px;
 `;
 const InfoSpan = styled.div`

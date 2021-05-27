@@ -6,7 +6,7 @@ function BoxController(props) {
     const Boxs = props.SSRJSON.map
     ( (jaar, index) => jaar.seqComponent === "Q"?
         <Box
-            key={jaar.id} jsonArr={jaar} USER={props.USER}
+            key={jaar.seqId} jsonArr={jaar} USER={props.USER}
             white={props.white} setWhite={props.setWhite}
             clicked={props.clicked} setClicked={props.setClicked}
             setShowAlmoney={props.setShowAlmoney}
@@ -20,7 +20,7 @@ function BoxController(props) {
         </Box>: 
         jaar.seqComponent === "A" ?
         <AnswerBox
-            key={jaar.id} jsonArr={jaar}
+            key={jaar.seqId} jsonArr={jaar}
             white={props.white} setWhite={props.setWhite}
             USER={props.USER} clicked={props.clicked} setClicked={props.setClicked}
             setShowAlmoney={props.setShowAlmoney}
@@ -50,7 +50,7 @@ function BoxContainer(props) {
             clicked={props.clicked} setClicked={props.setClicked}
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
-            setShare={props.setShare}
+            setShare={props.setShare} 
             highlight = {highlight} setHighlight = {setHighlight}
         ></BoxController>
   );

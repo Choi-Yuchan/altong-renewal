@@ -52,7 +52,7 @@ function PopSilen(props) {
             props.setShowSiren({show:true, page:props.page, seq:props.seq, title: props.title});
             e.stopPropagation();
           }}>
-            <PopReportH4><PopReportDivImg></PopReportDivImg>신고</PopReportH4>
+            <PopReportH4><PopReportDivImg/>신고</PopReportH4>
             <ReportWrap>
                 <BDiv>
                     <BTable>
@@ -79,7 +79,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("1")
                                             }}
-                                            checked={radioN === "1" ? true : false}
+                                            defaultChecked={radioN === "1" ? true : false}
                                         ></ARInput>홍보성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
@@ -88,7 +88,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("2")
                                             }}
-                                            checked={radioN === "2" ? true : false}
+                                            defaultChecked={radioN === "2" ? true : false}
                                         ></ARInput>유해성</label>
                                 </AReasonTbodyTrTd>
                             </tr>
@@ -99,7 +99,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("3")
                                             }}
-                                            checked={radioN === "3" ? true : false}
+                                            defaultChecked={radioN === "3" ? true : false}
                                         ></ARInput>장난성</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
@@ -108,7 +108,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("4")
                                             }}
-                                            checked={radioN === "4" ? true : false}
+                                            defaultChecked={radioN === "4" ? true : false}
                                         ></ARInput>중복성</label>
                                 </AReasonTbodyTrTd>
                             </tr>
@@ -119,7 +119,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("5")
                                             }}
-                                            checked={radioN === "5" ? true : false}
+                                            defaultChecked={radioN === "5" ? true : false}
                                         ></ARInput>비속어/반말</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
@@ -128,7 +128,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("6")
                                             }}
-                                            checked={radioN === "6" ? true : false}
+                                            defaultChecked={radioN === "6" ? true : false}
                                         ></ARInput>비 정보·지식</label>
                                 </AReasonTbodyTrTd>
                             </tr>
@@ -139,7 +139,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("7")
                                             }}
-                                            checked={radioN === "7" ? true : false}
+                                            defaultChecked={radioN === "7" ? true : false}
                                         ></ARInput>음해/비방</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
@@ -148,7 +148,7 @@ function PopSilen(props) {
                                             onClick={() => {
                                                 setRadioN("8")
                                             }}
-                                            checked={radioN === "8" ? true : false}
+                                            defaultChecked={radioN === "8" ? true : false}
                                         ></ARInput>기타</label>
                                 </AReasonTbodyTrTd>
                             </tr>
@@ -173,7 +173,9 @@ function PopSilen(props) {
                         <tbody>
                             <tr>
                                 <td>
-                                    <DRInput value="취소" onClick={(e)=>{
+                                    <DRInput value="취소" 
+                                    onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
+                                    onClick={(e)=>{
                                             setReson("");
                                             props.setClicked(true);
                                             e.stopPropagation();
@@ -181,7 +183,9 @@ function PopSilen(props) {
                                     ></DRInput>
                                 </td>
                                 <td>
-                                    <DSubmit value="제출" onClick={(e)=>{
+                                    <DSubmit value="제출" 
+                                    onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
+                                    onClick={(e)=>{
                                             runSilen(e, setReson, props.setClicked);
                                         }}
                                     ></DSubmit>
@@ -238,24 +242,14 @@ const DRBottomDiv = styled.div`
     margin-top: 5px;
     color: #989898;
 `
-const RDivP = styled.p`
+const RDivP = styled.div`
     font-size: 14px;
 `
-const DRDivPI = styled.i`
+const DRDivPI = styled.p`
     font-size: 20px;
     margin-bottom: 8px;
     font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
     line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
 `
 const RReasonDivP = styled.p`
     font-size: 13px;

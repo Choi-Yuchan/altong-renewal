@@ -47,12 +47,12 @@ function ReplyBox(props) {
     const URL_CHO_CHECK = "/restApi/answers/" + props.pageSeq + "/choiced-check";
 
     const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
-        axios.put(seqComponent==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
+        axios.put(seqComponent ==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
             estiSeq:"G"
         })
         .then((response) => response.data)
         .then((data) => {
-            if(data.code == "success"){
+            if(data.code === "success"){
                 setGood(data.good);
                 setBad(data.bad);
             }
@@ -64,7 +64,7 @@ function ReplyBox(props) {
         })
         .then((response) => response.data)
         .then((data) => {
-            if(data.code == "success"){
+            if(data.code === "success"){
                 setGood(data.good);
                 setBad(data.bad);
             }

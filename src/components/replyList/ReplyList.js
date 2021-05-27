@@ -10,11 +10,11 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
     const URL_QUE_REPLY = "/rest/questions/"+pageSeq+"/reply";
     const URL_ANS_REPLY = "/rest/answers/"+pageSeq+"/reply";
 
-    console.log(QorA==='Q'? URL_QUE_REPLY: URL_ANS_REPLY);
+    console.log(QorA ==='Q'? URL_QUE_REPLY: URL_ANS_REPLY);
     
     const textV = text;
     setText("");
-    axios.put(QorA==='Q'? URL_QUE_REPLY : URL_ANS_REPLY,{
+    axios.put(QorA ==='Q'? URL_QUE_REPLY : URL_ANS_REPLY,{
             "text":textV
         })
     .then((response) => response.data)
@@ -22,21 +22,21 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
         console.log("data : ..");
         console.log(data);
 
-        if(data.code == "success"){
+        if(data.code === "success"){
             setReplys(data.replys);
-        }else if(data.code == "daydup"){
+        }else if(data.code === "daydup"){
             if(data.num > 0){
                 alert("1일 기준, 동일 제목 또는 내용의 답변글은 중복 " + 
                 data.num + "건 까지만 허용 등록될 수 있습니다. \n다른 제목 또는 내용으로 글을 다시 등록하여 주십시오!");
             }else{
                 alert("1일 기준, 동일 내용의 댓글이 이미 등록되어 있습니다. \n다른 내용으로 댓글을 다시 등록하여 주십시오!");
             }
-        }else if(data.code == "continuetime"){
+        }else if(data.code === "continuetime"){
             alert("연속으로 댓글을 등록하실 수는 없습니다. \n이전 댓글 등록 후부터 "+
             data.num + "초 경과 후에 다시 댓글을 등록하여 주십시오!");
-        }else if(data.code == "notlogin"){
+        }else if(data.code === "notlogin"){
             alert("로그인후 이용 가능합니다.");
-        }else if(data.code == "nulldata"){
+        }else if(data.code === "nulldata"){
             alert("댓글 내용을 입력하세요!");
         }
 
@@ -55,13 +55,12 @@ function ShowList(props){
     
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     const seq = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
-    const [replyClick, setReplyClick] = useState(false);
+    const [replyClick, setReplyClick] = useState(0);
     
 
     return (
     <ShowView row={props.replyToggle}>
-        <div>
-            <TextAreaDiv>
+        <TextAreaDiv>
             <TextArea placeholder=
             { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
             maxLength="400" onChange={(e) => {
@@ -70,16 +69,10 @@ function ShowList(props){
                 <ReplyButton width={replyClick} onClick={() => {
                     SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys);
                     } }>등록</ReplyButton>
-                
-            
-            </TextAreaDiv>
-            <AutoRenewDiv>
-            </AutoRenewDiv>
-            <ReplySubmit>
-                <ReplySubmitP>
-                    <span>{text.length}</span>/400</ReplySubmitP>
-            </ReplySubmit>
-        </div>
+        </TextAreaDiv>
+        <ReplySubmit>
+            <ReplySubmitP><span>{text.length}</span>/400</ReplySubmitP>
+        </ReplySubmit>
         <ReplyContainer
             white={props.white} setWhite={props.setWhite} replys={replys} seq={seq}
             seqComponent={props.seqComponent} pageSeq={props.pageSeq}
@@ -106,12 +99,6 @@ function ReplyList(props) {
   
 export default ReplyList;
 
-const AutoRenewDiv = styled.div`
-    display: inline-block;
-    width: 50%;
-    font-size: 16px;
-    color: #333;
-`;
 const TextArea = styled.textarea`
     flex-grow: 1;
     padding: 9px 20px;
@@ -131,15 +118,13 @@ const TextArea = styled.textarea`
     }
 `;
 const ReplySubmit = styled.div`
+    margin: 5px 0 10px -5px;
     text-align: right;
-    margin-left: -5px;
-    display: inline-block;
-    width: 50%;
+    width: 100%;
     font-size: 16px;
     color: #333;
 `;
 const ReplySubmitP = styled.p`
-    display: inline-block;
     font-size: 12px;
     font-weight: 500;
     color: #ccc;
@@ -174,7 +159,7 @@ const ShowView = styled.div`
 `;
 const TextAreaDiv = styled.div`
     height: 40px;
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     width: 100%;
 

@@ -11,7 +11,6 @@ import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import PopShare from '../popup/popShare/PopShare';
-import '../../App.css';
 import useSound from '../functions/useSound/useSound';
 import SEO from '../../SEO'
 
@@ -51,7 +50,7 @@ function QuestionBox(props) {
     axios.get(URL_QUESTION)
     .then((response) => response.data)
     .then((data) => {
-      if(data.code=="error"){
+      if(data.code === "error"){
         console.log("error");
         console.log(data.error);
       }else{

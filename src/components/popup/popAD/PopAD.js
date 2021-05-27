@@ -49,7 +49,7 @@ const PopDivP = styled.p`
     word-break: break-all;
     font-size: 15px;
     cursor: pointer !important;
-    transtion:all 0.5s;
+    transition:all 0.5s;
 `;
 const PopDivPA = styled.a`
     display: block;

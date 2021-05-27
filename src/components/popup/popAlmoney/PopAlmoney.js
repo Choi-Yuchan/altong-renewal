@@ -137,7 +137,7 @@ function PopAlmoney(props) {
                 </Popli>
                 <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
                     value={extraAlmoney} onChange={(e) => handleChange(e)}
-                autofocus type="number"></PopH3Input>알</Popli3>
+                autoFocus type="number"></PopH3Input>알</Popli3>
                 <Popli4>
                     <Popli4Button
                         onClick={(e) =>{
