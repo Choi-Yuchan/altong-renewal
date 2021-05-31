@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
+
 function FormatDateAsText(props){
     const curDate = props.date;
-    const nowDate = new Date();
 
-    const gap = nowDate.getTime() - curDate;
+    const gap = Date.now() - curDate;
     const gapSec = gap / 1000;
     const gapMin = gapSec / 60;
     const gapHour = gapMin / 60;

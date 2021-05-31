@@ -111,8 +111,11 @@ function QBoxTop(props) {
         </Wrapli>
         <WrapTitleli>{props.head.title}</WrapTitleli>
         <WrapThankli>
-          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true); }}
-          onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}><TimeToggler date={props.head.date} timeToggle={timeToggle}/></DateDiv>
+          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · 
+          <DateDiv onBlur={()=>{ setTimeToggle(true); }}
+          onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}>
+            <TimeToggler date={props.head.date} timeToggle={timeToggle}/>
+          </DateDiv>
           <ViewCountImg src="/Common/images/icon_view.svg"/><Num3Comma num={props.head.readCount}/>
         </WrapThankli>
       </WrapUl>

@@ -8,11 +8,12 @@ const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
   }
 
-function ShowView(props){
-    if(props.timeToggle === false){
-        return <FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText>
+function ShowView({date, timeToggle}){
+
+    if(timeToggle === false){
+        return <FormatDateAsText date={Date.parse(date)}/>
     }
-    return <><FormatDateAsText date={Date.parse(props.timedate)}></FormatDateAsText><ReplyLocaleSpan>{props.timedate} UTC+9</ReplyLocaleSpan></>
+    return <><FormatDateAsText date={Date.parse(date)}/><ReplyLocaleSpan>{date} UTC+9</ReplyLocaleSpan></>
 }
 function AldolViewImg(props){
     return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
@@ -118,7 +119,7 @@ function Reply(props) {
                                 setTimeToggle(!timeToggle);
                                 e.stopPropagation();
                             }
-                            } ><ShowView timedate={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
+                            } ><ShowView date={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
                                 DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys )
                             }
                         {/*댓글의 훈훈알, 좋아요, 싫어요 */}
@@ -146,38 +147,38 @@ function Reply(props) {
 
 export default Reply;
 
-const ReplyHunHun = styled.div`
-    display:inline-flex;
-    align-items:center;
-    margin-left:10px;
-    cursor:pointer;
-`;
-const ReplyHunImg = styled.img`
-    width:13px;
-`;
-const ReplyHunSpan = styled.span`
-    font-weight:normal;
-    margin-left:2px;
-    color:#fd0031;
-`;
-const ReplyGoodIcon = styled.div`
-    display:inline-flex;
-    font-weight:normal;
-    margin-left:10px;
-`;
-const SmileIconImg = styled.img`
-    width:13px;
-    margin-right:2px;
-`;
-const ReplyBadIcon = styled.div`
-    display:inline-flex;
-    font-weight:normal;
-    margin-left:10px;
-`;
-const BadIconImg = styled.img`
-    width:13px;
-    margin-right:2px;
-`;
+// const ReplyHunHun = styled.div`
+//     display:inline-flex;
+//     align-items:center;
+//     margin-left:10px;
+//     cursor:pointer;
+// `;
+// const ReplyHunImg = styled.img`
+//     width:13px;
+// `;
+// const ReplyHunSpan = styled.span`
+//     font-weight:normal;
+//     margin-left:2px;
+//     color:#fd0031;
+// `;
+// const ReplyGoodIcon = styled.div`
+//     display:inline-flex;
+//     font-weight:normal;
+//     margin-left:10px;
+// `;
+// const SmileIconImg = styled.img`
+//     width:13px;
+//     margin-right:2px;
+// `;
+// const ReplyBadIcon = styled.div`
+//     display:inline-flex;
+//     font-weight:normal;
+//     margin-left:10px;
+// `;
+// const BadIconImg = styled.img`
+//     width:13px;
+//     margin-right:2px;
+// `;
 
 const DelI = styled.i`
     font-style: normal;
