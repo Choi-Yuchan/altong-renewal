@@ -38,6 +38,7 @@ function OpenDiv(props){
         setReplyToggle={props.setReplyToggle}
         good={props.good} bad={props.bad} seqComponent={props.seqComponent}
         seqId={props.seqId}
+        choice={props.choice}
       ></ReplyBox>
       <ReplyList
         setReplys={props.setReplys}
@@ -156,6 +157,13 @@ function AnswerBox(props) {
   //번역버튼 클릭에 대한 AI를 만들었다.
   const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
   const [share, setShare] = useState(false);
+
+  const choose = () => {
+    if(props.jsonArr.choice === true) {
+      props.setChoice(false);
+    }
+  };
+  choose();
   
   return (
     <>
@@ -222,6 +230,7 @@ function AnswerBox(props) {
 
           jsonArr={ aiPlus }
           aiPlus={aiPlus.AI} setAiPlus={setAiPlus}
+          choice={props.choice}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>

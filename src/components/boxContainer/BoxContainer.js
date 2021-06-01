@@ -31,6 +31,7 @@ function BoxController(props) {
             selected={index}
             highlight = {props.highlight} setHighlight = {props.setHighlight}
             pageNumber={props.pageNumber}
+            choice={props.choice} setChoice={props.setChoice}
         >
         </AnswerBox> : ""
     );
@@ -39,6 +40,7 @@ function BoxController(props) {
 
 function BoxContainer(props) {
     const [ highlight , setHighlight ] = useState(-1);
+    const [choice, setChoice] = useState(true);
 
   return (
         <BoxController
@@ -53,6 +55,7 @@ function BoxContainer(props) {
             setShare={props.setShare} 
             highlight = {highlight} setHighlight = {setHighlight}
             pageNumber={props.pageNumber}
+            choice={choice} setChoice={setChoice}
         ></BoxController>
   );
 }

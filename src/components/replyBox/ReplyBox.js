@@ -11,22 +11,22 @@ function ViewAnswerBtn(props){
     const URL_ANS_CHOICE = "/restApi/answers/"+page+"/"+seqId+"/answer-choice"
     
     if(props.seqComponent === 'A'){
-
-
-        return <AnswerBtnAB show={props.goQuestion}
-            onClick={(e)=>{
-                console.log(URL_ANS_CHOICE);
-                axios.put(URL_ANS_CHOICE)
-                .then((response) => response.data)
-                .then( (data) => {
-                    setGoQuestion(false);
-                    console.log(data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-            }}
-        >채택하기</AnswerBtnAB>
+        if (props.choice === true) {
+            return <AnswerBtnAB show={props.goQuestion}
+                onClick={(e)=>{
+                    console.log(URL_ANS_CHOICE);
+                    axios.put(URL_ANS_CHOICE)
+                    .then((response) => response.data)
+                    .then( (data) => {
+                        setGoQuestion(false);
+                        console.log(data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                }}
+            >채택하기</AnswerBtnAB>
+        }
     }
     
     return <AnswerBtnA show={props.goAnswer} href={'/answer/answerWrite?QuestionSeq='+ page +'&CurPageName=&Section1=0&src_Sort=Seq&src_OrderBy=DESC'}
@@ -151,6 +151,7 @@ function ReplyBox(props) {
                 goAnswer={goAnswer}
                 goQuestion={goQuestion}
                 setGoQuestion={setGoQuestion}
+                choice={props.choice}
             ></ViewAnswerBtn>
           </AnswerDoList>
       </OlBox>
