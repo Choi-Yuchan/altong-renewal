@@ -51,7 +51,7 @@ function QuestionPopup(props) {
                 <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
-            <MainLi2 onClick={() => { props.setShare(true); props.setClicked(false)}}>
+            <MainLi2 onClick={() => { props.setShare(true); props.setClicked(false); } }>
                 <Popup text="공유" imgurl="/pub/answer/answerList/images/atm_more_2.png" >
                 </Popup>
             </MainLi2>

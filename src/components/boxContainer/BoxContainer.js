@@ -13,9 +13,9 @@ function BoxController(props) {
             setShowSiren={props.setShowSiren}
             setShowMessage={props.setShowMessage}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
-            setShare={props.setShare}
             selected={index}
             highlight = {props.highlight} setHighlight = {props.setHighlight}
+            pageNumber={props.pageNumber}
         >
         </Box>: 
         jaar.seqComponent === "A" ?
@@ -28,9 +28,9 @@ function BoxController(props) {
             setShowMessage={props.setShowMessage}
             infoAD={props.infoAD} setInfoAD={props.setInfoAD}
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
-            setShare={props.setShare}
             selected={index}
             highlight = {props.highlight} setHighlight = {props.setHighlight}
+            pageNumber={props.pageNumber}
         >
         </AnswerBox> : ""
     );
@@ -52,6 +52,7 @@ function BoxContainer(props) {
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             setShare={props.setShare} 
             highlight = {highlight} setHighlight = {setHighlight}
+            pageNumber={props.pageNumber}
         ></BoxController>
   );
 }

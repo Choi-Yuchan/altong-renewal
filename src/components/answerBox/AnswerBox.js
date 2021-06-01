@@ -13,6 +13,9 @@ import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
 
 import Num3Comma from '../functions/num3comma/Num3Comma'
 import LangTransCount from '../langTransBox/LangTransCount';
+import PopShare from '../popup/popShare/PopShare'
+import { Helmet } from 'react-helmet';
+
 
 const replyCount = (replys) => {
   if(replys==null) return 0
@@ -152,8 +155,11 @@ function AnswerBox(props) {
 
   //번역버튼 클릭에 대한 AI를 만들었다.
   const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
+  const [share, setShare] = useState(false);
   
   return (
+    <>
+    {share && <Helmet><script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script></Helmet>}
     <MainDiv borderColor={borderColor} className="Box" onClick={
       () => {
         props.setHighlight(props.selected);
@@ -186,7 +192,7 @@ function AnswerBox(props) {
           openAnswer={openAnswer}
           seqId={props.jsonArr.seqId}
           USER={props.USER}
-          setShare={props.setShare}
+          setShare={setShare}
           ></ABoxTop>
         <Contents
           setInfoAD={props.setInfoAD}
@@ -223,8 +229,16 @@ function AnswerBox(props) {
             </PopupADImg>
           </PopupADdivIn>
         </PopupADdiv>
+        <PopShare
+          clicked={props.clicked} setClicked={props.setClicked}
+          share={share} setShare={setShare}
+          jsonArr={props.jsonArr}
+          pageNumber={props.pageNumber}
+          USER={props.USER}
+          ></PopShare>
         
     </MainDiv>
+    </>
   );
 }
 

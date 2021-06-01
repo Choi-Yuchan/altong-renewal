@@ -38,7 +38,6 @@ function QuestionBox(props) {
   const [showMessage, setShowMessage] = useState({ show:false, user:0, nick:'' });
   const [hunAlram,setHunAlram] = useState(false);
   const [infoAD, setInfoAD] = useState({show:false, adUrl: "", adFile: ""});
-  const [share, setShare] = useState(false);
   const [showNavi, setShowNavi] = useState(false);
   const [SESS] = useState(cookies.SESS);
   const [keyToggle, setKeyToggle] = useState(false);
@@ -94,6 +93,7 @@ function QuestionBox(props) {
     twitterCard: 'summary',
     twitterDescrip: '알통 수익형 지식 경제 공유 플랫폼'
   }
+  const pageNumber = SSRJSON[0].pageSeq;
 
   return (
     <>
@@ -130,7 +130,7 @@ function QuestionBox(props) {
             SSRJSON={SSRJSON} USER={user} SESS={SESS}
             infoAD={infoAD} setInfoAD={setInfoAD}
             hunAlram={hunAlram} setHunAlram={setHunAlram}
-            setShare={setShare}
+            pageNumber={pageNumber}
           ></BoxController>
         </WrapperDiv>
       </MainDiv>
@@ -153,11 +153,6 @@ function QuestionBox(props) {
         showMessage={showMessage.show} user={showMessage.user} nick={showMessage.nick}
         setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
-
-      <PopShare
-        clicked={bodyClicked} setClicked={setBodyClicked}
-        share={share} setShare={setShare}
-      ></PopShare>
 
       <PopAD
         infoAD={infoAD} setInfoAD={setInfoAD} 
