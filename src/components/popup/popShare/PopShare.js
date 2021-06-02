@@ -58,9 +58,9 @@ function PopShare(props) {
     }
     const kakao = () => {
         // javascript 키가 잘 작동되는지 확인 필요
-        Kakao.init('efd4e6490f58a10c9322bada90293823');
+        window.Kakao.init('efd4e6490f58a10c9322bada90293823');
 
-        Kakao.Link.sendDefault({
+        window.Kakao.Link.sendDefault({
             objectType: 'feed',
             content: {
                 title: title(),
@@ -91,12 +91,12 @@ function PopShare(props) {
         const filter = 'win16|win32|win64|mac|macintel';
         if (navigator.platform) {
             if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-                Kakao.Story.open({
+                window.Kakao.Story.open({
                     url: url,
                     text: title()
                 });
             } else {
-                Kakao.Story.share({
+                window.Kakao.Story.share({
                     url: url,
                     text: title()
                 });
