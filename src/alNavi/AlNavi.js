@@ -17,7 +17,7 @@ const MySpaceItems = { ko : [
 
 const NaviItems = { ko : [ 
         { id: 0, img:"/pub/css/mainico/alert.svg" , 
-            href:"/member/alarm/alarm", val: "알림", count: 120, i:true },
+            href:"/member/alarm/alarm", val: "알림", i:true },
         { id: 1, img:"/pub/css/mainico/mypage.svg" , 
             href:"", val: "나의 공간", click: "mySpace", mini: MySpaceItems },
         { id: 2, img:"/pub/css/mainico/nicksearch.svg" , 
@@ -78,7 +78,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
     const URL_NAVI = ''; // 네비게이션 기본 정보
     const URL_NAVI_ITEM = ''; // 네비게이션 리스트 하위 컴포넌트로 전달해줄 data
     const URL_MY_SPACE = ''; // 나의 공간 리스트
-    const URL_COUNT_ALARM = "api/user/alarm/count"; // 
+    const URL_COUNT_ALARM = "/api/user/alarm/count"; // 
 
     const [listText, setListText] = useState(null);
     const [naviList,setNaviList] = useState(null);
@@ -128,18 +128,19 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                 setError(null);
 
                 const alarmNumber = await axios.get(URL_COUNT_ALARM);
-                setCountAlarm(alarmNumber);
-            } catch(err){
-                setError(err.message);
+                setCountAlarm(alarmNumber.data.count);
+            } catch(error){
+                setError(error);
             }
         }
-        if(error) return console.log(error);
         
         getList();
         getNaviList();
         getMySpace();
         getAlarmNum();
     },[]);
+
+
 
     //click event handle
     const clickedNavi = (e) => {
@@ -176,7 +177,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         return NaviItems[lang].map((navi) => 
             <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
-                count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+                count={countAlarm} i={navi.i} click={navi.click} mini={navi.mini}
                 sound={navi.sound} keyToggle={keyToggle} setKeyToggle={setKeyToggle}
             />
         ).sort(function(a, b){
@@ -190,7 +191,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         return NaviItems[lang].map((navi) => 
                 <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
-                count={navi.count} i={navi.i} click={navi.click} mini={navi.mini}
+                count={countAlarm} i={navi.i} click={navi.click} mini={navi.mini}
                 bar={navi.bar} sound={navi.sound} keyToggle={keyToggle} setKeyToggle={setKeyToggle}
                 />
             ).sort(function(a, b){

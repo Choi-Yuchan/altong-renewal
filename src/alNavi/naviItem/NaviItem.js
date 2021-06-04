@@ -77,7 +77,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
                 }}>
                     <NaviB img={img}></NaviB>
                     <span>{val}</span>
-                    <NaviAlramI show={i===true}>{i===true?count:""}</NaviAlramI>
+                    <NaviAlramI show={i===true}>{i===true && count}</NaviAlramI>
                 </NaviAMini>
                 <ul>
                     {mini["ko"].map((list)=>{
