@@ -29,12 +29,9 @@ jobs:
       # - node/install-packages:
       #     pkg-manager: yarn 
       - run:
-<<<<<<< HEAD
           name: Run build
           command: CI=false npm run build
       - run:
-=======
->>>>>>> origin/release
           name: Run tests
           command: npm test
 
@@ -47,8 +44,4 @@ workflows:
     jobs:
       - build-and-test
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
-<<<<<<< HEAD
       # - node/test
-=======
-      # - node/test
->>>>>>> origin/release
