@@ -117,13 +117,13 @@ function Box(props) {
         <QBoxTop
           clicked={props.clicked} setClicked={props.setClicked}
           white={props.white} setWhite={props.setWhite}
-          head={aiPlus.head} seqComponent={aiPlus.seqComponent}
-          pageSeq={aiPlus.pageSeq}
+          head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
+          pageSeq={props.jsonArr.pageSeq}
           setShowAlmoney={props.setShowAlmoney}
           setShowSiren={props.setShowSiren}
           setShowMessage={props.setShowMessage}
-          mini={aiPlus.mini}
-          seqId={aiPlus.seqId}
+          mini={props.jsonArr.mini}
+          seqId={props.jsonArr.seqId}
           USER={props.USER}
           setShare={setShare}
         />

@@ -98,7 +98,7 @@ function QBoxTop(props) {
         props.setClicked(false);
         e.stopPropagation();
       }}>
-        <HeadFigureImg src={"/UploadFile/Profile/"+props.head.profile} onError={handleImgError}/>
+        <HeadFigureImg src={"/UploadFile/Profile/" + props.head.profile} onError={handleImgError}/>
         
         <HeadFigureFigcaption>{props.head.locale}</HeadFigureFigcaption>
       </HeadFigure>
