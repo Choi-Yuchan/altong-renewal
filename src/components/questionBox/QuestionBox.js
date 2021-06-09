@@ -10,7 +10,6 @@ import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
 import PopSilen from '../popup/popSilen/PopSilen';
 import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
-import PopShare from '../popup/popShare/PopShare';
 import useSound from '../functions/useSound/useSound';
 import SEO from '../../SEO'
 
@@ -22,9 +21,12 @@ function ShowBlackDiv(props){
 }
   
 function QuestionBox(props) {
+
+  const question = props.match.params.question;
+
   //URL LIST
-  const URL_QUESTION = "/rest/questions/"+props.match.params.questions;
-  const URL_USER = "/rest/user";
+  const URL_QUESTION = `/api/questions/${question}`;
+  const URL_USER = "/api/user/info";
   const URL_SOUND = "/Common/ks/audio5.mp3";
 
   const [bodyClicked, setBodyClicked] = useState(true);
@@ -45,37 +47,30 @@ function QuestionBox(props) {
   //keysound control
   const handleSound = useSound(URL_SOUND, keyToggle);
 
-  useEffect(()=>{
-    axios.get(URL_QUESTION)
-    .then((response) => response.data)
-    .then((data) => {
-      if(data.code === "error"){
-        console.log("error");
-        console.log(data.error);
-      }else{
-        setJsonList(data);
+  useEffect(() => {
+    const getData = async () => {
+      try{
+        const response = await axios.get(URL_QUESTION);
+        setJsonList(response.data);
+      } catch (e) {
+        console.log(e)
       }
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  }
-  , []);
+    }
 
-  useEffect(()=>{
-    axios.get(URL_USER)
-    .then((response) => response.data)
-    .then((data) => {
-        setUser(data);
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  }
-  , []);
-  if(jsonList === ""){
-    return <div></div>
-  }
+    const getUserData = async () => {
+      try{
+        const response = await axios.get(URL_USER);
+        setUser(response.data);
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    getData();
+    getUserData();
+  }, []);
+
+
 
   const seo = {
     title: '알통 :: 지식공유 플랫폼',
@@ -93,7 +88,8 @@ function QuestionBox(props) {
     twitterCard: 'summary',
     twitterDescrip: '알통 수익형 지식 경제 공유 플랫폼'
   }
-  const pageNumber = SSRJSON[0].pageSeq;
+
+  const pageNumber = SSRJSON.pageSeq;
 
   return (
     <>
@@ -106,13 +102,14 @@ function QuestionBox(props) {
         }
       }
     >
+      {jsonList && 
       <MainDiv
       {...handleSound}>
         <TopNavi
           user={user}
           setShowNavi={setShowNavi}
           setClicked={setBodyClicked}
-        ></TopNavi>
+          ></TopNavi>
         <AlNavi
           user={user} 
           show={showNavi} setShowNavi={setShowNavi}
@@ -131,32 +128,33 @@ function QuestionBox(props) {
             infoAD={infoAD} setInfoAD={setInfoAD}
             hunAlram={hunAlram} setHunAlram={setHunAlram}
             pageNumber={pageNumber}
-          ></BoxController>
+            ></BoxController>
         </WrapperDiv>
       </MainDiv>
+      }
       
       <PopAlmoney
-        clicked={bodyClicked} setClicked={setBodyClicked}
+      clicked={bodyClicked} setClicked={setBodyClicked}
         showAlmoney={showAlmoney.show} page={showAlmoney.page} seq={showAlmoney.seq}
         setShowAlmoney={setShowAlmoney}
         setHunAlram={setHunAlram}
-      ></PopAlmoney>
+        ></PopAlmoney>
 
       <PopSilen
-        clicked={bodyClicked} setClicked={setBodyClicked}
-        showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq} title={showSiren.title}
+      clicked={bodyClicked} setClicked={setBodyClicked}
+      showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq} title={showSiren.title}
         setShowSiren={setShowSiren} USER={user}
-      ></PopSilen>
+        ></PopSilen>
         
       <PopMessage
-        clicked={bodyClicked} setClicked={setBodyClicked}
+      clicked={bodyClicked} setClicked={setBodyClicked}
         showMessage={showMessage.show} user={showMessage.user} nick={showMessage.nick}
         setShowMessage={setShowMessage} USER={user}
       ></PopMessage>
 
       <PopAD
-        infoAD={infoAD} setInfoAD={setInfoAD} 
-        clicked={bodyClicked} setClicked={setBodyClicked}
+      infoAD={infoAD} setInfoAD={setInfoAD} 
+      clicked={bodyClicked} setClicked={setBodyClicked}
       ></PopAD>
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
