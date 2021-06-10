@@ -271,6 +271,12 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                 <ul>
                     {ItemLists("ko")}
                 </ul>
+                <LangMenu>
+                    <LangMenuEl>한글</LangMenuEl>/
+                    <LangMenuEl>EN</LangMenuEl>/
+                    <LangMenuEl>日本語 </LangMenuEl>/
+                    <LangMenuEl>中文 </LangMenuEl>
+                </LangMenu>
                 <AlNaviBot>
                     <BottomBtn href="/default/logOut">
                         <LogoutIco src="/pub/css/mainico/logout.svg" alt={altText[1]}/>
@@ -512,4 +518,17 @@ const AlNaviBot = styled.div`
     justify-content:center;
     align-items:center;
     padding:10px;    
+`;
+const LangMenu = styled.div`
+    display:felx;
+    justify-content:center;
+    align-items:center;
+    margin-top:10px;
+`;
+const LangMenuEl = styled.span`
+    font-size:14px;
+    font-weight:bold;
+    margin:0 10px;
+    padding:0 4px;
+    cursor:pointer;
 `;
