@@ -164,7 +164,7 @@ function AnswerBox(props) {
     }
   };
   choose();
-  
+
   return (
     <>
     {share && <Helmet><script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script></Helmet>}
