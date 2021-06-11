@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 
 function LangTransCount() {
+  const {t} = useTranslation();
     return (
       <TransCountDiv>
-        <TransCountP>이 번역에 대한 당신의 평가는?</TransCountP>
+        <TransCountP>{t('LangTrans_evaluation')}</TransCountP>
         <TransCountIconBox>
           <TransCountIcon src="/Common/images/smile.svg"></TransCountIcon>
           <TransCountNumber>0</TransCountNumber>

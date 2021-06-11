@@ -3,9 +3,11 @@ import ReplyContainer from '../replyContainer/ReplyContainer'
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../../App.css';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 
-const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
+const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
     //URL LIST
     const URL_QUE_REPLY = "/rest/questions/"+pageSeq+"/reply";
     const URL_ANS_REPLY = "/rest/answers/"+pageSeq+"/reply";
@@ -26,18 +28,16 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys) => {
             setReplys(data.replys);
         }else if(data.code === "daydup"){
             if(data.num > 0){
-                alert("1일 기준, 동일 제목 또는 내용의 답변글은 중복 " + 
-                data.num + "건 까지만 허용 등록될 수 있습니다. \n다른 제목 또는 내용으로 글을 다시 등록하여 주십시오!");
+                alert(langTrans[3] + data.num + langTrans[4]);
             }else{
-                alert("1일 기준, 동일 내용의 댓글이 이미 등록되어 있습니다. \n다른 내용으로 댓글을 다시 등록하여 주십시오!");
+                alert(langTrans[5]);
             }
         }else if(data.code === "continuetime"){
-            alert("연속으로 댓글을 등록하실 수는 없습니다. \n이전 댓글 등록 후부터 "+
-            data.num + "초 경과 후에 다시 댓글을 등록하여 주십시오!");
+            alert(langTrans[6] + data.num + langTrans[7]);
         }else if(data.code === "notlogin"){
-            alert("로그인후 이용 가능합니다.");
+            alert(langTrans[1]);
         }else if(data.code === "nulldata"){
-            alert("댓글 내용을 입력하세요!");
+            alert(langTrans[8]);
         }
 
     })
@@ -62,13 +62,13 @@ function ShowList(props){
     <ShowView row={props.replyToggle}>
         <TextAreaDiv>
             <TextArea placeholder=
-            { nick===""? "로그인 후 이용하시기 바랍니다.": nick+" 님의 의견을 댓글로 입력해주세요."}
+            { nick===""? props.langTrans[1]: nick+props.langTrans[0]}
             maxLength="400" onChange={(e) => {
                 setText(e.target.value);
             } } value={text} onClick={()=>{setReplyClick(true)}}></TextArea>
                 <ReplyButton width={replyClick} onClick={() => {
-                    SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys);
-                    } }>등록</ReplyButton>
+                    SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys, props.langTrans);
+                    } }>{props.langTrans[2]}</ReplyButton>
         </TextAreaDiv>
         <ReplySubmit>
             <ReplySubmitP><span>{text.length}</span>/400</ReplySubmitP>
@@ -84,6 +84,18 @@ function ShowList(props){
 
 function ReplyList(props) {
     const resetReplys = props.resetReplys;
+    const {t} = useTranslation();
+    const langTrans = [
+        t('Reply_Comment'),
+        t('Login_Required'),
+        t('Reply_Post'),
+        t('System_Same_Content1'),
+        t('System_Same_Content2'),
+        t('System_Same_Comment'),
+        t('System_Limit_Comment1'),
+        t('System_Limit_Comment2'),
+        t('System_Enter_Contents'),
+    ]
     
     return (
       <ShowList USER={props.USER} replyToggle={props.replyToggle}
@@ -92,6 +104,7 @@ function ReplyList(props) {
         className="ReplyList" replys={props.replys}
         setReplys={props.setReplys}
         resetReplys={resetReplys}
+        langTrans={langTrans}
         >
       </ShowList>
     );

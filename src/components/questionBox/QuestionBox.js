@@ -48,6 +48,7 @@ function QuestionBox(props) {
   const handleSound = useSound(URL_SOUND, keyToggle);
 
   useEffect(() => {
+    
     const getData = async () => {
       try{
         const response = await axios.get(URL_QUESTION);

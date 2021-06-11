@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
 import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
@@ -21,10 +23,10 @@ function AldolViewImg(props){
 function AldolViewContents(props){
 
     if(props.seqId === 10003513){
-        if(props.content === "관리자님이 이 질문을 꼭대기로 올리셨어요."){
-            return <AldolReplyContents>관리자님이 이 질문을 꼭대기로 올리셨어요.</AldolReplyContents>
+        if(props.content === props.replyText[0]){
+            return <AldolReplyContents>{props.replyText[0]}</AldolReplyContents>
         }
-        return <AldolReplyContents>{props.to} 님이 감사의 마음으로 {props.from} 님에게 <Num3Comma num={props.al}></Num3Comma>알을 증정하셨어요.</AldolReplyContents>
+        return <AldolReplyContents>{props.to} {props.replyText[1]} {props.from} {props.replyText[2]} <Num3Comma num={props.al}></Num3Comma>{props.replyText[3]}</AldolReplyContents>
     }
     return <ReplyContents>{props.content}</ReplyContents>
 }
@@ -51,13 +53,13 @@ const DelReply = ( seqComponent, replySeq, setReplys) => {
     });
 }
 
-const DelViewer = (user, seqId, seqComponent, replySeq, setReplys) => {
+const DelViewer = (user, seqId, seqComponent, replySeq, setReplys, replyText) => {
     if(user === seqId){
         return <> · <DelI onClick={(e)=>{
             DelReply(e, seqComponent, replySeq, setReplys );
-        }}>삭제</DelI></>
+        }}>{replyText[4]}</DelI></>
     } else if (user !== 10003513) {
-        return <> · <ReportImg>신고</ReportImg></>
+        return <> · <ReportImg>{replyText[5]}</ReportImg></>
     }
     
 }
@@ -88,6 +90,15 @@ function Reply(props) {
             setTimeToggle(false);
         }
     }, [props.white]);
+    const {t} = useTranslation();
+    const replyText = [
+        t('Reply_System_Comment_top'), 
+        t('Reply_System_Comment_thanks'), 
+        t('Reply_System_Comment_who'), 
+        t('Reply_System_Comment_gratitude'),
+        t('Reply_Delete'),
+        t('Reply_Report')
+    ];
 
     return (
       <MainContents className="Reply">
@@ -106,7 +117,9 @@ function Reply(props) {
                       </ReplyLocaleTh>
                         <AldolViewContents
                             content={props.reply.content} from={props.reply.nick2}
-                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}>
+                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}
+                            replyText={replyText}
+                        >
                         </AldolViewContents>
                   </tr>
                   <tr>
@@ -120,7 +133,7 @@ function Reply(props) {
                                 e.stopPropagation();
                             }
                             } ><ShowView date={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
-                                DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys )
+                                DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys, replyText )
                             }
                         {/*댓글의 훈훈알, 좋아요, 싫어요 */}
                         {/*

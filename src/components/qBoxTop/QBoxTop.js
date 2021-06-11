@@ -7,6 +7,8 @@ import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
@@ -59,7 +61,8 @@ function TimeToggler(props) {
 }
 
 const UlvText = (props) => {
-  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+  const {t} = useTranslation();
+  const LV=[t('Lv_Hidden'),t('Lv_Al'),t('Lv_Butterfly'),t('Lv_Smiling'),t('Lv_Fiery'),t('Lv_Golden'),t('Lv_Guardian'),t('Lv_Light'),t('Lv_Chief'),t('Lv_Archangel'),t('Lv_Chief_Archangel'),t('Lv_Altong_Addict')];
   return LV[props];
 }
 
@@ -73,6 +76,7 @@ function QBoxTop(props) {
   const [timeToggle, setTimeToggle] = useState(true);
   const [popToggle, setPopToggle] = useState(false);
   const [showMini, setShowMini] = useState(false);
+  const {t} = useTranslation();
 
   
   useEffect(() => {
@@ -107,11 +111,11 @@ function QBoxTop(props) {
         <Wrapli>
           <HeadFigureLocaleImg src={"/Common/images/nation/"+ props.head.locale +'.svg'}/>
           <WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
-          <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>님의 질문입니다.
+          <WrapStrong className="prgNickname_Q">{props.head.nick}</WrapStrong>{t('QBoxTop_question')}
         </Wrapli>
         <WrapTitleli>{props.head.title}</WrapTitleli>
         <WrapThankli>
-          감사알 지급률<WrapB>{props.head.persent}%</WrapB> · 
+          {t('QBoxTop_gratitudeAl_rate')}<WrapB>{props.head.persent}%</WrapB> · 
           <DateDiv onBlur={()=>{ setTimeToggle(true); }}
           onClick={(e) => {setTimeToggle(!timeToggle); props.setWhite(false); e.stopPropagation();}}>
             <TimeToggler date={props.head.date} timeToggle={timeToggle}/>

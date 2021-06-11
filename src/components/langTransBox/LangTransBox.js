@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 const MainDiv = styled.div`
   margin-bottom: 10px;
@@ -67,10 +69,11 @@ const LangAIDiv = styled.div`
 
 
 function LangTransBox(props) {
+  const {t} = useTranslation();
 
     return (
       <MainDiv className="LangTransBox">
-        <OriginDiv check={props.aiPlus} onClick={()=>{props.setAiPlus({...props.aiPlus, AI:false})}}>원문</OriginDiv>
+        <OriginDiv check={props.aiPlus} onClick={()=>{props.setAiPlus({...props.aiPlus, AI:false})}}>{t('LangTrans_Orig')}</OriginDiv>
         <Line></Line>
         <LangAIDiv check={props.aiPlus} onClick={()=>{ props.setAiPlus({...props.aiPlus, AI:true})}}>AI</LangAIDiv>
       </MainDiv>

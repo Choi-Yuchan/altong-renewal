@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import Num3Comma from '../../functions/num3comma/Num3Comma'
 import FormatDateAsText from '../../functions/formatDateAsText/FormatDateAsText'
 
+import {useTranslation} from 'react-i18next';
+import i18n from '../../../config/lang/i18n';
 
 const ExtraViewer = (nick, money, time) => {
     return <>
         <AlmoneyDivUlLi2>
           <AlmoneyDivUlLi2A>
-              <b>{nick} (<Num3Comma num={money}></Num3Comma>알)</b>
+              <b>{nick} (<Num3Comma num={money}></Num3Comma>)</b>
           </AlmoneyDivUlLi2A>
           <FormatDateAsText date={Date.parse(time)}></FormatDateAsText>
         </AlmoneyDivUlLi2>
@@ -22,12 +24,13 @@ const ExtraAlList = (lists) => {
   }
  
 function PopExtraAl(props) {
+    const {t} = useTranslation();
     const extraList = props.extraList;
     const showExtraList= props.showExtraList;
     
     return (
       showExtraList === true &&  <AlmoneyDivUl show={showExtraList}>
-          <AlmoneyDivUlLi>증정회원</AlmoneyDivUlLi>
+          <AlmoneyDivUlLi>{t('PopExtraAl_Given')}</AlmoneyDivUlLi>
           {ExtraAlList(extraList)}
       </AlmoneyDivUl>    
       );

@@ -1,0 +1,55 @@
+{
+    "QBoxTop_question": "さんの質問",
+    "QBoxTop_gratitudeAl_rate": "感謝アル支給率",
+    
+    "Lv_Hidden": "非公開",
+    "Lv_Al": "アル天使",
+    "Lv_Butterfly": "蝶天使",
+    "Lv_Smiling": "笑顔天使",
+    "Lv_Fiery": "熱血天使",
+    "Lv_Golden": "黄金天使",
+    "Lv_Guardian": "守護天使",
+    "Lv_Light": "光の天使",
+    "Lv_Chief": "天使長",
+    "Lv_Archangel": "大天使",
+    "Lv_Chief_Archangel": "大天使長",
+    "Lv_Altong_Addict": "ｱﾙﾄﾝ廃人",
+
+    "Confirm_Top_List": "この質問をリストの最上部へ送りますか？\n会員様のアルバンクの残高から 10,000 アルが差し引かれます。\n（24時間後に元の位置に戻ります。）",
+
+    "QPopup_Bookmark": "ブックマーク",
+    "QPopup_Share": "シェア",
+    "QPopup_To_top": "頂上へ",
+    "QPopup_Warming_Al": "温みアル",
+    "QPopup_Report": "報告",
+
+    "PopExtraAl_Given": "贈呈会員",
+    "PopExtraAl_Al": "アル",
+
+    "LangTrans_evaluation": "この翻訳、あなたの評価は？",
+    "LangTrans_Orig": "原文",
+
+    "ReplyBtn_Translate": "翻訳する",
+    "ReplyBtn_Select": "採択する",
+    "ReplyBtn_Post_answer": "回答する",
+    "ReplyBtn_Answer_posted": "回答済み",
+
+    "Reply_Comment": "さん、コメントを残してください。",
+    "Login_Required": "ログインが必要です！",
+    "Reply_Post": "投稿",
+
+    "System_Same_Content1": "1日あたり、同一内容の投稿は",
+    "System_Same_Content2": "個まで許されます。\n 別の内容で投稿してください。",
+    "System_Same_Comment": "1日あたり、同一内容のコメントが既に登録されています。\n別の内容でコメントを再登録してください。",
+    "System_Limit_Comment1": "コメントは連続して登録できません。\n以前登録から",
+    "System_Limit_Comment2": "秒経過後に再登録してください。",
+    "System_Enter_Contents": "内容を入力してください！",
+
+    "Reply_System_Comment_top": "管理者 さんがこの質問を頂上へ引き上げました。",
+    "Reply_System_Comment_thanks": "さんが感謝の気持ちで、",
+    "Reply_System_Comment_who": "さんに",
+    "Reply_System_Comment_gratitude": "アルを贈呈しました！",
+    "Reply_Delete": "削除",
+    "Reply_Report": "報告"
+
+}

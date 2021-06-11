@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import NaviItem from './naviItem/NaviItem';
 import axios from 'axios';
 
+import {useTranslation} from 'react-i18next';
+import i18n from '../config/lang/i18n';
+
 const MySpaceItems = { ko : [
     { id: 0, val: "정보", href: "/member/myInfo" },
     { id: 1, val: "알뱅크", href: "/member/bank/index" },
@@ -73,6 +76,8 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
     const userInfo = langAlNavi.ko.user;
     const altText = langAlNavi.ko.alt;
     const widMessage = langAlNavi.ko.confirm_p;
+
+    const {t} = useTranslation();
 
     //it is valued axios and control data
     const URL_NAVI = ''; // 네비게이션 기본 정보
@@ -272,10 +277,10 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                     {ItemLists("ko")}
                 </ul>
                 <LangMenu>
-                    <LangMenuEl>한글</LangMenuEl>/
-                    <LangMenuEl>EN</LangMenuEl>/
-                    <LangMenuEl>日本語 </LangMenuEl>/
-                    <LangMenuEl>中文 </LangMenuEl>
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ko')}}>한글</LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('en')}}>EN</LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('zh')}}>中文 </LangMenuEl>
                 </LangMenu>
                 <AlNaviBot>
                     <BottomBtn href="/default/logOut">

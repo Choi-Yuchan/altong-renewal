@@ -1,0 +1,54 @@
+{
+    "QBoxTop_question": "님의 질문",
+    "QBoxTop_gratitudeAl_rate": "감사알 지급률",
+
+    "Lv_Hidden": "비공개",
+    "Lv_Al": "알천사",
+    "Lv_Butterfly": "나비천사",
+    "Lv_Smiling": "미소천사",
+    "Lv_Fiery": "열혈천사",
+    "Lv_Golden": "황금천사",
+    "Lv_Guardian": "수호천사",
+    "Lv_Light": "빛의천사",
+    "Lv_Chief": "천사장",
+    "Lv_Archangel": "대천사",
+    "Lv_Chief_Archangel": "대천사장",
+    "Lv_Altong_Addict": "알통폐인",
+
+    "Confirm_Top_List": "이 질문을 목록 최상단으로 보내시겠습니까?\n회원님의 잔액에서 10,000 알이 차감됩니다.\n(24시간 후 원래 위치로 되돌아갑니다)",
+
+    "QPopup_Bookmark": "찜",
+    "QPopup_Share": "공유",
+    "QPopup_To_top": "꼭대기",
+    "QPopup_Warming_Al": "훈훈알",
+    "QPopup_Report": "신고",
+
+    "PopExtraAl_Given": "증정 회원",
+    "PopExtraAl_Al": "알",
+
+    "LangTrans_evaluation": "이 번역에 대한 당신의 평가는?",
+    "LangTrans_Orig": "원문",
+
+    "ReplyBtn_Translate": "번역하기",
+    "ReplyBtn_Select": "채택하기",
+    "ReplyBtn_Post_answer": "답변하기",
+    "ReplyBtn_Answer_posted": "답변완료",
+
+    "Reply_Comment": "님의 의견을 댓글로 남겨주세요.",
+    "Login_Required": "로그인이 필요합니다!",
+    "Reply_Post": "등록",
+
+    "System_Same_Content1": "1일 기준, 동일 내용의 중복 글은",
+    "System_Same_Content2": "개까지만 허용됩니다.\n 다른 내용으로 글을 다시 등록해주세요.",
+    "System_Same_Comment": "1일 기준, 동일 내용의 댓글이 이미 등록되어 있습니다.\n다른 내용으로 댓글을 다시 등록해주세요.",
+    "System_Limit_Comment1": "댓글을 연속으로 등록하실 수 없습니다. \n이전 등록으로부터",
+    "System_Limit_Comment2": "초 경과 후 다시 등록해주세요.",
+    "System_Enter_Contents": "내용을 입력해주세요!",
+
+    "Reply_System_Comment_top": "관리자님이 이 질문을 꼭대기로 올리셨어요.",
+    "Reply_System_Comment_thanks": "님이 감사의 마음으로",
+    "Reply_System_Comment_who": "님께",
+    "Reply_System_Comment_gratitude": "알을 증정하셨어요!",
+    "Reply_Delete": "삭제",
+    "Reply_Report": "신고"
+}

@@ -1,0 +1,54 @@
+{
+    "QBoxTop_question": "的问题",
+    "QBoxTop_gratitudeAl_rate": "谢阿尔支给率",
+
+    "Lv_Hidden": "隐藏",
+    "Lv_Al": "阿尔天使",
+    "Lv_Butterfly": "蝴蝶天使",
+    "Lv_Smiling": "微笑天使",
+    "Lv_Fiery": "热血天使",
+    "Lv_Golden": "黄金天使",
+    "Lv_Guardian": "守护天使",
+    "Lv_Light": "光之天使",
+    "Lv_Chief": "首席天使",
+    "Lv_Archangel": "大天使",
+    "Lv_Chief_Archangel": "首席大天使",
+    "Lv_Altong_Addict": "阿尔通瘾",
+
+    "Confirm_Top_List": "您将这个问题放在列表的顶部吗？\n从您的阿尔银行余额中 10000 阿尔扣除。\n（该帖子应在24小时内恢复到原来的位置。）",
+
+    "QPopup_Bookmark": "收藏",
+    "QPopup_Share": "共享",
+    "QPopup_To_top": "放在顶部",
+    "QPopup_Warming_Al": "暖暖阿尔",
+    "QPopup_Report": "举报",
+
+    "PopExtraAl_Given": "赠送人",
+    "PopExtraAl_Al": "阿尔",
+
+    "LangTrans_evaluation": "您如何评价此翻译？",
+    "LangTrans_Orig": "原文",
+
+    "ReplyBtn_Translate": "翻译",
+    "ReplyBtn_Select": "选择",
+    "ReplyBtn_Post_answer": "发布答案",
+    "ReplyBtn_Answer_posted": "已答完",
+
+    "Reply_Comment": ", 留下您的留言。",
+    "Login_Required": "需要登录！",
+    "Reply_Post": "发布",
+
+    "System_Same_Content1": "今天有同样的帖子。 最多允许发布",
+    "System_Same_Content2": "个相同的帖子。\n 请更改内容而发布。",
+    "System_Same_Comment": "今天也有同样的留言。\n请在发布前更改内容。",
+    "System_Limit_Comment1": "存在连续发布限制。\n请从最后提交以来",
+    "System_Limit_Comment2": "秒后再次发布。",
+    "System_Enter_Contents": "请输入内容！",
+
+    "Reply_System_Comment_top": "管理员 将此问题放在顶部。",
+    "Reply_System_Comment_thanks": "赠送了",
+    "Reply_System_Comment_who": "",
+    "Reply_System_Comment_gratitude": "阿尔以便表示感谢！",
+    "Reply_Delete": "删除",
+    "Reply_Report": "举报"
+}
