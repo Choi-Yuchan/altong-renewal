@@ -15,7 +15,8 @@ import Num3Comma from '../functions/num3comma/Num3Comma'
 import LangTransCount from '../langTransBox/LangTransCount';
 import PopShare from '../popup/popShare/PopShare'
 import { Helmet } from 'react-helmet';
-
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 const replyCount = (replys) => {
   if(replys==null) return 0
@@ -54,11 +55,11 @@ function OpenDiv(props){
 }
 
 const ChoiceView = (props) => {
-  if(props.choice) return <TopChoiceP><TopImg src={'/Common/images/choice_askerC.png'}></TopImg>질문자선택</TopChoiceP>
+  if(props.choice) return <TopChoiceP><TopImg src={'/Common/images/choice_askerC.png'}></TopImg>{props.choiceText[0]}</TopChoiceP>
   return '';
 }
 const ChoiceNetizenView = (props) => {
-  if(props.netizen) return <TopNetizenP><TopImg src={'/Common/images/choice_netizenC.png'}></TopImg>천사들의 선택</TopNetizenP>
+  if(props.netizen) return <TopNetizenP><TopImg src={'/Common/images/choice_netizenC.png'}></TopImg>{props.choiceText[1]}</TopNetizenP>
   return '';
 }
 
@@ -164,6 +165,8 @@ function AnswerBox(props) {
     }
   };
   choose();
+  const {t} = useTranslation();
+  const choiceText = [t('Questioner_Choice'), t('Angel_Choice')];
 
   return (
     <>
@@ -184,8 +187,8 @@ function AnswerBox(props) {
             <PopExtraAl showExtraList={showExtraList} extraList={extras}></PopExtraAl>
           </AlmoneyDiv>
           <TopH3Div>
-            <ChoiceView choice={props.jsonArr.choice}></ChoiceView>
-            <ChoiceNetizenView netizen={props.jsonArr.netizen}></ChoiceNetizenView>
+            <ChoiceView choice={props.jsonArr.choice} choiceText={choiceText}></ChoiceView>
+            <ChoiceNetizenView netizen={props.jsonArr.netizen} choiceText={choiceText}></ChoiceNetizenView>
           </TopH3Div>
         </TopH3>
         <ABoxTop

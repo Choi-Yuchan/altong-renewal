@@ -50,5 +50,35 @@
     "Reply_System_Comment_who": "",
     "Reply_System_Comment_gratitude": "Al as a token of gratitude!",
     "Reply_Delete": "Delete",
-    "Reply_Report": "Report"
+    "Reply_Report": "Report",
+
+    "Share_KakaoTalk": "Kakao Talk",
+    "Share_KakaoStory": "Kakao Story",
+    "Share_Naver": "Naver",
+    "Share_Facebook": "Facebook",
+    "Share_Twitter": "Twitter",
+    "Copy_URL": "Copy URL",
+
+    "Questioner_Choice": "Questioner's choice",
+    "Angel_Choice": "Angel's choice",
+    "AnswerBox_answer": " 's answer",
+    "AnswerBox_Selected_rate": "Answer-selected rate",
+
+    "AnswerContents_Open": "Open",
+    "AnswerEtimate_Altong": "Altong",
+    "AnswerEtimate_Good": "Good",
+    "AnswerEtimate_Soso": "So so",
+    "AnswerEtimate_Bad": "Bad",
+    "AnswerEtimate_Upset": "Upset",
+    "AnswerEtimate_Fun": "Fun",
+    "Already_Evaluated": "Already evaluated!",
+
+    "System_Warning": "The request could not be fulfilled because the server encountered an error!",
+
+    "MiniProfile_Cumulative": "Cumulative rev.",
+    "MiniProfile_Question": "Question rev.",
+    "MiniProfile_Answer": "Answer rev.",
+    "MiniProfile_Gratitude": "Gratitude Al releases",
+    "MiniProfile_Gratitude_rate": "Gratitude Al-release rate",
+    "MiniProfile_GoToSee": "View user info"
 }

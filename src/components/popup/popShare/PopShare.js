@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../../config/lang/i18n';
 
 function PopShare(props) {
+    const {t} = useTranslation();
 
     useEffect(()=>{
         if (props.clicked === true) {
@@ -14,27 +17,27 @@ function PopShare(props) {
         <ShareDiv share={props.share} onClick={(e)=> {e.stopPropagation();}}>
             <ShareBox>
                 <ShareImg src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"></ShareImg>
-                <ShareSpan>카카오톡</ShareSpan>
+                <ShareSpan>{t('Share_KakaoTalk')}</ShareSpan>
             </ShareBox>
             <ShareBox>
                 <ShareImg src="/Common/images/share_kakaoS.png"></ShareImg>
-                <ShareSpan>카카오스토리</ShareSpan>
+                <ShareSpan>{t('Share_KakaoStory')}</ShareSpan>
             </ShareBox>
             <ShareBox>
                 <ShareImg src="/Common/images/share_naver.png"></ShareImg>
-                <ShareSpan>네이버</ShareSpan>
+                <ShareSpan>{t('Share_Naver')}</ShareSpan>
             </ShareBox>
             <ShareBox>
                 <ShareImg src="/Common/images/share_FB.png"></ShareImg>
-                <ShareSpan>페이스북</ShareSpan>
+                <ShareSpan>{t('Share_Facebook')}</ShareSpan>
             </ShareBox>
             <ShareBox>
                 <ShareImg src="/Common/images/share_twitter.png"></ShareImg>
-                <ShareSpan>트위터</ShareSpan>
+                <ShareSpan>{t('Share_Twitter')}</ShareSpan>
             </ShareBox>
             <ShareBox>
                 <ShareImg src="/Common/images/share_link.png"></ShareImg>
-                <ShareSpan>주소복사</ShareSpan>
+                <ShareSpan>{t('Copy_URL')}</ShareSpan>
             </ShareBox>
         </ShareDiv>
     );

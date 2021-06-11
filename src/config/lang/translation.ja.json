@@ -50,6 +50,36 @@
     "Reply_System_Comment_who": "さんに",
     "Reply_System_Comment_gratitude": "アルを贈呈しました！",
     "Reply_Delete": "削除",
-    "Reply_Report": "報告"
+    "Reply_Report": "報告",
+
+    "Share_KakaoTalk": "Kakao Talk",
+    "Share_KakaoStory": "Kakao Story",
+    "Share_Naver": "Naver",
+    "Share_Facebook": "Facebook",
+    "Share_Twitter": "Twitter",
+    "Copy_URL": "URLをコピー",
+
+    "Questioner_Choice": "質問者の選択",
+    "Angel_Choice": "天使たちの選択",
+    "AnswerBox_answer": "さんの回答",
+    "AnswerBox_Selected_rate": "回答採択率",
+
+    "AnswerContents_Open": "開いて〜",
+    "AnswerEtimate_Altong": "ｱﾙﾄﾝ",
+    "AnswerEtimate_Good": "感謝",
+    "AnswerEtimate_Soso": "普通",
+    "AnswerEtimate_Bad": "不満",
+    "AnswerEtimate_Upset": "怒り",
+    "AnswerEtimate_Fun": "面白",
+    "Already_Evaluated": "すでに評価済みです！",
+
+    "System_Warning": "サーバーに障害が発生して要求を実行することはできません！",
+
+    "MiniProfile_Cumulative": "累積収入",
+    "MiniProfile_Question": "質問収入",
+    "MiniProfile_Answer": "回答収入",
+    "MiniProfile_Gratitude": "感謝アル支給",
+    "MiniProfile_Gratitude_rate": "感謝アル支給率",
+    "MiniProfile_GoToSee": "会員情報を見に行く"
 
 }

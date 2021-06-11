@@ -6,6 +6,8 @@ import axios from 'axios';
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
@@ -57,8 +59,8 @@ function TimeToggler(props) {
   return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
 
-const UlvText = (props) => {
-  const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+const UlvText = (props, text) => {
+  const LV=[text[0],text[1],text[2],text[3],text[4],text[5],text[6],text[7],text[8],text[9],text[10],text[11]];
   return LV[props];
 }
 
@@ -94,6 +96,8 @@ function ABoxTop(props) {
       setPopToggle(false);
     }
   }, [props.white]);
+  const {t} = useTranslation();
+  const lvText = [t('Lv_Hidden'),t('Lv_Al'),t('Lv_Butterfly'),t('Lv_Smiling'),t('Lv_Fiery'),t('Lv_Golden'),t('Lv_Guardian'),t('Lv_Light'),t('Lv_Chief'),t('Lv_Archangel'),t('Lv_Chief_Archangel'),t('Lv_Altong_Addict')];
 
   return (
     <MainDiv className="ABoxTop">
@@ -108,9 +112,9 @@ function ABoxTop(props) {
       <WrapUl>
         <Wrapli>
         <HeadFigureLocaleImg src={"/Common/images/nation/" + props.head.locale+'.svg'}>
-            </HeadFigureLocaleImg><WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv)}</WrapSpan>
-          <WrapStrong className="prgNickname_Q">{props.head.nick}님의 답변입니다.</WrapStrong></Wrapli>
-        <WrapThankli>답변 채택률<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
+            </HeadFigureLocaleImg><WrapSpan show={props.head.uLv !== "99"}>{UlvText(props.head.uLv, lvText)}</WrapSpan>
+          <WrapStrong className="prgNickname_Q">{props.head.nick}{t('AnswerBox_answer')}</WrapStrong></Wrapli>
+        <WrapThankli>{t('AnswerBox_Selected_rate')}<WrapB>{props.head.persent}%</WrapB> · <DateDiv onBlur={()=>{ setTimeToggle(true) }}
           onClick={() => {
             setTimeToggle(!timeToggle);
             }}><TimeToggler timeToggle={timeToggle} date={props.head.date}></TimeToggler></DateDiv>
@@ -135,7 +139,7 @@ function ABoxTop(props) {
           setClicked={props.setClicked}
           pageSeq={props.pageSeq}
           seqComponent={props.seqComponent} popToggle={popToggle}
-          title={props.head.nick+" 님의 답변입니다."}
+          title={props.head.nick + t('AnswerBox_answer')}
           setShare={props.setShare}
         ></QuestionPopup>
       </BtnBox>

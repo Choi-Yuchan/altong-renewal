@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import axios from 'axios';
+import {useTranslation} from 'react-i18next';
+import i18n from '../../../config/lang/i18n';
 
 const MainLi = styled.li`
 &{
@@ -56,18 +58,19 @@ function Etimate(props) {
     const setEtimates = props.setEtimates;
     const check = props.check;
     const pageSeq = props.pageSeq;
+    const {t} = useTranslation();
     
     //url list
     const URL_ESTIMATE = "/rest/answers/"+pageSeq+"/estimate";
 
     const langEsti = (img) => {
-        const arr = ['알통', '감사', '수고', '불만', '분노', '재미'];
+        const arr = [t('AnswerEtimate_Altong'), t('AnswerEtimate_Good'), t('AnswerEtimate_Soso'), t('AnswerEtimate_Bad'), t('AnswerEtimate_Upset'), t('AnswerEtimate_Fun')];
         return arr[img]
     }
     
     const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
         if(check>0){
-            alert("이미 평가를 완료하였습니다.");
+            alert(t('Already_Evaluated'));
             return;
         }
         axios.put(URL_ESTIMATE,{
