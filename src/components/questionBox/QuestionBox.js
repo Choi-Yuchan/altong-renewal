@@ -12,6 +12,8 @@ import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import useSound from '../functions/useSound/useSound';
 import SEO from '../../SEO'
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 function ShowBlackDiv(props){
   if(props.clicked === false){
@@ -71,13 +73,13 @@ function QuestionBox(props) {
     getUserData();
   }, []);
 
-
+  const {t} = useTranslation();
 
   const seo = {
-    title: '알통 :: 지식공유 플랫폼',
+    title: t('Meta_Title'),
     theme: '#fff',
-    description: '알통은 인터넷 상의 모든 지식·정보에 가치를 부여, 그 가치를 기여자들과 공유하는 수익형 지식공유 플랫폼입니다.',
-    keywords: '알통, Altong, 지식, 수익, 가치, 경제, 공유, 플랫폼',
+    description: t('Meta_Description'),
+    keywords: t('Meta_Keywords'),
 
     ogUrl: 'http://www.altong.com/default/main',
     ogImgWidth: '200',
@@ -87,7 +89,7 @@ function QuestionBox(props) {
     ogImgSecureUrl: '/Common/images/share_sns/k_feedimg.jpg',
 
     twitterCard: 'summary',
-    twitterDescrip: '알통 수익형 지식 경제 공유 플랫폼'
+    twitterDescrip: t('Meta_Twitter')
   }
 
   const pageNumber = SSRJSON.pageSeq;

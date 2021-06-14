@@ -73,13 +73,59 @@
     "AnswerEtimate_Fun": "面白",
     "Already_Evaluated": "すでに評価済みです！",
 
-    "System_Warning": "サーバーに障害が発生して要求を実行することはできません！",
+    "System_Warning": "処理中にエラーが発生しました！ しばらくして、もう一度やり直してください。",
 
     "MiniProfile_Cumulative": "累積収入",
     "MiniProfile_Question": "質問収入",
     "MiniProfile_Answer": "回答収入",
     "MiniProfile_Gratitude": "感謝アル支給",
     "MiniProfile_Gratitude_rate": "感謝アル支給率",
-    "MiniProfile_GoToSee": "会員情報を見に行く"
+    "MiniProfile_GoToSee": "会員情報を見に行く",
+
+    "AUnBoxBottom_Points": "点",
+    "AUnBoxBottom_Text": "本文",
+    "AUnBoxBottom_Letter": "文字",
+
+    "DateText_Now": "ちょうど今",
+    "DateText_Seconds": "秒前",
+    "DateText_Minutes": "分前",
+    "DateText_hours": "時間前",
+    "DateText_Years": "年前",
+    "DateText_Months": "ヶ月前",
+    "DateText_Days": "日前",
+
+    "AlNavi_Noification": "お知らせ",
+    "AlNavi_MySapce": "私の空間",
+    "AlNavi_Search": "ニックネーム検索",
+    "AlNavi_ANSWERer": "推薦人 ・ ANSWERer",
+    "AlNavi_Ranking": "ﾗﾝｷﾝｸﾞ",
+    "AlNavi_Events": "ｲﾍﾞﾝﾄ",
+    "AlNavi_Guide": "ご利用案内",
+    "AlNavi_Notice": "お知らせ",
+
+    "AlNavi_Achievements": "成就",
+    "AlNavi_Bank": "アルバンク",
+    "AlNavi_Cash": "出金申請",
+    "AlNavi_Interests": "興味領域",
+    "AlNavi_Bookmark": "ブックマーク",
+    "AlNavi_Mentors": "メンター・メンティー",
+    "AlNavi_Friends": "友達・メッセージブロック",
+    "AlNavi_Messages": "メッセージ",
+
+    "AlNavi_Login_Required": "ログインが必要です！",
+    "AlNavi_Login": "ログイン",
+    "AlNavi_SignUp": "会員登録",
+    "AlNavi_Manage": "アカウント管理",
+    "AlNavi_Logout": "ログアウト",
+    "AlNavi_Withdrawal": "退会",
+    "AlNavi_Question": "質問 第",
+    "AlNavi_Answer": "回答 第",
+    "AlNavi_Degree": "位",
+    "AlNavi_Confirm": "退会の場合は、+ 82-2-330-3000までお電話でお申し込みください。 \nご参考までに、退会はご慎重に決定されることをお勧めします。\n ご退会の場合、お持ちのアルは消滅し、以降発生する収入もAltong Inc.に帰属します。\n もし後で再加入をご希望の場合は、少なくとも6か月が経過してから可能になりますので、ご退会の前に慎重に慎重を重ねお申込みください。 \n（再加入に関する政策は将来変更される可能性があります。）",
+
+    "Meta_Title": "アルトン :: 知識共有プラットフォーム",
+    "Meta_Description": "アルトンは、インターネット上のすべての知識・情報に価値を与え、その価値を貢献者と共有する収益型知識共有プラットフォームです。",
+    "Meta_Keywords": "アルトン、知識、利益、収益、価値、経済、シェア、プラットフォーム",
+    "Meta_Twitter": "アルトン－収益型知識共有プラットフォーム"
 
 }

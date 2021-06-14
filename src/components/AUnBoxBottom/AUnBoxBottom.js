@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import Num3Comma from '../functions/num3comma/Num3Comma'
+import {useTranslation} from 'react-i18next';
+import i18n from '../../config/lang/i18n';
 
 function AUnBoxBottom(props) {
     const etimate = props.etimate;
     const estimateCount = (etimate.v1 * 7) + (etimate.v2 * 3) + (etimate.v3 * 1)+ (etimate.v4 * -1)+ (etimate.v5 * -3);
+    const {t} = useTranslation();
 
     const estiList = Object.keys(etimate).map((key) => {
         return { key : key , value : etimate[key] }
@@ -20,10 +23,10 @@ function AUnBoxBottom(props) {
             <AlScoreLi>
                 <AlScoreDiv>
                     {estiList}
-                  <AlScoreSpan><Num3Comma num={estimateCount}></Num3Comma>점</AlScoreSpan>
+                  <AlScoreSpan><Num3Comma num={estimateCount}></Num3Comma>{t('AUnBoxBottom_Points')}</AlScoreSpan>
                 </AlScoreDiv>
             </AlScoreLi>
-            <AlScoreLastLi>본문<AlScoreStrong><Num3Comma num={props.count}></Num3Comma></AlScoreStrong>자</AlScoreLastLi>
+            <AlScoreLastLi>{t('AUnBoxBottom_Text')}<AlScoreStrong><Num3Comma num={props.count}></Num3Comma></AlScoreStrong>{t('AUnBoxBottom_Letter')}</AlScoreLastLi>
         </MainOl>
     );
   }

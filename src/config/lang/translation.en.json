@@ -73,12 +73,58 @@
     "AnswerEtimate_Fun": "Fun",
     "Already_Evaluated": "Already evaluated!",
 
-    "System_Warning": "The request could not be fulfilled because the server encountered an error!",
+    "System_Warning": "An error occurred during processing! Please try again later.",
 
     "MiniProfile_Cumulative": "Cumulative rev.",
     "MiniProfile_Question": "Question rev.",
     "MiniProfile_Answer": "Answer rev.",
     "MiniProfile_Gratitude": "Gratitude Al releases",
     "MiniProfile_Gratitude_rate": "Gratitude Al-release rate",
-    "MiniProfile_GoToSee": "View user info"
+    "MiniProfile_GoToSee": "View user info",
+
+    "AUnBoxBottom_Points": "points",
+    "AUnBoxBottom_Text": "Text",
+    "AUnBoxBottom_Letter": "letters",
+
+    "DateText_Now": "Just now",
+    "DateText_Seconds": " seconds ago",
+    "DateText_Minutes": " minutes ago",
+    "DateText_hours": " hours ago",
+    "DateText_Years": "years ago",
+    "DateText_Months": " months ago",
+    "DateText_Days": " days ago",
+
+    "AlNavi_Noification": "Notification",
+    "AlNavi_MySapce": "My space",
+    "AlNavi_Search": "Nickname search",
+    "AlNavi_ANSWERer": "Referral / ANSWERer",
+    "AlNavi_Ranking": "Ranking",
+    "AlNavi_Events": "Events",
+    "AlNavi_Guide": "User guide",
+    "AlNavi_Notice": "Notice",
+
+    "AlNavi_Achievements": "Achievements",
+    "AlNavi_Bank": "Al Bank",
+    "AlNavi_Cash": "Cash withdrawal",
+    "AlNavi_Interests": "Interests",
+    "AlNavi_Bookmark": "Bookmark",
+    "AlNavi_Mentors": "Mentors / Mentees",
+    "AlNavi_Friends": "Friends / Block message",
+    "AlNavi_Messages": "Messages",
+
+    "AlNavi_Login_Required": "Login is required!",
+    "AlNavi_Login": "Login",
+    "AlNavi_SignUp": "Sign up",
+    "AlNavi_Manage": "Manage",
+    "AlNavi_Logout": "Log out",
+    "AlNavi_Withdrawal": "Withdrawal",
+    "AlNavi_Question": "Question #",
+    "AlNavi_Answer": "Answer #",
+    "AlNavi_Degree": "",
+    "AlNavi_Confirm": "For membership withdrawal, please apply by phone at +82-2-330-3000. \nFor your information, we recommend that you decide withdrawal very carefully.\n Upon withdrawal your Al will be gone and if profits continue to occur in the future, those will be attributed to Altong Inc.\n If you wish to re-register afterwards, you will be allowed to after at least 6 months. So please apply carefully before withdrawal. \n (The re-registration policy may change in the future.)",
+
+    "Meta_Title": "Altong :: knowledge sharing platform",
+    "Meta_Description": "Altong is a profitable knowledge sharing platform that values every knowledge and information on the Web and shares values with contributors.",
+    "Meta_Keywords": "Altong, knowledge, profit, revenue, value, economy, share, platform",
+    "Meta_Twitter": "Altong - Profitable knowledge sharing platform"
 }

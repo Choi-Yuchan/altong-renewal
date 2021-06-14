@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import {useTranslation} from 'react-i18next';
+import i18n from '../../../config/lang/i18n';
 
 function FormatDateAsText(props){
     const curDate = props.date;
@@ -11,25 +13,27 @@ function FormatDateAsText(props){
     const gapMonth = gapDay / 30;
     const gapYear = gapMonth / 12;
 
+    const {t} = useTranslation();
+
     if (gapHour <= 24) {
         if (Math.floor(gapMin) < 1) {
             if (Math.floor(gapSec) <= 0) {
-                return "방금";
+                return t('DateText_Now');
             } else {
-                return Math.floor(gapSec) + "초 전";
+                return Math.floor(gapSec) + t('DateText_Seconds');
             }
         } else if (Math.floor(gapHour) < 1) {
-            return Math.floor(gapMin) + "분 전";
+            return Math.floor(gapMin) + t('DateText_Minutes');
         } else {
-            return Math.floor(gapHour) + "시간 전"
+            return Math.floor(gapHour) + t('DateText_hours')
         }
     } else {
         if (gapYear >= 1) {
-            return Math.floor(gapYear) + "년 전";
+            return Math.floor(gapYear) + t('DateText_Years');
         } else if (gapMonth >= 1) {
-            return Math.floor(gapMonth) + "개월 전";
+            return Math.floor(gapMonth) + t('DateText_Months');
         } else {
-            return Math.floor(gapDay) + "일 전";
+            return Math.floor(gapDay) + t('DateText_Days');
         }
     }
 }

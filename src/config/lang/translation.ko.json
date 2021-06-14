@@ -73,12 +73,58 @@
     "AnswerEtimate_Fun": "재미",
     "Already_Evaluated": "이미 평가를 완료하였습니다!",
 
-    "System_Warning": "서버에 오류가 발생하여 요청을 수행할 수 없습니다!",
+    "System_Warning": "처리 중 오류가 발생했습니다! 잠시 후 다시 시도해주세요.",
 
     "MiniProfile_Cumulative": "누적 수입",
     "MiniProfile_Question": "질문 수입",
     "MiniProfile_Answer": "답변 수입",
     "MiniProfile_Gratitude": "감사알 지급",
     "MiniProfile_Gratitude_rate": "감사알 지급률",
-    "MiniProfile_GoToSee": "회원정보 보러 가기"
+    "MiniProfile_GoToSee": "회원정보 보러 가기",
+
+    "AUnBoxBottom_Points": "점",
+    "AUnBoxBottom_Text": "본문",
+    "AUnBoxBottom_Letter": "자",
+
+    "DateText_Now": "방금",
+    "DateText_Seconds": "초 전",
+    "DateText_Minutes": "분 전",
+    "DateText_hours": "시간 전",
+    "DateText_Years": "년 전",
+    "DateText_Months": "개월 전",
+    "DateText_Days": "일 전",
+
+    "AlNavi_Noification": "알림",
+    "AlNavi_MySapce": "나의 공간",
+    "AlNavi_Search": "닉네임 검색",
+    "AlNavi_ANSWERer": "추천인 / ANSWERer",
+    "AlNavi_Ranking": "순위",
+    "AlNavi_Events": "이벤트",
+    "AlNavi_Guide": "이용안내",
+    "AlNavi_Notice": "공지사항",
+
+    "AlNavi_Achievements": "성취",
+    "AlNavi_Bank": "알뱅크",
+    "AlNavi_Cash": "출금신청",
+    "AlNavi_Interests": "관심분야",
+    "AlNavi_Bookmark": "찜",
+    "AlNavi_Mentors": "멘토 / 멘티",
+    "AlNavi_Friends": "친구 / 쪽지차단",
+    "AlNavi_Messages": "쪽지",
+
+    "AlNavi_Login_Required": "로그인이 필요합니다!",
+    "AlNavi_Login": "로그인",
+    "AlNavi_SignUp": "회원가입",
+    "AlNavi_Manage": "계정관리",
+    "AlNavi_Logout": "로그아웃",
+    "AlNavi_Withdrawal": "회원탈퇴",
+    "AlNavi_Question": "질문",
+    "AlNavi_Answer": "답변",
+    "AlNavi_Degree": "위",
+    "AlNavi_Confirm": "회원탈퇴는 (02)330-3000으로 전화를 통해 신청을 부탁드립니다. \n참고로 회원탈퇴는 매우 신중히 결정하시기를 권해드립니다.\n탈퇴 시 회원님의 보유 알은 소멸되고 향후 계속 수익이 발생할 경우 이 수익 역시 (주)알통에 귀속됩니다.\n만약 이후 재가입을 원하실 경우 최소 6개월 경과 후에야 가능하므로 탈퇴 전에 신중에 신중을 거듭하여 신청해 주십시오.\n(재가입 관련 정책은 추후 변경될 수 있습니다.)",
+
+    "Meta_Title": "알통 :: 지식공유 플랫폼",
+    "Meta_Description": "알통은 인터넷 상의 모든 지식·정보에 가치를 부여, 그 가치를 기여자들과 공유하는 수익형 지식공유 플랫폼입니다.",
+    "Meta_Keywords": "알통, Altong, 지식, 수익, 가치, 경제, 공유, 플랫폼",
+    "Meta_Twitter": "알통 수익형 지식 경제 공유 플랫폼"
 }
