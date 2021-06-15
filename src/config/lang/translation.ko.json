@@ -126,6 +126,13 @@
     "Meta_Title": "알통 :: 지식공유 플랫폼",
     "Meta_Description": "알통은 인터넷 상의 모든 지식·정보에 가치를 부여, 그 가치를 기여자들과 공유하는 수익형 지식공유 플랫폼입니다.",
     "Meta_Keywords": "알통, Altong, 지식, 수익, 가치, 경제, 공유, 플랫폼",
-    "Meta_Twitter": "알통 수익형 지식 경제 공유 플랫폼"
-    
+    "Meta_Twitter": "알통 수익형 지식 경제 공유 플랫폼",
+
+    "Hunhun_Give": "훈훈알 증정하기",
+    "Hunhun_Available": "금일 사용 가능한 훈훈알은",
+    "Hunhun_Total": "총",
+    "Hunhun_Al": "알입니다.",
+
+    "Cancel": "취소",
+    "Confirm": "확인"
 }
