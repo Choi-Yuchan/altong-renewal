@@ -41,21 +41,44 @@ function Box(props) {
   }
   , [props.white]);
 
+  const pageSeq = props.jsonArr.pageSeq;
   //url list
-  const URL_ALMONEY = "/rest/questions/"+props.jsonArr.pageSeq+"/almoney";
+  const URL_ALMONEY = `/api/questions/${pageSeq}/almoney`;
   const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users";
 
   useEffect(()=>{
-    if(props.jsonArr.pageSeq===undefined){}else{
-      axios.get(URL_ALMONEY)
+    const getHunAl = async () => {
+      if(props.jsonArr.pageSeq === undefined){}else
+      try{
+        const response = await axios.get(URL_ALMONEY);
+        setExtraAlmoney(response.data.ExtraAlmoney);
+      } catch (e){
+        console.log(e)
+      }  
+    }
+    
+    axios.get(URL_EXTRA_USERS)
       .then((response) => response.data)
       .then( (data) => {
-        setExtraAlmoney(data.ExtraAlmoney);
+        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
       })
       .catch(function (error) {
         console.log(error)
       });
+    getHunAl();
+  }, []);
 
+
+  useEffect(()=>{
+    const getHunAldata = async () => {
+      if(props.hunAlram === true)
+      try{
+        const response = await axios.get(URL_ALMONEY);
+        setExtraAlmoney(response.data.ExtraAlmoney)
+      } catch(e){
+        console.log(e)
+      }
+    }   
       axios.get(URL_EXTRA_USERS)
       .then((response) => response.data)
       .then( (data) => {
@@ -64,35 +87,10 @@ function Box(props) {
       .catch(function (error) {
         console.log(error)
       });
-    }
-  }
-  , []);
-  useEffect(()=>{
-    if(props.hunAlram === true){
-        axios.get(URL_ALMONEY)
-        .then((response) => response.data)
-        .then( (data) => {
-          setExtraAlmoney(data.ExtraAlmoney);
-        })
-        .catch(function (error) {
-          console.log(error)
-        });
-        
-        axios.get(URL_EXTRA_USERS)
-        .then((response) => response.data)
-        .then( (data) => {
-          if("success" === data.code) setExtras(data.ExtraAlmoneyList);
-        })
-        .catch(function (error) {
-          console.log(error)
-        });
-        props.setHunAlram(false);
-    }
-  }
-  , [props.hunAlram]);
+      props.setHunAlram(false);
 
-  // const setHead = {...props.jsonArr.head};
-  // console.log(setHead);
+      getHunAldata();
+    }, [props.hunAlram]);
 
   //번역버튼 클릭에 대한 AI를 만들었다.
   const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
