@@ -65,7 +65,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
             signout : [t('AlNavi_Login_Required'), t('AlNavi_Login'), t('AlNavi_SignUp')],
             signin : [t('AlNavi_Manage'), t('AlNavi_Logout'), t('AlNavi_Withdrawal')],
             user : [
-                { id : "USER_ID", tier:"열혈천사", q_rank: t('AlNavi_Question')+"4,078"+t('AlNavi_Degree'), a_rank: t('AlNavi_Answer')+"1,024위"+t('AlNavi_Degree'), img:"/pub/css/profile/img_thum_base0.jpg"  }
+                { id : "USER_ID", tier:"열혈천사", q_rank: t('AlNavi_Question')+"4,078"+t('AlNavi_Degree'), a_rank: t('AlNavi_Answer')+"1,024"+t('AlNavi_Degree'), img:"/pub/css/profile/img_thum_base0.jpg"  }
             ],
             alt : ["프로필","로그아웃 아이콘"],
             confirm_p: t('AlNavi_Confirm') 
