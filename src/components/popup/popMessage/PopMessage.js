@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useTranslation} from 'react-i18next';
 
 function PopMessage(props) {
+    const {t} = useTranslation();
     const [ message , setMessage ] = useState("");
-    const [ messageState, setMessageState] = useState("보내기");
+    const [ messageState, setMessageState] = useState(t('Message_Send'));
 
     //URL LIST
     const URL_MESSAGE = "/restApi/messages/" + props.user + "/send";
@@ -14,22 +16,22 @@ function PopMessage(props) {
     }
 
     const sendMessage = (e) => {
-        setMessageState("보내는 중~");
+        setMessageState(t('Message_Send'));
         axios.put(URL_MESSAGE,{
             "Contents":message
         })
         .then( (response) => response.data )
         .then( (data) => {
                 if(data.msg){
-                    alert("메시지를 보냈습니다.");
+                    alert(t('Message_Sent'));
                     setMessage("");
-                    setMessageState("보내기");
+                    setMessageState(t('Message_Send'));
                     props.setClicked(true);
                     e.stopPropagation();
                 }else{
                     alert(data.msg);
                     setMessage("");
-                    setMessageState("보내기");
+                    setMessageState(t('Message_Send'));
                     props.setClicked(true);
                     e.stopPropagation();
                 }
@@ -37,7 +39,7 @@ function PopMessage(props) {
         )
         .catch(function (error) {
                 console.log(error)
-                setMessageState("보내기");
+                setMessageState(t('Message_Send'));
                 props.setClicked(true);
                 e.stopPropagation();
             }
@@ -57,7 +59,7 @@ function PopMessage(props) {
             e.stopPropagation();
         }}>
             <MsgH5>
-                <MsgH5Span>{props.nick}</MsgH5Span> 님께 쪽지 보내기</MsgH5>
+                <MsgH5Span>{props.nick}</MsgH5Span> {t('Message_Recipient')}</MsgH5>
                 <MsgDiv>
                     <MsgTextarea value={message} onChange={(e) => {handleChange(e)}}></MsgTextarea>
                 </MsgDiv>
@@ -67,7 +69,7 @@ function PopMessage(props) {
                         props.setShowMessage({show:false, user:0, nick:''});
                         setMessage("");
                         e.stopPropagation();
-                    }}>취소</MsgPSpanCancel>
+                    }}>{t('Cancel')}</MsgPSpanCancel>
                     <MsgPSpanSend onClick={(e)=>{
                         sendMessage(e);
                     }}>{messageState}</MsgPSpanSend>

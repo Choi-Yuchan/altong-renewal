@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
+import {useTranslation} from 'react-i18next';
 
-const UlvText = (props) => {
-    const LV=['비공개','알천사','나비천사','미소천사','열혈천사','황금천사','수호천사','빛의천사','천사장','대천사','대천사장','알통폐인'];
+const UlvText = (props, lv) => {
+    const LV=[lv[0],lv[1],lv[2],lv[3],lv[4],lv[5],lv[6],lv[7],lv[8],lv[9],lv[10],lv[11]];
     return LV[props];
   }
 
@@ -28,7 +29,7 @@ function MiniProfile(props) {
         )
         .catch(function (error) {
                 console.log(error);
-                alert("오류가 발생하였습니다. 잠시후에 시도해주세요.");
+                alert(t('System_Warning'));
                 props.setClicked(true);
                 e.stopPropagation();
             }
@@ -46,12 +47,14 @@ function MiniProfile(props) {
         )
         .catch(function (error) {
                 console.log(error);
-                alert("오류가 발생하였습니다. 잠시후에 시도해주세요.");
+                alert(t('System_Warning'));
                 props.setClicked(true);
                 e.stopPropagation();
             }
         );
     }
+    const {t} = useTranslation();
+    const lvText = [t('Lv_Hidden'), t('Lv_Al'), t('Lv_Butterfly'), t('Lv_Smiling'), t('Lv_Fiery'), t('Lv_Golden'), t('Lv_Guardian'), t('Lv_Light'), t('Lv_Chief'), t('Lv_Archangel'), t('Lv_Chief_Archangel'), t('Lv_Altong_Addict')]
 
     return (
         <MainDiv showMini={props.showMini}
@@ -64,7 +67,7 @@ function MiniProfile(props) {
                 <tbody>
                 <tr>
                     <MiniTh>
-                    <MiniSpan>{UlvText(props.mini.uLv)}</MiniSpan>{props.mini.nick}
+                    <MiniSpan>{UlvText(props.mini.uLv, lvText)}</MiniSpan>{props.mini.nick}
                     </MiniTh>
                     <th rowSpan="2" 
                         onClick={(e) => {
@@ -91,7 +94,7 @@ function MiniProfile(props) {
                     </th>
                 </tr>
                 <tr>
-                    <MoneyInfoTd>누적수익 : <span>{props.mini.alBenefit}</span>알</MoneyInfoTd>
+                    <MoneyInfoTd>{t('MiniProfile_Cumulative')} : <span>{props.mini.alBenefit}</span>{t('PopExtraAl_Al')}</MoneyInfoTd>
                 </tr>
                 </tbody>
             </MainTable>
@@ -100,20 +103,20 @@ function MiniProfile(props) {
             <MiniInfoTable>
                 <tbody>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTd>질문 수익</MiniInfoTableTd>
-                        <MiniInfoTableTd>답변 수익</MiniInfoTableTd>
-                        <MiniInfoTableTd>감사알 지급 건수</MiniInfoTableTd>
-                        <MiniInfoTableTd>감사알 지급률</MiniInfoTableTd>
+                        <MiniInfoTableTd>{t('MiniProfile_Question')}</MiniInfoTableTd>
+                        <MiniInfoTableTd>{t('MiniProfile_Answer')}</MiniInfoTableTd>
+                        <MiniInfoTableTd>{t('MiniProfile_Gratitude')}</MiniInfoTableTd>
+                        <MiniInfoTableTd>{t('MiniProfile_Gratitude_rate')}</MiniInfoTableTd>
                     </MiniInfoTableTr>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTh><Num3Comma num={props.mini.qBenefit}></Num3Comma> 알</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={props.mini.ABenefit}></Num3Comma> 알</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={props.mini.qBenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={props.mini.ABenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
                         <MiniInfoTableTh><Num3Comma num={props.mini.giveThankNum}></Num3Comma></MiniInfoTableTh>
                         <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
                     </MiniInfoTableTr>
                 </tbody>
             </MiniInfoTable>
-            <MiniProfileGo>프로필 보러가기</MiniProfileGo>
+            <MiniProfileGo>{t('MiniProfile_GoToSee')}</MiniProfileGo>
         </MainDiv>
     );
   }

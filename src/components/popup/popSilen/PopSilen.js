@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useTranslation} from 'react-i18next';
 
 function PopSilen(props) {
     const [ radioN , setRadioN ] = useState(0);
     const [ reson , setReson ] = useState("");
+    const {t} = useTranslation();
     
     const USER= props.USER;
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
@@ -23,12 +25,12 @@ function PopSilen(props) {
         .then( (response) => response.data )
         .then( (data) => {
                 if(data.msg){
-                    alert("신고가 정상적으로 접수되었습니다.");
+                    alert(t('Silen_Successfully'));
                     setReson("");
                     setClicked(true);
                     e.stopPropagation();
                 }else{
-                    alert("신고 접수가 실패하였습니다.");
+                    alert(t('Silen_Error'));
                 }
             }
         )
@@ -52,24 +54,24 @@ function PopSilen(props) {
             props.setShowSiren({show:true, page:props.page, seq:props.seq, title: props.title});
             e.stopPropagation();
           }}>
-            <PopReportH4><PopReportDivImg/>신고</PopReportH4>
+            <PopReportH4><PopReportDivImg/>{t('Silen_Report')}</PopReportH4>
             <ReportWrap>
                 <BDiv>
                     <BTable>
                         <BTbody>
                             <BTr>
-                                <BTbodyTrTh>작성자</BTbodyTrTh>
+                                <BTbodyTrTh>{t('Silen_Reporter')}</BTbodyTrTh>
                                 <BTbodyTrTd>{nick}</BTbodyTrTd>
                             </BTr>
                             <BTr>
-                                <BTbodyTrTh>내용</BTbodyTrTh>
+                                <BTbodyTrTh>{t('Silen_Content')}</BTbodyTrTh>
                                 <BTbodyTrTd>{props.title}</BTbodyTrTd>
                             </BTr>
                         </BTbody>
                     </BTable>
                 </BDiv>
                 <div>
-                    <RReasonDivP>- 신고 사유 선택</RReasonDivP>
+                    <RReasonDivP>- {t('Silen_Reason')}</RReasonDivP>
                     <ReDivTable>
                         <tbody>
                             <tr>
@@ -80,7 +82,7 @@ function PopSilen(props) {
                                                 setRadioN("1")
                                             }}
                                             defaultChecked={radioN === "1" ? true : false}
-                                        ></ARInput>홍보성</label>
+                                        ></ARInput>{t('Silen_Advertising')}</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
@@ -89,7 +91,7 @@ function PopSilen(props) {
                                                 setRadioN("2")
                                             }}
                                             defaultChecked={radioN === "2" ? true : false}
-                                        ></ARInput>유해성</label>
+                                        ></ARInput>{t('Silen_Harmful')}</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
@@ -100,7 +102,7 @@ function PopSilen(props) {
                                                 setRadioN("3")
                                             }}
                                             defaultChecked={radioN === "3" ? true : false}
-                                        ></ARInput>장난성</label>
+                                        ></ARInput>{t('Silen_Pranky')}</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
@@ -109,7 +111,7 @@ function PopSilen(props) {
                                                 setRadioN("4")
                                             }}
                                             defaultChecked={radioN === "4" ? true : false}
-                                        ></ARInput>중복성</label>
+                                        ></ARInput>{t('Silen_Repetitive')}</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
@@ -120,7 +122,7 @@ function PopSilen(props) {
                                                 setRadioN("5")
                                             }}
                                             defaultChecked={radioN === "5" ? true : false}
-                                        ></ARInput>비속어/반말</label>
+                                        ></ARInput>{t('Silen_Cussing')}</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
@@ -129,7 +131,7 @@ function PopSilen(props) {
                                                 setRadioN("6")
                                             }}
                                             defaultChecked={radioN === "6" ? true : false}
-                                        ></ARInput>비 정보·지식</label>
+                                        ></ARInput>{t('Silen_knowledge')}</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
@@ -140,7 +142,7 @@ function PopSilen(props) {
                                                 setRadioN("7")
                                             }}
                                             defaultChecked={radioN === "7" ? true : false}
-                                        ></ARInput>음해/비방</label>
+                                        ></ARInput>{t('Silen_Defamation')}</label>
                                 </AReasonTbodyTrTd>
                                 <AReasonTbodyTrTd>
                                     <label>
@@ -149,12 +151,12 @@ function PopSilen(props) {
                                                 setRadioN("8")
                                             }}
                                             defaultChecked={radioN === "8" ? true : false}
-                                        ></ARInput>기타</label>
+                                        ></ARInput>{t('Silen_Others')}</label>
                                 </AReasonTbodyTrTd>
                             </tr>
                             <tr>
                                 <ABTd colSpan="2">
-                                    <ReTextarea maxlength="1000" placeholder="남기실 말씀이 있으시면 입력해주세요." value={reson} onChange={(e) => {handleChange(e)}}>
+                                    <ReTextarea maxlength="1000" placeholder={t('Silen_Placeholder')} value={reson} onChange={(e) => {handleChange(e)}}>
                                     </ReTextarea>
                                 </ABTd>
                                 
@@ -166,14 +168,14 @@ function PopSilen(props) {
                     <RDivP>
                         <DRDivPI>warning</DRDivPI>
                     </RDivP>
-                    <RDivP>무고한 게시물을 신고하실 경우 향후 사이트 이용 시<br></br> 불이익이 있을 수도 있으니 신중을 기해주세요.</RDivP>
+                    <RDivP>{t('Silen_Innocent')}<br></br> {t('Silen_Prudent')}</RDivP>
                 </DRBottomDiv>
                 <div>
                     <DReportTable>
                         <tbody>
                             <tr>
                                 <td>
-                                    <DRInput value="취소" 
+                                    <DRInput value={t('Cancel')} 
                                     onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
                                     onClick={(e)=>{
                                             setReson("");
@@ -183,7 +185,7 @@ function PopSilen(props) {
                                     ></DRInput>
                                 </td>
                                 <td>
-                                    <DSubmit value="제출" 
+                                    <DSubmit value={t('Silen_Submit')} 
                                     onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
                                     onClick={(e)=>{
                                             runSilen(e, setReson, props.setClicked);

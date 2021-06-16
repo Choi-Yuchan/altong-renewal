@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Num3Comma from '../../functions/num3comma/Num3Comma'
+import {useTranslation} from 'react-i18next';
 
 
-function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram) {
+function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram, text) {
         
     //URL LIST
     const URL_QUE_AL = "/rest/questions/"+props.page+"/almoney";
@@ -50,7 +51,7 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 // 룰렛 게임 처리
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
-                if(window.confirm("축하합니다!\n\n룰렛 이용권 1장을 획득하셨습니다.\n지금 룰렛 이용권을 사용하시겠습니까?\n오늘 내로 사용하지 않으면 자동 소멸됩니다.")){
+                if(window.confirm(text[0])){
                     window.location.href = '/roulette/game';
                     return null;
                 }
@@ -60,12 +61,12 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 e.stopPropagation();
             }
         }else if(data.code === "me"){
-            alert("본인에게는 훈훈알을 지급할 수 없습니다.");
+            alert(text[1]);
             setClicked(true);
             setShowAlmoney({show:false, page:0, seq:'Q'});
             e.stopPropagation();
         }else if(data.code === "noExist"){
-            alert("존재하지 않는 글입니다.");
+            alert(text[2]);
             setClicked(true);
             setShowAlmoney({show:false, page:0, seq:'Q'});
             e.stopPropagation();
@@ -90,8 +91,9 @@ function PopAlmoney(props) {
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
     }
-    
-    
+
+    const {t} = useTranslation();
+    const almoneyText = [t('Event_Confirm'), t('Hunhun_Warning'), t('Not_Exist')];
 
     useEffect(() => {
         if(props.clicked === true){
@@ -129,15 +131,15 @@ function PopAlmoney(props) {
           }}>
             <PopUl>
                 <Popli>
-                    <PopH3>훈훈알 증정하기</PopH3>
+                    <PopH3>{t('Hunhun_Give')}</PopH3>
                 </Popli>
                 <Popli>
-                    <PopP>금일 증정 가능하신 훈훈알은 <br>
-                    </br> 총 <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>알 입니다.</PopP>
+                    <PopP>{t('Hunhun_Available')} <br>
+                    </br> {t('Hunhun_Total')} <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>{t('Hunhun_Al')}</PopP>
                 </Popli>
                 <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
                     value={extraAlmoney} onChange={(e) => handleChange(e)}
-                autoFocus type="number"></PopH3Input>알</Popli3>
+                autoFocus type="number"></PopH3Input>{t('PopExtraAl_Al')}</Popli3>
                 <Popli4>
                     <Popli4Button
                         onClick={(e) =>{
@@ -145,11 +147,11 @@ function PopAlmoney(props) {
                             props.setShowAlmoney({show:false, page:0, seq:'Q'});
                             e.stopPropagation();
                         }}
-                    >취소</Popli4Button>
+                    >{t('Cancel')}</Popli4Button>
                     <Popli5Button onClick={(e) =>{
                         giveAlmoney(props, extraAlmoney,
-                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e, setHunAlram);
-                    }}>확인</Popli5Button>
+                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e, setHunAlram, almoneyText);
+                    }}>{t('Confirm')}</Popli5Button>
                 </Popli4>
             </PopUl>
         </PopAlDiv>

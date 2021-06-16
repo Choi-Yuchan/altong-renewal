@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 
 import axios from 'axios';
 
+import {useTranslation} from 'react-i18next';
+
 // 찜
 function ZzimAxios(pageSeq){
     const URL_ZZIM = "/rest/questions/"+pageSeq+"/Zzim"
@@ -18,9 +20,9 @@ function ZzimAxios(pageSeq){
     });
 }
 // 꼭대기
-function moveTopAxios(pageSeq){
+function moveTopAxios(pageSeq, Confirm){
     const URL_MOVE_TOP = "/restApi/questions/"+pageSeq+"/movetop" 
-    if ( window.confirm("이 질문을 목록 최상단으로 보내시겠습니까?\n회원님의 잔액에서 10000 알이 차감됩니다.\n(24시간 후 원래 위치로 되돌아갑니다)")){
+    if ( window.confirm(Confirm)){
         axios.put(URL_MOVE_TOP)
         .then((response) => response.data)
         .then( (data) => {
@@ -40,6 +42,8 @@ function QuestionPopup(props) {
     useEffect(()=>{  
       }
       , []);
+    const {t} = useTranslation();
+    const Confirm = t('Confirm_Top_List');
 
     return (
         <MainUl onClick={() => { console.log("팝업클릭"); }} popToggle={props.popToggle}>
@@ -48,15 +52,15 @@ function QuestionPopup(props) {
                     e.stopPropagation();
                 }
             }>
-                <Popup text="찜" imgurl="/pub/answer/answerList/images/atm_more_1.png" >
+                <Popup text={t('QPopup_Bookmark')} imgurl="/pub/answer/answerList/images/atm_more_1.png" >
                 </Popup>
             </MainLi>
             <MainLi2 onClick={() => { props.setShare(true); props.setClicked(false); } }>
-                <Popup text="공유" imgurl="/pub/answer/answerList/images/atm_more_2.png" >
+                <Popup text={t('QPopup_Share')} imgurl="/pub/answer/answerList/images/atm_more_2.png" >
                 </Popup>
             </MainLi2>
-            <MainLi show={props.seqComponent==="Q"}  onClick={() => {    moveTopAxios(props.pageSeq);    }}>
-                <Popup  text="꼭대기" imgurl="/pub/answer/answerList/images/atm_more_4.png" >
+            <MainLi show={props.seqComponent==="Q"}  onClick={() => {    moveTopAxios(props.pageSeq, Confirm);    }}>
+                <Popup  text={t('QPopup_To_top')} imgurl="/pub/answer/answerList/images/atm_more_4.png" >
                 </Popup>
             </MainLi>
             <MainLi show={true} onClick={(e) => {
@@ -65,7 +69,7 @@ function QuestionPopup(props) {
                     e.stopPropagation();
                 }
             }>
-                <Popup text="훈훈알" imgurl="/Common/images/answer_almoney_gg.svg" >
+                <Popup text={t('QPopup_Warming_Al')} imgurl="/Common/images/answer_almoney_gg.svg" >
                 </Popup>
             </MainLi>
             <MainLi show={true} onClick={(e) => {
@@ -74,7 +78,7 @@ function QuestionPopup(props) {
                     e.stopPropagation();
                 }
             }>
-                <Popup text="신고" imgurl="/pub/answer/answerList/images/atm_more_3.png" >
+                <Popup text={t('QPopup_Report')} imgurl="/pub/answer/answerList/images/atm_more_3.png" >
                 </Popup>
             </MainLi>
         </MainUl>

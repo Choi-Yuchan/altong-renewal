@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useTranslation} from 'react-i18next';
 
 function ViewAnswerBtn(props){
 
@@ -25,12 +26,12 @@ function ViewAnswerBtn(props){
                         console.log(error);
                     })
                 }}
-            >채택하기</AnswerBtnAB>
+            >{props.btnName[1]}</AnswerBtnAB>
         }
     }
     
     return <AnswerBtnA show={props.goAnswer} href={'/answer/answerWrite?QuestionSeq='+ page +'&CurPageName=&Section1=0&src_Sort=Seq&src_OrderBy=DESC'}
-        >답변하기</AnswerBtnA>
+        >{props.btnName[2]}</AnswerBtnA>
 }
 
 
@@ -122,6 +123,10 @@ function ReplyBox(props) {
     const [good,setGood] = useState(0);
     const [bad,setBad] = useState(0);
 
+    const {t} = useTranslation();
+                        //번역하기, 채택하기, 답변하기, 답변완료 순
+    const btnName = [t('ReplyBtn_Translate'), t('ReplyBtn_Select'), t('ReplyBtn_Post_answer'), t('ReplyBtn_Answer_posted')]
+
     return (
       <OlBox className="ReplyBox">
           <OlBoxLeft>
@@ -144,7 +149,7 @@ function ReplyBox(props) {
             </EmotionList>
           </OlBoxLeft>
           <AnswerDoList>
-            <LangBtnA>번역하기</LangBtnA>
+            <LangBtnA>{btnName[0]}</LangBtnA>
             <ViewAnswerBtn
                 seqComponent={props.seqComponent} pageSeq={props.pageSeq}
                 seqId={props.seqId}
@@ -152,6 +157,7 @@ function ReplyBox(props) {
                 goQuestion={goQuestion}
                 setGoQuestion={setGoQuestion}
                 choice={props.choice}
+                btnName={btnName}
             ></ViewAnswerBtn>
           </AnswerDoList>
       </OlBox>
