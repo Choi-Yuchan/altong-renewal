@@ -31,7 +31,7 @@ function Contents(props) {
   const [ads, setAds] = useState(0);
   
   //url list
-  const URL_AD = "/restApi/ads";
+  const URL_AD = "/api/answers/ads";
   const URL_SHOWN_AD = "/restApi/answers/"+props.pageSeq+"/"+ads+"/ads-view";
 
   return (
@@ -57,7 +57,7 @@ function Contents(props) {
               // 광고 봄 처리
               axios.put(URL_SHOWN_AD)
               .then((response) => response.data)
-              .then( (data) => {
+              .then( (data) => { console.log(data)
               })
               .catch(function (error) {
                 console.log(error);
