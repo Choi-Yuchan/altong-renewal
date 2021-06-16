@@ -38,6 +38,8 @@ function Box(props) {
   }
   , [props.white]);
 
+  const pageSeq = props.jsonArr.pageSeq;
+  
   //url list
   const URL_ALMONEY = `/api/questions/${pageSeq}/almoney`;
   const URL_EXTRA_USERS = `/api/questions/${pageSeq}/extra-lists`;
