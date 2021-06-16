@@ -36,40 +36,46 @@ function ViewAnswerBtn(props){
 
 
 function ReplyBox(props) {
-
+    
+    const [good,setGood] = useState(0);
+    const [bad,setBad] = useState(0);
     const [goAnswer,setGoAnswer] = useState(false);
     const [goQuestion,setGoQuestion] = useState(false);
 
+    const pageSeq = props.pageSeq;
 
     //URL_LIST
-    const URL_QUE_VOTE = "/rest/questions/" + props.pageSeq + "/vote";
-    const URL_ANS_VOTE = "/rest/answers/" + props.pageSeq + "/vote";
-    const URL_ANS_CHECK = "/restApi/answers/" + props.pageSeq + "/answered-check";
-    const URL_CHO_CHECK = "/restApi/answers/" + props.pageSeq + "/choiced-check";
+    const URL_QUE_VOTE = `/api/questions/${pageSeq}/vote`;
+    const URL_ANS_VOTE = `/api/answers/${pageSeq}/vote`;
+    const URL_ANS_CHECK = `/api/answers/${pageSeq}/answered-check`;
+    const URL_CHO_CHECK = `/api/answers/${pageSeq}/choiced-check`;
 
-    const SendGood = (seqComponent, pageSeq, setGood, setBad) => {
-        axios.put(seqComponent ==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
-            estiSeq:"G"
-        })
-        .then((response) => response.data)
-        .then((data) => {
-            if(data.code === "success"){
-                setGood(data.good);
-                setBad(data.bad);
+    const SendGood = async (seqComponent, setGood, setBad) => {
+        try{
+            const response = await axios.patch(seqComponent ==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE, {
+                estiSeq:"G"
+            })
+            if(response.data.code === "success"){
+                    setGood(response.data.good);
+                    setBad(response.data.bad);
             }
-        });
+        } catch (e) {
+            console.log(e)
+        }
     }
-    const SendBad = (seqComponent, pageSeq, setGood, setBad) => {
-        axios.put(seqComponent==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
-            estiSeq:"B"
-        })
-        .then((response) => response.data)
-        .then((data) => {
-            if(data.code === "success"){
-                setGood(data.good);
-                setBad(data.bad);
+
+    const SendBad = async (seqComponent, setGood, setBad) => {
+        try{
+            const response = await axios.patch(seqComponent==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE,{
+                estiSeq:"B"
+            })
+            if(response.data.code === "success"){
+                    setGood(response.data.good);
+                    setBad(response.data.bad);
             }
-        });
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(()=>{
@@ -78,7 +84,6 @@ function ReplyBox(props) {
             axios.get(URL_ANS_CHECK)
             .then((response) => response.data)
             .then( (data) => {
-                console.log(data);
                 if(data.code === "error"){
                     setGoAnswer(false);
                 }else if(data.check === true) setGoAnswer(data.check);
@@ -91,7 +96,6 @@ function ReplyBox(props) {
             axios.get(URL_CHO_CHECK)
             .then((response) => response.data)
             .then( (data) => {
-                console.log(data);
                 if(data.code === "error"){
                     setGoQuestion(false);
                 }else if(data.check === true) setGoQuestion(data.check);
@@ -102,26 +106,23 @@ function ReplyBox(props) {
             })
         }
     }, []);
-    
 
     useEffect(()=>{
-        if(props.pageSeq === undefined){}else{
-            const voteUrl= props.seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
-            axios.get(voteUrl)
-            .then((response) => response.data)
-            .then( (data) => {
-                setGood(data.good);
-                setBad(data.bad);
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
+        const getVoteData = async () => {
+            if(props.pageSeq === undefined){}else
+            try{
+                const voteUrl= props.seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
+                const response = await axios.get(voteUrl);
+                setGood(response.data.good);
+                setBad(response.data.bad);
+            } catch (e) {
+                console.log(e);
+            }
         }
+        getVoteData();
     }
     , []);
     
-    const [good,setGood] = useState(0);
-    const [bad,setBad] = useState(0);
 
     const {t} = useTranslation();
                         //번역하기, 채택하기, 답변하기, 답변완료 순
@@ -135,13 +136,13 @@ function ReplyBox(props) {
             </HrefA>
             <EmotionList>
                 <EmotionListIconDiv className="smileIcon" onClick={()=> {
-                    SendGood(props.seqComponent, props.pageSeq, setGood, setBad);
+                    SendGood(props.seqComponent, setGood, setBad);
                 }}>
                     <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                     <EmotionB >{good}</EmotionB>
                 </EmotionListIconDiv>
                 <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                    SendBad(props.seqComponent, props.pageSeq, setGood, setBad);
+                    SendBad(props.seqComponent, setGood, setBad);
                 }}>
                     <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                     <EmotionB >{bad}</EmotionB>
