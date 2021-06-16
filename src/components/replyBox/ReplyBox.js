@@ -3,20 +3,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
-function ViewAnswerBtn(props){
+function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, setGoQuestion, choice, goQuestion, goAnswer, btnName}){
 
-    const page = props.pageSeq;
-    const seqId = props.seqId;
-    const setGoQuestion = props.setGoQuestion;
-
-    const URL_ANS_CHOICE = "/restApi/answers/"+page+"/"+seqId+"/answer-choice"
+    const URL_ANS_CHOICE = `/api/answers/${pageSeq}/${memberSeq}/choose`
     
-    if(props.seqComponent === 'A'){
-        if (props.choice === true) {
-            return <AnswerBtnAB show={props.goQuestion}
-                onClick={(e)=>{
-                    console.log(URL_ANS_CHOICE);
-                    axios.put(URL_ANS_CHOICE)
+    if(seqComponent === 'A'){
+        if (choice === true) {
+            return <AnswerBtnAB show={goQuestion}
+                onClick={()=>{
+                    axios.patch(URL_ANS_CHOICE)
                     .then((response) => response.data)
                     .then( (data) => {
                         setGoQuestion(false);
@@ -26,12 +21,12 @@ function ViewAnswerBtn(props){
                         console.log(error);
                     })
                 }}
-            >{props.btnName[1]}</AnswerBtnAB>
+            >{btnName[1]}</AnswerBtnAB>
         }
     }
     
-    return <AnswerBtnA show={props.goAnswer} href={'/answer/answerWrite?QuestionSeq='+ page +'&CurPageName=&Section1=0&src_Sort=Seq&src_OrderBy=DESC'}
-        >{props.btnName[2]}</AnswerBtnA>
+    return <AnswerBtnA show={goAnswer} href={`/answer/answerWrite?QuestionSeq=${pageSeq}&CurPageName=/answer/questionList&Section1=0&src_Sort=Seq&src_OrderBy=DESC`}
+        >{btnName[2]}</AnswerBtnA>
 }
 
 
@@ -152,8 +147,8 @@ function ReplyBox(props) {
           <AnswerDoList>
             <LangBtnA>{btnName[0]}</LangBtnA>
             <ViewAnswerBtn
-                seqComponent={props.seqComponent} pageSeq={props.pageSeq}
-                seqId={props.seqId}
+                seqComponent={props.seqComponent} pageSeq={pageSeq}
+                memberSeq={props.seqId}
                 goAnswer={goAnswer}
                 goQuestion={goQuestion}
                 setGoQuestion={setGoQuestion}
