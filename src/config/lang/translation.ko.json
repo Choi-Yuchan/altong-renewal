@@ -132,8 +132,36 @@
     "Hunhun_Available": "금일 사용 가능한 훈훈알은",
     "Hunhun_Total": "총",
     "Hunhun_Al": "알입니다.",
+    "Hunhun_Warning": "본인에게는 훈훈알을 증정할 수 없습니다.",
+    "Not_Exist": "대상 게시물이 존재하지 않습니다.",
 
     "Cancel": "취소",
-    "Confirm": "확인"
-    
+    "Confirm": "확인",
+
+    "Event_Confirm": "축하합니다! \n\n 룰렛 이용권 1장을 획득하셨습니다. \n 지금 룰렛 이용권을 사용하시겠습니까? \n 오늘 내로 사용하지 않으면 소멸됩니다.",
+
+    "Silen_Successfully": "신고 처리가 완료되었습니다!",
+    "Silen_Error": "처리 중 오류가 발생했습니다!",
+    "Silen_Report": "신고",
+    "Silen_Reporter": "제보자",
+    "Silen_Content": "내용",
+    "Silen_Reason": "신고 사유 선택",
+    "Silen_Advertising": "홍보성",
+    "Silen_Harmful": "유해성",
+    "Silen_Pranky": "장난성",
+    "Silen_Repetitive": "중복성",
+    "Silen_Cussing": "비속어/반말",
+    "Silen_knowledge": "비 정보/지식",
+    "Silen_Defamation": "음해/비방",
+    "Silen_Others": "기타",
+    "Silen_Placeholder": "남기실 말씀이 있으시면 입력해주세요.",
+    "Silen_Innocent": "무고한 게시물을 신고하실 경우 향후 사이트 이용 시",
+    "Silen_Prudent": "불이익이 있을 수도 있으니 신중을 기해주세요.",
+    "Silen_Submit": "제출",
+
+    "Message_Send": "보내기",
+    "Message_Recipient": "님께 쪽지 보내기",
+    "Message_Sent": "쪽지가 전송되었습니다.",
+
+    "AD_More": "더 자세히 볼래요"
 }

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../../App.css';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 
 const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {

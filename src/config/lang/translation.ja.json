@@ -126,6 +126,43 @@
     "Meta_Title": "アルトン :: 知識共有プラットフォーム",
     "Meta_Description": "アルトンは、インターネット上のすべての知識・情報に価値を与え、その価値を貢献者と共有する収益型知識共有プラットフォームです。",
     "Meta_Keywords": "アルトン、知識、利益、収益、価値、経済、シェア、プラットフォーム",
-    "Meta_Twitter": "アルトン－収益型知識共有プラットフォーム"
+    "Meta_Twitter": "アルトン－収益型知識共有プラットフォーム",
+
+    "Hunhun_Give": "温みアルを贈呈",
+    "Hunhun_Available": "今日利用可能な温みアルは",
+    "Hunhun_Total": "合わせて",
+    "Hunhun_Al": "アルです。",
+    "Hunhun_Warning": "ご自分には温みアルを贈呈できません。",
+    "Not_Exist": "対象の投稿が存在しません。",
+
+    "Cancel": "キャンセル",
+    "Confirm": "確認",
+
+    "Event_Confirm": "おめでとうございます！ \n\n ルーレット利用券1枚を獲得しました。 \n 今ルーレット利用券を使用しますか？ \n 今日内使用しない場合、消滅します。",
+
+    "Silen_Successfully": "正常に報告されました！",
+    "Silen_Error": "処理中にエラーが発生しました！",
+    "Silen_Report": "報告",
+    "Silen_Reporter": "報告者",
+    "Silen_Content": "内容",
+    "Silen_Reason": "理由を選んでください",
+    "Silen_Advertising": "広報性",
+    "Silen_Harmful": "有害性",
+    "Silen_Pranky": "いたずら",
+    "Silen_Repetitive": "冗長性",
+    "Silen_Cussing": "卑俗語・タメ口",
+    "Silen_knowledge": "非情報・知識",
+    "Silen_Defamation": "誹謗",
+    "Silen_Others": "その他",
+    "Silen_Placeholder": "もしメッセージがございましたらご記入ください。",
+    "Silen_Innocent": "無実の投稿を報告すると、サービスをご利用の際",
+    "Silen_Prudent": "不利益がありえますので、慎重を期してください。",
+    "Silen_Submit": "提出",
+
+    "Message_Send": "送信",
+    "Message_Recipient": "さんにメッセージを送信",
+    "Message_Sent": "メッセージが送信されました。",
+
+    "AD_More": "もっと詳しく見る"
 
 }

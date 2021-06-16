@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 const UlvText = (props, lv) => {
     const LV=[lv[0],lv[1],lv[2],lv[3],lv[4],lv[5],lv[6],lv[7],lv[8],lv[9],lv[10],lv[11]];

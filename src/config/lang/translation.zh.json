@@ -126,5 +126,42 @@
     "Meta_Title": "阿尔通 :: 知识共享平台",
     "Meta_Description": "阿尔通是一个盈利性的知识共享平台，它重视网上的所有知识和信息，并与贡献者共享价值。",
     "Meta_Keywords": "阿尔通, 知识, 利润, 收入, 价值, 经济, 份额, 平台",
-    "Meta_Twitter": "阿尔通 - 盈利性知识共享平台"
+    "Meta_Twitter": "阿尔通 - 盈利性知识共享平台",
+
+    "Hunhun_Give": "送暖暖阿尔",
+    "Hunhun_Available": "今天可用的暖暖阿尔为",
+    "Hunhun_Total": "总共",
+    "Hunhun_Al": "阿尔。",
+    "Hunhun_Warning": "您无法将暖暖阿尔赠送给自己。",
+    "Not_Exist": "该帖子不存在。",
+
+    "Cancel": "取消",
+    "Confirm": "确认",
+
+    "Event_Confirm": "恭喜恭喜！ \n\n 您已获得1张幸运轮盘票。 \n 现在要使用票吗？ \n 如果今天内不使用就过期了。",
+
+    "Silen_Successfully": "成功举报！",
+    "Silen_Error": "处理期间发生错误！",
+    "Silen_Report": "举报",
+    "Silen_Reporter": "举报人",
+    "Silen_Content": "内容",
+    "Silen_Reason": "选择举报原因",
+    "Silen_Advertising": "广告",
+    "Silen_Harmful": "有害",
+    "Silen_Pranky": "恶作剧",
+    "Silen_Repetitive": "重复性",
+    "Silen_Cussing": "脏话",
+    "Silen_knowledge": "非信息知识",
+    "Silen_Defamation": "诽谤",
+    "Silen_Others": "其他",
+    "Silen_Placeholder": "如果要就留言。",
+    "Silen_Innocent": "如果您举报无辜的帖子，则使用该服务时",
+    "Silen_Prudent": "可能会处于不利地位。 所以请慎重。",
+    "Silen_Submit": "提交",
+
+    "Message_Send": "发送",
+    "Message_Recipient": "是收件人",
+    "Message_Sent": "您的讯息已发送。",
+
+    "AD_More": "想看更多"
 }

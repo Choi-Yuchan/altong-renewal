@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
+
 function ViewAnswerBtn(props){
 
     const page = props.pageSeq;

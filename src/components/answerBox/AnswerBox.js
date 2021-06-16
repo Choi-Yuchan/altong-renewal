@@ -16,7 +16,6 @@ import LangTransCount from '../langTransBox/LangTransCount';
 import PopShare from '../popup/popShare/PopShare'
 import { Helmet } from 'react-helmet';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 const replyCount = (replys) => {
   if(replys==null) return 0

@@ -126,6 +126,43 @@
     "Meta_Title": "Altong :: knowledge sharing platform",
     "Meta_Description": "Altong is a profitable knowledge sharing platform that values every knowledge and information on the Web and shares values with contributors.",
     "Meta_Keywords": "Altong, knowledge, profit, revenue, value, economy, share, platform",
-    "Meta_Twitter": "Altong - Profitable knowledge sharing platform"
+    "Meta_Twitter": "Altong - Profitable knowledge sharing platform",
+
+    "Hunhun_Give": "Give Warming Al",
+    "Hunhun_Available": "Warming Al available for today is",
+    "Hunhun_Total": "total",
+    "Hunhun_Al": "Al.",
+    "Hunhun_Warning": "You cannot give Warming Al to yourself.",
+    "Not_Exist": "The post does not exist.",
+
+    "Cancel": "Cancel",
+    "Confirm": "Confirm",
+
+    "Event_Confirm": "Congratulations! \n\n You've acquired a ticket for the fortune wheel. \n Would you like to use the ticket right now? \n If you don't use it within today it will expire.",
+
+    "Silen_Successfully": "Successfully reported!",
+    "Silen_Error": "An error occurred during processing!",
+    "Silen_Report": "Report",
+    "Silen_Reporter": "Reporter",
+    "Silen_Content": "Content",
+    "Silen_Reason": "Select the reason",
+    "Silen_Advertising": "Advertising",
+    "Silen_Harmful": "Harmful",
+    "Silen_Pranky": "Pranky",
+    "Silen_Repetitive": "Repetitive",
+    "Silen_Cussing": "Cussing",
+    "Silen_knowledge": "Non-information/knowledge",
+    "Silen_Defamation": "Defamation",
+    "Silen_Others": "Others",
+    "Silen_Placeholder": "Leave a message if any.",
+    "Silen_Innocent": "If you report an innocent post, you may be at a disadvantage",
+    "Silen_Prudent": "when using the service. So please be prudent.",
+    "Silen_Submit": "Submit",
+
+    "Message_Send": "Send",
+    "Message_Recipient": "is the recipient.",
+    "Message_Sent": "Your message has been sent.",
+
+    "AD_More": "Want to see more"
     
 }

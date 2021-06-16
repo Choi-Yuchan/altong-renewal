@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import React, { useEffect } from 'react';
+import {useTranslation} from 'react-i18next';
 
 function PopAD(props) {
     useEffect(()=>{
@@ -9,6 +10,7 @@ function PopAD(props) {
         }
       }
     , [props.clicked]);
+    const {t} = useTranslation();
     
     return (
         <PopDiv show={props.infoAD.show}>
@@ -17,7 +19,7 @@ function PopAD(props) {
                 <PopDivPA target="_blank" href={props.infoAD.adUrl} onClick={(e) => {
                     e.stopPropagation();
                 }}>
-                    <PopDivPASapn>더 자세히 볼래요</PopDivPASapn>
+                    <PopDivPASapn>{t('AD_More')}</PopDivPASapn>
                 </PopDivPA>
             </PopDivP>
         </PopDiv>

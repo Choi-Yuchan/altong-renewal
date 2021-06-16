@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 // 찜
 function ZzimAxios(pageSeq){

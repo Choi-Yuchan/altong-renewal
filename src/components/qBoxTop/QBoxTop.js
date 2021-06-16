@@ -8,7 +8,6 @@ import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){

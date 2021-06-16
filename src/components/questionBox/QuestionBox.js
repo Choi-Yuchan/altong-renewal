@@ -13,7 +13,6 @@ import PopAD from '../popup/popAD/PopAD';
 import useSound from '../functions/useSound/useSound';
 import SEO from '../../SEO'
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 function ShowBlackDiv(props){
   if(props.clicked === false){

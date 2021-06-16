@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 const MainDiv = styled.div`
   margin-bottom: 10px;
