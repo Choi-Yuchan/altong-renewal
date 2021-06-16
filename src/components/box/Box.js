@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
-
 import QBoxTop from '../qBoxTop/QBoxTop'
 import Contents from '../contents/Contents'
 import LangTransBox from '../langTransBox/LangTransBox'
 import ReplyBox from '../replyBox/ReplyBox'
 import ReplyList from '../replyList/ReplyList'
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
-
 import Num3Comma from '../functions/num3comma/Num3Comma'
 import LangTransCount from '../langTransBox/LangTransCount'
 import PopShare from '../popup/popShare/PopShare'
@@ -42,9 +39,10 @@ function Box(props) {
   , [props.white]);
 
   const pageSeq = props.jsonArr.pageSeq;
+  
   //url list
   const URL_ALMONEY = `/api/questions/${pageSeq}/almoney`;
-  const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/Q/extra-users";
+  const URL_EXTRA_USERS = `/api/questions/${pageSeq}/extra-lists`;
 
   useEffect(()=>{
     const getHunAl = async () => {
@@ -57,15 +55,18 @@ function Box(props) {
       }  
     }
     
-    axios.get(URL_EXTRA_USERS)
-      .then((response) => response.data)
-      .then( (data) => {
-        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
+    const getHunUsers = async () => {
+      try{
+        const response = await axios.get(URL_EXTRA_USERS);
+        if(response.data.code === "success"){
+          setExtras(response.data.ExtraAlmoneyList);
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    }
     getHunAl();
+    getHunUsers();
   }, []);
 
 
@@ -78,18 +79,22 @@ function Box(props) {
       } catch(e){
         console.log(e)
       }
-    }   
-      axios.get(URL_EXTRA_USERS)
-      .then((response) => response.data)
-      .then( (data) => {
-        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
+    }
+    
+    const getHunUserData = async () => {
+      try{
+        const response = await axios.get(URL_EXTRA_USERS);
+        if(response.data.code === "success"){
+          setExtras(response.data.ExtraAlmoneyList);
+        }
+      } catch (e) {
+        console.log(e)
+      }
       props.setHunAlram(false);
+    }
 
       getHunAldata();
+      getHunUserData();
     }, [props.hunAlram]);
 
   //번역버튼 클릭에 대한 AI를 만들었다.
