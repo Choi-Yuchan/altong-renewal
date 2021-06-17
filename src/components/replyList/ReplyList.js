@@ -11,8 +11,6 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
     //URL LIST
     const URL_QUE_REPLY = `/api/questions/${pageSeq}/reply`;
     const URL_ANS_REPLY = `/api/answers/${pageSeq}/reply`;
-
-    console.log(QorA ==='Q'? URL_QUE_REPLY: URL_ANS_REPLY);
     
     const textV = text;
     setText("");
@@ -21,9 +19,6 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
         })
     .then((response) => response.data)
     .then((data) => {
-        console.log("data : ..");
-        console.log(data);
-
         if(data.code === "success"){
             setReplys(data.replys);
         }else if(data.code === "daydup"){
@@ -43,7 +38,6 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
     })
     .catch(function (error) {
         console.log("error : " + error);
-        console.log(error);
     });
 }
 
@@ -71,9 +65,9 @@ function ShowList({USER, replyToggle, pageSeq, seqComponent, white, setWhite, re
             <ReplySubmitP><span>{text.length}</span>/400</ReplySubmitP>
         </ReplySubmit>
         <ReplyContainer
-            white={white} setWhite={setWhite} replys={replys} seq={seq}
-            seqComponent={seqComponent} pageSeq={pageSeq}
-            setReplys={resetReplys}
+        white={white} setWhite={setWhite} replys={replys} 
+        pageSeq={pageSeq} seq={seq}
+        setReplys={resetReplys} seqComponent={seqComponent} 
         ></ReplyContainer>
     </ShowView>
     );
