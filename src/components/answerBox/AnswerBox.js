@@ -73,47 +73,51 @@ function AnswerBox(props) {
   const [extras, setExtras] = useState([]);
 
   const [ borderColor, setBorderColor ] = useState(false);
+
+  const answer = props.jsonArr.pageSeq;
   //url list
-  const URL_EXTRA = "/rest/answers/"+props.jsonArr.pageSeq+"/almoney";
+  const URL_EXTRA = `/api/answers/${answer}/almoney`;
   const URL_ESTIMATE = "/restApi/answers/"+props.jsonArr.pageSeq+"/estimate";
   const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users"
 
   useEffect(()=>{
     
-    if(props.jsonArr.pageSeq === undefined){}else{
-      axios.get(URL_EXTRA)
-      .then((response) => response.data)
-      .then( (data) => {
-        setExtraAlmoney(data.ExtraAlmoney);
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
-
-      // estimate 몇번째에 체크했는지
-      axios.get(URL_ESTIMATE)
-      .then((response) => response.data)
-      .then( (data) => {
-        if( data.code === "success" ) {
-          setMyestiNo(data.myEstimateNo);
-        }
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
-      
-      // 상단 좌측 훈훈알 리스트
-      axios.get(URL_EXTRA_USERS)
-      .then((response) => response.data)
-      .then( (data) => {
-        if("success" === data.code) setExtras(data.ExtraAlmoneyList);
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
+    const getAlmoney = async () => {
+      if(props.jsonArr.pageSeq === undefined){
+        return null;
+      }else
+      try{
+        const response = await axios.get(URL_EXTRA);
+        setExtraAlmoney(response.data.ExtraAlmoney)
+      } catch (e) {
+        console.log(e)
+      }
     }
-  }
-  , []);
+
+    // estimate 몇번째에 체크했는지
+    axios.get(URL_ESTIMATE)
+    .then((response) => response.data)
+    .then( (data) => {
+      if( data.code === "success" ) {
+        setMyestiNo(data.myEstimateNo);
+      }
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
+    
+    // 상단 좌측 훈훈알 리스트
+    axios.get(URL_EXTRA_USERS)
+    .then((response) => response.data)
+    .then( (data) => {
+      if("success" === data.code) setExtras(data.ExtraAlmoneyList);
+    })
+    .catch(function (error) {
+      console.log(error)
+    });
+    
+    getAlmoney();
+  }, []);
   // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
   useEffect(()=>{
     if(props.hunAlram === true){
