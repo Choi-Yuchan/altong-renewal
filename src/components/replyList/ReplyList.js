@@ -7,15 +7,16 @@ import {useTranslation} from 'react-i18next';
 
 
 const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
+ 
     //URL LIST
-    const URL_QUE_REPLY = "/rest/questions/"+pageSeq+"/reply";
-    const URL_ANS_REPLY = "/rest/answers/"+pageSeq+"/reply";
+    const URL_QUE_REPLY = `/api/questions/${pageSeq}/reply`;
+    const URL_ANS_REPLY = `/api/answers/${pageSeq}/reply`;
 
     console.log(QorA ==='Q'? URL_QUE_REPLY: URL_ANS_REPLY);
     
     const textV = text;
     setText("");
-    axios.put(QorA ==='Q'? URL_QUE_REPLY : URL_ANS_REPLY,{
+    axios.post(QorA ==='Q'? URL_QUE_REPLY : URL_ANS_REPLY,{
             "text":textV
         })
     .then((response) => response.data)
@@ -46,11 +47,8 @@ const SendReply = (pageSeq, QorA, text, setText, setReplys, langTrans) => {
     });
 }
 
-function ShowList(props){
+function ShowList({USER, replyToggle, pageSeq, seqComponent, white, setWhite, replys, setReplys, resetReplys, langTrans}){
     const [text, setText] = useState("");
-    const USER= props.USER;
-
-    const replys = props.replys;
     
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
     const seq = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
@@ -58,31 +56,30 @@ function ShowList(props){
     
 
     return (
-    <ShowView row={props.replyToggle}>
+    <ShowView row={replyToggle}>
         <TextAreaDiv>
             <TextArea placeholder=
-            { nick===""? props.langTrans[1]: nick+props.langTrans[0]}
+            { nick===""? langTrans[1]: nick+langTrans[0]}
             maxLength="400" onChange={(e) => {
                 setText(e.target.value);
             } } value={text} onClick={()=>{setReplyClick(true)}}></TextArea>
                 <ReplyButton width={replyClick} onClick={() => {
-                    SendReply(props.pageSeq, props.seqComponent, text, setText, props.setReplys, props.langTrans);
-                    } }>{props.langTrans[2]}</ReplyButton>
+                    SendReply(pageSeq, seqComponent, text, setText, setReplys, langTrans);
+                    } }>{langTrans[2]}</ReplyButton>
         </TextAreaDiv>
         <ReplySubmit>
             <ReplySubmitP><span>{text.length}</span>/400</ReplySubmitP>
         </ReplySubmit>
         <ReplyContainer
-            white={props.white} setWhite={props.setWhite} replys={replys} seq={seq}
-            seqComponent={props.seqComponent} pageSeq={props.pageSeq}
-            setReplys={props.resetReplys}
+            white={white} setWhite={setWhite} replys={replys} seq={seq}
+            seqComponent={seqComponent} pageSeq={pageSeq}
+            setReplys={resetReplys}
         ></ReplyContainer>
     </ShowView>
     );
 }
 
-function ReplyList(props) {
-    const resetReplys = props.resetReplys;
+function ReplyList({USER, replyToggle, pageSeq, seqComponent, white, setWhite, replys, setReplys, resetReplys}) {
     const {t} = useTranslation();
     const langTrans = [
         t('Reply_Comment'),
@@ -97,11 +94,11 @@ function ReplyList(props) {
     ]
     
     return (
-      <ShowList USER={props.USER} replyToggle={props.replyToggle}
-        pageSeq={props.pageSeq} seqComponent={props.seqComponent}
-        white={props.white} setWhite={props.setWhite}
-        className="ReplyList" replys={props.replys}
-        setReplys={props.setReplys}
+      <ShowList USER={USER} replyToggle={replyToggle}
+        pageSeq={pageSeq} seqComponent={seqComponent}
+        white={white} setWhite={setWhite}
+        className="ReplyList" replys={replys}
+        setReplys={setReplys}
         resetReplys={resetReplys}
         langTrans={langTrans}
         >

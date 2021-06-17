@@ -4,7 +4,6 @@ import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
 import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
@@ -48,7 +47,6 @@ const DelReply = ( seqComponent, replySeq, setReplys) => {
         }
     })
     .catch(function (error) {
-        console.log("error : " + error);
         console.log(error);
     });
 }
