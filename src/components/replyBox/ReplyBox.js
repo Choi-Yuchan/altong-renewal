@@ -100,7 +100,7 @@ function ReplyBox(props) {
                 console.log(error);
             })
         }
-    }, []);
+    },[]);
 
     useEffect(()=>{
         const getVoteData = async () => {

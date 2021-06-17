@@ -30,31 +30,30 @@ function AldolViewContents(props){
     return <ReplyContents>{props.content}</ReplyContents>
 }
 
-const DelReply = ( seqComponent, replySeq, setReplys) => {
-    const URL_QUE_REPLY = "/restApi/answers/"+replySeq+"/Q/reply-del"
-    const URL_ANS_REPLY = "/restApi/answers/"+replySeq+"/A/reply-del"
+const DelReply = (seqComponent, replySeq, setReplys) => {
+    const URL_QUE_REPLY = `/api/questions/replys/${replySeq}`
+    const URL_ANS_REPLY = `/api/answers/replys/${replySeq}`
 
-    console.log(seqComponent==='Q'? URL_QUE_REPLY : URL_ANS_REPLY);
-
-    axios.delete(seqComponent==='Q'? URL_QUE_REPLY : URL_ANS_REPLY)
-    .then((response) => response.data)
-    .then((data) => {
-        setReplys(replySeq);
-        if(data.msg==="success"){
-
-        }else{
-            alert("댓글 삭제가 실패하였습니다.");
+        const deleteReply = async () => {
+            try{
+                const response = await axios.delete(seqComponent === "Q" ? URL_QUE_REPLY : URL_ANS_REPLY);
+                if(response.data.msg === "success"){
+                    return null;
+                } else {
+                    alert("댓글 삭제가 실패하였습니다.");
+                }
+            } catch (e) {
+                console.log(e)
+            }
         }
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
+        deleteReply();
+        setReplys(replySeq);
 }
 
-const DelViewer = (user, seqId, seqComponent, replySeq, setReplys, replyText) => {
+const DeleteBtn = (user, seqId, seqComponent, replySeq, setReplys, replyText) => {
     if(user === seqId){
-        return <> · <DelI onClick={(e)=>{
-            DelReply(e, seqComponent, replySeq, setReplys );
+        return <> · <DelI onClick={()=>{
+            DelReply(seqComponent, replySeq, setReplys );
         }}>{replyText[4]}</DelI></>
     } else if (user !== 10003513) {
         return <> · <ReportImg>{replyText[5]}</ReportImg></>
@@ -62,17 +61,9 @@ const DelViewer = (user, seqId, seqComponent, replySeq, setReplys, replyText) =>
     
 }
 
-function Reply(props) {
-    
-    const seqComponent = props.seqComponent;
-    // 댓글 수정
-    const setReplys= props.setReplys;
-
-
+function Reply({setReplys, seqComponent, seq, white, setWhite, reply}) {
+ 
     const [timeToggle, setTimeToggle] = useState(false);
-    const seq = props.seq;
-    // 댓글 id 값
-    const replySeq = props.reply.seq
 
     const [imgChange, setImgChange] = useState(true);
     const trans = () => {
@@ -84,10 +75,10 @@ function Reply(props) {
     }  
 
     useEffect(() => {
-        if(props.white === true){
+        if(white === true){
             setTimeToggle(false);
         }
-    }, [props.white]);
+    }, [white]);
     const {t} = useTranslation();
     const replyText = [
         t('Reply_System_Comment_top'), 
@@ -97,6 +88,8 @@ function Reply(props) {
         t('Reply_Delete'),
         t('Reply_Report')
     ];
+    //해당 댓글 고유번호
+    const replySeq = reply.seq;
 
     return (
       <MainContents className="Reply">
@@ -106,16 +99,16 @@ function Reply(props) {
                       <ReplyLocaleTh>
                             <ReplyAhrefA>
                                 <AldolViewImg
-                                    seqId={props.reply.profile.seqId}
-                                    img={props.reply.profile.img}
+                                    seqId={reply.profile.seqId}
+                                    img={reply.profile.img}
                                     onError={handleImgError}
                                 ></AldolViewImg>
-                                <ReplyLocalDiv>{props.reply.profile.locale}</ReplyLocalDiv>
+                                <ReplyLocalDiv>{reply.profile.locale}</ReplyLocalDiv>
                             </ReplyAhrefA>
                       </ReplyLocaleTh>
                         <AldolViewContents
-                            content={props.reply.content} from={props.reply.nick2}
-                            seqId={props.reply.profile.seqId} to={props.reply.nick1} al={props.reply.almoney}
+                            content={reply.content} from={reply.nick2}
+                            seqId={reply.profile.seqId} to={reply.nick1} al={reply.almoney}
                             replyText={replyText}
                         >
                         </AldolViewContents>
@@ -123,15 +116,15 @@ function Reply(props) {
                   <tr>
                       <ReplyBottonDiv></ReplyBottonDiv>
                       <ReplyBotton>
-                        <ReplyLocaleImg src={"/Common/images/nation/" + props.reply.profile.locale +'.svg'}></ReplyLocaleImg>
+                        <ReplyLocaleImg src={"/Common/images/nation/" + reply.profile.locale +'.svg'}></ReplyLocaleImg>
                         
-                        <ReplyAhref>{props.reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
-                                props.setWhite(false);
+                        <ReplyAhref>{reply.profile.nick}</ReplyAhref> · <Btag onClick={ (e) => { 
+                                setWhite(false);
                                 setTimeToggle(!timeToggle);
                                 e.stopPropagation();
-                            }
-                            } ><ShowView date={props.reply.date} timeToggle={timeToggle}></ShowView></Btag>{
-                                DelViewer( props.reply.profile.seqId, seq, seqComponent, replySeq, setReplys, replyText )
+                                }
+                            } ><ShowView date={reply.date} timeToggle={timeToggle}></ShowView></Btag>{
+                                DeleteBtn( reply.profile.seqId, seq, seqComponent, replySeq, setReplys, replyText )
                             }
                         {/*댓글의 훈훈알, 좋아요, 싫어요 */}
                         {/*
