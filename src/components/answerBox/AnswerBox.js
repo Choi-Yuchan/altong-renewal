@@ -77,7 +77,7 @@ function AnswerBox(props) {
   const answer = props.jsonArr.pageSeq;
   //url list
   const URL_EXTRA = `/api/answers/${answer}/almoney`;
-  const URL_ESTIMATE = "/restApi/answers/"+props.jsonArr.pageSeq+"/estimate";
+  const URL_EVALUATE = `/api/answers/${answer}/estimate`;
   const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users"
 
   useEffect(()=>{
@@ -95,16 +95,16 @@ function AnswerBox(props) {
     }
 
     // estimate 몇번째에 체크했는지
-    axios.get(URL_ESTIMATE)
-    .then((response) => response.data)
-    .then( (data) => {
-      if( data.code === "success" ) {
-        setMyestiNo(data.myEstimateNo);
+    const getEvaluation = async () => {
+      try{
+        const response = await axios.get(URL_EVALUATE)
+        if(response.data.code === "success"){
+          setMyestiNo(response.data.myEstimateNo);
+        }
+      } catch (e) {
+        console.log(e)
       }
-    })
-    .catch(function (error) {
-      console.log(error)
-    });
+    }
     
     // 상단 좌측 훈훈알 리스트
     axios.get(URL_EXTRA_USERS)
@@ -117,6 +117,7 @@ function AnswerBox(props) {
     });
     
     getAlmoney();
+    getEvaluation();
   }, []);
   // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
   useEffect(()=>{
