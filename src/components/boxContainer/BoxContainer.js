@@ -15,7 +15,7 @@ function BoxController(props) {
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             selected={index}
             highlight = {props.highlight} setHighlight = {props.setHighlight}
-            pageNumber={props.pageNumber}
+            SSRJSON={props.SSRJSON}
         >
         </Box>: 
         jaar.seqComponent === "A" ?
@@ -30,7 +30,7 @@ function BoxController(props) {
             hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
             selected={index}
             highlight = {props.highlight} setHighlight = {props.setHighlight}
-            pageNumber={props.pageNumber}
+            SSRJSON={props.SSRJSON}
             choice={props.choice} setChoice={props.setChoice}
         >
         </AnswerBox> : ""
