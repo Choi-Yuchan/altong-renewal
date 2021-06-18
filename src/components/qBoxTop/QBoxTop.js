@@ -140,12 +140,10 @@ function QBoxTop(props) {
           setShare={props.setShare}
         />
       </BtnBox>
-      <MiniProfile setClicked={props.setClicked} showMini={showMini}
-        mini={props.mini} clicked={props.clicked} 
-        id={props.seqId}
-        setShowMini={setShowMini}
-        USER={props.USER}
-        setShowMessage={props.setShowMessage}
+      <MiniProfile 
+      setClicked={props.setClicked} showMini={showMini}
+      mini={props.mini} userSeq={props.seqId}
+      setShowMini={setShowMini} setShowMessage={props.setShowMessage}
       />
     </MainDiv>
   );
