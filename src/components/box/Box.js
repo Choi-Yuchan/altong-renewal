@@ -10,7 +10,6 @@ import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 import LangTransCount from '../langTransBox/LangTransCount'
 import PopShare from '../popup/popShare/PopShare'
-import { Helmet } from 'react-helmet';
 
 //jsonArr
 const replyCount = (replys) => {
@@ -104,7 +103,6 @@ function Box(props) {
 
   return (
     <>
-    {share && <Helmet><script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script></Helmet>}
     <MainDiv>
         <div>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
@@ -154,7 +152,7 @@ function Box(props) {
       clicked={props.clicked} setClicked={props.setClicked}
       share={share} setShare={setShare}
       jsonArr={props.jsonArr}
-      pageNumber={props.pageNumber}
+      SSRJSON={props.SSRJSON}
       USER={props.USER}
       ></PopShare>
     </>

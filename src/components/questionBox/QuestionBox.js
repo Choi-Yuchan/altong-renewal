@@ -91,7 +91,6 @@ function QuestionBox(props) {
     twitterDescrip: t('Meta_Twitter')
   }
 
-  const pageNumber = SSRJSON.pageSeq;
 
   return (
     <>
@@ -129,7 +128,6 @@ function QuestionBox(props) {
             SSRJSON={SSRJSON} USER={user} SESS={SESS}
             infoAD={infoAD} setInfoAD={setInfoAD}
             hunAlram={hunAlram} setHunAlram={setHunAlram}
-            pageNumber={pageNumber}
             ></BoxController>
         </WrapperDiv>
       </MainDiv>
