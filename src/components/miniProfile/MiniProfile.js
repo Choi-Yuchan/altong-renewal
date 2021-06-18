@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const UlvText = (props, lv) => {
     const LV=[lv[0],lv[1],lv[2],lv[3],lv[4],lv[5],lv[6],lv[7],lv[8],lv[9],lv[10],lv[11]];
@@ -10,10 +10,9 @@ const UlvText = (props, lv) => {
   }
 
 function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowMessage}) {
-
     //url list
     const URL_ADD_FRI = `/api/users/${userSeq}/friend`;
-    const URL_ADD_MEN = "/restApi/users/"+ userSeq + "/M/partner-save";
+    const URL_ADD_MEN = `/api/users/${userSeq}/mento`;
 
     // 친구 추가
     const AddFriend = async (e) => {
@@ -30,26 +29,24 @@ function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowM
         }
     }
     // 멘토 추가
-    const AddMento = (e) => {
-        axios.put(URL_ADD_MEN)
-        .then( (response) => response.data )
-        .then( (data) => {
-                alert(data.msg);
-                setClicked(true);
-                e.stopPropagation();
-            }
-        )
-        .catch(function (error) {
-                console.log(error);
-                alert(t('System_Warning'));
-                setClicked(true);
-                e.stopPropagation();
-            }
-        );
+    const AddMento = async (e) => {
+        try{
+            const response = await axios.patch(URL_ADD_MEN);
+            alert(response.data.msg);
+            setClicked(true);
+            e.stopPropagation();
+        } catch(e) {
+            console.log(e);
+            alert(t('System_Warning'));
+            setClicked(true);
+            e.stopPropagation();
+        }
     }
+
     const {t} = useTranslation();
     const lvText = [t('Lv_Hidden'), t('Lv_Al'), t('Lv_Butterfly'), t('Lv_Smiling'), t('Lv_Fiery'), t('Lv_Golden'), t('Lv_Guardian'), t('Lv_Light'), t('Lv_Chief'), t('Lv_Archangel'), t('Lv_Chief_Archangel'), t('Lv_Altong_Addict')]
 
+    //MainTableImg component에 대체 텍스트가 없음. 추가 작업 필요.
     return (
         <MainDiv showMini={showMini}
         onClick={(e)=>{
@@ -68,14 +65,14 @@ function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowM
                             AddFriend(e);
                         }}
                     >
-                        <MainTableImg src="/pub/css/profile/addFriends.svg"></MainTableImg>
+                        <MainTableImg src="/pub/css/profile/addFriends.svg"/>
                     </th>
                     <th rowSpan="2" 
                         onClick={(e) => {
                             AddMento(e);
                         }}
                     >
-                        <MainTableImg src="/pub/css/profile/addMento.svg"></MainTableImg>
+                        <MainTableImg src="/pub/css/profile/addMento.svg"/>
                     </th>
                     <th rowSpan="2"
                         onClick={(e) => {
@@ -84,7 +81,7 @@ function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowM
                             e.stopPropagation();
                         }}
                     >
-                        <MainTableImgLast src="/pub/css/profile/message.svg"></MainTableImgLast>
+                        <MainTableImgLast src="/pub/css/profile/message.svg"/>
                     </th>
                 </tr>
                 <tr>
@@ -103,9 +100,9 @@ function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowM
                         <MiniInfoTableTd>{t('MiniProfile_Gratitude_rate')}</MiniInfoTableTd>
                     </MiniInfoTableTr>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTh><Num3Comma num={mini.qBenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={mini.ABenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={mini.giveThankNum}></Num3Comma></MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.qBenefit}/> {t('PopExtraAl_Al')}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.ABenefit}/> {t('PopExtraAl_Al')}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.giveThankNum}/></MiniInfoTableTh>
                         <MiniInfoTableTh>{mini.giveThankRate}%</MiniInfoTableTh>
                     </MiniInfoTableTr>
                 </tbody>
