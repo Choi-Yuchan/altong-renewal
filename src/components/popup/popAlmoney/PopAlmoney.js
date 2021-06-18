@@ -83,8 +83,7 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
     const [extraAlmoney,setextraAlmoney] = useState(0);
 
     //URL LIST
-    const URL_QUE_EXTRA = "/rest/questions/"+page+"/almoney/extra";
-    const URL_ANS_EXTRA = "/rest/answers/"+page+"/almoney/extra";
+    const URL_EXTRA_ALMONEY = "/api/user/almoney/extra";
 
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
@@ -100,23 +99,23 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
       }, [clicked]);
 
     useEffect(() => {
-    if(showAlmoney === true){
-        // 증정 가능한 훈훈알 반환
-        axios.post(seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA)
-            .then((response) => response.data)
-            .then((data) => {
-                if(data.code === "rowlv"){
-                    alert(data.message);
+        //사용 가능한 훈훈알 수 반환
+        const checkWarmingAlBalance = async () => {
+            if(showAlmoney === true)
+            try{
+                const response = await axios.get(URL_EXTRA_ALMONEY);
+                if(response.data.code === "rowlv"){
+                    alert(response.data.message);
                     setClicked(true);
-                    setShowAlmoney({show:false, page:0, seq:'Q'});
-                }else if(data.code === "find"){
-                    setMaxAlmoney(parseInt(data.almoney,10));
+                    setShowAlmoney({ show : false, page : 0, seq: "Q"});
+                } else if(response.data.code === "find"){
+                    setMaxAlmoney(parseInt(response.data.almoney), 10);
                 }
-            })
-            .catch(function (error) {
-                console.log("error : " + error)
+            } catch(e) {
+                console.log(e)
             }
-        )};
+        }
+        checkWarmingAlBalance();
     }, [showAlmoney]);
 
     return (
@@ -157,7 +156,7 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
 export default PopAlmoney;
 
 const PopAlDiv = styled.div`
-    display: ${(props) => props.showAlmoney?"block":"none"};
+    display: ${(props) => props.showAlmoney ? "block":"none"};
     padding: 10px;
     max-width: 320px;
     letter-spacing: -1px;
