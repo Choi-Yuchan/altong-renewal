@@ -3,55 +3,49 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
-function PopSilen(props) {
+function PopSiren({clicked, setClicked, showSiren, page, seq, title, setShowSiren, USER}) {
     const [ radioN , setRadioN ] = useState(0);
-    const [ reson , setReson ] = useState("");
+    const [ reason , setReason ] = useState("");
     const {t} = useTranslation();
     
-    const USER= props.USER;
     const nick = USER !== undefined ? ( USER !== null ? ( USER.nick !== null ? USER.nick : "" ) : "" ) : "";
 
     //URL LIST
-    const URL_SIREN = "/restApi/questions/" + props.page + "/siren"
+    const URL_SIREN = `/api/sirens/${page}`
 
     const handleChange = (e) => {
-        setReson(e.target.value);
+        setReason(e.target.value);
     }
 
-    const runSilen = (e, setReson, setClicked) => {
-        axios.put(URL_SIREN,{
-            "ACT":"CheckSiren", "H_Type":props.seq , "H_Reason": radioN, "H_Reason_txt": reson
-        })
-        .then( (response) => response.data )
-        .then( (data) => {
-                if(data.msg){
-                    alert(t('Silen_Successfully'));
-                    setReson("");
-                    setClicked(true);
-                    e.stopPropagation();
-                }else{
-                    alert(t('Silen_Error'));
-                }
+    const runSiren = async (e, setReason, setClicked) => {
+        try {
+            const response = await axios.post(URL_SIREN,{
+                "ACT":"CheckSiren", "H_Type":seq , "H_Reason": radioN, "H_Reason_txt": reason
+            })
+            if(response.data.msg){
+                alert(t('Silen_Successfully'));
+                setReason("");
+                setClicked(true);
+                e.stopPropagation();
+            }else{
+                alert(t('Silen_Error'));
             }
-        )
-        .catch(function (error) {
-                console.log(error)
-            }
-        );
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
     useEffect(() => {
-        if(props.clicked === true){
-            props.setShowSiren({show:false, page:props.page, 
-                seq:props.seq, title: props.title});
+        if(clicked === true){
+            setShowSiren({show:false, page, seq, title});
         }
-      }, [props.clicked]);
+      }, [clicked]);
 
     return (
-        <PopReportDiv showSiren={props.showSiren} onClick={(e) => {
-            props.setClicked(false);
-            props.setShowSiren({show:true, page:props.page, seq:props.seq, title: props.title});
+        <PopReportDiv showSiren={showSiren} onClick={(e) => {
+            setClicked(false);
+            setShowSiren({show:true, page, seq, title});
             e.stopPropagation();
           }}>
             <PopReportH4><PopReportDivImg/>{t('Silen_Report')}</PopReportH4>
@@ -65,7 +59,7 @@ function PopSilen(props) {
                             </BTr>
                             <BTr>
                                 <BTbodyTrTh>{t('Silen_Content')}</BTbodyTrTh>
-                                <BTbodyTrTd>{props.title}</BTbodyTrTd>
+                                <BTbodyTrTd>{title}</BTbodyTrTd>
                             </BTr>
                         </BTbody>
                     </BTable>
@@ -156,7 +150,7 @@ function PopSilen(props) {
                             </tr>
                             <tr>
                                 <ABTd colSpan="2">
-                                    <ReTextarea maxlength="1000" placeholder={t('Silen_Placeholder')} value={reson} onChange={(e) => {handleChange(e)}}>
+                                    <ReTextarea maxlength="1000" placeholder={t('Silen_Placeholder')} value={reason} onChange={(e) => {handleChange(e)}}>
                                     </ReTextarea>
                                 </ABTd>
                                 
@@ -176,19 +170,19 @@ function PopSilen(props) {
                             <tr>
                                 <td>
                                     <DRInput value={t('Cancel')} 
-                                    onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
+                                    onChange={(e) => {handleChange(e)}}
                                     onClick={(e)=>{
-                                            setReson("");
-                                            props.setClicked(true);
+                                            setReason("");
+                                            setClicked(true);
                                             e.stopPropagation();
                                         }}
                                     ></DRInput>
                                 </td>
                                 <td>
                                     <DSubmit value={t('Silen_Submit')} 
-                                    onChange={(e) => {handleChange(e)}} // 추후 해당 state값 설정하는 onChange함수 새로 만들어야함
+                                    onChange={(e) => {handleChange(e)}} 
                                     onClick={(e)=>{
-                                            runSilen(e, setReson, props.setClicked);
+                                            runSiren(e, setReason, setClicked);
                                         }}
                                     ></DSubmit>
                                 </td>
@@ -201,7 +195,7 @@ function PopSilen(props) {
     );
 }
   
-export default PopSilen;
+export default PopSiren;
 const DReportTable = styled.table`
     margin-top: 10px;
     width: 100%;

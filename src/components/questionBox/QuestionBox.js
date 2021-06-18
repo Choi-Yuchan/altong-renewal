@@ -7,7 +7,7 @@ import TopNavi from '../../topNavi/TopNavi'
 import AlNavi from '../../alNavi/AlNavi'
 import BoxController from '../boxContainer/BoxContainer'
 import PopAlmoney from '../popup/popAlmoney/PopAlmoney';
-import PopSilen from '../popup/popSilen/PopSilen';
+import PopSiren from '../popup/popSiren/PopSiren';
 import PopMessage from '../popup/popMessage/PopMessage';
 import PopAD from '../popup/popAD/PopAD';
 import useSound from '../functions/useSound/useSound';
@@ -142,11 +142,11 @@ function QuestionBox(props) {
       setHunAlram={setHunAlram}
       />
 
-      <PopSilen
+      <PopSiren
       clicked={bodyClicked} setClicked={setBodyClicked}
       showSiren={showSiren.show} page={showSiren.page} seq={showSiren.seq} title={showSiren.title}
-        setShowSiren={setShowSiren} USER={user}
-        ></PopSilen>
+      setShowSiren={setShowSiren} USER={user}
+      />
         
       <PopMessage
       clicked={bodyClicked} setClicked={setBodyClicked}
