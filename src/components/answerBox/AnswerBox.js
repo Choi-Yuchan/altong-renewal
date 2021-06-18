@@ -78,7 +78,7 @@ function AnswerBox(props) {
   //url list
   const URL_EXTRA = `/api/answers/${answer}/almoney`;
   const URL_EVALUATE = `/api/answers/${answer}/estimate`;
-  const URL_EXTRA_USERS = "/restApi/answers/"+props.jsonArr.pageSeq+"/A/extra-users"
+  const URL_EXTRA_USERS = `/api/answers/${answer}/extra-lists`
 
   useEffect(()=>{
     
@@ -107,17 +107,20 @@ function AnswerBox(props) {
     }
     
     // 상단 좌측 훈훈알 리스트
-    axios.get(URL_EXTRA_USERS)
-    .then((response) => response.data)
-    .then( (data) => {
-      if("success" === data.code) setExtras(data.ExtraAlmoneyList);
-    })
-    .catch(function (error) {
-      console.log(error)
-    });
+    const getWarmingList = async () => {
+      try{
+        const response = await axios.get(URL_EXTRA_USERS);
+        if(response.data.code === "success"){
+          setExtras(response.data.ExtraAlmoneyList);
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
     
     getAlmoney();
     getEvaluation();
+    getWarmingList();
   }, []);
   // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
   useEffect(()=>{
