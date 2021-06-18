@@ -6,34 +6,34 @@ import Num3Comma from '../../functions/num3comma/Num3Comma'
 import {useTranslation} from 'react-i18next';
 
 
-function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram, text) {
+function giveAlmoney(page, seq, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram, text) {
         
     //URL LIST
-    const URL_QUE_AL = "/rest/questions/"+props.page+"/almoney";
-    const URL_ANS_AL = "/rest/answers/"+props.page+"/almoney";
+    const URL_QUE_AL = `/api/questions/${page}/almoney`;
+    const URL_ANS_AL = `/api/answers/${page}/almoney`;
 
-    axios.put(props.seq==='Q'? URL_QUE_AL : 
+    //훈훈알 주는 기능
+    axios.post(seq==='Q'? URL_QUE_AL : 
         URL_ANS_AL ,{
             "extraAlmoney":parseInt(extraAlmoney)
         })
     .then((response) => response.data)
     .then((data) => {
-        console.log(data);
         if(data.code === "fail"){
             setextraAlmoney(0);
             alert(data.msg);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:props.seq});
+            setShowAlmoney({show:false, page:0, seq});
             e.stopPropagation();
         }else if(data.code === "error"){
             setextraAlmoney(0);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:props.seq});
+            setShowAlmoney({show:false, page:0, seq});
             e.stopPropagation();
         }else if( data.code === "rowlv" ){
             alert(data.message);
             setClicked(true);
-            setShowAlmoney({show:false, page:0, seq:props.seq});
+            setShowAlmoney({show:false, page:0, seq});
             e.stopPropagation();
         }else if(data.code === "good"){
             setHunAlram(true);
@@ -41,11 +41,11 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 setextraAlmoney(0);
                 setMaxAlmoney(maxAlmoney - extraAlmoney);
                 setClicked(true);
-                setShowAlmoney({show:false, page:0, seq:props.seq});
+                setShowAlmoney({show:false, page:0, seq});
                 e.stopPropagation();
             }else if( data.game.code ==="stack" ){
                 setClicked(true);
-                setShowAlmoney({show:false, page:0, seq:props.seq});
+                setShowAlmoney({show:false, page:0, seq});
                 e.stopPropagation();
             } else {
                 // 룰렛 게임 처리
@@ -57,7 +57,7 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
                 }
 
                 setClicked(true);
-                setShowAlmoney({show:false, page:0, seq:props.seq});
+                setShowAlmoney({show:false, page:0, seq});
                 e.stopPropagation();
             }
         }else if(data.code === "me"){
@@ -78,15 +78,13 @@ function giveAlmoney(props, extraAlmoney, setMaxAlmoney, setextraAlmoney, maxAlm
 }
 
 // atm_top_wrap
-function PopAlmoney(props) {
+function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq, setHunAlram}) {
     const [maxAlmoney,setMaxAlmoney] = useState(30000);
     const [extraAlmoney,setextraAlmoney] = useState(0);
 
-    const setHunAlram = props.setHunAlram;
-
     //URL LIST
-    const URL_QUE_EXTRA = "/rest/questions/"+props.page+"/almoney/extra";
-    const URL_ANS_EXTRA = "/rest/answers/"+props.page+"/almoney/extra";
+    const URL_QUE_EXTRA = "/rest/questions/"+page+"/almoney/extra";
+    const URL_ANS_EXTRA = "/rest/answers/"+page+"/almoney/extra";
 
     const handleChange = (e) => {
         setextraAlmoney(e.target.value);
@@ -96,23 +94,21 @@ function PopAlmoney(props) {
     const almoneyText = [t('Event_Confirm'), t('Hunhun_Warning'), t('Not_Exist')];
 
     useEffect(() => {
-        if(props.clicked === true){
-            props.setShowAlmoney({show:false, page:props.page, 
-                seq:props.seq});
+        if(clicked === true){
+            setShowAlmoney({show:false, page, seq});
         }
-      }, [props.clicked]);
+      }, [clicked]);
 
     useEffect(() => {
-    if(props.showAlmoney === true){
+    if(showAlmoney === true){
         // 증정 가능한 훈훈알 반환
-        console.log(props.seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA);
-        axios.post(props.seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA)
+        axios.post(seq==='Q'? URL_QUE_EXTRA : URL_ANS_EXTRA)
             .then((response) => response.data)
             .then((data) => {
                 if(data.code === "rowlv"){
                     alert(data.message);
-                    props.setClicked(true);
-                    props.setShowAlmoney({show:false, page:0, seq:'Q'});
+                    setClicked(true);
+                    setShowAlmoney({show:false, page:0, seq:'Q'});
                 }else if(data.code === "find"){
                     setMaxAlmoney(parseInt(data.almoney,10));
                 }
@@ -121,12 +117,12 @@ function PopAlmoney(props) {
                 console.log("error : " + error)
             }
         )};
-    }, [props.showAlmoney]);
+    }, [showAlmoney]);
 
     return (
-        <PopAlDiv showAlmoney={props.showAlmoney} onClick={(e) => {
-            props.setClicked(false);
-            props.setShowAlmoney({show:true, page:props.page, seq:props.seq});
+        <PopAlDiv showAlmoney={showAlmoney} onClick={(e) => {
+            setClicked(false);
+            setShowAlmoney({show:true, page, seq});
             e.stopPropagation();
           }}>
             <PopUl>
@@ -143,14 +139,14 @@ function PopAlmoney(props) {
                 <Popli4>
                     <Popli4Button
                         onClick={(e) =>{
-                            props.setClicked(true);
-                            props.setShowAlmoney({show:false, page:0, seq:'Q'});
+                            setClicked(true);
+                            setShowAlmoney({show:false, page:0, seq:'Q'});
                             e.stopPropagation();
                         }}
                     >{t('Cancel')}</Popli4Button>
                     <Popli5Button onClick={(e) =>{
-                        giveAlmoney(props, extraAlmoney,
-                            setMaxAlmoney, setextraAlmoney, maxAlmoney, props.setShowAlmoney, props.setClicked, e, setHunAlram, almoneyText);
+                        giveAlmoney(page, seq, extraAlmoney,
+                            setMaxAlmoney, setextraAlmoney, maxAlmoney, setShowAlmoney, setClicked, e, setHunAlram, almoneyText);
                     }}>{t('Confirm')}</Popli5Button>
                 </Popli4>
             </PopUl>

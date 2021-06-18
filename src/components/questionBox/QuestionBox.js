@@ -137,10 +137,10 @@ function QuestionBox(props) {
       
       <PopAlmoney
       clicked={bodyClicked} setClicked={setBodyClicked}
-        showAlmoney={showAlmoney.show} page={showAlmoney.page} seq={showAlmoney.seq}
-        setShowAlmoney={setShowAlmoney}
-        setHunAlram={setHunAlram}
-        ></PopAlmoney>
+      showAlmoney={showAlmoney.show} page={showAlmoney.page} 
+      setShowAlmoney={setShowAlmoney} seq={showAlmoney.seq}
+      setHunAlram={setHunAlram}
+      />
 
       <PopSilen
       clicked={bodyClicked} setClicked={setBodyClicked}
