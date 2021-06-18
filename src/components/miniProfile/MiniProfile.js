@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
 import {useTranslation} from 'react-i18next';
@@ -9,31 +9,25 @@ const UlvText = (props, lv) => {
     return LV[props];
   }
 
-function MiniProfile(props) {
-    const USER= props.USER;
-    // const uid = USER !== undefined ? ( USER !== null ? ( USER.seq !== null ? USER.seq : "" ) : "" ) : "";
-    
+function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowMessage}) {
+
     //url list
-    const URL_ADD_FRI = "/restApi/users/"+ props.id + "/F/partner-save";
-    const URL_ADD_MEN = "/restApi/users/"+ props.id + "/M/partner-save";
+    const URL_ADD_FRI = `/api/users/${userSeq}/friend`;
+    const URL_ADD_MEN = "/restApi/users/"+ userSeq + "/M/partner-save";
 
     // 친구 추가
-    const AddFriend = (e) => {
-        axios.put(URL_ADD_FRI)
-        .then( (response) => response.data )
-        .then( (data) => {
-                alert(data.msg);
-                props.setClicked(true);
-                e.stopPropagation();
-            }
-        )
-        .catch(function (error) {
-                console.log(error);
-                alert(t('System_Warning'));
-                props.setClicked(true);
-                e.stopPropagation();
-            }
-        );
+    const AddFriend = async (e) => {
+        try{
+            const response = await axios.patch(URL_ADD_FRI);
+            alert(response.data.msg);
+            setClicked(true);
+            e.stopPropagation();
+        } catch (e) {
+            console.log(e);
+            alert(t('System_Warning'));
+            setClicked(true);
+            e.stopPropagation();
+        }
     }
     // 멘토 추가
     const AddMento = (e) => {
@@ -41,14 +35,14 @@ function MiniProfile(props) {
         .then( (response) => response.data )
         .then( (data) => {
                 alert(data.msg);
-                props.setClicked(true);
+                setClicked(true);
                 e.stopPropagation();
             }
         )
         .catch(function (error) {
                 console.log(error);
                 alert(t('System_Warning'));
-                props.setClicked(true);
+                setClicked(true);
                 e.stopPropagation();
             }
         );
@@ -57,17 +51,17 @@ function MiniProfile(props) {
     const lvText = [t('Lv_Hidden'), t('Lv_Al'), t('Lv_Butterfly'), t('Lv_Smiling'), t('Lv_Fiery'), t('Lv_Golden'), t('Lv_Guardian'), t('Lv_Light'), t('Lv_Chief'), t('Lv_Archangel'), t('Lv_Chief_Archangel'), t('Lv_Altong_Addict')]
 
     return (
-        <MainDiv showMini={props.showMini}
+        <MainDiv showMini={showMini}
         onClick={(e)=>{
-            props.setClicked(false);
-            props.setShowMini(true);
+            setClicked(false);
+            setShowMini(true);
             e.stopPropagation();
         }}>
             <MainTable>
                 <tbody>
                 <tr>
                     <MiniTh>
-                    <MiniSpan>{UlvText(props.mini.uLv, lvText)}</MiniSpan>{props.mini.nick}
+                    <MiniSpan>{UlvText(mini.uLv, lvText)}</MiniSpan>{mini.nick}
                     </MiniTh>
                     <th rowSpan="2" 
                         onClick={(e) => {
@@ -85,8 +79,8 @@ function MiniProfile(props) {
                     </th>
                     <th rowSpan="2"
                         onClick={(e) => {
-                            props.setClicked(false);
-                            props.setShowMessage({show:true, user:props.id, nick:props.mini.nick});
+                            setClicked(false);
+                            setShowMessage({show:true, user:userSeq, nick:mini.nick});
                             e.stopPropagation();
                         }}
                     >
@@ -94,11 +88,11 @@ function MiniProfile(props) {
                     </th>
                 </tr>
                 <tr>
-                    <MoneyInfoTd>{t('MiniProfile_Cumulative')} : <span>{props.mini.alBenefit}</span>{t('PopExtraAl_Al')}</MoneyInfoTd>
+                    <MoneyInfoTd>{t('MiniProfile_Cumulative')} : <span>{mini.alBenefit}</span>{t('PopExtraAl_Al')}</MoneyInfoTd>
                 </tr>
                 </tbody>
             </MainTable>
-            <MiniContentP>{props.mini.descript}</MiniContentP>
+            <MiniContentP>{mini.descript}</MiniContentP>
             <MiniIconLine></MiniIconLine>
             <MiniInfoTable>
                 <tbody>
@@ -109,10 +103,10 @@ function MiniProfile(props) {
                         <MiniInfoTableTd>{t('MiniProfile_Gratitude_rate')}</MiniInfoTableTd>
                     </MiniInfoTableTr>
                     <MiniInfoTableTr>
-                        <MiniInfoTableTh><Num3Comma num={props.mini.qBenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={props.mini.ABenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={props.mini.giveThankNum}></Num3Comma></MiniInfoTableTh>
-                        <MiniInfoTableTh>{props.mini.giveThankRate}%</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.qBenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.ABenefit}></Num3Comma> {t('PopExtraAl_Al')}</MiniInfoTableTh>
+                        <MiniInfoTableTh><Num3Comma num={mini.giveThankNum}></Num3Comma></MiniInfoTableTh>
+                        <MiniInfoTableTh>{mini.giveThankRate}%</MiniInfoTableTh>
                     </MiniInfoTableTr>
                 </tbody>
             </MiniInfoTable>
