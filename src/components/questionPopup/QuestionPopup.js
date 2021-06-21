@@ -5,24 +5,21 @@ import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
 // 찜
-function ZzimAxios(pageSeq){
-    const URL_ZZIM = "/rest/questions/"+pageSeq+"/Zzim"
-
-    axios.put(URL_ZZIM)
-    .then((response) => response.data)
-    .then( (data) => {
-        alert(data.message);
-    })
-    .catch(function (error) {
-        console.log("실패 : "+error);
-    });
+const ZzimAxios = async (pageSeq) => {
+    const URL_ZZIM = `/api/questions/${pageSeq}/zzim`;
+    try {
+        const response = await axios.put(URL_ZZIM);
+        alert(response.data.message);
+    } catch (e) {
+        console.log(e);
+    }
 }
 // 꼭대기
 const moveTopAxios = async (pageSeq, Confirm) => {
-    const URL_MOVE_TOP = `/api/questions/${pageSeq}/movetop`;
+    const URL_MOVE_TOP = `/api/questions/${pageSeq}/top`;
     if ( window.confirm(Confirm)){
         try {
-            const response = await axios.put(URL_MOVE_TOP);
+            const response = await axios.patch(URL_MOVE_TOP);
             alert(response.data.msg);
         } catch (e) {
             console.log(e);
