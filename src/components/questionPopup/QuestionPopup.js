@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import Popup from '../popup/Popup'
 import React, { useEffect } from 'react';
-
 import axios from 'axios';
-
 import {useTranslation} from 'react-i18next';
 
 // 찜
@@ -20,18 +18,15 @@ function ZzimAxios(pageSeq){
     });
 }
 // 꼭대기
-function moveTopAxios(pageSeq, Confirm){
-    const URL_MOVE_TOP = "/restApi/questions/"+pageSeq+"/movetop" 
+const moveTopAxios = async (pageSeq, Confirm) => {
+    const URL_MOVE_TOP = `/api/questions/${pageSeq}/movetop`;
     if ( window.confirm(Confirm)){
-        axios.put(URL_MOVE_TOP)
-        .then((response) => response.data)
-        .then( (data) => {
-            alert(data.msg);
-        })
-        .catch(function (error) {
-            console.log("실패 : "+error);
-            console.log(error);
-        });
+        try {
+            const response = await axios.put(URL_MOVE_TOP);
+            alert(response.data.msg);
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
 // 신고하기
