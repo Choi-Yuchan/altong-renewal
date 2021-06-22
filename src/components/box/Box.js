@@ -132,7 +132,7 @@ function Box(props) {
           seqComponent={props.jsonArr.seqComponent}
           contents={props.jsonArr.contents}
         />
-        { aiPlus.AI === true && <LangTransCount />}
+        { aiPlus.AI === true && <LangTransCount seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}/>}
         <LangTransBox aiPlus={aiPlus.AI} setAiPlus={setAiPlus} jsonArr={props.jsonArr} />
         <ReplyBox
           seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
