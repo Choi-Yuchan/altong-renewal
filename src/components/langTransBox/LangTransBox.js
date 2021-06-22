@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {useTranslation} from 'react-i18next';
 
-const MainDiv = styled.div`
+function LangTransBox(props) {
+  const {t} = useTranslation();
+
+    return (
+      <MainDiv className="LangTransBox">
+        <OriginDiv check={props.aiPlus} onClick={()=>{props.setAiPlus({...props.aiPlus, AI:false})}}>{t('LangTrans_Orig')}</OriginDiv>
+        <Line/>
+        <LangAIDiv check={props.aiPlus} onClick={()=>{ props.setAiPlus({...props.aiPlus, AI:true})}}>AI</LangAIDiv>
+      </MainDiv>
+    );
+  }
+  
+  export default LangTransBox;
+  
+  const MainDiv = styled.div`
   margin-bottom: 10px;
   position: relative;
   display:flex;
@@ -65,19 +79,3 @@ const LangAIDiv = styled.div`
     font-size:0.8125rem;
   }
 `;
-
-
-function LangTransBox(props) {
-  const {t} = useTranslation();
-
-    return (
-      <MainDiv className="LangTransBox">
-        <OriginDiv check={props.aiPlus} onClick={()=>{props.setAiPlus({...props.aiPlus, AI:false})}}>{t('LangTrans_Orig')}</OriginDiv>
-        <Line></Line>
-        <LangAIDiv check={props.aiPlus} onClick={()=>{ props.setAiPlus({...props.aiPlus, AI:true})}}>AI</LangAIDiv>
-      </MainDiv>
-    );
-  }
-  
-  export default LangTransBox;
-  
