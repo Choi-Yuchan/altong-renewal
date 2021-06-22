@@ -9,41 +9,38 @@ function PopMessage(props) {
     const [ messageState, setMessageState] = useState(t('Message_Send'));
 
     //URL LIST
-    const URL_MESSAGE = "/restApi/messages/" + props.user + "/send";
+    const URL_MESSAGE = `/api/users/${props.user}/message`;
 
     const handleChange = (e) => {
         setMessage(e.target.value);
     }
 
-    const sendMessage = (e) => {
+    const sendMessage = async (e) => {
         setMessageState(t('Message_Send'));
-        axios.put(URL_MESSAGE,{
-            "Contents":message
-        })
-        .then( (response) => response.data )
-        .then( (data) => {
-                if(data.msg){
-                    alert(t('Message_Sent'));
-                    setMessage("");
-                    setMessageState(t('Message_Send'));
-                    props.setClicked(true);
-                    e.stopPropagation();
-                }else{
-                    alert(data.msg);
-                    setMessage("");
-                    setMessageState(t('Message_Send'));
-                    props.setClicked(true);
-                    e.stopPropagation();
-                }
-            }
-        )
-        .catch(function (error) {
-                console.log(error)
+        console.log(t('Message_Sent'));
+        try{
+            const response = await axios.post(URL_MESSAGE,{
+                "Contents": message
+            })
+            if(response.data.msg === true){
+                window.alert(t('Message_Sent')); 
+                setMessage("");
+                setMessageState(t('Message_Send'));
+                props.setClicked(true);
+                e.stopPropagation();
+            } else {
+                window.alert(response.data.code);
+                setMessage("");
                 setMessageState(t('Message_Send'));
                 props.setClicked(true);
                 e.stopPropagation();
             }
-        );
+        } catch(error){
+            console.log(error)
+            setMessageState(t('Message_Send'));
+            props.setClicked(true);
+            e.stopPropagation();
+        }
     }
         
     useEffect(() => {
