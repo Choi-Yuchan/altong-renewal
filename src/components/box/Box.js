@@ -139,6 +139,9 @@ function Box(props) {
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
           replyCount={replyCount(replys)} 
           good={props.jsonArr.good} bad={props.jsonArr.bad} 
+          USER={props.USER}
+          seqId={props.jsonArr.seqId}
+          SSRJSON={props.SSRJSON}
         />
         <ReplyList 
           USER={props.USER} replyToggle={replyToggle}
