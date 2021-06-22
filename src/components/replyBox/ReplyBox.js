@@ -3,30 +3,94 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
-function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, setGoQuestion, choice, goQuestion, goAnswer, btnName}){
+function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON, choice}){
+    const URL_ANS_CHECK = `/api/answers/${pageSeq}/answered-check`;
+    const URL_CHO_CHECK = `/api/answers/${pageSeq}/choiced-check`;
+    const URL_ANS_CHOICE = `/api/answers/${pageSeq}/${memberSeq}/choose`;
+    const URL_ANSWER_WRITE = `/answer/answerWrite?QuestionSeq=${pageSeq}&CurPageName=/answer/questionList&Section1=0&src_Sort=Seq&src_OrderBy=DESC`;
+    const [goAnswer,setGoAnswer] = useState(false); //답변하기 유무
+    const [goQuestion,setGoQuestion] = useState(false); // 채택하기 유무
+    const [login, setLogin] = useState(false); //로그인 유무
+    const [needLogin, setNeedLogin] = useState(''); // 로그인 경고
+    const questionSeqId = SSRJSON[0].seqId; // 질문 seqId
 
-    const URL_ANS_CHOICE = `/api/answers/${pageSeq}/${memberSeq}/choose`
-    
-    if(seqComponent === 'A'){
-        if (choice === true) {
-            return <AnswerBtnAB show={goQuestion}
-                onClick={()=>{
-                    axios.patch(URL_ANS_CHOICE)
-                    .then((response) => response.data)
-                    .then( (data) => {
+    useEffect(()=>{
+        const boxCheckButton = async () => {          
+            if (pageSeq === undefined) {}
+            else if (seqComponent === 'Q') {
+                try {
+                    const response = await axios.get(URL_ANS_CHECK);
+                    if (response.data.code === 'error') {
+                        setNeedLogin(response.data.error);
+                        setLogin(true);
+                        setGoAnswer(true);
+                    } else if (response.data.check === true) {
+                        setNeedLogin('');
+                        setLogin(false);
+                        setGoAnswer(true);
+                    } else {
+                        setNeedLogin('');
+                        setLogin(false);
+                        setGoAnswer(false);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            } else if (seqComponent === 'A') {
+                try {
+                    const response = await axios.get(URL_CHO_CHECK);
+                    if (response.data.check === true) {
+                        setGoQuestion(true);
+                    } else {
                         setGoQuestion(false);
-                        console.log(data);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                }}
-            >{btnName[1]}</AnswerBtnAB>
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        }
+        boxCheckButton();
+    },[]);
+    const choiceButton = async () => {
+        if(window.confirm('이 답변을 채택하시겠습니까?')) {
+            try {
+                const response = await axios.patch(URL_ANS_CHOICE);
+                setGoQuestion(false);
+                console.log(response.data);
+                window.location.reload();
+            } catch (e) {
+                console.log(e);
+            }
         }
     }
     
-    return <AnswerBtnA show={goAnswer} href={`/answer/answerWrite?QuestionSeq=${pageSeq}&CurPageName=/answer/questionList&Section1=0&src_Sort=Seq&src_OrderBy=DESC`}
-        >{btnName[2]}</AnswerBtnA>
+    if(seqComponent === 'A'){ //채택하기
+        if (choice === true) { // 채택한 답변이 없을 때
+            if (goQuestion === true || questionSeqId === USER.seq) { //내가 질문한 글이고 채택한 답변 아닐 때
+                return <AnswerBtnAB onClick={choiceButton} >{btnName[1]}</AnswerBtnAB>
+            } else {
+                return '';
+            }
+        } else { //채택한 답변이 있을 때
+            return '';
+        }
+    } else { //답변하기
+        if (memberSeq === USER.seq) {return '';}
+        else {
+            if (goAnswer === true) {
+                return <AnswerBtnA show={goAnswer} href={URL_ANSWER_WRITE} onClick={(e)=>{
+                    if (login === true) {
+                        e.preventDefault();
+                        alert(needLogin);
+                    }
+                }} >{btnName[2]}</AnswerBtnA> //답변하기
+            } else if (goAnswer === false) {
+                return <AnswerBtnA show={goAnswer} >{btnName[3]}</AnswerBtnA> //답변완료
+            }
+        }
+    }
+    return '';
+    
 }
 
 
@@ -34,16 +98,10 @@ function ReplyBox(props) {
     
     const [good,setGood] = useState(0);
     const [bad,setBad] = useState(0);
-    const [goAnswer,setGoAnswer] = useState(false);
-    const [goQuestion,setGoQuestion] = useState(false);
-
     const pageSeq = props.pageSeq;
-
     //URL_LIST
     const URL_QUE_VOTE = `/api/questions/${pageSeq}/vote`;
     const URL_ANS_VOTE = `/api/answers/${pageSeq}/vote`;
-    const URL_ANS_CHECK = `/api/answers/${pageSeq}/answered-check`;
-    const URL_CHO_CHECK = `/api/answers/${pageSeq}/choiced-check`;
 
     const SendGood = async (seqComponent, setGood, setBad) => {
         try{
@@ -74,35 +132,6 @@ function ReplyBox(props) {
     }
 
     useEffect(()=>{
-        if(props.pageSeq === undefined ){}
-        else if(props.seqComponent==="Q"){
-            axios.get(URL_ANS_CHECK)
-            .then((response) => response.data)
-            .then( (data) => {
-                if(data.code === "error"){
-                    setGoAnswer(false);
-                }else if(data.check === true) setGoAnswer(data.check);
-                else setGoAnswer(false);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        }else if(props.seqComponent==="A"){
-            axios.get(URL_CHO_CHECK)
-            .then((response) => response.data)
-            .then( (data) => {
-                if(data.code === "error"){
-                    setGoQuestion(false);
-                }else if(data.check === true) setGoQuestion(data.check);
-                else setGoQuestion(false);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        }
-    },[]);
-
-    useEffect(()=>{
         const getVoteData = async () => {
             if(props.pageSeq === undefined){}else
             try{
@@ -117,7 +146,6 @@ function ReplyBox(props) {
         getVoteData();
     }
     , []);
-    
 
     const {t} = useTranslation();
                         //번역하기, 채택하기, 답변하기, 답변완료 순
@@ -149,11 +177,10 @@ function ReplyBox(props) {
             <ViewAnswerBtn
                 seqComponent={props.seqComponent} pageSeq={pageSeq}
                 memberSeq={props.seqId}
-                goAnswer={goAnswer}
-                goQuestion={goQuestion}
-                setGoQuestion={setGoQuestion}
                 choice={props.choice}
                 btnName={btnName}
+                USER={props.USER}
+                SSRJSON={props.SSRJSON}
             ></ViewAnswerBtn>
           </AnswerDoList>
       </OlBox>
@@ -238,14 +265,15 @@ const AnswerDoList = styled.div`
 const AnswerBtnA = styled.a`
     width: 50%;
     height: 27px;
-    color: #fd0031;
+    color: ${props=> props.show ? '#fd0031' : '#333'};
     font-size: 14px;
     font-weight: bold;
-    border: 1px solid #fd0031;
+    border: 1px solid ${props=> props.show ? '#fd0031' : '#fff'};
+    background: ${props=> props.show ? '#fff' : '#e8e8e8'};
     border-radius: 100px;
-    cursor: pointer;
+    cursor: ${props=> props.show ? 'pointer' : 'default'};
     text-decoration: none;
-    display: ${(props) => props.show? "flex" : "none" };
+    display: flex;
     justify-content: center;
     align-items:center;
 
@@ -256,7 +284,7 @@ const AnswerBtnA = styled.a`
 `;
 
 const AnswerBtnAB = styled.a`
-    display: ${(props) => props.show? "flex" : "none" };
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
