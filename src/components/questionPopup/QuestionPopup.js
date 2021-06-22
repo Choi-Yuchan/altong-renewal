@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Popup from '../popup/Popup'
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
 
@@ -26,52 +26,61 @@ const moveTopAxios = async (pageSeq, Confirm) => {
         }
     }
 }
-// 신고하기
-// curl -d '{"ACT":"CheckSiren", "H_Type":"Q", "H_Seq":"266096", "H_Reason":"4", "H_Reason_txt":"siren test"}' 
-// -H "Content-Type: application/json"  -b cookie.txt -X PUT http://192.168.0.5/restApi/commons/siren
+// 신고하기 확인
+const checkSiren = async (e, pageSeq) => {
+    const URL_CHECK_REPORT = `/api/sirens/${pageSeq}/check` // 백엔드 data 확인해야함. 400 오류 출력
+    try{
+        const response = await axios.get(URL_CHECK_REPORT)
+        if(response.data.msg){
+            alert("신고가 접수되어 처리중입니다.");
+            e.nativeEvent.stopImmediatePropagation();
+        }
+        if(response.data.code){
+            //로그인 안되어 있을 경우
+            alert("로그인 후 이용해주세요.");
+            e.nativeEvent.stopImmediatePropagation();
+        }
+    } catch(error) {
+        console.log(error)
+    }
+}
 
-function QuestionPopup(props) {
-    useEffect(()=>{  
-      }
-      , []);
+function QuestionPopup({setShowAlmoney, setShowSiren, setClicked, pageSeq, seqComponent, popToggle, title, setShare}) {
+
     const {t} = useTranslation();
     const Confirm = t('Confirm_Top_List');
 
     return (
-        <MainUl onClick={() => { console.log("팝업클릭"); }} popToggle={props.popToggle}>
-            <MainLi show={props.seqComponent==="Q"} onClick={(e) => {
-                    ZzimAxios(props.pageSeq);
+        <MainUl onClick={() => { console.log("팝업클릭"); }} popToggle={popToggle}>
+            <MainLi show={seqComponent==="Q"} onClick={(e) => {
+                    ZzimAxios(pageSeq);
                     e.stopPropagation();
                 }
             }>
-                <Popup text={t('QPopup_Bookmark')} imgurl="/pub/answer/answerList/images/atm_more_1.png" >
-                </Popup>
+                <Popup text={t('QPopup_Bookmark')} imgurl="/pub/answer/answerList/images/atm_more_1.png" />
             </MainLi>
-            <MainLi2 onClick={() => { props.setShare(true); props.setClicked(false); } }>
-                <Popup text={t('QPopup_Share')} imgurl="/pub/answer/answerList/images/atm_more_2.png" >
-                </Popup>
+            <MainLi2 onClick={() => { setShare(true); setClicked(false); } }>
+                <Popup text={t('QPopup_Share')} imgurl="/pub/answer/answerList/images/atm_more_2.png" />
             </MainLi2>
-            <MainLi show={props.seqComponent==="Q"}  onClick={() => {    moveTopAxios(props.pageSeq, Confirm);    }}>
-                <Popup  text={t('QPopup_To_top')} imgurl="/pub/answer/answerList/images/atm_more_4.png" >
-                </Popup>
+            <MainLi show={seqComponent==="Q"}  onClick={() => { moveTopAxios(pageSeq, Confirm); }}>
+                <Popup  text={t('QPopup_To_top')} imgurl="/pub/answer/answerList/images/atm_more_4.png" />
             </MainLi>
             <MainLi show={true} onClick={(e) => {
-                    props.setClicked(false);
-                    props.setShowAlmoney({show:true, page:props.pageSeq, seq:props.seqComponent});
+                    setClicked(false);
+                    setShowAlmoney({show: true, page: pageSeq, seq: seqComponent});
                     e.stopPropagation();
                 }
             }>
-                <Popup text={t('QPopup_Warming_Al')} imgurl="/Common/images/answer_almoney_gg.svg" >
-                </Popup>
+                <Popup text={t('QPopup_Warming_Al')} imgurl="/Common/images/answer_almoney_gg.svg" />
             </MainLi>
             <MainLi show={true} onClick={(e) => {
-                    props.setClicked(false);
-                    props.setShowSiren({show:true, page:props.pageSeq, seq:'Q', title: props.title});
+                    setClicked(false);
+                    checkSiren(e, pageSeq);
+                    setShowSiren({show:true, page: pageSeq, seq:'Q', title});
                     e.stopPropagation();
                 }
             }>
-                <Popup text={t('QPopup_Report')} imgurl="/pub/answer/answerList/images/atm_more_3.png" >
-                </Popup>
+                <Popup text={t('QPopup_Report')} imgurl="/pub/answer/answerList/images/atm_more_3.png" />
             </MainLi>
         </MainUl>
     );
@@ -101,12 +110,6 @@ const MainLi = styled.li`
     display: ${(props) => props.show? "flex" : "none" };
     align-items:center;
 `;
-const MainLi2 = styled.li`
-    font-size: 14px;
-    height: 35px;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-    list-style: none;
+const MainLi2 = styled(MainLi)`
     display:flex;
-    align-items:center;
 `;

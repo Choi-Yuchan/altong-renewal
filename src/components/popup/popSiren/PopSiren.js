@@ -35,7 +35,6 @@ function PopSiren({clicked, setClicked, showSiren, page, seq, title, setShowSire
         }
     }
 
-
     useEffect(() => {
         if(clicked === true){
             setShowSiren({show:false, page, seq, title});
