@@ -6,26 +6,25 @@ import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
 
 
 const langTopNavi = {
-    ko : {
-        alt : [
-            "알통 로고",
-            "검색 아이콘",
-            "글쓰기 아이콘",
-            "질문 보기 아이콘",
-        ],
-        placeholder : "검색어를 입력해 주세요",
-    }
+    alt : [
+        "알통 로고",
+        "검색 아이콘",
+        "글쓰기 아이콘",
+        "질문 보기 아이콘",
+    ],
+    placeholder : "검색어를 입력해 주세요",
 }
 
-function TopNavi({setShowNavi, setClicked}) {
-    const altText = langTopNavi.ko.alt;
-    const search = langTopNavi.ko.placeholder;
+function TopNavi({setShowNavi, setClicked, user}) {
+    const altText = langTopNavi.alt;
+    const search = langTopNavi.placeholder;
     //URL_LIST
     const URL_TOP_DATA = ''
 
     const [error, setError] = useState(null);
     const [topAlt, setTopAlt] = useState(null);
     const [placeholder, setPlaceholder] = useState(null);
+    const [login, setLogin] = useState(false);
 
     useEffect (() => {
         const getTopNavi = async () => {
@@ -41,10 +40,13 @@ function TopNavi({setShowNavi, setClicked}) {
                 setError(error.message);
             }
         }
-
         if(error) return console.log(error);
-
         getTopNavi();
+        if (user.seq !== 0) { //로그인 유무
+            setLogin(true);
+        } else {
+            setLogin(false);
+        }
     },[]);
 
     //클릭했을 때 toggle 값 변경으로 조작
@@ -63,9 +65,9 @@ function TopNavi({setShowNavi, setClicked}) {
                 }}>
                     <HamburgerDiv>
                         <HamburgerDivIFirst></HamburgerDivIFirst>
-                        <HamburgerDivISecond></HamburgerDivISecond>
+                        <HamburgerDivISecond show={login}></HamburgerDivISecond>
                         <HamburgerDivILast></HamburgerDivILast>
-                        <HamburgerSpan></HamburgerSpan>
+                        <HamburgerSpan show={login}></HamburgerSpan>
                     </HamburgerDiv>
                 </HamburgerBar>
                 {toggle ?                 
@@ -111,62 +113,75 @@ const TopHeader = styled.header`
     position: fixed;
     left:50%;
     transform:translateX(-50%);
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    max-width: 800px;
     width:100%;
-    height: 60px;
+    height: 45px;
     transition: all 0.5s;
     background: #fff;
     z-index:9;
+
+    @media (min-width: 480px) {
+        height:60px;
+    }
 `;
 
 const CenterDiv = styled.div`
     height: 100%;
     max-width: 800px;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    font-size: 1rem;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+    margin:0 auto;
     color: #333;
     display:flex;
     justify-content:space-between;
     align-items:center;
 `;
 
-const HamburgerBar = styled.a`
-    display: block;
-    width: 60px;
-    height: 60px;
+const HamburgerBar = styled.div`
+    width: 45px;
+    height: 45px;
     position: relative;
-    text-decoration: none;
-    color: #333;
+
+    @media (min-width: 480px) {
+        width:60px;
+        height:60px;
+    }
 `;
 
 const HamburgerDiv = styled.div`
-    width: 30px;
-    height: 24px;
+    width: 25px;
+    height: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
+
+    @media (min-width: 480px) {
+        width: 30px;
+        height: 24px;
+    }
 `;
 
 const HamburgerDivIFirst = styled.i`
     margin-top: 0;
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: #666;
+
+    @media (min-width: 480px) {
+        height:2px;
+    }
 `;
 
 const HamburgerDivISecond = styled.i`
-    width: 70%;
+    width: ${props=>props.show ? '70%':'100%'};
     display: block;
-    height: 2px;
+    height: 1px;
     background: #666;
     margin-top: 9px;
+
+    @media (min-width: 480px) {
+        height:2px;
+    }
 `;
 
 const HamburgerDivILast = styled(HamburgerDivISecond)`
@@ -174,18 +189,20 @@ const HamburgerDivILast = styled(HamburgerDivISecond)`
 `;
 
 const HamburgerSpan = styled.span`
-    display: block;
-    width: 6px;
-    height: 6px;
+    display: ${props=>props.show ? 'block':'none'};
+    width: 4px;
+    height: 4px;
     background: #fd0031;
     border-radius: 50%;
     position: absolute;
-    top: 9px;
+    top: 8.5px;
     right: 0;
-    cursor: pointer;
-    color: #333;
-    font-size: 16px;
-    font-family: "Noto Sans KR", "Noto Sans JP", "Noto Sans HK", "Noto Sans SC", "Noto Sans TC", sans-serif;
+
+    @media (min-width: 480px) {
+        width:6px;
+        height:6px;
+        top:9px;
+    }
 `;
 
 const Logo = styled.div`
@@ -193,14 +210,10 @@ const Logo = styled.div`
     left: 50%;
     transform:translate(-50%, 0);
     cursor: pointer;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const LogoImg = styled.img`
-    height: 45px;
+    height: 37px;
     vertical-align:bottom;
     @media (min-width: 480px){
         height: 52px;
@@ -223,10 +236,6 @@ const SearchBox = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 
 &:after{
     content: "";
@@ -268,12 +277,8 @@ const SearchSpan = styled.button`
     display: block;
     width: 30px;
     cursor: pointer;
-    margin: 0;
-    padding: 0;
     background:transparent;
     border:none;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const SearchImg = styled.img`
@@ -286,27 +291,25 @@ const ColumnBoxPC = styled.div`
     justify-content:center;
     align-items:center;
     cursor: pointer;
-    box-sizing: border-box;
     margin-right: 10px;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const ColumnBoxAhref = styled.a`
-    width:32px;
+    width:30px;
     text-decoration: none;
     color: #333;
     display: block;
+    margin-right:4px;
 `;
 
 const TopcolumnBoxImg = styled.img`
     width: 100%;
-    box-sizing: border-box;
     vertical-align: bottom;
-    -webkit-tap-highlight-color: transparent;
 `;
 
 const ColumnBoxAhref2 = styled(ColumnBoxAhref)`
-    width:30px;
+    width:27px;
+    margin-right:0;
 `;
 
 const TopcolumnBoxImg2 = styled(TopcolumnBoxImg)`

@@ -193,10 +193,14 @@ const SiteDiv = styled.div`
 `;
 
 const WrapperDiv = styled.div`
-  padding-top: 60px;
+  padding-top: 45px;
   flex: 1;
   margin-bottom: 20px;
   transition: all 0.3s;
+
+  @media (min-width: 480px) {
+    padding-top: 60px;
+  }
 `;
 const BlackDiv = styled.div`
   width: 100%;
