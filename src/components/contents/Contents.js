@@ -9,19 +9,17 @@ function QorA(props){
   if(isShow === 'A'){
     return (
       <>
-      <ContentsP2 isShow={isShow} onClick={props.onClick2}>
-        <div dangerouslySetInnerHTML={{__html: props.contents}} ></div>
-        <DelSpan setMessage={props.setMessage}
-          setOpen={props.setOpen} allMessage={props.allMessage} open={props.open}></DelSpan>
-      </ContentsP2>
-      <CustomView isView={props.openAnswer}></CustomView>
+        <Preview isShow={isShow} onClick={props.onClick2}>
+          <Paragraph dangerouslySetInnerHTML={{__html: props.contents}} ></Paragraph>
+          <DelSpan open={props.open}/>
+        </Preview>
+        <CustomView isView={props.openAnswer}></CustomView>
       </>
     );
   }
   return (
     <>
-      <ContentsP dangerouslySetInnerHTML={{__html: props.contents}}>
-      </ContentsP>
+      <Paragraph dangerouslySetInnerHTML={{__html: props.contents}}/>
     </>
   );
 }
@@ -112,13 +110,11 @@ const MainDiv = styled.div`
   transition:all 0.3s;
 `;
 
-const ContentsP = styled.p`
+const Paragraph = styled.div`
   word-break: break-all;
   font-size: 15px;
 `;
-const ContentsP2 = styled.p`
-  word-break: break-all;
-  font-size: 15px;
+const Preview = styled(Paragraph)`
   transition: all 0.3s;
 `;
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Num3Comma from '../functions/num3comma/Num3Comma'
 import {useTranslation} from 'react-i18next';
-import i18n from '../../config/lang/i18n';
 
 function AUnBoxBottom(props) {
     const etimate = props.etimate;
@@ -9,13 +8,13 @@ function AUnBoxBottom(props) {
     const {t} = useTranslation();
 
     const estiList = Object.keys(etimate).map((key) => {
-        return { key : key , value : etimate[key] }
+        return { key , value : etimate[key] }
     } ).sort( (a,b) => {
         return b.value - a.value;
     } ).filter( (x,i) => {
         return x.value != 0 && i < 3 ;
     } ).map((v,i)=>{
-        return <Img1 take={i} src={"/Common/images/esti_"+v.key.slice(1)+".png"}></Img1>
+        return <Img1 key={i} take={i} src={"/Common/images/esti_"+v.key.slice(1)+".png"}/>
     });
 
     return (
