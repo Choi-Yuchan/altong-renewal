@@ -72,7 +72,6 @@ function AnswerBox(props) {
   const [replys, setReplys] = useState(props.jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
-
   const [ borderColor, setBorderColor ] = useState(false);
 
   const answer = props.jsonArr.pageSeq;
@@ -191,7 +190,9 @@ function AnswerBox(props) {
           }}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
+            {props.USER.seq === 0 ? null : (
             <PopExtraAl showExtraList={showExtraList} extraList={extras}></PopExtraAl>
+            )}
           </AlmoneyDiv>
           <TopH3Div>
             <ChoiceView choice={props.jsonArr.choice} choiceText={choiceText}></ChoiceView>
