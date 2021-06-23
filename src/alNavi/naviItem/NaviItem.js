@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { unstable_concurrentAct } from 'react-dom/test-utils';
 
 const langNaviItem = {
     placeholder: "닉네임을 입력해주세요",
@@ -25,7 +24,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
     // url list
     const URL_NAVI_TEXT = '';
 
-    const [showPlus, setShowPlus] = useState("0deg");
+    const [showPlus, setShowPlus] = useState("90deg");
     const [toggle, setToggle] = useState(false);
     const [searchID, setSearchID] = useState("");
     const [disabled, setDisabled] = useState(false);
@@ -67,8 +66,8 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
 
     if(mini != null){
         return (
-            <NaviItemLiMiniLi showPlus={showPlus === "0deg"} onClick={() =>{
-            setShowPlus(showPlus == "0deg" ? "90deg" : "0deg" );
+            <NaviItemLiMiniLi showPlus={showPlus === "90deg"} onClick={() =>{
+            setShowPlus(showPlus === "90deg" ? "0deg" : "90deg" );
              }}>
                 <NaviAMini showPlus={showPlus} href={href} onClick={(e)=>{
                     NaviAClick(e, href);
