@@ -1,13 +1,10 @@
 import styled from 'styled-components';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { unstable_concurrentAct } from 'react-dom/test-utils';
 
 const langNaviItem = {
-    ko:{
-        placeholder: "닉네임을 입력해주세요",
-        alt: "검색 아이콘",
-    }
+    placeholder: "닉네임을 입력해주세요",
+    alt: "검색 아이콘",
 }
 const NaviAClick = (e, href) => {
     if( href === "" ){
@@ -22,12 +19,12 @@ const eventHandler = e => {
 
 //click, key properties는 필요할 때 받아오도록 입력해야함.
 function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKeyToggle}) {
-    const placeholder = langNaviItem.ko.placeholder;
-    const altText = langNaviItem.ko.alt;
+    const placeholder = langNaviItem.placeholder;
+    const altText = langNaviItem.alt;
     // url list
     const URL_NAVI_TEXT = '';
 
-    const [showPlus, setShowPlus] = useState("0deg");
+    const [showPlus, setShowPlus] = useState("90deg");
     const [toggle, setToggle] = useState(false);
     const [searchID, setSearchID] = useState("");
     const [disabled, setDisabled] = useState(false);
@@ -69,8 +66,8 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
 
     if(mini != null){
         return (
-            <NaviItemLiMiniLi showPlus={showPlus === "0deg"} onClick={() =>{
-            setShowPlus(showPlus == "0deg" ? "90deg" : "0deg" );
+            <NaviItemLiMiniLi showPlus={showPlus === "90deg"} onClick={() =>{
+            setShowPlus(showPlus === "90deg" ? "0deg" : "90deg" );
              }}>
                 <NaviAMini showPlus={showPlus} href={href} onClick={(e)=>{
                     NaviAClick(e, href);
@@ -80,7 +77,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
                     <NaviAlramI show={i===true}>{i===true && count}</NaviAlramI>
                 </NaviAMini>
                 <ul>
-                    {mini["ko"].map((list)=>{
+                    {mini.map((list)=>{
                     return (
                     <MiniLi key={list.id}>
                         <MiniLiA href={list.href}>· {list.val}</MiniLiA>
