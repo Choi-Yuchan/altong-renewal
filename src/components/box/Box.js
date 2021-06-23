@@ -112,7 +112,9 @@ function Box(props) {
           }}>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg"/>
             <AlmoneySpan><Num3Comma num={extraAlmoney}/></AlmoneySpan>
+            {props.USER.seq === 0 ? null : (
             <PopExtraAl showExtraList={showExtraList} extraList={extras}/>
+            )}
           </AlmoneyDiv>
         </div>
         <QBoxTop
