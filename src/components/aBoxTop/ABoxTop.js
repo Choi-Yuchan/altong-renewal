@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText'
-import axios from 'axios';
 
 import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
@@ -224,6 +223,7 @@ const WrapStrong = styled.strong`
 `;
 const WrapThankli = styled.li`
   display:flex;
+  flex-wrap: wrap;
   align-items: center;
   font-size: 12px;
   color: #666;
