@@ -234,12 +234,9 @@ function AnswerBox(props) {
           white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
           seqId={props.jsonArr.seqId}
           SSRJSON={props.SSRJSON}
-          
           myestiNo={myestiNo}
           setMyestiNo={setMyestiNo}
-
           contentsCount={props.jsonArr.contents.length}
-
           jsonArr={ aiPlus }
           aiPlus={aiPlus.AI} setAiPlus={setAiPlus}
           choice={props.choice}

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../config/lang/i18n';
 
 const MainLi = styled.li`
 &{
@@ -90,8 +89,8 @@ function Etimate(props) {
             console.log(error);
         });
     }
-        //select parameter는 향후 필요한 것인지 확인
-    const SetEstimate = (pageSeq, select, setEtimates) => {
+
+    const SetEstimate = (setEtimates) => {
         axios.get(URL_ESTIMATE)
         .then((response) => response.data)
         .then( (data) => {
