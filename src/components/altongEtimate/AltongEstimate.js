@@ -2,25 +2,16 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import Estimate from './estimate/Estimate'
 
-function EstiArr({etimate, pageSeq, myestiNo, setMyestiNo}){
-  const [estimates, setEtimates] = useState(etimate);
-  return(
-  <>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={1} num={estimates.v1} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={2} num={estimates.v2} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={3} num={estimates.v3} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={4} num={estimates.v4} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={5} num={estimates.v5} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-      <Estimate check={myestiNo} pageSeq={pageSeq} img={6} num={estimates.v6} setEtimates={setEtimates} setMyestiNo={setMyestiNo}></Estimate>
-  </>
-  )
-}
-
 function AltongEstimate({pageSeq, etimate, myestiNo, setMyestiNo}) {
-
+  const [estimates, setEtimates] = useState(etimate);
   return (
     <EstimateList>
-        <EstiArr pageSeq={pageSeq} etimate={etimate} myestiNo={myestiNo} setMyestiNo={setMyestiNo}></EstiArr>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={1} num={estimates.v1} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={2} num={estimates.v2} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={3} num={estimates.v3} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={4} num={estimates.v4} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={5} num={estimates.v5} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
+      <Estimate check={myestiNo} pageSeq={pageSeq} img={6} num={estimates.v6} setEtimates={setEtimates} setMyestiNo={setMyestiNo}/>
     </EstimateList>
   );
 }
