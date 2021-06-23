@@ -4,10 +4,8 @@ import axios from 'axios';
 import { unstable_concurrentAct } from 'react-dom/test-utils';
 
 const langNaviItem = {
-    ko:{
-        placeholder: "닉네임을 입력해주세요",
-        alt: "검색 아이콘",
-    }
+    placeholder: "닉네임을 입력해주세요",
+    alt: "검색 아이콘",
 }
 const NaviAClick = (e, href) => {
     if( href === "" ){
@@ -22,8 +20,8 @@ const eventHandler = e => {
 
 //click, key properties는 필요할 때 받아오도록 입력해야함.
 function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKeyToggle}) {
-    const placeholder = langNaviItem.ko.placeholder;
-    const altText = langNaviItem.ko.alt;
+    const placeholder = langNaviItem.placeholder;
+    const altText = langNaviItem.alt;
     // url list
     const URL_NAVI_TEXT = '';
 
@@ -80,7 +78,7 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
                     <NaviAlramI show={i===true}>{i===true && count}</NaviAlramI>
                 </NaviAMini>
                 <ul>
-                    {mini["ko"].map((list)=>{
+                    {mini.map((list)=>{
                     return (
                     <MiniLi key={list.id}>
                         <MiniLiA href={list.href}>· {list.val}</MiniLiA>

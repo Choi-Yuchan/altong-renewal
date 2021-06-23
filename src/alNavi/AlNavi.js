@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useEffect, useRef, useState } from 'react';
 import NaviItem from './naviItem/NaviItem';
 import axios from 'axios';
-
 import {useTranslation} from 'react-i18next';
 import i18n from '../config/lang/i18n';
 
@@ -26,7 +25,7 @@ const useClick = (onClick) => {
 
 function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKeyToggle}) {
     const {t} = useTranslation();
-    const MySpaceItems = { ko : [
+    const MySpaceItems = [
         { id: 0, val: t('AlNavi_Achievements'), href: "/member/myInfo" },
         { id: 1, val: t('AlNavi_Bank'), href: "/member/bank/index" },
         { id: 2, val: t('AlNavi_Cash'), href: "/alpay/user/sub/exchange" },
@@ -35,47 +34,49 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         { id: 5, val: t('AlNavi_Mentors'), href: "/member/myPartner?FlagPartner=M" },
         { id: 6, val: t('AlNavi_Friends'), href: "/member/myFriend" },
         { id: 7, val: t('AlNavi_Messages'), href: "/message/message" },
-        ]
-    }
+    ];
     
-    const NaviItems = { ko : [ 
-            { id: 0, img:"/pub/css/mainico/alert.svg" , 
-                href:"/member/alarm/alarm", val: t('AlNavi_Noification'), i:true },
-            { id: 1, img:"/pub/css/mainico/mypage.svg" , 
-                href:"", val: t('AlNavi_MySapce'), click: "mySpace", mini: MySpaceItems },
-            { id: 2, img:"/pub/css/mainico/nicksearch.svg" , 
-                href:"", val: t('AlNavi_Search'), click: "search", bar:true },
-            { id: 3, img:"/pub/css/mainico/myRecommend.svg" , 
-                href:"/member/myRecommend", val: t('AlNavi_ANSWERer') },
-            { id: 4, img:"/pub/css/mainico/rangking.svg" , 
-                href:"/question/rankQuestion", val: t('AlNavi_Ranking') },
-            { id: 5, img:"/pub/css/mainico/event.svg" , 
-                href:"/question/eventList", val: t('AlNavi_Events') },
-            { id: 6, img:"/pub/css/mainico/userGuide.svg" , 
-                href:"/default/userGuide", val: t('AlNavi_Guide') },
-            { id: 7, img:"/pub/css/mainico/headphones_33.svg" , 
-                href:"/default/cs/customerService", val: t('AlNavi_Notice') },
-            { id: 8, img:"/pub/css/mainico/keypress.svg" , 
-                href:"", val: "Keysound Off", sound: "Keysound On", click:"press"}
-        ]
-    }
+    
+    const NaviItems = [ 
+        { id: 0, img:"/pub/css/mainico/alert.svg" , 
+            href:"/member/alarm/alarm", val: t('AlNavi_Noification'), i:true },
+        { id: 1, img:"/pub/css/mainico/mypage.svg" , 
+            href:"", val: t('AlNavi_MySapce'), click: "mySpace", mini: MySpaceItems },
+        { id: 2, img:"/pub/css/mainico/nicksearch.svg" , 
+            href:"", val: t('AlNavi_Search'), click: "search", bar:true },
+        { id: 3, img:"/pub/css/mainico/myRecommend.svg" , 
+            href:"/member/myRecommend", val: t('AlNavi_ANSWERer') },
+        { id: 4, img:"/pub/css/mainico/rangking.svg" , 
+            href:"/question/rankQuestion", val: t('AlNavi_Ranking') },
+        { id: 5, img:"/pub/css/mainico/event.svg" , 
+            href:"/question/eventList", val: t('AlNavi_Events') },
+        { id: 6, img:"/pub/css/mainico/userGuide.svg" , 
+            href:"/default/userGuide", val: t('AlNavi_Guide') },
+        { id: 7, img:"/pub/css/mainico/headphones_33.svg" , 
+            href:"/default/cs/customerService", val: t('AlNavi_Notice') },
+        { id: 8, img:"/pub/css/mainico/keypress.svg" , 
+            href:"", val: "Keysound Off", sound: "Keysound On", click:"press"}
+    ];
     
     const langAlNavi = { 
-        ko : {
-            signout : [t('AlNavi_Login_Required'), t('AlNavi_Login'), t('AlNavi_SignUp')],
-            signin : [t('AlNavi_Manage'), t('AlNavi_Logout'), t('AlNavi_Withdrawal')],
-            user : [
-                { id : "USER_ID", tier:"열혈천사", q_rank: t('AlNavi_Question')+"4,078"+t('AlNavi_Degree'), a_rank: t('AlNavi_Answer')+"1,024"+t('AlNavi_Degree'), img:"/pub/css/profile/img_thum_base0.jpg"  }
-            ],
-            alt : ["프로필","로그아웃 아이콘"],
-            confirm_p: t('AlNavi_Confirm') 
-        }
-    }
-    const signOutTxt = langAlNavi.ko.signout;
-    const signInTxt = langAlNavi.ko.signin;
-    const userInfo = langAlNavi.ko.user;
-    const altText = langAlNavi.ko.alt;
-    const widMessage = langAlNavi.ko.confirm_p;
+        signout : [t('AlNavi_Login_Required'), t('AlNavi_Login'), t('AlNavi_SignUp')],
+        signin : [t('AlNavi_Manage'), t('AlNavi_Logout'), t('AlNavi_Withdrawal')],
+        user : { 
+                tier:[t('Lv_Hidden'),t('Lv_Al'),t('Lv_Butterfly'),t('Lv_Smiling'),t('Lv_Fiery'),t('Lv_Golden'),t('Lv_Guardian'),t('Lv_Light'),t('Lv_Chief'),t('Lv_Archangel'),t('Lv_Chief_Archangel'),t('Lv_Altong_Addict')], 
+                q_rank: t('AlNavi_Question')+"4,078"+t('AlNavi_Degree'), 
+                a_rank: t('AlNavi_Answer')+"1,024"+t('AlNavi_Degree'), 
+            },
+        alt : ["프로필","로그아웃 아이콘"],
+        confirm_p: t('AlNavi_Confirm') 
+    };
+    const handleImgError = (e) => {
+        e.target.src = "/pub/css/profile/img_thum_base0.jpg";
+      };
+    const signOutTxt = langAlNavi.signout;
+    const signInTxt = langAlNavi.signin;
+    const userInfo = langAlNavi.user;
+    const altText = langAlNavi.alt;
+    const widMessage = langAlNavi.confirm_p;
 
     //it is valued axios and control data
     const URL_NAVI = ''; // 네비게이션 기본 정보
@@ -176,8 +177,8 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         }
     },[clicked]);
 
-    const NotLoginItemLists = (lang) => {
-        return NaviItems[lang].map((navi) => 
+    const NotLoginItemLists = () => {
+        return NaviItems.map((navi) => 
             <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
                 count={countAlarm} i={navi.i} click={navi.click} mini={navi.mini}
@@ -190,8 +191,8 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         });
     }
 
-    const ItemLists = (lang) => {
-        return NaviItems[lang].map((navi) => 
+    const ItemLists = () => {
+        return NaviItems.map((navi) => 
                 <NaviItem
                 key={navi.id} img={navi.img} href={navi.href} val={navi.val} 
                 count={countAlarm} i={navi.i} click={navi.click} mini={navi.mini}
@@ -228,8 +229,14 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                     </NotLogDiv>
                 </NotLogInfo>
                 <ul>
-                    {NotLoginItemLists("ko")}
+                    {NotLoginItemLists()}
                 </ul>
+                <LangMenu>
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ko')}}>한글</LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('en')}}>EN</LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </LangMenuEl>/
+                    <LangMenuEl onClick={()=>{i18n.changeLanguage('zh')}}>中文 </LangMenuEl>
+                </LangMenu>
             </NavDiv>
         </AlNaviNav>
     }
@@ -255,16 +262,16 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                         <UserInfo>
                             <LoginFigure>
                                 <LoginFigureDiv>
-                                    <LoginFigureImg src={userInfo[0].img} alt={altText[0]}/>
+                                    <LoginFigureImg src={"/UploadFile/Profile/" + user.img} onError={handleImgError} alt={altText[0]}/>
                                 </LoginFigureDiv>
-                                <LoginFigcaption>{userInfo[0].tier}</LoginFigcaption>
+                                <LoginFigcaption>{userInfo.tier[user.lv]}</LoginFigcaption>
                             </LoginFigure>
                             <InfoDiv>
                                 <InfoDivLocate href="/member/myInfo">
-                                    <InfoH2>{userInfo[0].id}</InfoH2>
+                                    <InfoH2>{user.nick}</InfoH2>
                                     <InfoP>
-                                        <InfoSpan>{userInfo[0].q_rank}</InfoSpan>
-                                        <InfoSpan>{userInfo[0].a_rank}</InfoSpan>
+                                        <InfoSpan>{userInfo.q_rank}</InfoSpan>
+                                        <InfoSpan>{userInfo.a_rank}</InfoSpan>
                                     </InfoP>
                                 </InfoDivLocate>
                             </InfoDiv>
@@ -272,7 +279,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                     </NavProfileDivLogin>
                 </NavProfileDiv>
                 <ul>
-                    {ItemLists("ko")}
+                    {ItemLists()}
                 </ul>
                 <LangMenu>
                     <LangMenuEl onClick={()=>{i18n.changeLanguage('ko')}}>한글</LangMenuEl>/
@@ -454,12 +461,9 @@ const LoginFigureImg = styled.img`
     border-radius: 50%;
 `;
 const LoginFigcaption = styled.figcaption`
-    width:50%;
-    min-width: 45px;
-    padding: 2px;
+    padding: 1px 5px;
     margin:5px auto 0;
     font-size: 10px;
-    text-align: center;
     border-radius: 15px;
     border: 1px solid #fd0031;
     color: #fd0031;
