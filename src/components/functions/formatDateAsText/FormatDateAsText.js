@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import {useTranslation} from 'react-i18next';
-import i18n from '../../../config/lang/i18n';
 
 function FormatDateAsText(props){
     const curDate = props.date;

@@ -6,53 +6,11 @@ import MiniProfile from '../miniProfile/MiniProfile'
 import QuestionPopup from '../questionPopup/QuestionPopup'
 import Num3Comma from '../functions/num3comma/Num3Comma'
 import {useTranslation} from 'react-i18next';
+import TimeToggle from '../functions/timeToggle/TimeToggle'
 
 function TimeToggler(props) {
   if(props.timeToggle !== true ){
-    const upDate = new Date(props.date);
-    const year = upDate.getFullYear();
-    const month = upDate.getMonth() + 1;
-    const date = upDate.getDate();
-    const hours = upDate.getHours();
-    const minutes = upDate.getMinutes();
-    const seconds = upDate.getSeconds();
-
-    const monthText = () => {
-      if (month < 10) {
-        return '0' + month;
-      } else {
-        return month;
-      }
-    }
-    const dateText = () => {
-      if (date < 10) {
-        return '0' + date;
-      } else {
-        return date;
-      }
-    }
-    const hoursText = () => {
-      if (hours < 10) {
-        return '0' + hours;
-      } else {
-        return hours;
-      }
-    }
-    const minutesText = () => {
-      if (minutes < 10) {
-        return '0' + minutes;
-      } else {
-        return minutes;
-      }
-    }
-    const secondsText = () => {
-      if (seconds < 10) {
-        return '0' + seconds;
-      } else {
-        return seconds;
-      }
-    }
-    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{year}-{monthText()}-{dateText()} {hoursText()}:{minutesText()}:{secondsText()} UTC+9</Datespan> </>
+    return <> <FormatDateAsText date={props.date}></FormatDateAsText> · <Datespan>{TimeToggle(props.date)}</Datespan> </>
   }
   return <>  <FormatDateAsText date={props.date}></FormatDateAsText> · </>
 }
@@ -92,6 +50,7 @@ function ABoxTop(props) {
     if(props.white === true){
       setShowMini(false);
       setPopToggle(false);
+      setTimeToggle(true);
     }
   }, [props.white]);
   const {t} = useTranslation();

@@ -4,17 +4,17 @@ import axios from 'axios';
 import Num3Comma from '../functions/num3comma/Num3Comma';
 import FormatDateAsText from '../functions/formatDateAsText/FormatDateAsText';
 import {useTranslation} from 'react-i18next';
+import TimeToggle from '../functions/timeToggle/TimeToggle'
 
 const handleImgError = (e) => {
     e.target.src = "/pub/css/profile/img_thum_base0.jpg";
   }
 
-function ShowView({date, timeToggle}){
-
-    if(timeToggle === false){
-        return <FormatDateAsText date={Date.parse(date)}/>
+function ShowView({data, timeToggle}){
+    if(timeToggle !== true){
+        return <><FormatDateAsText date={data}/><ReplyLocaleSpan>{TimeToggle(data)}</ReplyLocaleSpan></>
     }
-    return <><FormatDateAsText date={Date.parse(date)}/><ReplyLocaleSpan>{date} UTC+9</ReplyLocaleSpan></>
+    return <FormatDateAsText date={data}/>
 }
 function AldolViewImg(props){
     return <ReplyImg src={"/UploadFile/Profile/"+props.img} onError={handleImgError}></ReplyImg>
@@ -63,7 +63,7 @@ const DeleteBtn = (user, seqId, seqComponent, replySeq, setReplys, replyText) =>
 
 function Reply({setReplys, seqComponent, seq, white, setWhite, reply}) {
  
-    const [timeToggle, setTimeToggle] = useState(false);
+    const [timeToggle, setTimeToggle] = useState(true);
 
     const [imgChange, setImgChange] = useState(true);
     const trans = () => {
@@ -76,7 +76,7 @@ function Reply({setReplys, seqComponent, seq, white, setWhite, reply}) {
 
     useEffect(() => {
         if(white === true){
-            setTimeToggle(false);
+            setTimeToggle(true);
         }
     }, [white]);
     const {t} = useTranslation();
@@ -123,7 +123,7 @@ function Reply({setReplys, seqComponent, seq, white, setWhite, reply}) {
                                 setTimeToggle(!timeToggle);
                                 e.stopPropagation();
                                 }
-                            } ><ShowView date={reply.date} timeToggle={timeToggle}></ShowView></Btag>{
+                            } ><ShowView data={reply.date} timeToggle={timeToggle}></ShowView></Btag>{
                                 DeleteBtn( reply.profile.seqId, seq, seqComponent, replySeq, setReplys, replyText )
                             }
                         {/*댓글의 훈훈알, 좋아요, 싫어요 */}
