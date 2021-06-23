@@ -7,53 +7,48 @@ function Estimate({setEtimates, setMyestiNo, num, img, pageSeq, check}) {
     const {t} = useTranslation();
     
     //url list
-    const URL_ESTIMATE = "/rest/answers/"+pageSeq+"/estimate";
+    const URL_EVALUATION = `/api/answers/${pageSeq}/estimates/${num}`
+    const URL_ESTIMATE = `/api/answers/${pageSeq}/estimate`;
 
     const langEsti = (img) => {
         const arr = [t('AnswerEtimate_Altong'), t('AnswerEtimate_Good'), t('AnswerEtimate_Soso'), t('AnswerEtimate_Bad'), t('AnswerEtimate_Upset'), t('AnswerEtimate_Fun')];
         return arr[img]
     }
-    
-    const GetEstimate = (pageSeq, select, setEtimates, setMyestiNo, check) => {
-        if(check>0){
+
+    //답변 평가 기능 - 추후 수정 필요
+    const SendEvaluation = async (pageSeq, select, setEtimates, setMyestiNo, check) => {
+        if(check > 0){
             alert(t('Already_Evaluated'));
             return;
         }
-        axios.put(URL_ESTIMATE,{
-            esti: select
-        })
-        .then((response) => response.data)
-        .then( (data) => {
-            console.log(data);
-            if(data.returnCode === "0"){
+        try{
+            const response = await axios.patch(URL_EVALUATION,{
+                PointCount: select
+            })
+            if(response.data.returnCode === "0"){
                 SetEstimate(pageSeq, select, setEtimates);
                 setMyestiNo(select);
-            }else{
-                console.log(data);
             }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        } catch(e) {
+            console.log(e)
+        }
     }
 
-    const SetEstimate = () => {
-        axios.get(URL_ESTIMATE)
-        .then((response) => response.data)
-        .then( (data) => {
-            setEtimates(data);
-        })
-        .catch(function (error) {
-            console.log(error)
-        });
+    const SetEstimate = async () => {
+        try{
+            const response = await axios.get(URL_ESTIMATE)
+            setEtimates(response.data)
+        } catch(e) {
+            console.log(e)
+        }
     }
       
     return (
-        <MainLi check={check === img} onClick={()=>{
-            GetEstimate(pageSeq, img, setEtimates, setMyestiNo, check);
+        <MainLi check = {check === img} onClick={()=>{
+            SendEvaluation(pageSeq, img, setEtimates, setMyestiNo, check);
         }}>
             <EtimateA>
-                <EtimateImg  src={"/Common/images/esti_"+img+'.png'}></EtimateImg>
+                <EtimateImg src={"/Common/images/esti_"+img+'.png'}></EtimateImg>
                 <EtimateSpan>{langEsti(img - 1)}<EtimateEm>{num}</EtimateEm></EtimateSpan>
             </EtimateA>
         </MainLi>

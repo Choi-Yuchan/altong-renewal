@@ -77,7 +77,7 @@ function AnswerBox(props) {
   const answer = props.jsonArr.pageSeq;
   //url list
   const URL_EXTRA = `/api/answers/${answer}/almoney`;
-  const URL_EVALUATE = `/api/answers/${answer}/estimate`;
+  const URL_EVALUATE = `/api/answers/${answer}/get/estimate`;
   const URL_EXTRA_USERS = `/api/answers/${answer}/extra-lists`
 
   useEffect(()=>{
@@ -94,7 +94,8 @@ function AnswerBox(props) {
       }
     }
 
-    // estimate 몇번째에 체크했는지
+    // estimate 몇번째에 체크했는지 - 현재 해당 URL의 method가 제대로 되어 있지 않음.
+    // RESTful API 수정 후 작동하는 지 확인 필요.
     const getEvaluation = async () => {
       try{
         const response = await axios.get(URL_EVALUATE)
