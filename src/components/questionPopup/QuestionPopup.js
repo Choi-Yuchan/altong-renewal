@@ -93,12 +93,13 @@ const MainUl = styled.ul`
     top: 50%;
     right: 100%;
     background: #fff;
-    width: 110px;
+    min-width:110px;
     border: 1px solid #ccc;
     padding: 5px 10px 0 10px;
     border-radius: 10px 0 10px 10px;
     box-shadow: 2px 2px 2px #ddd;
-    display: ${props => props.popToggle ? "block" : "none"};
+    display: ${props => props.popToggle ? "flex" : "none"};
+    flex-direction: column;
 `;
 const MainLi = styled.li`
     height: 35px;

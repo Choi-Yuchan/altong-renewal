@@ -5,8 +5,13 @@ const MainAhref = styled.a`
     color: #333;
     display:flex;
     align-items:center;
+    white-space: nowrap;
 `;
-const IconImg = styled.img`
+const IconImg = styled.span`
+    background-image: url(${props=>props.imgurl});
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 20px;
     height: 20px;
     margin-right: 8px;
@@ -16,7 +21,7 @@ const IconImg = styled.img`
 function Popup({text, imgurl}) {
     return (
         <MainAhref >
-            <IconImg src={imgurl} alt={text}></IconImg>
+            <IconImg imgurl={imgurl} alt={text}></IconImg>
             {text}
         </MainAhref>
     );
