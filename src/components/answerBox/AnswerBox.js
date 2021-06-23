@@ -8,7 +8,7 @@ import LangTransBox from '../langTransBox/LangTransBox';
 import ReplyBox from '../replyBox/ReplyBox';
 import ReplyList from '../replyList/ReplyList';
 import AUnBoxBottom from '../AUnBoxBottom/AUnBoxBottom';
-import AltongEtimate from '../altongEtimate/AltongEtimate';
+import AltongEstimate from '../altongEtimate/AltongEstimate';
 import PopExtraAl from '../popup/popExtraAl/PopExtraAl'
 
 import Num3Comma from '../functions/num3comma/Num3Comma'
@@ -26,10 +26,10 @@ function OpenDiv(props){
     return (
       <>
       { props.aiPlus === true && <LangTransCount />}
-      <AltongEtimate
+      <AltongEstimate
         etimate={props.etimate} pageSeq={props.pageSeq}
         myestiNo={props.myestiNo} setMyestiNo={props.setMyestiNo}
-      ></AltongEtimate>
+      ></AltongEstimate>
       <LangTransBox aiPlus={props.aiPlus} setAiPlus={props.setAiPlus} jsonArr={props.jsonArr}></LangTransBox>
       <ReplyBox
         pageSeq={props.pageSeq}
