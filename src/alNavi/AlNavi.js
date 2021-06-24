@@ -8,15 +8,16 @@ import i18n from '../config/lang/i18n';
 const useClick = (onClick) => {
     const element = useRef();
     useEffect(() => {
-      if (element.current) {
-        element.current.addEventListener("click", onClick);
+        const currentElement = element.current;
+      if (currentElement) {
+        currentElement.addEventListener("click", onClick);
       }
       return () => {
-        if (element.current) {
-          element.current.removeEventlistener("click", onClick);
+        if (currentElement) {
+          currentElement.removeEventlistener("click", onClick);
         }
       };
-    }, []);
+    }, [onClick]);
     if (!typeof onClick !== "function") {
         return;
       }
@@ -35,7 +36,6 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         { id: 6, val: t('AlNavi_Friends'), href: "/member/myFriend" },
         { id: 7, val: t('AlNavi_Messages'), href: "/message/message" },
     ];
-    
     
     const NaviItems = [ 
         { id: 0, img:"/pub/css/mainico/alert.svg" , 
@@ -67,84 +67,32 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                 a_rank: t('AlNavi_Answer')+"1,024"+t('AlNavi_Degree'), 
             },
         alt : ["프로필","로그아웃 아이콘"],
-        confirm_p: t('AlNavi_Confirm') 
+        widmessage: t('AlNavi_Confirm') 
     };
     const handleImgError = (e) => {
         e.target.src = "/pub/css/profile/img_thum_base0.jpg";
       };
-    const signOutTxt = langAlNavi.signout;
-    const signInTxt = langAlNavi.signin;
+
     const userInfo = langAlNavi.user;
-    const altText = langAlNavi.alt;
-    const widMessage = langAlNavi.confirm_p;
 
     //it is valued axios and control data
-    const URL_NAVI = ''; // 네비게이션 기본 정보
-    const URL_NAVI_ITEM = ''; // 네비게이션 리스트 하위 컴포넌트로 전달해줄 data
-    const URL_MY_SPACE = ''; // 나의 공간 리스트
     const URL_COUNT_ALARM = "/api/user/alarm/count"; // 
 
-    const [listText, setListText] = useState(null);
-    const [naviList,setNaviList] = useState(null);
-    const [mySpace, setMySpace] = useState(null);
     const [countAlarm, setCountAlarm] = useState(0); // 해당 url에서 count 정보를 받아서 넘겨줄 예정
-    const [error, setError] = useState(null);
 
     useEffect(()=>{
-        const getList = async () => {
-            try{
-                setError(null);
-                setListText(null);
-
-                const navitext = await axios.get(URL_NAVI);
-                setListText(navitext.data);
-            } catch(err){
-                setError(err.message);
-            }    
-        };
-        
-        const getNaviList = async () => {
-            try{
-                setError(null);
-                setNaviList(null);
-
-                const naviitem = await axios.get(URL_NAVI_ITEM);
-                setNaviList(naviitem.data); 
-            } catch(err){
-                setError(err.message);
-            }
-        }
-
-        const getMySpace = async () => {
-            try{
-                setError(null);
-                setMySpace(null);
-
-                const myspacelist = await axios.get(URL_MY_SPACE);
-                setMySpace(myspacelist.data);
-            } catch(err){
-                setError(err.message);
-            }
-        }
         //알람 횟수 data fetching
         const getAlarmNum = async () => {
             try{
-                setError(null);
-
                 const alarmNumber = await axios.get(URL_COUNT_ALARM);
                 setCountAlarm(alarmNumber.data.count);
-            } catch(error){
-                setError(error);
+            } catch(e){
+                console.log(e);
             }
         }
         
-        getList();
-        getNaviList();
-        getMySpace();
         getAlarmNum();
     },[]);
-
-
 
     //click event handle
     const clickedNavi = (e) => {
@@ -163,7 +111,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
     const withdraw = e => {
         e.preventDefault();
         e.stopPropagation();
-        const leave = window.confirm(String(widMessage));
+        const leave = window.confirm(String(langAlNavi.widmessage));
         if(leave === true){
             return window.location.assign('/default/cs/customerService');
         }
@@ -175,7 +123,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
         if(clicked === true){
             setShowNavi(false);
         }
-    },[clicked]);
+    },[clicked, setShowNavi]);
 
     const NotLoginItemLists = () => {
         return NaviItems.map((navi) => 
@@ -217,13 +165,13 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                 </NavTop>
                 <NotLogInfo>
                     <NotLogDiv>
-                        <h3>{signOutTxt[0]}</h3>
+                        <h3>{langAlNavi.signout[0]}</h3>
                         <ul>
                             <NotLogLi>
-                                <NotLogLiA1 href="/default/login">{signOutTxt[1]}</NotLogLiA1>
+                                <NotLogLiA1 href="/default/login">{langAlNavi.signout[1]}</NotLogLiA1>
                             </NotLogLi>
                             <NotLogLi>
-                                <NotLogLiA2 href="/default/joinRule">{signOutTxt[2]}</NotLogLiA2>
+                                <NotLogLiA2 href="/default/joinRule">{langAlNavi.signout[2]}</NotLogLiA2>
                             </NotLogLi>
                         </ul>
                     </NotLogDiv>
@@ -232,10 +180,10 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                     {NotLoginItemLists()}
                 </ul>
                 <LangMenu>
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ko')}}>한글</LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('en')}}>EN</LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('zh')}}>中文 </LangMenuEl>
+                    <Langlist onClick={()=>{i18n.changeLanguage('ko')}}>한글</Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('en')}}>EN</Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('zh')}}>中文 </Langlist>
                 </LangMenu>
             </NavDiv>
         </AlNaviNav>
@@ -257,12 +205,12 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                 <NavProfileDiv>
                     <NavProfileDivLogin>
                         <ManageAccount>
-                            <ModifyDiv href="/member/myJoin">{signInTxt[0]}</ModifyDiv>
+                            <ModifyDiv href="/member/myJoin">{langAlNavi.signin[0]}</ModifyDiv>
                         </ManageAccount>    
                         <UserInfo>
                             <LoginFigure>
                                 <LoginFigureDiv>
-                                    <LoginFigureImg src={"/UploadFile/Profile/" + user.img} onError={handleImgError} alt={altText[0]}/>
+                                    <LoginFigureImg src={"/UploadFile/Profile/" + user.img} onError={handleImgError} alt={langAlNavi.alt[0]}/>
                                 </LoginFigureDiv>
                                 <LoginFigcaption>{userInfo.tier[user.lv]}</LoginFigcaption>
                             </LoginFigure>
@@ -282,17 +230,17 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
                     {ItemLists()}
                 </ul>
                 <LangMenu>
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ko')}}>한글</LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('en')}}>EN</LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </LangMenuEl>/
-                    <LangMenuEl onClick={()=>{i18n.changeLanguage('zh')}}>中文 </LangMenuEl>
+                    <Langlist onClick={()=>{i18n.changeLanguage('ko')}}>한글</Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('en')}}>EN</Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('ja')}}>日本語 </Langlist>/
+                    <Langlist onClick={()=>{i18n.changeLanguage('zh')}}>中文 </Langlist>
                 </LangMenu>
                 <AlNaviBot>
                     <BottomBtn href="/default/logOut">
-                        <LogoutIco src="/pub/css/mainico/logout.svg" alt={altText[1]}/>
-                        {signInTxt[1]}
+                        <LogoutIco src="/pub/css/mainico/logout.svg" alt={langAlNavi.alt[1]}/>
+                        {langAlNavi.signin[1]}
                     </BottomBtn>
-                    <BottomBtn href="#none" onClick={withdraw}>{signInTxt[2]}</BottomBtn>
+                    <BottomBtn href="#none" onClick={withdraw}>{langAlNavi.signin[2]}</BottomBtn>
                 </AlNaviBot>
             </NavDiv>
         </AlNaviNav>
@@ -301,7 +249,7 @@ function AlNavi({user, show, setShowNavi, clicked, setClicked, keyToggle, setKey
 
 export default AlNavi;
 
-const AlNaviNav = styled.nav`
+const AlNaviNav = styled.aside`
     width: 85%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
@@ -328,7 +276,7 @@ const AlNaviNav = styled.nav`
         max-width: 400px;
     }
 `;
-const NavDiv = styled.div`
+const NavDiv = styled.nav`
     min-height: 100vh;
     width: 100%;
     background: #fff;
@@ -346,11 +294,13 @@ const NavTop = styled.div`
     justify-content: flex-end;
     padding-right: 5px;
 `;
-const CloseBtn = styled.div`
+const CloseBtn = styled.button`
     width: 20px;
     height: 20px;
     position: relative;
     cursor: pointer;
+    background:transparent;
+    border:none;
 `;
 const CloseLeft = styled.i`
     display: block;
@@ -380,7 +330,7 @@ const NotLogLi = styled.li`
   display: inline-block;
   list-style: none;
   :last-child{
-      margin-left: 10px;
+    margin-left: 10px;
   }
 `;
 const NotLogLiA1 = styled.a`
@@ -526,13 +476,14 @@ const AlNaviBot = styled.div`
     align-items:center;
     padding:10px;    
 `;
-const LangMenu = styled.div`
+const LangMenu = styled.ul`
+    list-style:none;
     display:felx;
     justify-content:center;
     align-items:center;
     margin-top:10px;
 `;
-const LangMenuEl = styled.span`
+const Langlist = styled.li`
     font-size:14px;
     font-weight:bold;
     margin:0 10px;
