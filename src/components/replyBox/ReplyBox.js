@@ -67,7 +67,7 @@ function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON
     if(seqComponent === 'A'){ //채택하기
         if (choice === true) { // 채택한 답변이 없을 때
             if (goQuestion === true || questionSeqId === USER.seq) { //내가 질문한 글이고 채택한 답변 아닐 때
-                return <AnswerBtnAB onClick={choiceButton} >{btnName[1]}</AnswerBtnAB>
+                return <SelectedBtn onClick={choiceButton} >{btnName[1]}</SelectedBtn>
             } else {
                 return '';
             }
@@ -78,19 +78,18 @@ function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON
         if (memberSeq === USER.seq) {return '';}
         else {
             if (goAnswer === true) {
-                return <AnswerBtnA show={goAnswer} href={URL_ANSWER_WRITE} onClick={(e)=>{
+                return <AnswerBtn show={goAnswer} href={URL_ANSWER_WRITE} onClick={(e)=>{
                     if (login === true) {
                         e.preventDefault();
                         alert(needLogin);
                     }
-                }} >{btnName[2]}</AnswerBtnA> //답변하기
+                }} >{btnName[2]}</AnswerBtn> //답변하기
             } else if (goAnswer === false) {
-                return <AnswerBtnA show={goAnswer} >{btnName[3]}</AnswerBtnA> //답변완료
+                return <AnswerBtn show={goAnswer}>{btnName[3]}</AnswerBtn> //답변완료
             }
         }
     }
-    return '';
-    
+    return '';  
 }
 
 
@@ -173,15 +172,15 @@ function ReplyBox(props) {
             </EmotionList>
           </OlBoxLeft>
           <AnswerDoList>
-            <LangBtnA>{btnName[0]}</LangBtnA>
+            <TranslateBtn>{btnName[0]}</TranslateBtn>
             <ViewAnswerBtn
-                seqComponent={props.seqComponent} pageSeq={pageSeq}
-                memberSeq={props.seqId}
-                choice={props.choice}
-                btnName={btnName}
-                USER={props.USER}
-                SSRJSON={props.SSRJSON}
-            ></ViewAnswerBtn>
+            seqComponent={props.seqComponent} pageSeq={pageSeq}
+            memberSeq={props.seqId}
+            choice={props.choice}
+            btnName={btnName}
+            USER={props.USER}
+            SSRJSON={props.SSRJSON}
+            />
           </AnswerDoList>
       </OlBox>
     );
@@ -192,11 +191,11 @@ export default ReplyBox;
 
 const EmotionImg = styled.img`
     display: block;
-    width: 20px;
+    width: 18px;
     margin: 0 auto;
 
-    @media (max-width:480px) {
-        width: 18px;
+    @media (min-width:480px) {
+        width: 20px;
     }
 `;
 
@@ -262,11 +261,12 @@ const AnswerDoList = styled.div`
     flex-direction: row-reverse;
 `;
 
-const AnswerBtnA = styled.a`
+const AnswerBtn = styled.a`
     width: 50%;
     height: 27px;
+    padding: 3px;
     color: ${props=> props.show ? '#fd0031' : '#333'};
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
     border: 1px solid ${props=> props.show ? '#fd0031' : '#fff'};
     background: ${props=> props.show ? '#fff' : '#e8e8e8'};
@@ -276,51 +276,23 @@ const AnswerBtnA = styled.a`
     display: flex;
     justify-content: center;
     align-items:center;
+    white-space:nowrap;
 
-    @media (max-width:480px) {
-        font-size: 13px;
+    @media (min-width:480px) {
+        font-size: 14px;
         height:25px;
     }
 `;
 
-const AnswerBtnAB = styled.a`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 27px;
+const SelectedBtn = styled(AnswerBtn)`
+    background: #fff;
     border: 1px solid #fd8d0d;
     color: #fd8d0d;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 100px;
-    text-decoration: none;
     cursor: pointer;
-
-    @media (max-width:480px) {
-        font-size:13px;
-        height:25px;
-    }
 `;
 
-const LangBtnA = styled.a`
+const TranslateBtn = styled(SelectedBtn)`
     color: #f30;
     border: 1px solid #f30;
     margin-left: 10px;
-    width: 50%;
-    height: 27px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 100px;
-    text-decoration: none;
-    cursor: pointer;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width:480px) {
-        font-size:13px;
-        height:25px;
-    }
 `;
