@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 const langNaviItem = {
     placeholder: "닉네임을 입력해주세요",
@@ -21,8 +20,6 @@ const eventHandler = e => {
 function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKeyToggle}) {
     const placeholder = langNaviItem.placeholder;
     const altText = langNaviItem.alt;
-    // url list
-    const URL_NAVI_TEXT = '';
 
     const [showPlus, setShowPlus] = useState("90deg");
     const [toggle, setToggle] = useState(false);
@@ -45,24 +42,6 @@ function NaviItem({img, href, val, count, i, mini, bar, sound, keyToggle, setKey
 
         setDisabled(false);
     };
-
-
-    const [naviText, setNaviText] = useState(null);
-
-    useEffect(() => {
-        const fetchText = async () => {
-            try{
-                setNaviText(null);
-
-                const response = await axios.get(URL_NAVI_TEXT);
-                setNaviText(response.data);
-            } catch(error) {
-                // console.log(error);
-            }
-        };
-
-        fetchText();
-    },[])
 
     if(mini != null){
         return (
