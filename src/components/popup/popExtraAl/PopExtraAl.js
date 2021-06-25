@@ -11,7 +11,7 @@ function PopExtraAl({showExtraList, extraList}) {
     <WarmingAlList show={showExtraList}>
         <GiftMemberTitle>{t('PopExtraAl_Given')}</GiftMemberTitle>
         {extraList.map(list =>         
-        <GiftMemberList key={extraList.userSeq}>
+        <GiftMemberList key={list.conDate}>
           <GiftMember>
               <b>{list.nickname} (<Num3Comma num={list.almoney}></Num3Comma>)</b>
           </GiftMember>

@@ -70,7 +70,7 @@ function QuestionBox(props) {
 
     getData();
     getUserData();
-  }, []);
+  }, [URL_QUESTION, URL_USER]);
 
   const {t} = useTranslation();
 
@@ -148,14 +148,14 @@ function QuestionBox(props) {
         
       <PopMessage
       clicked={bodyClicked} setClicked={setBodyClicked}
-        showMessage={showMessage.show} user={showMessage.user} nick={showMessage.nick}
-        setShowMessage={setShowMessage} USER={user}
-      ></PopMessage>
+      showMessage={showMessage.show} setShowMessage={setShowMessage}  
+      nick={showMessage.nick} user={showMessage.user} 
+      />
 
       <PopAD
       infoAD={infoAD} setInfoAD={setInfoAD} 
-      clicked={bodyClicked} setClicked={setBodyClicked}
-      ></PopAD>
+      clicked={bodyClicked}
+      />
       
       <ShowBlackDiv clicked={bodyClicked}></ShowBlackDiv>
     </SiteDiv>

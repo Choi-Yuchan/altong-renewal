@@ -10,7 +10,7 @@ export const useSlideIn = (duration = 1, toggle) => {
       current.style.transition = `transform ${duration}s ease-in-out 0s`;
       current.style.transform = "scaleX(1)";
     }
-  }, [toggle]);
+  }, [toggle, duration]);
   
   if (typeof duration !== "number" ) {
     return;

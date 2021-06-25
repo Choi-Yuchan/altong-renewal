@@ -39,7 +39,7 @@ function PopSiren({clicked, setClicked, showSiren, page, seq, title, setShowSire
         if(clicked === true){
             setShowSiren({show:false, page, seq, title});
         }
-      }, [clicked]);
+      }, [clicked, setShowSiren, page, seq, title]);
 
     return (
         <PopReportDiv showSiren={showSiren} onClick={(e) => {

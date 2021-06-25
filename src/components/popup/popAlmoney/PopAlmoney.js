@@ -96,7 +96,7 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
         if(clicked === true){
             setShowAlmoney({show:false, page, seq});
         }
-      }, [clicked]);
+      }, [clicked, setShowAlmoney, page, seq]);
 
     useEffect(() => {
         //사용 가능한 훈훈알 수 반환
@@ -116,7 +116,7 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
             }
         }
         checkWarmingAlBalance();
-    }, [showAlmoney]);
+    }, [showAlmoney, setShowAlmoney, setClicked]);
 
     return (
         <PopAlDiv showAlmoney={showAlmoney} onClick={(e) => {
@@ -130,9 +130,9 @@ function PopAlmoney({clicked, setClicked, showAlmoney, setShowAlmoney, page, seq
                 </Popli>
                 <Popli>
                     <PopP>{t('Hunhun_Available')} <br>
-                    </br> {t('Hunhun_Total')} <PopSpan><Num3Comma num={maxAlmoney}></Num3Comma></PopSpan>{t('Hunhun_Al')}</PopP>
+                    </br> {t('Hunhun_Total')}<PopSpan>&nbsp;<Num3Comma num={maxAlmoney}/></PopSpan>{t('Hunhun_Al')}</PopP>
                 </Popli>
-                <Popli3><PopH3Input placeholder="300~10,000" step="100" autocomplete="off"
+                <Popli3><PopH3Input placeholder="300 ~ 10,000" step="100" autocomplete="off"
                     value={extraAlmoney} onChange={(e) => handleChange(e)}
                 autoFocus type="number"></PopH3Input>{t('PopExtraAl_Al')}</Popli3>
                 <Popli4>
@@ -159,7 +159,6 @@ const PopAlDiv = styled.div`
     display: ${(props) => props.showAlmoney ? "block":"none"};
     padding: 10px;
     max-width: 320px;
-    letter-spacing: -1px;
     background: #fff;
     position: fixed;
     top: 50%;

@@ -10,7 +10,7 @@ export const useSlideUp = (duration = 1, toggle) => {
       current.style.transition = `transform ${duration}s ease-in-out 0s`;
       current.style.transform = "translate(-50%, -100%)";
     }
-  },[toggle]);
+  },[toggle, duration]);
   
   if (typeof duration !== "number" ) {
     return;
