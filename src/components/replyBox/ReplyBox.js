@@ -102,6 +102,7 @@ function ReplyBox({seqComponent, pageSeq, replyToggle, setReplyToggle, replyCoun
     const URL_QUE_VOTE = `/api/questions/${pageSeq}/vote`;
     const URL_ANS_VOTE = `/api/answers/${pageSeq}/vote`;
 
+    
     const SendGood = async (seqComponent, setGood, setBad) => {
         try{
             const response = await axios.patch(seqComponent ==='Q' ? URL_QUE_VOTE : URL_ANS_VOTE, {
@@ -129,12 +130,11 @@ function ReplyBox({seqComponent, pageSeq, replyToggle, setReplyToggle, replyCoun
             console.log(e)
         }
     }
-
     useEffect(()=>{
         const getVoteData = async () => {
             if(pageSeq === undefined){}else
             try{
-                const voteUrl= seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
+                const voteUrl = seqComponent === "Q" ? URL_QUE_VOTE:URL_ANS_VOTE;
                 const response = await axios.get(voteUrl);
                 setGood(response.data.good);
                 setBad(response.data.bad);
@@ -157,15 +157,11 @@ function ReplyBox({seqComponent, pageSeq, replyToggle, setReplyToggle, replyCoun
                 <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{replyCount}
             </HrefA>
             <EmotionList>
-                <EmotionListIconDiv className="smileIcon" onClick={()=> {
-                    SendGood(seqComponent, setGood, setBad);
-                }}>
+                <EmotionListIconDiv className="smileIcon" onClick={()=> {SendGood(seqComponent, setGood, setBad)}}>
                     <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                     <EmotionB >{good}</EmotionB>
                 </EmotionListIconDiv>
-                <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                    SendBad(seqComponent, setGood, setBad);
-                }}>
+                <EmotionListIconDiv className="sadIcon" onClick={()=> {SendBad(seqComponent, setGood, setBad)}}>
                     <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                     <EmotionB >{bad}</EmotionB>
                 </EmotionListIconDiv>
