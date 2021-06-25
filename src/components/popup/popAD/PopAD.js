@@ -3,20 +3,20 @@ import styled from 'styled-components';
 import React, { useEffect } from 'react';
 import {useTranslation} from 'react-i18next';
 
-function PopAD(props) {
+function PopAD({infoAD, setInfoAD, clicked}) {
     useEffect(()=>{
-        if(props.clicked === true){
-            props.setInfoAD({show:false, adUrl: props.infoAD.adUrl, adFile: ""});
+        if(clicked === true){
+            setInfoAD({show:false, adUrl: infoAD.adUrl, adFile: ""});
         }
       }
-    , [props.clicked]);
+    , [clicked, setInfoAD, infoAD.adUrl]);
     const {t} = useTranslation();
     
     return (
-        <PopDiv show={props.infoAD.show}>
-            <PopDivImg src={"http://www.altong.com/UploadFile/AD/"+props.infoAD.adFile}></PopDivImg>
-            <PopDivP show={ "" !== props.infoAD.adUrl }>
-                <PopDivPA target="_blank" href={props.infoAD.adUrl} onClick={(e) => {
+        <PopDiv show={infoAD.show}>
+            <PopDivImg src={"http://www.altong.com/UploadFile/AD/"+infoAD.adFile}/>
+            <PopDivP show={ "" !== infoAD.adUrl }>
+                <PopDivPA target="_blank" href={infoAD.adUrl} onClick={(e) => {
                     e.stopPropagation();
                 }}>
                     <PopDivPASapn>{t('AD_More')}</PopDivPASapn>

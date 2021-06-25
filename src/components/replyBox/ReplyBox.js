@@ -50,7 +50,7 @@ function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON
             }
         }
         boxCheckButton();
-    },[]);
+    },[URL_ANS_CHECK, URL_CHO_CHECK, pageSeq, seqComponent]);
     const choiceButton = async () => {
         if(window.confirm('이 답변을 채택하시겠습니까?')) {
             try {
@@ -67,7 +67,7 @@ function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON
     if(seqComponent === 'A'){ //채택하기
         if (choice === true) { // 채택한 답변이 없을 때
             if (goQuestion === true || questionSeqId === USER.seq) { //내가 질문한 글이고 채택한 답변 아닐 때
-                return <SelectedBtn onClick={choiceButton} >{btnName[1]}</SelectedBtn>
+                return <SelectedBtn onClick={choiceButton}>{btnName[1]}</SelectedBtn>
             } else {
                 return '';
             }
@@ -93,11 +93,11 @@ function ViewAnswerBtn({seqComponent, pageSeq, memberSeq, btnName, USER, SSRJSON
 }
 
 
-function ReplyBox(props) {
+function ReplyBox({seqComponent, pageSeq, replyToggle, setReplyToggle, replyCount, USER, seqId, SSRJSON, choice}) {
     
     const [good,setGood] = useState(0);
     const [bad,setBad] = useState(0);
-    const pageSeq = props.pageSeq;
+
     //URL_LIST
     const URL_QUE_VOTE = `/api/questions/${pageSeq}/vote`;
     const URL_ANS_VOTE = `/api/answers/${pageSeq}/vote`;
@@ -132,9 +132,9 @@ function ReplyBox(props) {
 
     useEffect(()=>{
         const getVoteData = async () => {
-            if(props.pageSeq === undefined){}else
+            if(pageSeq === undefined){}else
             try{
-                const voteUrl= props.seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
+                const voteUrl= seqComponent==="Q"? URL_QUE_VOTE:URL_ANS_VOTE;
                 const response = await axios.get(voteUrl);
                 setGood(response.data.good);
                 setBad(response.data.bad);
@@ -144,7 +144,7 @@ function ReplyBox(props) {
         }
         getVoteData();
     }
-    , []);
+    , [pageSeq, seqComponent, URL_QUE_VOTE, URL_ANS_VOTE]);
 
     const {t} = useTranslation();
                         //번역하기, 채택하기, 답변하기, 답변완료 순
@@ -153,18 +153,18 @@ function ReplyBox(props) {
     return (
       <OlBox className="ReplyBox">
           <OlBoxLeft>
-            <HrefA onClick={ () => props.setReplyToggle( !props.replyToggle )}>
-                <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{props.replyCount}
+            <HrefA onClick={ () => setReplyToggle( !replyToggle )}>
+                <HrefAIcon src="/Common/images/icon_reply.svg"></HrefAIcon>{replyCount}
             </HrefA>
             <EmotionList>
                 <EmotionListIconDiv className="smileIcon" onClick={()=> {
-                    SendGood(props.seqComponent, setGood, setBad);
+                    SendGood(seqComponent, setGood, setBad);
                 }}>
                     <EmotionImg src="/Common/images/smile.svg"></EmotionImg>
                     <EmotionB >{good}</EmotionB>
                 </EmotionListIconDiv>
                 <EmotionListIconDiv className="sadIcon" onClick={()=> {
-                    SendBad(props.seqComponent, setGood, setBad);
+                    SendBad(seqComponent, setGood, setBad);
                 }}>
                     <EmotionImg src="/Common/images/sad.svg"></EmotionImg>
                     <EmotionB >{bad}</EmotionB>
@@ -174,12 +174,12 @@ function ReplyBox(props) {
           <AnswerDoList>
             <TranslateBtn>{btnName[0]}</TranslateBtn>
             <ViewAnswerBtn
-            seqComponent={props.seqComponent} pageSeq={pageSeq}
-            memberSeq={props.seqId}
-            choice={props.choice}
+            seqComponent={seqComponent} pageSeq={pageSeq}
+            memberSeq={seqId}
+            choice={choice}
             btnName={btnName}
-            USER={props.USER}
-            SSRJSON={props.SSRJSON}
+            USER={USER}
+            SSRJSON={SSRJSON}
             />
           </AnswerDoList>
       </OlBox>
@@ -212,10 +212,10 @@ const OlBoxLeft = styled.div`
 `;
 
 const HrefA = styled.a`
-    padding: 5px 13px;
+    padding: 3px 8px;
     border: 1px solid #d3d3d3;
     border-radius: 20px 20px 20px 0;
-    font-size: 12px;
+    font-size: 11px;
     position: relative;
     color: #737373;
     display:flex;
@@ -223,9 +223,9 @@ const HrefA = styled.a`
     align-items: center;
     cursor:pointer;
 
-    @media (max-width:480px) {
-        padding:3px 8px;
-        font-size:11px;
+    @media (min-width:480px) {
+        padding: 5px 13px;
+        font-size:12px;
     }
 `;
 
@@ -263,12 +263,11 @@ const AnswerDoList = styled.div`
 
 const AnswerBtn = styled.a`
     width: 50%;
-    height: 27px;
-    padding: 3px;
+    padding: 5px 8px;
     color: ${props=> props.show ? '#fd0031' : '#333'};
     font-size: 10px;
     font-weight: bold;
-    border: 1px solid ${props=> props.show ? '#fd0031' : '#fff'};
+    border: 2px solid ${props=> props.show ? '#fd0031' : '#fff'};
     background: ${props=> props.show ? '#fff' : '#e8e8e8'};
     border-radius: 100px;
     cursor: ${props=> props.show ? 'pointer' : 'default'};
@@ -279,20 +278,24 @@ const AnswerBtn = styled.a`
     white-space:nowrap;
 
     @media (min-width:480px) {
+        width:35%;
+        padding: 8px;
         font-size: 14px;
-        height:25px;
+        :not(:last-child){
+            margin-left: 20px;
+        }
     }
 `;
 
 const SelectedBtn = styled(AnswerBtn)`
     background: #fff;
-    border: 1px solid #fd8d0d;
+    border: 2px solid #fd8d0d;
     color: #fd8d0d;
     cursor: pointer;
 `;
 
 const TranslateBtn = styled(SelectedBtn)`
     color: #f30;
-    border: 1px solid #f30;
+    border: 2px solid #f30;
     margin-left: 10px;
 `;

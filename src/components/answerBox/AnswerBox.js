@@ -17,7 +17,7 @@ import PopShare from '../popup/popShare/PopShare'
 import {useTranslation} from 'react-i18next';
 
 const replyCount = (replys) => {
-  if(replys==null) return 0
+  if(replys === null) return 0
   return replys.length
 }
 
@@ -63,27 +63,30 @@ const ChoiceNetizenView = (props) => {
   return '';
 }
 
-function AnswerBox(props) {
+function AnswerBox({jsonArr, white, setWhite, USER, clicked, setClicked, setShowAlmoney, setShowSiren, setShowMessage, InfoAD, setInfoAD,
+   hunAlram, setHunAlram, selected, highlight, setHighlight, SSRJSON, choice, setChoice}) {
+
   const [replyToggle, setReplyToggle] = useState(true);
   const [openAnswer, setOpenAnswer] = useState('close');
-  const [message, setMessage] = useState(props.jsonArr.contents.substr(0,45)+'...');
+  const [message, setMessage] = useState(jsonArr.contents.substr(0,45)+'...');
   const [extraAlmoney, setExtraAlmoney] = useState(0);
   const [myestiNo, setMyestiNo] = useState(0);
-  const [replys, setReplys] = useState(props.jsonArr.replys);
+  const [replys, setReplys] = useState(jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
   const [ borderColor, setBorderColor ] = useState(false);
 
-  const answer = props.jsonArr.pageSeq;
+  const pageSeq = jsonArr.pageSeq;
+
   //url list
-  const URL_EXTRA = `/api/answers/${answer}/almoney`;
-  const URL_EVALUATE = `/api/answers/${answer}/get/estimate`;
-  const URL_EXTRA_USERS = `/api/answers/${answer}/extra-lists`
+  const URL_EXTRA = `/api/answers/${pageSeq}/almoney`;
+  const URL_EVALUATE = `/api/answers/${pageSeq}/get/estimate`;
+  const URL_EXTRA_USERS = `/api/answers/${pageSeq}/extra-lists`
 
   useEffect(()=>{
     
     const getAlmoney = async () => {
-      if(props.jsonArr.pageSeq === undefined){
+      if(pageSeq === undefined){
         return null;
       }else
       try{
@@ -122,10 +125,10 @@ function AnswerBox(props) {
     getAlmoney();
     getEvaluation();
     getWarmingList();
-  }, []);
+  }, [URL_EXTRA, URL_EVALUATE, URL_EXTRA_USERS, pageSeq]);
   // hunAlram={props.hunAlram} setHunAlram={props.setHunAlram}
   useEffect(()=>{
-    if(props.hunAlram === true){
+    if(hunAlram === true){
         axios.get(URL_EXTRA)
         .then((response) => response.data)
         .then( (data) => {
@@ -143,33 +146,33 @@ function AnswerBox(props) {
         .catch(function (error) {
           console.log(error)
         });
-        props.setHunAlram(false);
+        setHunAlram(false);
     }
   }
-  , [props.hunAlram]);
+  , [hunAlram, setHunAlram, URL_EXTRA, URL_EXTRA_USERS]);
 
   useEffect(()=>{
-    if(props.white === true){
+    if(white === true){
         setShowExtraList(false);
     }
   }
-  , [props.white]);
+  , [white]);
 
   useEffect(()=>{
-    if( props.highlight === props.selected ){
+    if( highlight === selected ){
       setBorderColor(true);
     }else{
       setBorderColor(false);
     }
-  }, [props.highlight])
+  }, [highlight, selected])
 
   //번역버튼 클릭에 대한 AI를 만들었다.
-  const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
+  const [aiPlus, setAiPlus] = useState({...jsonArr, AI:false});
   const [share, setShare] = useState(false);
 
   const choose = () => {
-    if(props.jsonArr.choice === true) {
-      props.setChoice(false);
+    if(jsonArr.choice === true) {
+      setChoice(false);
     }
   };
   choose();
@@ -180,67 +183,67 @@ function AnswerBox(props) {
     <>
     <MainDiv borderColor={borderColor} className="Box" onClick={
       () => {
-        props.setHighlight(props.selected);
+        setHighlight(selected);
       }
     } >
         <TopH3 num={extraAlmoney}>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
             setShowExtraList(!showExtraList);
-            props.setWhite(!props.white);
+            setWhite(!white);
             e.stopPropagation();
           }}>
             <AnswerAlmoneyImgB src="/pub/answer/answerList/images/answer_almoney.svg"></AnswerAlmoneyImgB>
             <AlmoneySpan><Num3Comma num={extraAlmoney}></Num3Comma></AlmoneySpan>
-            {props.USER.seq === 0 ? null : (
-            <PopExtraAl showExtraList={showExtraList} extraList={extras}></PopExtraAl>
+            {USER.seq === 0 ? null : (
+            <PopExtraAl showExtraList={showExtraList} extraList={extras}/>
             )}
           </AlmoneyDiv>
           <TopH3Div>
-            <ChoiceView choice={props.jsonArr.choice} choiceText={choiceText}></ChoiceView>
-            <ChoiceNetizenView netizen={props.jsonArr.netizen} choiceText={choiceText}></ChoiceNetizenView>
+            <ChoiceView choice={jsonArr.choice} choiceText={choiceText}></ChoiceView>
+            <ChoiceNetizenView netizen={jsonArr.netizen} choiceText={choiceText}></ChoiceNetizenView>
           </TopH3Div>
         </TopH3>
         <ABoxTop
-          head={props.jsonArr.head} mini={props.jsonArr.mini} 
-          clicked={props.clicked} setClicked={props.setClicked}
+          head={jsonArr.head} mini={jsonArr.mini} 
+          clicked={clicked} setClicked={setClicked}
           replyCount={replyCount(replys)}
-          white={props.white} setWhite={props.setWhite}
-          pageSeq={props.jsonArr.pageSeq}
-          setShowAlmoney={props.setShowAlmoney}
-          setShowSiren={props.setShowSiren}
-          setShowMessage={props.setShowMessage}
+          white={white} setWhite={setWhite}
+          pageSeq={pageSeq}
+          setShowAlmoney={setShowAlmoney}
+          setShowSiren={setShowSiren}
+          setShowMessage={setShowMessage}
           openAnswer={openAnswer}
-          seqId={props.jsonArr.seqId}
-          USER={props.USER}
+          seqId={jsonArr.seqId}
+          USER={USER}
           setShare={setShare}
           ></ABoxTop>
         <Contents
-          setInfoAD={props.setInfoAD}
-          InfoAD={props.InfoAD}
+          setInfoAD={setInfoAD}
+          InfoAD={InfoAD}
           contents={message} setOpenAnswer={setOpenAnswer} 
-          openAnswer={openAnswer} seqComponent={props.jsonArr.seqComponent}
-          setMessage={setMessage} allMessage={props.jsonArr.contents}
-          setClicked={props.setClicked}
-          pageSeq={props.jsonArr.pageSeq}
+          openAnswer={openAnswer} seqComponent={jsonArr.seqComponent}
+          setMessage={setMessage} allMessage={jsonArr.contents}
+          setClicked={setClicked}
+          pageSeq={pageSeq}
         ></Contents>
 
         <OpenDiv
-          pageSeq={props.jsonArr.pageSeq}
+          pageSeq={pageSeq}
           setReplys={setReplys}
           replyToggle={replyToggle}
           replyCount={replyCount(replys)}
           setReplyToggle={setReplyToggle} replys={replys}
-          openAnswer={openAnswer}  good={props.jsonArr.good} bad={props.jsonArr.bad}
-          USER={props.USER} etimate={props.jsonArr.etimate}
-          white={props.white} setWhite={props.setWhite} seqComponent={props.jsonArr.seqComponent}
-          seqId={props.jsonArr.seqId}
-          SSRJSON={props.SSRJSON}
+          openAnswer={openAnswer}  good={jsonArr.good} bad={jsonArr.bad}
+          USER={USER} etimate={jsonArr.etimate}
+          white={white} setWhite={setWhite} seqComponent={jsonArr.seqComponent}
+          seqId={jsonArr.seqId}
+          SSRJSON={SSRJSON}
           myestiNo={myestiNo}
           setMyestiNo={setMyestiNo}
-          contentsCount={props.jsonArr.contents.length}
+          contentsCount={jsonArr.contents.length}
           jsonArr={ aiPlus }
           aiPlus={aiPlus.AI} setAiPlus={setAiPlus}
-          choice={props.choice}
+          choice={choice}
         ></OpenDiv>
         <PopupADdiv>
           <PopupADdivIn>
@@ -249,13 +252,12 @@ function AnswerBox(props) {
           </PopupADdivIn>
         </PopupADdiv>
         <PopShare
-          clicked={props.clicked} setClicked={props.setClicked}
-          share={share} setShare={setShare}
-          jsonArr={props.jsonArr}
-          SSRJSON={props.SSRJSON}
-          USER={props.USER}
-          ></PopShare>
-        
+        clicked={clicked} 
+        share={share} setShare={setShare}
+        jsonArr={jsonArr}
+        SSRJSON={SSRJSON}
+        USER={USER}
+        />
     </MainDiv>
     </>
   );

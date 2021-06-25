@@ -32,8 +32,7 @@ function BoxController(props) {
             highlight = {props.highlight} setHighlight = {props.setHighlight}
             SSRJSON={props.SSRJSON}
             choice={props.choice} setChoice={props.setChoice}
-        >
-        </AnswerBox> : ""
+        /> : null
     );
     return Boxs;
 }

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-function PopMessage(props) {
+function PopMessage({clicked, setClicked, showMessage, setShowMessage, user, nick}) {
     const {t} = useTranslation();
     const [ message , setMessage ] = useState("");
     const [ messageState, setMessageState] = useState(t('Message_Send'));
 
     //URL LIST
-    const URL_MESSAGE = `/api/users/${props.user}/message`;
+    const URL_MESSAGE = `/api/users/${user}/message`;
 
     const handleChange = (e) => {
         setMessage(e.target.value);
@@ -17,7 +17,6 @@ function PopMessage(props) {
 
     const sendMessage = async (e) => {
         setMessageState(t('Message_Send'));
-        console.log(t('Message_Sent'));
         try{
             const response = await axios.post(URL_MESSAGE,{
                 "Contents": message
@@ -26,44 +25,44 @@ function PopMessage(props) {
                 window.alert(t('Message_Sent')); 
                 setMessage("");
                 setMessageState(t('Message_Send'));
-                props.setClicked(true);
+                setClicked(true);
                 e.stopPropagation();
             } else {
                 window.alert(response.data.code);
                 setMessage("");
                 setMessageState(t('Message_Send'));
-                props.setClicked(true);
+                setClicked(true);
                 e.stopPropagation();
             }
         } catch(error){
             console.log(error)
             setMessageState(t('Message_Send'));
-            props.setClicked(true);
+            setClicked(true);
             e.stopPropagation();
         }
     }
         
     useEffect(() => {
-        if(props.clicked === true){
-            props.setShowMessage({show:false, user:props.user, nick:props.nick});
+        if(clicked === true){
+            setShowMessage({show:false, user, nick});
         }
-      }, [props.clicked]);
+      }, [clicked, setShowMessage, nick, user]);
 
     return (
-        <MainMessage show={props.showMessage} onClick={(e) => {
-            props.setClicked(false);
-            props.setShowMessage({show:true, user:props.user, nick:props.nick});
+        <MainMessage show={showMessage} onClick={(e) => {
+            setClicked(false);
+            setShowMessage({show:true, user, nick});
             e.stopPropagation();
         }}>
             <MsgH5>
-                <MsgH5Span>{props.nick}</MsgH5Span> {t('Message_Recipient')}</MsgH5>
+                <MsgH5Span>{nick}</MsgH5Span> {t('Message_Recipient')}</MsgH5>
                 <MsgDiv>
                     <MsgTextarea value={message} onChange={(e) => {handleChange(e)}}></MsgTextarea>
                 </MsgDiv>
                 <MsgP>
                     <MsgPSpanCancel onClick={(e)=>{
-                        props.setClicked(true);
-                        props.setShowMessage({show:false, user:0, nick:''});
+                        setClicked(true);
+                        setShowMessage({show:false, user:0, nick:''});
                         setMessage("");
                         e.stopPropagation();
                     }}>{t('Cancel')}</MsgPSpanCancel>

@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import {useTranslation} from 'react-i18next';
 
-function PopShare(props) {
+function PopShare({clicked, share, setShare, jsonArr, SSRJSON, USER}) {
     const {t} = useTranslation();
 
     useEffect(()=>{
-        if (props.clicked === true) {
-            props.setShare(false);
+        if (clicked === true) {
+            setShare(false);
         }
-    },[props.clicked])
+    },[clicked, setShare])
 
     //숫자 네자리 씩 '-' 로 나누기
     function Num4Comma(props){
@@ -18,21 +18,21 @@ function PopShare(props) {
     
         return number.replace(/\B(?=(\d{4})+(?!\d))/g, "-");
     }
-    const recomd = Num4Comma(props.USER); //유저 코드
-    const seq = props.jsonArr.pageSeq; //content번호 
-    const type = props.jsonArr.seqComponent; //질문(Q), 답변(A) 구별
-    const desc = props.jsonArr.contents; // content 글
+    const recomd = Num4Comma(USER); //유저 코드
+    const seq = jsonArr.pageSeq; //content번호 
+    const type = jsonArr.seqComponent; //질문(Q), 답변(A) 구별
+    const desc = jsonArr.contents; // content 글
     const setDesc = desc.replace(/(<([^>]+)>)/ig,""); // content 글에서 태그 없애기
-    const viewCount = props.jsonArr.head.readCount; // 글을 본 인원 수
-    const commentCount = props.jsonArr.replys.length; // 댓글 개수
-    const url = "http://www.altong.com/answer/answerList?" + (type != 'Q' ? type : '') + "Seq=" + seq; // url 주소 바꾸기
+    const viewCount = jsonArr.head.readCount; // 글을 본 인원 수
+    const commentCount = jsonArr.replys.length; // 댓글 개수
+    const url = "http://www.altong.com/answer/answerList?" + (type !== 'Q' ? type : '') + "Seq=" + seq; // url 주소 바꾸기
     const Htags = "알통,지식공유";
     const setUrl = encodeURIComponent(url); //인코딩한 url 값
     const title = () => {
         if (type === 'A') {
-            return props.jsonArr.head.nick += '님의 답변';
+            return jsonArr.head.nick += '님의 답변';
         } else {
-            return props.jsonArr.head.title;
+            return jsonArr.head.title;
         }
     }
 
@@ -50,7 +50,7 @@ function PopShare(props) {
 
         document.body.appendChild(script);
         document.body.removeChild(script);
-    }, [window.Kakao])
+    }, [])
 
     // 카카오톡 공유하기
     const kakao = () => {
@@ -118,7 +118,7 @@ function PopShare(props) {
     //클리보드 복사
     const copyclipboard = (e) => {
         //url 주소 바꾸기
-        const this_text2 = 'http://www.altong.com/answer/answerList?Seq=' + props.SSRJSON[0].pageSeq + '&recomd=' + recomd;
+        const this_text2 = 'http://www.altong.com/answer/answerList?Seq=' + SSRJSON[0].pageSeq + '&recomd=' + recomd;
         const tempElem = document.createElement('textarea');
         tempElem.value = this_text2;
         document.body.appendChild(tempElem);
@@ -131,7 +131,7 @@ function PopShare(props) {
     }    
 
     return (
-        props.share &&
+        share &&
         <ShareDiv onClick={(e)=> {e.stopPropagation();}}>
             <ShareBox onClick={kakao}  >
                 <ShareImg id="kakao-link-btn" src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"></ShareImg>

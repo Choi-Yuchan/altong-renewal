@@ -16,10 +16,10 @@ const replyCount = (replys) => {
   return replys.length
 }
 
-function Box(props) {
+function Box({jsonArr, USER, white, setWhite, clicked, setClicked, setShowAlmoney, setShowSiren, setShowMessage, hunAlram, setHunAlram, selected, highlight, setHighlight, SSRJSON}) {
   const [replyToggle, setReplyToggle] = useState(true);
   const [extraAlmoney, setExtraAlmoney] = useState(0);
-  const [replys, setReplys] = useState(props.jsonArr.replys);
+  const [replys, setReplys] = useState(jsonArr.replys);
   const [showExtraList, setShowExtraList] = useState(false);
   const [extras, setExtras] = useState([]);
 
@@ -31,13 +31,13 @@ function Box(props) {
   };
 
   useEffect(()=>{
-    if(props.white === true){
+    if(white === true){
         setShowExtraList(false);
     }
   }
-  , [props.white]);
+  , [white]);
 
-  const pageSeq = props.jsonArr.pageSeq;
+  const pageSeq = jsonArr.pageSeq;
   
   //url list
   const URL_ALMONEY = `/api/questions/${pageSeq}/almoney`;
@@ -45,7 +45,7 @@ function Box(props) {
 
   useEffect(()=>{
     const getHunAl = async () => {
-      if(props.jsonArr.pageSeq === undefined){}else
+      if(jsonArr.pageSeq === undefined){}else
       try{
         const response = await axios.get(URL_ALMONEY);
         setExtraAlmoney(response.data.ExtraAlmoney);
@@ -66,12 +66,12 @@ function Box(props) {
     }
     getHunAl();
     getHunUsers();
-  }, []);
+  }, [jsonArr.pageSeq, URL_ALMONEY, URL_EXTRA_USERS]);
 
 
   useEffect(()=>{
     const getHunAldata = async () => {
-      if(props.hunAlram === true)
+      if(hunAlram === true)
       try{
         const response = await axios.get(URL_ALMONEY);
         setExtraAlmoney(response.data.ExtraAlmoney)
@@ -89,15 +89,15 @@ function Box(props) {
       } catch (e) {
         console.log(e)
       }
-      props.setHunAlram(false);
+      setHunAlram(false);
     }
 
       getHunAldata();
       getHunUserData();
-    }, [props.hunAlram]);
+    }, [hunAlram, setHunAlram, URL_ALMONEY, URL_EXTRA_USERS]);
 
   //번역버튼 클릭에 대한 AI를 만들었다.
-  const [aiPlus, setAiPlus] = useState({...props.jsonArr, AI:false});
+  const [aiPlus, setAiPlus] = useState({...jsonArr, AI:false});
   const [share, setShare] = useState(false);
   
 
@@ -107,59 +107,58 @@ function Box(props) {
         <div>
           <AlmoneyDiv num={extraAlmoney} onClick={(e) => {
             setShowExtraList(!showExtraList);
-            props.setWhite(!props.white);
+            setWhite(!white);
             e.stopPropagation();
           }}>
             <AnswerAlmoneyImg src="/pub/answer/answerList/images/answer_almoney.svg"/>
             <AlmoneySpan><Num3Comma num={extraAlmoney}/></AlmoneySpan>
-            {props.USER.seq === 0 ? null : (
+            {USER.seq === 0 ? null : (
             <PopExtraAl showExtraList={showExtraList} extraList={extras}/>
             )}
           </AlmoneyDiv>
         </div>
         <QBoxTop
-          clicked={props.clicked} setClicked={props.setClicked}
-          white={props.white} setWhite={props.setWhite}
-          head={props.jsonArr.head} seqComponent={props.jsonArr.seqComponent}
-          pageSeq={props.jsonArr.pageSeq}
-          setShowAlmoney={props.setShowAlmoney}
-          setShowSiren={props.setShowSiren}
-          setShowMessage={props.setShowMessage}
-          mini={props.jsonArr.mini}
-          seqId={props.jsonArr.seqId}
-          USER={props.USER}
+          clicked={clicked} setClicked={setClicked}
+          white={white} setWhite={setWhite}
+          head={jsonArr.head} seqComponent={jsonArr.seqComponent}
+          pageSeq={jsonArr.pageSeq}
+          setShowAlmoney={setShowAlmoney}
+          setShowSiren={setShowSiren}
+          setShowMessage={setShowMessage}
+          mini={jsonArr.mini}
+          seqId={jsonArr.seqId}
+          USER={USER}
           setShare={setShare}
         />
         <Contents 
-          seqComponent={props.jsonArr.seqComponent}
-          contents={props.jsonArr.contents}
+          seqComponent={jsonArr.seqComponent}
+          contents={jsonArr.contents}
         />
-        { aiPlus.AI === true && <LangTransCount seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}/>}
-        <LangTransBox aiPlus={aiPlus.AI} setAiPlus={setAiPlus} jsonArr={props.jsonArr} />
+        { aiPlus.AI === true && <LangTransCount seqComponent={jsonArr.seqComponent} pageSeq={jsonArr.pageSeq}/>}
+        <LangTransBox aiPlus={aiPlus.AI} setAiPlus={setAiPlus} jsonArr={jsonArr} />
         <ReplyBox
-          seqComponent={props.jsonArr.seqComponent} pageSeq={props.jsonArr.pageSeq}
+          seqComponent={jsonArr.seqComponent} pageSeq={jsonArr.pageSeq}
           replyToggle={replyToggle} setReplyToggle={setReplyToggle}
           replyCount={replyCount(replys)} 
-          good={props.jsonArr.good} bad={props.jsonArr.bad} 
-          USER={props.USER}
-          seqId={props.jsonArr.seqId}
-          SSRJSON={props.SSRJSON}
+          good={jsonArr.good} bad={jsonArr.bad} 
+          USER={USER} choice={jsonArr.choice}
+          seqId={jsonArr.seqId} SSRJSON={SSRJSON}
         />
         <ReplyList 
-          USER={props.USER} replyToggle={replyToggle}
-          white={props.white} setWhite={props.setWhite}
-          pageSeq={props.jsonArr.pageSeq} seqComponent={props.jsonArr.seqComponent}
+          USER={USER} replyToggle={replyToggle}
+          white={white} setWhite={setWhite}
+          pageSeq={jsonArr.pageSeq} seqComponent={jsonArr.seqComponent}
           setReplys={setReplys} replys={replys}
-          resetReplys={resetReplys}
+          resetReplys={resetReplys} 
         />
     </MainDiv>
     <PopShare
-      clicked={props.clicked} setClicked={props.setClicked}
+      clicked={clicked}
       share={share} setShare={setShare}
-      jsonArr={props.jsonArr}
-      SSRJSON={props.SSRJSON}
-      USER={props.USER}
-      ></PopShare>
+      jsonArr={jsonArr}
+      SSRJSON={SSRJSON}
+      USER={USER}
+      />
     </>
   
   );
