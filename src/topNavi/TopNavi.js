@@ -2,21 +2,12 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
-
-
-const langTopNavi = {
-    alt : [
-        "알통 로고",
-        "검색 아이콘",
-        "글쓰기 아이콘",
-        "질문 보기 아이콘",
-    ],
-    placeholder : "검색어를 입력해 주세요",
-}
+import { useTranslation } from 'react-i18next';
 
 function TopNavi({setShowNavi, setClicked, user}) {
-    const altText = langTopNavi.alt;
-    const search = langTopNavi.placeholder;
+    const { t } = useTranslation();
+    const altText = t("TopNavi_alttext");
+    const search = t("TopNavi_placeholder");
 
     const [login, setLogin] = useState(false);
 
@@ -43,9 +34,9 @@ function TopNavi({setShowNavi, setClicked, user}) {
                     e.stopPropagation();
                 }}>
                     <HamburgerDiv>
-                        <HamburgerDivIFirst></HamburgerDivIFirst>
+                        <HamburgerDivIFirst/>
                         <HamburgerDivISecond show={login}></HamburgerDivISecond>
-                        <HamburgerDivILast></HamburgerDivILast>
+                        <HamburgerDivILast/>
                         <HamburgerSpan show={login}></HamburgerSpan>
                     </HamburgerDiv>
                 </HamburgerBar>
@@ -68,16 +59,16 @@ function TopNavi({setShowNavi, setClicked, user}) {
                                 e.preventDefault();
                                 setToggle(!toggle);
                                 }}>
-                                <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}></SearchImg>
+                                <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}/>
                             </SearchBtn>
                         </SearchForm>
                     </SearchBox>
                     <ColumnBoxPC>
                         <ColumnBoxAhref href="/">
-                            <TopcolumnBoxImg src="/Common/images/que_icon.svg" alt={altText[2]}></TopcolumnBoxImg>
+                            <TopcolumnBoxImg src="/Common/images/que_icon.svg" alt={altText[2]}/>
                         </ColumnBoxAhref>
                         <ColumnBoxAhref2 href="/">
-                            <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg" alt={altText[3]}></TopcolumnBoxImg2>
+                            <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg" alt={altText[3]}/>
                         </ColumnBoxAhref2>
                     </ColumnBoxPC>
                 </ColumnDiv>
