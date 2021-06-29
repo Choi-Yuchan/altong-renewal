@@ -34,9 +34,9 @@ function TopNavi({setShowNavi, setClicked, user}) {
                     e.stopPropagation();
                 }}>
                     <HamburgerDiv>
-                        <HamburgerDivIFirst></HamburgerDivIFirst>
+                        <HamburgerDivIFirst/>
                         <HamburgerDivISecond show={login}></HamburgerDivISecond>
-                        <HamburgerDivILast></HamburgerDivILast>
+                        <HamburgerDivILast/>
                         <HamburgerSpan show={login}></HamburgerSpan>
                     </HamburgerDiv>
                 </HamburgerBar>
@@ -59,16 +59,16 @@ function TopNavi({setShowNavi, setClicked, user}) {
                                 e.preventDefault();
                                 setToggle(!toggle);
                                 }}>
-                                <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}></SearchImg>
+                                <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}/>
                             </SearchBtn>
                         </SearchForm>
                     </SearchBox>
                     <ColumnBoxPC>
                         <ColumnBoxAhref href="/">
-                            <TopcolumnBoxImg src="/Common/images/que_icon.svg" alt={altText[2]}></TopcolumnBoxImg>
+                            <TopcolumnBoxImg src="/Common/images/que_icon.svg" alt={altText[2]}/>
                         </ColumnBoxAhref>
                         <ColumnBoxAhref2 href="/">
-                            <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg" alt={altText[3]}></TopcolumnBoxImg2>
+                            <TopcolumnBoxImg2 src="/pub/default/main/images/list_icon.svg" alt={altText[3]}/>
                         </ColumnBoxAhref2>
                     </ColumnBoxPC>
                 </ColumnDiv>
