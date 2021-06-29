@@ -25,6 +25,7 @@ i18n.use(initReactI18next).init({
     fallbackLng: "ko",
     debug: true,
     keySeparator: false,
+    returnObjects: true,
     interpolation: {escapeValue: false}
 });
 

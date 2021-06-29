@@ -2,21 +2,12 @@ import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
-
-
-const langTopNavi = {
-    alt : [
-        "알통 로고",
-        "검색 아이콘",
-        "글쓰기 아이콘",
-        "질문 보기 아이콘",
-    ],
-    placeholder : "검색어를 입력해 주세요",
-}
+import { useTranslation } from 'react-i18next';
 
 function TopNavi({setShowNavi, setClicked, user}) {
-    const altText = langTopNavi.alt;
-    const search = langTopNavi.placeholder;
+    const { t } = useTranslation();
+    const altText = t("TopNavi_alttext");
+    const search = t("TopNavi_placeholder");
 
     const [login, setLogin] = useState(false);
 
