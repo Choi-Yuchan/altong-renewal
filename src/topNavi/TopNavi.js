@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
 
@@ -18,36 +17,16 @@ const langTopNavi = {
 function TopNavi({setShowNavi, setClicked, user}) {
     const altText = langTopNavi.alt;
     const search = langTopNavi.placeholder;
-    //URL_LIST
-    const URL_TOP_DATA = ''
 
-    const [error, setError] = useState(null);
-    const [topAlt, setTopAlt] = useState(null);
-    const [placeholder, setPlaceholder] = useState(null);
     const [login, setLogin] = useState(false);
 
     useEffect (() => {
-        const getTopNavi = async () => {
-            try{
-                setError(null);
-                setTopAlt(null);
-                setPlaceholder(null);
-
-                const topNaviData = await axios.get(URL_TOP_DATA);
-                setTopAlt(topNaviData.data.alt);
-                setPlaceholder(topNaviData.data.placeholder);
-            } catch(error) {
-                setError(error.message);
-            }
-        }
-        if(error) return console.log(error);
-        getTopNavi();
         if (user.seq !== 0) { //로그인 유무
             setLogin(true);
         } else {
             setLogin(false);
         }
-    },[]);
+    },[user.seq]);
 
     //클릭했을 때 toggle 값 변경으로 조작
     const [toggle, setToggle] = useState(false);
@@ -84,13 +63,13 @@ function TopNavi({setShowNavi, setClicked, user}) {
                 <ColumnDiv>
                     <SearchBox>
                         <SearchForm>
-                            {toggle ? <SearchBoxInput {...slideInput} placeholder={search} type="text"></SearchBoxInput> : null}
-                            <SearchSpan type="submit" onClick={(e) => {
+                            {toggle ? <SearchBoxInput {...slideInput} placeholder={search} type="text"/> : null}
+                            <SearchBtn type="submit" onClick={(e) => {
                                 e.preventDefault();
                                 setToggle(!toggle);
                                 }}>
                                 <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}></SearchImg>
-                            </SearchSpan>
+                            </SearchBtn>
                         </SearchForm>
                     </SearchBox>
                     <ColumnBoxPC>
@@ -273,7 +252,7 @@ const SearchBoxInput = styled.input`
     }
 `;
 
-const SearchSpan = styled.button`
+const SearchBtn = styled.button`
     display: block;
     width: 30px;
     cursor: pointer;
