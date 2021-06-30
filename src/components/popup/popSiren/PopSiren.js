@@ -47,233 +47,130 @@ function PopSiren({clicked, setClicked, showSiren, page, seq, title, setShowSire
             setShowSiren({show:true, page, seq, title});
             e.stopPropagation();
           }}>
-            <PopReportH4><PopReportDivImg/>{t('Silen_Report')}</PopReportH4>
+            <PopReport><ReportIcon src="/pub/answer/answerList/images/atm_more_3.png" alt={t("QPopup_Report")}/>{t('Silen_Report')}</PopReport>
             <ReportWrap>
-                <BDiv>
-                    <BTable>
-                        <BTbody>
-                            <BTr>
-                                <BTbodyTrTh>{t('Silen_Reporter')}</BTbodyTrTh>
-                                <BTbodyTrTd>{nick}</BTbodyTrTd>
-                            </BTr>
-                            <BTr>
-                                <BTbodyTrTh>{t('Silen_Content')}</BTbodyTrTh>
-                                <BTbodyTrTd>{title}</BTbodyTrTd>
-                            </BTr>
-                        </BTbody>
-                    </BTable>
-                </BDiv>
-                <div>
-                    <RReasonDivP>- {t('Silen_Reason')}</RReasonDivP>
-                    <ReDivTable>
-                        <tbody>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("1")
-                                            }}
-                                            defaultChecked={radioN === "1" ? true : false}
-                                        ></ARInput>{t('Silen_Advertising')}</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("2")
-                                            }}
-                                            defaultChecked={radioN === "2" ? true : false}
-                                        ></ARInput>{t('Silen_Harmful')}</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("3")
-                                            }}
-                                            defaultChecked={radioN === "3" ? true : false}
-                                        ></ARInput>{t('Silen_Pranky')}</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("4")
-                                            }}
-                                            defaultChecked={radioN === "4" ? true : false}
-                                        ></ARInput>{t('Silen_Repetitive')}</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("5")
-                                            }}
-                                            defaultChecked={radioN === "5" ? true : false}
-                                        ></ARInput>{t('Silen_Cussing')}</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("6")
-                                            }}
-                                            defaultChecked={radioN === "6" ? true : false}
-                                        ></ARInput>{t('Silen_knowledge')}</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("7")
-                                            }}
-                                            defaultChecked={radioN === "7" ? true : false}
-                                        ></ARInput>{t('Silen_Defamation')}</label>
-                                </AReasonTbodyTrTd>
-                                <AReasonTbodyTrTd>
-                                    <label>
-                                        <ARInput type="radio" name="H_Reason"
-                                            onClick={() => {
-                                                setRadioN("8")
-                                            }}
-                                            defaultChecked={radioN === "8" ? true : false}
-                                        ></ARInput>{t('Silen_Others')}</label>
-                                </AReasonTbodyTrTd>
-                            </tr>
-                            <tr>
-                                <ABTd colSpan="2">
-                                    <ReTextarea maxlength="1000" placeholder={t('Silen_Placeholder')} value={reason} onChange={(e) => {handleChange(e)}}>
-                                    </ReTextarea>
-                                </ABTd>
-                                
-                            </tr>
-                        </tbody>
-                    </ReDivTable>
-                </div>
-                <DRBottomDiv>
-                    <RDivP>
-                        <DRDivPI>warning</DRDivPI>
-                    </RDivP>
-                    <RDivP>{t('Silen_Innocent')}<br></br> {t('Silen_Prudent')}</RDivP>
-                </DRBottomDiv>
-                <div>
-                    <DReportTable>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <DRInput value={t('Cancel')} 
-                                    onChange={(e) => {handleChange(e)}}
-                                    onClick={(e)=>{
-                                            setReason("");
-                                            setClicked(true);
-                                            e.stopPropagation();
-                                        }}
-                                    ></DRInput>
-                                </td>
-                                <td>
-                                    <DSubmit value={t('Silen_Submit')} 
-                                    onChange={(e) => {handleChange(e)}} 
-                                    onClick={(e)=>{
-                                            runSiren(e, setReason, setClicked);
-                                        }}
-                                    ></DSubmit>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </DReportTable>
-                </div>
+                <ReportForm>
+                    <ReportFormContents>
+                            <ContentsRow>
+                                <ContentsSubtitle>{t('Silen_Reporter')}</ContentsSubtitle>
+                                <ContentsInfo>{nick}</ContentsInfo>
+                            </ContentsRow>
+                            <ContentsRow>
+                                <ContentsSubtitle>{t('Silen_Content')}</ContentsSubtitle>
+                                <ContentsInfo>{title}</ContentsInfo>
+                            </ContentsRow>
+                    </ReportFormContents>
+                </ReportForm>
+                <ReportReason>
+                    <ReasonTitle>- {t('Silen_Reason')}</ReasonTitle>
+                    <ReasonContainer>
+                        <ReasonColumn>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("1")
+                                    }}
+                                    defaultChecked={radioN === "1" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Advertising')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("2")
+                                    }}
+                                    defaultChecked={radioN === "2" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Harmful')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("3")
+                                    }}
+                                    defaultChecked={radioN === "3" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Pranky')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("4")
+                                    }}
+                                    defaultChecked={radioN === "4" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Repetitive')}</ReasonLabel>
+                            </ReasonList>
+                        </ReasonColumn>
+                        <ReasonColumn>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("5")
+                                    }}
+                                    defaultChecked={radioN === "5" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Cussing')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("6")
+                                    }}
+                                    defaultChecked={radioN === "6" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_knowledge')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("7")
+                                    }}
+                                    defaultChecked={radioN === "7" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Defamation')}</ReasonLabel>
+                            </ReasonList>
+                            <ReasonList>
+                                <ARInput type="radio" name="H_Reason"
+                                    onClick={() => {
+                                        setRadioN("8")
+                                    }}
+                                    defaultChecked={radioN === "8" ? true : false}
+                                />
+                                <ReasonLabel>{t('Silen_Others')}</ReasonLabel>
+                            </ReasonList>
+                        </ReasonColumn>
+                    </ReasonContainer>
+                    <ReasonTextBox>
+                        <ReTextarea maxlength="1000" placeholder={t('Silen_Placeholder')} value={reason} onChange={(e) => {handleChange(e)}}/>
+                    </ReasonTextBox> 
+                </ReportReason>
+                <WarningDiv>
+                    <WarningTitle>WARNING</WarningTitle>
+                    <WarningPara>{t('Silen_Innocent')}<br></br> {t('Silen_Prudent')}</WarningPara>
+                </WarningDiv>
+                <ReportBtnBox>
+                    <DRInput value={t('Cancel')} 
+                    onChange={(e) => {handleChange(e)}}
+                    onClick={(e)=>{
+                            setReason("");
+                            setClicked(true);
+                            e.stopPropagation();
+                        }}
+                    />
+                    <DSubmit value={t('Silen_Submit')} 
+                    onChange={(e) => {handleChange(e)}} 
+                    onClick={(e)=>{
+                            runSiren(e, setReason, setClicked);
+                        }}
+                    />
+                </ReportBtnBox>
             </ReportWrap>
         </PopReportDiv>
     );
 }
   
 export default PopSiren;
-const DReportTable = styled.table`
-    margin-top: 10px;
-    width: 100%;
-    text-align: center;
-`
-const ABTd = styled.td`
-    line-height: 28px;
-    font-size: 15px;
-`
-const DRInput = styled.input`
-    text-align: center;
-    width: 90%;
-    background: #fff;
-    border: 1px solid #bbbaba;
-    font-size: 14px;
-    border-radius: 20px;
-    line-height: 24px;
-    color: #bbbaba;
-    font-weight: bold;
-    letter-spacing: -0.5px;
-    outline: none;
-    cursor: pointer;
-`
-const DSubmit = styled.input`
-    border: 1px solid #2bb330;
-    color: #2bb330;
-    text-align: center;
-    width: 90%;
-    background: #fff;
-    font-size: 14px;
-    border-radius: 20px;
-    line-height: 24px;
-    font-weight: bold;
-    letter-spacing: -0.5px;
-    outline: none;
-    cursor: pointer;
-`
-const DRBottomDiv = styled.div`
-    text-align: center;
-    margin-top: 5px;
-    color: #989898;
-`
-const RDivP = styled.div`
-    font-size: 14px;
-`
-const DRDivPI = styled.p`
-    font-size: 20px;
-    margin-bottom: 8px;
-    font-family: 'Material Icons';
-    line-height: 1;
-`
-const RReasonDivP = styled.p`
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 26px;
-`
-const ReDivTable = styled.table`
-    width: 100%;
-`
-const ReTextarea = styled.textarea`
-    resize: none;
-    width: 100%;
-    margin-top: 13px;
-    padding: 5px 10px;
-    font-size: 14px;
-    letter-spacing: -0.5px;
-    line-height: 22px;
-    border: 1px solid #cacaca;
-    min-height: 70px;
-    outline: none;
-`
-const AReasonTbodyTrTd = styled.td`
-    line-height: 28px;
-    font-size: 15px;
-`
-const ARInput = styled.input`
-    margin: 0 4px;
-    outline: none;
-`
 const PopReportDiv = styled.div`
     width: 90%;
     max-width: 520px;
@@ -286,12 +183,12 @@ const PopReportDiv = styled.div`
     display: ${(props) => props.showSiren?"block":"none"};
     z-index: 99;
 `;
-const PopReportDivImg = styled.img`
+const ReportIcon = styled.img`
     width: 19px;
-    margin-bottom: -3px;
     margin-right: 5px;
+    margin-bottom: -3px;
 `;
-const PopReportH4 = styled.h4`
+const PopReport = styled.h4`
     text-align: center;
     font-size: 16px;
     letter-spacing: -0.5px;
@@ -300,42 +197,118 @@ const PopReportH4 = styled.h4`
     background: #fff;
     box-shadow: 0 2px 8px rgb(0 0 0 / 20%);
 `
-const ReportWrap = styled.div`
+const ReportReason = styled.article`
+`;
+
+const ReasonLabel = styled.label`
+    line-height:2;
+`;
+const ReasonTextBox = styled.div`
+    line-height: 28px;
+    font-size: 15px;
+`
+const ReasonTitle = styled.p`
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+`
+const ReasonContainer = styled.div`
+    width: 100%;
+    display: flex;
+`
+const ReasonColumn = styled.div`
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    padding-left:0.5rem;
+`;
+const ReTextarea = styled.textarea`
+    resize: none;
+    width: 100%;
+    margin-top: 13px;
+    padding: 5px 10px;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    line-height: 22px;
+    border: 1px solid #cacaca;
+    min-height: 70px;
+    outline: none;
+`
+const ReasonList = styled.div`
+    font-size: 15px;
+`
+const ARInput = styled.input`
+    margin: 0 5px;
+    outline: none;
+`
+const ReportWrap = styled.main`
     padding: 20px;
 `
-const BDiv = styled.div`
-    border: 1px dashed #da3030;
+const ReportForm = styled.article`
+    border: 1px dashed #989898;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
 `
-const BTable = styled.table`
-    text-align: justify;
-    display: block;
+const ReportFormContents = styled.div`
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-flow:column wrap;
     width: 100%;
 `
-const BTbody = styled.tbody`
-    display: block;
+const ContentsRow = styled.div`
+    display: flex;
     width: 100%;
+    line-height:1.8;
+    align-items: center;
 `
-const BTr = styled.tr`
-    display: block;
-    width: 100%;
-`
-const BTbodyTrTh = styled.th`
-    padding: 4px 0;
+const ContentsSubtitle = styled.h6`
     font-size: 14px;
-    letter-spacing: -0.5px;
-    display: inline-block;
+    font-weight: bold;
     width: 16%;
+    padding-left: 10px;
 `
-const BTbodyTrTd = styled.td`
-    line-height: 24px;
-    padding: 3px 0;
+const ContentsInfo = styled.p`
     font-size: 15px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    display: inline-block;
     width: 82%;
+`
+const ReportBtnBox = styled.div`
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    margin-top: 1rem;
+    width: 100%;
+`
+const DRInput = styled.input`
+    text-align: center;
+    width: 40%;
+    padding: 6px 0;
+    background: #fff;
+    border: 2px solid #fd0031;
+    font-size: 14px;
+    border-radius: 20px;
+    color: #fd0031;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+`
+const DSubmit = styled(DRInput)`
+    border: 2px solid #2bb330;
+    color: #2bb330;
+`
+const WarningDiv = styled.div`
+    text-align: center;
+    color: #989898;
+`
+const WarningPara = styled.p`
+    font-size: 14px;
+`
+const WarningTitle = styled.p`
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-family: 'Material Icons';
 `
