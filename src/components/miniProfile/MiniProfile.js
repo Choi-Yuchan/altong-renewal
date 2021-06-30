@@ -44,77 +44,72 @@ function MiniProfile({setClicked, showMini, mini, setShowMini ,userSeq, setShowM
     }
 
     const {t} = useTranslation();
+    const altText = t("MiniProfle_alttext");
     const lvText = [t('Lv_Hidden'), t('Lv_Al'), t('Lv_Butterfly'), t('Lv_Smiling'), t('Lv_Fiery'), t('Lv_Golden'), t('Lv_Guardian'), t('Lv_Light'), t('Lv_Chief'), t('Lv_Archangel'), t('Lv_Chief_Archangel'), t('Lv_Altong_Addict')]
 
     //MainTableImg component에 대체 텍스트가 없음. 추가 작업 필요.
     return (
-        <MainDiv showMini={showMini}
+        <MiniContainer showMini={showMini}
         onClick={(e)=>{
             setClicked(false);
             setShowMini(true);
             e.stopPropagation();
         }}>
-            <MainTable>
-                <tbody>
-                <tr>
-                    <MiniTh>
-                    <MiniSpan>{UlvText(mini.uLv, lvText)}</MiniSpan>{mini.nick}
-                    </MiniTh>
-                    <th rowSpan="2" 
-                        onClick={(e) => {
-                            AddFriend(e);
-                        }}
-                    >
-                        <MainTableImg src="/pub/css/profile/addFriends.svg"/>
-                    </th>
-                    <th rowSpan="2" 
-                        onClick={(e) => {
-                            AddMento(e);
-                        }}
-                    >
-                        <MainTableImg src="/pub/css/profile/addMento.svg"/>
-                    </th>
-                    <th rowSpan="2"
-                        onClick={(e) => {
-                            setClicked(false);
-                            setShowMessage({show:true, user:userSeq, nick:mini.nick});
-                            e.stopPropagation();
-                        }}
-                    >
-                        <MainTableImgLast src="/pub/css/profile/message.svg"/>
-                    </th>
-                </tr>
-                <tr>
-                    <MoneyInfoTd>{t('MiniProfile_Cumulative')} : <span>{mini.alBenefit}</span>{t('PopExtraAl_Al')}</MoneyInfoTd>
-                </tr>
-                </tbody>
-            </MainTable>
+            <UpperArticle>
+                <UserBox>
+                    <UserInfo>
+                        <UserGrade>{UlvText(mini.uLv, lvText)}</UserGrade>{mini.nick}
+                    </UserInfo>
+                    <UserStackedAl>{t('MiniProfile_Cumulative')} : <Num3Comma num={mini.alBenefit}/>{t('PopExtraAl_Al')}</UserStackedAl>
+                </UserBox>
+                <IconContainer>
+                    <IconBox onClick={(e) => {
+                        AddFriend(e);
+                    }}>
+                        <MainTableImg src="/pub/css/profile/addFriends.svg" alt={altText[0]}/>
+                    </IconBox>
+                    <IconBox onClick={(e) => {
+                        AddMento(e);
+                    }}>
+                        <MainTableImg src="/pub/css/profile/addMento.svg" alt={altText[1]}/>
+                    </IconBox>
+                    <IconBox onClick={(e) => {
+                        setClicked(false);
+                        setShowMessage({show:true, user:userSeq, nick:mini.nick});
+                        e.stopPropagation();
+                    }}>
+                        <MainTableImg src="/pub/css/profile/message.svg" alt={altText[2]}/>
+                    </IconBox>
+                </IconContainer>
+            </UpperArticle>
             <MiniContentP>{mini.descript}</MiniContentP>
-            <MiniIconLine></MiniIconLine>
-            <MiniInfoTable>
-                <tbody>
-                    <MiniInfoTableTr>
-                        <MiniInfoTableTd>{t('MiniProfile_Question')}</MiniInfoTableTd>
-                        <MiniInfoTableTd>{t('MiniProfile_Answer')}</MiniInfoTableTd>
-                        <MiniInfoTableTd>{t('MiniProfile_Gratitude')}</MiniInfoTableTd>
-                        <MiniInfoTableTd>{t('MiniProfile_Gratitude_rate')}</MiniInfoTableTd>
-                    </MiniInfoTableTr>
-                    <MiniInfoTableTr>
-                        <MiniInfoTableTh><Num3Comma num={mini.qBenefit}/> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={mini.ABenefit}/> {t('PopExtraAl_Al')}</MiniInfoTableTh>
-                        <MiniInfoTableTh><Num3Comma num={mini.giveThankNum}/></MiniInfoTableTh>
-                        <MiniInfoTableTh>{mini.giveThankRate}%</MiniInfoTableTh>
-                    </MiniInfoTableTr>
-                </tbody>
-            </MiniInfoTable>
+            <MiniIconLine/>
+            <LowerArticle>
+                <InfoColumn>
+                    <InfoSubtitle>{t('MiniProfile_Question')}</InfoSubtitle>
+                    <InfoContent><Num3Comma num={mini.qBenefit}/> {t('PopExtraAl_Al')}</InfoContent>
+                </InfoColumn>
+                <InfoColumn>
+                    <InfoSubtitle>{t('MiniProfile_Answer')}</InfoSubtitle>
+                    <InfoContent><Num3Comma num={mini.ABenefit}/> {t('PopExtraAl_Al')}</InfoContent>
+                </InfoColumn>
+                <InfoColumn>
+                    <InfoSubtitle>{t('MiniProfile_Gratitude')}</InfoSubtitle>
+                    <InfoContent><Num3Comma num={mini.giveThankNum}/></InfoContent>
+                </InfoColumn>
+                <InfoColumn>
+                    <InfoSubtitle>{t('MiniProfile_Gratitude_rate')}</InfoSubtitle>
+                    <InfoContent>{mini.giveThankRate}%</InfoContent>
+                </InfoColumn>
+            </LowerArticle>
             <MiniProfileGo>{t('MiniProfile_GoToSee')}</MiniProfileGo>
-        </MainDiv>
+        </MiniContainer>
     );
   }
   
 export default MiniProfile;
 
-const MainDiv = styled.div`
+const MiniContainer = styled.section`
 &{
     width:100%;
     max-width: 400px;
@@ -141,9 +136,51 @@ const MainDiv = styled.div`
 }
 `;
 
-const MainTable = styled.table`
+const UpperArticle = styled.article`
     width: 100%;
-    text-align: justify;
+    display: flex;
+    align-items: center;
+`;
+const UserBox = styled.div`
+    width:40%;
+`;
+const UserInfo = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.825rem;
+    font-weight: bold;
+    padding: 3px 0;
+    @media (min-width: 480px){
+        font-size: 1rem;
+    }
+`;
+const UserStackedAl = styled.div`
+    font-size: 0.625rem;
+    color: #888;
+    font-weight: 500;
+    text-align: center;
+    @media(min-width: 480px){
+        font-size: 12px;
+    }
+`;
+const UserGrade = styled.span`
+    display: inline-block;
+    font-size: 10px;
+    padding: 0px 5px;
+    border: 1px solid #fd0031;
+    color: #fd0031;
+    border-radius: 10px;
+    margin-top: 2px;
+    margin-right: 2px;
+`;
+const IconContainer = styled.div`
+    display: flex;
+    width: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+`;
+const IconBox = styled.div`
 `;
 const MainTableImg = styled.img`
     width: 30px;
@@ -151,38 +188,12 @@ const MainTableImg = styled.img`
     margin: auto;
     cursor: pointer;
 `;
-const MainTableImgLast = styled.img`
-    width: 28px;
-    display: block;
-    margin: auto;
-    cursor: pointer;
-`;
-const MiniTh = styled.th`
-    display:flex;
-    align-items:center;
-`;
-const MoneyInfoTd = styled.td`
-    font-size: 12px;
-    color: #888;
-    font-weight: 500;
-`;
-const MiniSpan = styled.span`
-    display: inline-block;
-    font-size: 10px;
-    padding: 0px 5px;
-    border: 1px solid #fd0031;
-    color: #fd0031;
-    border-radius: 10px;
-    margin-right: 2px;
-`;
-const MiniIconLine = styled.i`
-    display: block;
+
+const MiniIconLine = styled.div`
     height: 1px;
     width: 80%;
     background: #eee;
     margin: 0 auto 10px;
-    padding: 0;
-    box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
 const MiniContentP = styled.p`
@@ -206,35 +217,36 @@ const MiniProfileGo = styled.a`
     text-decoration: none;
     color: #333;
 `;
-const MiniInfoTable = styled.table`
+const LowerArticle = styled.article`
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     font-size: 12px;
     margin-bottom: 10px;
-    padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-const MiniInfoTableTr = styled.tr`
+const InfoColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 5px;
-    padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    :not(:last-child){
+        padding-right: 5px;
+    }
 `;
-const MiniInfoTableTd = styled.td`
+const InfoSubtitle = styled.p`
     font-weight: 500;
     color: #888;
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-const MiniInfoTableTh = styled.th`
+const InfoContent = styled.p`
     font-size: 13px;
-    margin: 0;
-    padding: 0;
+    font-weight: bold;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 `;
-
-  

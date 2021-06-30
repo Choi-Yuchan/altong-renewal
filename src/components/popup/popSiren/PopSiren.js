@@ -266,8 +266,11 @@ const ContentsRow = styled.div`
 const ContentsSubtitle = styled.h6`
     font-size: 14px;
     font-weight: bold;
-    width: 16%;
+    width: 20%;
     padding-left: 10px;
+    @media (min-width:480px){
+        width:16%;
+    }
 `
 const ContentsInfo = styled.p`
     font-size: 15px;
