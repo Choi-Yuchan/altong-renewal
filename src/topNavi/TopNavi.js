@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSlideIn } from '../components/functions/useSlideIn/useSlideIn';
 import { useSlideUp } from '../components/functions/useSlideUp/useSlideUp';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ function TopNavi({setShowNavi, setClicked, user}) {
     const search = t("TopNavi_placeholder");
 
     const [login, setLogin] = useState(false);
+    const [searchWord, SetSearchWord] = useState("");
 
     useEffect (() => {
         if (user.seq !== 0) { //로그인 유무
@@ -18,6 +19,25 @@ function TopNavi({setShowNavi, setClicked, user}) {
             setLogin(false);
         }
     },[user.seq]);
+
+    //검색 내용 전송
+    const handleSubmit = useCallback(e => {
+            e.preventDefault();
+            if(searchWord.length === 0){
+                return null;
+            } else {
+                //알통과 머지 후 해당 검색어 페이지로 이동하는 기능 추가 필요.
+                alert(`You've searched : ${searchWord}`);
+            }
+            SetSearchWord("")
+    },[searchWord]);
+
+
+    //검색창에 입력한 값 감지
+    const handleChange = (e) => {
+        SetSearchWord(e.target.value);
+    } 
+
 
     //클릭했을 때 toggle 값 변경으로 조작
     const [toggle, setToggle] = useState(false);
@@ -53,10 +73,9 @@ function TopNavi({setShowNavi, setClicked, user}) {
                 </Logo>}
                 <ColumnDiv>
                     <SearchBox>
-                        <SearchForm>
-                            {toggle ? <SearchBoxInput {...slideInput} placeholder={search} type="text"/> : null}
-                            <SearchBtn type="submit" onClick={(e) => {
-                                e.preventDefault();
+                        <SearchForm onSubmit={handleSubmit}>
+                            {toggle ? <SearchBoxInput {...slideInput} placeholder={search} type="search" value={searchWord} onChange={handleChange}/> : null}
+                            <SearchBtn type="submit" onClick={() => {
                                 setToggle(!toggle);
                                 }}>
                                 <SearchImg src="/Common/images/mainico/nicksearch.svg" alt={altText[1]}/>
@@ -234,6 +253,16 @@ const SearchBoxInput = styled.input`
     transform-origin:right center;
     ::placeholder{
         font-size: 11px;
+    }
+    ::-ms-clear,
+    ::-ms-reveal{
+        display:none;width:0;height:0;
+    }
+    ::-webkit-search-decoration,
+    ::-webkit-search-cancel-button,
+    ::-webkit-search-results-button,
+    ::-webkit-search-results-decoration{
+        display:none;
     }
     @media (min-width: 475px){
         width: 200px;

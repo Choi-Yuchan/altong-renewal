@@ -233,6 +233,9 @@ const ReTextarea = styled.textarea`
     border: 1px solid #cacaca;
     min-height: 70px;
     outline: none;
+    ::placeholder{
+        font-size:12px;
+    }
 `
 const ReasonList = styled.div`
     font-size: 15px;
@@ -266,7 +269,7 @@ const ContentsRow = styled.div`
 const ContentsSubtitle = styled.h6`
     font-size: 14px;
     font-weight: bold;
-    width: 20%;
+    width: 25%;
     padding-left: 10px;
     @media (min-width:480px){
         width:16%;
@@ -277,7 +280,10 @@ const ContentsInfo = styled.p`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 82%;
+    width: 75%;
+    @media (min-width:480px){
+        width: 82%;
+    }
 `
 const ReportBtnBox = styled.div`
     display:flex;
@@ -308,7 +314,10 @@ const WarningDiv = styled.div`
     color: #989898;
 `
 const WarningPara = styled.p`
-    font-size: 14px;
+    font-size: 11px;
+    @media (min-width: 480px){
+        font-size:14px;
+    }
 `
 const WarningTitle = styled.p`
     font-size: 20px;
