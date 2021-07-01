@@ -1,11 +1,11 @@
 {
-    "TopNavi_alttext": ["알통 로고", "검색 아이콘", "글쓰기 아이콘", "질문 보기 아이콘"],
-    "TopNavi_placeholder" : "검색어를 입력해 주세요",
+    "TopNavi_alttext": ["阿尔通 商标", "搜索", "写作", "显示问题"],
+    "TopNavi_placeholder" : "请输入一个搜索词",
     
     "QBoxTop_question": "的问题",
     "QBoxTop_gratitudeAl_rate": "谢阿尔支给率",
 
-    "MiniProfle_alttext": ["친구 추가", "멘토 추가", "쪽지 보내기"],
+    "MiniProfle_alttext": ["添加好友", "添加导师", "发送讯息"],
 
     "Lv_Hidden": "隐藏",
     "Lv_Al": "阿尔天使",

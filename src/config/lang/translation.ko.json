@@ -1,5 +1,5 @@
 {
-    "TopNavi_alttext": ["알통 로고", "검색 아이콘", "글쓰기 아이콘", "질문 보기 아이콘"],
+    "TopNavi_alttext": ["알통 로고", "검색", "글쓰기", "질문 보기"],
     "TopNavi_placeholder" : "검색어를 입력해 주세요",
     
     "QBoxTop_question": "님의 질문",
