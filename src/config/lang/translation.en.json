@@ -1,11 +1,11 @@
 {
-    "TopNavi_alttext": ["알통 로고", "검색 아이콘", "글쓰기 아이콘", "질문 보기 아이콘"],
-    "TopNavi_placeholder" : "검색어를 입력해 주세요",
+    "TopNavi_alttext": ["Altong Logo", "Search", "Write", "Show Question"],
+    "TopNavi_placeholder" : "Search a word",
     
     "QBoxTop_question": "'s question",
     "QBoxTop_gratitudeAl_rate": "Gratitude Al-release rate",
 
-    "MiniProfle_alttext": ["친구 추가", "멘토 추가", "쪽지 보내기"],
+    "MiniProfle_alttext": ["Add Friend", "Add Mentor", "Send Message"],
 
     "Lv_Hidden": "Hidden",
     "Lv_Al": "Al Angel",

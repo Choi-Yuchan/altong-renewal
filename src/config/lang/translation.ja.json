@@ -1,11 +1,11 @@
 {
-    "TopNavi_alttext": ["알통 로고", "검색 아이콘", "글쓰기 아이콘", "질문 보기 아이콘"],
-    "TopNavi_placeholder" : "검색어를 입력해 주세요",
+    "TopNavi_alttext": ["ｱﾙﾄﾝ ロゴ", "検索", "書く", "質問を表示"],
+    "TopNavi_placeholder" : "検索用語を入力してください",
     
     "QBoxTop_question": "さんの質問",
     "QBoxTop_gratitudeAl_rate": "感謝アル支給率",
 
-    "MiniProfle_alttext": ["친구 추가", "멘토 추가", "쪽지 보내기"],
+    "MiniProfle_alttext": ["友人を追加する", "メンターを追加", "メッセージを送る"],
     
     "Lv_Hidden": "非公開",
     "Lv_Al": "アル天使",
